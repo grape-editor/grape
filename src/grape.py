@@ -1,8 +1,7 @@
-from gui.MainScreen import MainScreen
-import gtk
+from ControllerGUI import ControllerGUI
 
 if __name__ == "__main__":
-    window = MainScreen()
+    grape = ControllerGUI()
 
 
 
