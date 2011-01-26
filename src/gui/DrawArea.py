@@ -1,26 +1,30 @@
+from gtk import DrawingArea
+from lib.Graph import Graph
+
 import gtk
 
-class DrawArea:
-    name = 0
 
-    def __init__(self, draw_area):
-        self.draw_area = draw_area
-        self.draw_area.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-        self.draw_area.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
-        self.draw_area.add_events(gtk.gdk.MOTION_NOTIFY)
-        self.draw_area.add_events(gtk.gdk.KEY_PRESS_MASK)
-        self.draw_area.connect('expose-event', self.expose)
-        self.draw_area.connect('button-press-event', self.mouse_press)
-        self.draw_area.connect('button-release-event',self.mouse_release)
-        self.draw_area.connect('motion-notify-event',self.mouse_motion)
-        
+class DrawArea(DrawingArea):
+    
+    def __init__(self):
+        DrawingArea.__init__(self)
+        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+        self.add_events(gtk.gdk.MOTION_NOTIFY)
+        self.add_events(gtk.gdk.KEY_PRESS_MASK)
+        self.connect('expose-event', self.expose)
+        self.connect('button-press-event', self.mouse_press)
+        self.connect('button-release-event',self.mouse_release)
+        self.connect('motion-notify-event',self.mouse_motion)
+        self.graph = Graph()
+        self.title = "New Graph"
 
     def add_vertex(self, event):
         print "Adicionando um vertice"
         position = event.get_coords()
         self.graph.add_vertex(self.name, position)
-        self.name = self.name + 1
-                
+        self.title = self.title + 1
+    
     def remove_vertex(self, event):
         mouse = event.get_coords()
         for v in self.graph.vertex:

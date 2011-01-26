@@ -45,8 +45,8 @@ class Vertex(object):
 
 class Graph(object):
     
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = 0
 
     def add_vertex(self, vertex):
         print "Adicionando um vertice"

@@ -20,11 +20,12 @@
                 <property name="label" translatable="yes">_Arquivo</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu_file_">
+                  <object class="GtkMenu" id="menu_file">
                     <property name="visible">True</property>
                     <property name="ubuntu_local">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_new">
+                        <property name="label">gtk-new</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
@@ -41,6 +42,11 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_file_separator_1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkImageMenuItem" id="menu_file_save">
                         <property name="label">gtk-save</property>
                         <property name="visible">True</property>
@@ -50,17 +56,35 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_file_saveas">
+                      <object class="GtkImageMenuItem" id="menu_file_save_as">
                         <property name="label">gtk-save-as</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
-                        <signal name="activate" handler="menu_file_saveas"/>
+                        <signal name="activate" handler="menu_file_save_as"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_file_separator">
+                      <object class="GtkImageMenuItem" id="menu_file_save_all">
+                        <property name="label">gtk-revert-to-saved</property>
                         <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="menu_file_revert"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_file_separator_2">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_file_close">
+                        <property name="label">gtk-close</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="menu_file_close"/>
                       </object>
                     </child>
                     <child>
@@ -130,6 +154,30 @@
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">_Ver</property>
                 <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_view">
+                    <property name="visible">True</property>
+                    <property name="ubuntu_local">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_view_fullscreen_on">
+                        <property name="label">gtk-fullscreen</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="menu_view_fullscreen_on"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_view_fullscreen_off">
+                        <property name="label">gtk-leave-fullscreen</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="menu_view_fullscreen_off"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
@@ -152,8 +200,9 @@
           </packing>
         </child>
         <child>
-          <object class="GtkDrawingArea" id="drawingarea">
+          <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
+            <property name="can_focus">True</property>
           </object>
           <packing>
             <property name="position">1</property>
