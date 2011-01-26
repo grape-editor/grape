@@ -7,13 +7,7 @@ class Vertex(object):
 
     def __init__(self, name):
         self.name = name
-    
-    def set_position(self, posx, posy):
-        self.position = [posx, posy]
-    
-    def set_color(self, r, g, b):
-        self.color = [r, g, b]
-    
+      
     def is_neighbor(self, vertex):
         for v in self.neighborhood:
             if v == vertex:
@@ -45,23 +39,42 @@ class Vertex(object):
 
 class Graph(object):
     
-    def __init__(self):
-        self.name = 0
+    def __init__(self, title):
+        self.graph_title = title
+        self.vertex_title = 0
+        self.vertex = []
 
-    def add_vertex(self, vertex):
-        print "Adicionando um vertice"
+    def add_vertex(self, position):
+        vertex = Vertex(self.vertex_title)        
+        vertex.position = position
+        self.vertex_title = self.vertex_title + 1
         self.vertex.append(vertex)
+        print "ok"
     
-    def remove_vertex(self,vertex):
-        self.vertex.remove(vertex)
-        vertex.remove_all_neighbor()
+    def remove_vertex(self, position):
+        current_x = position[0]
+        current_y = position[1]
+        for v in self.vertex:
+            r = v.size / 2
+            x = v.position[0]
+            y = v.position[1]
+            if (x - r) <= current_x and (x + r) >= current_x :
+                if (y - r) <= current_y and (y + r) >= current_y:
+                    self.vertex.remove(v)
+                    v.remove_all_neighbor()
+                    print "ok"
+                    break
 
     def add_edge(self, vertex1, vertex2):
         vertex1.add_neighbor(vertex2)
         vertex2.add_neighbor(vertex1)
-        print "Edge added"
+        print "ok"
 
     def remove_edge(self, vertex1, vertex2):
         vertex1.remove_neighbor(vertex2)
         vertex2.remove_neighbor(vertex1)
-        print "Edge removed"
+        print "ok"
+        
+    def draw(self, cairo, area):
+        for v in self.vertex:
+            v.draw(cairo, area)

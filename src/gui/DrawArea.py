@@ -16,26 +16,21 @@ class DrawArea(DrawingArea):
         self.connect('button-press-event', self.mouse_press)
         self.connect('button-release-event',self.mouse_release)
         self.connect('motion-notify-event',self.mouse_motion)
-        self.graph = Graph()
+        
+        self.action = None
         self.title = "New Graph"
+        self.graph = Graph(self.title)
+
 
     def add_vertex(self, event):
-        print "Adicionando um vertice"
+        print "add_vertex"
         position = event.get_coords()
-        self.graph.add_vertex(self.name, position)
-        self.title = self.title + 1
+        self.graph.add_vertex(position)
     
     def remove_vertex(self, event):
-        mouse = event.get_coords()
-        for v in self.graph.vertex:
-            r = v.size / 2
-            x = v.position[0]
-            y = v.position[1]
-            if (x - r) <= mouse[0] and (x + r) >= mouse[0] and (y - r) <= mouse[1] and (y + r) >= mouse[1]:
-                print "Clicou em um vertice"
-                self.graph.remove_vertex(v)
-                break
-
+        print "remove_vertex"
+        position = event.get_coords()
+        self.graph.remove_vertex(position)
         
     def add_neighborhood(self):
         print "Opcao nao existe"
@@ -43,14 +38,13 @@ class DrawArea(DrawingArea):
     def remove_neighborhood(self):
         print "Opcao nao existe"
         
-
     def mouse_press(self, widget, event):
+        print "mouse press"
         if self.action == "add_vertex":
             self.add_vertex(event)
         elif self.action == "remove_vertex":
             self.remove_vertex(event)
-        print self.action
-        self.expose(self.draw_area, event)
+        self.expose(self, event)
         
     def mouse_release(self, widget, event):
         print "mouse release"
@@ -67,19 +61,6 @@ class DrawArea(DrawingArea):
         self.draw(cairo, area)    
     
     def draw(self, cairo, area):
-        for v in self.vertex:
-            v.draw(cairo, area)
-
-
-
-
-
-
-
-
-
-
-
-
+        self.graph.draw(cairo, area)
 
 

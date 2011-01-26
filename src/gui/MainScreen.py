@@ -110,8 +110,12 @@ class MainScreen(object):
         print "menu_view_fullscreen_off"
 
     def keyboard_type(self, widget, event):
+        print "keyboard_type"
+        current_page_number = self.notebook.get_current_page()
+        draw_area = self.notebook.get_nth_page(current_page_number)
+        
         key = event.keyval
         if key == gtk.keysyms.a or key == gtk.keysyms.A: 
-            self.draw_area.action = "add_vertex"
+            draw_area.action = "add_vertex"
         elif key == gtk.keysyms.r or key == gtk.keysyms.R:
-            self.draw_area.action = "remove_vertex"
+            draw_area.action = "remove_vertex"
