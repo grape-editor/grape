@@ -3,7 +3,6 @@ from lib.Graph import Graph
 
 import gtk
 
-
 class DrawArea(DrawingArea):
     
     def __init__(self):
@@ -12,7 +11,7 @@ class DrawArea(DrawingArea):
         self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
         self.add_events(gtk.gdk.MOTION_NOTIFY)
         self.add_events(gtk.gdk.KEY_PRESS_MASK)
-        self.connect('expose-event', self.expose)
+        self.connect('expose-event', self.draw)
         self.connect('button-press-event', self.mouse_press)
         self.connect('button-release-event',self.mouse_release)
         self.connect('motion-notify-event',self.mouse_motion)
@@ -44,7 +43,7 @@ class DrawArea(DrawingArea):
             self.add_vertex(event)
         elif self.action == "remove_vertex":
             self.remove_vertex(event)
-        self.expose(self, event)
+        self.draw(self, event)
         
     def mouse_release(self, widget, event):
         print "mouse release"
@@ -52,15 +51,11 @@ class DrawArea(DrawingArea):
     def mouse_motion(self, widget, event):
         print "mouse motion"
 
-    def expose(self, widget, event):
-        cairo = widget.window.cairo_create()
+    def draw(self, widget, event):
         area = widget.get_allocation()
+        cairo = widget.window.cairo_create()
         cairo.rectangle(0, 0, area.width, area.height)
-        cairo.set_source_rgb(1, 1, 1)
+        cairo.set_source_rgb(1, 1, 1)     
         cairo.fill()
-        self.draw(cairo, area)    
-    
-    def draw(self, cairo, area):
+        
         self.graph.draw(cairo, area)
-
-

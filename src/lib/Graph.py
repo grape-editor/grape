@@ -29,13 +29,14 @@ class Vertex(object):
             v.remove_neighbor(self)
 
     def draw(self, cairo, area):
-            x = self.position[0]
-            y = self.position[1]
-            radius = self.size / 2
-            #cairo.arc(x, y, radius, 0, 2 * math.pi)
-            
-            cairo.set_source_rgb(self.color[0], self.color[1], self.color[2])
-            cairo.fill_preserve()
+        import math
+        x = self.position[0]
+        y = self.position[1]
+        radius = self.size / 2
+        cairo.arc(x, y, radius, 0, 2 * math.pi)
+        cairo.close_path()
+        cairo.set_source_rgb(self.color[0], self.color[1], self.color[2])
+        cairo.fill_preserve()
 
 class Graph(object):
     
