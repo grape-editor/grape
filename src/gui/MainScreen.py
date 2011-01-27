@@ -119,3 +119,5 @@ class MainScreen(object):
             draw_area.action = "add_vertex"
         elif key == gtk.keysyms.r or key == gtk.keysyms.R:
             draw_area.action = "remove_vertex"
+        elif key == gtk.keysyms.e or key == gtk.keysyms.E:
+            draw_area.action = "add_edge"

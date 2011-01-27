@@ -17,9 +17,10 @@ class DrawArea(DrawingArea):
         self.connect('motion-notify-event',self.mouse_motion)
         
         self.action = None
+        self.select = None
         self.title = "New Graph"
         self.graph = Graph(self.title)
-
+        
 
     def add_vertex(self, event):
         print "add_vertex"
@@ -31,8 +32,17 @@ class DrawArea(DrawingArea):
         position = event.get_coords()
         self.graph.remove_vertex(position)
         
-    def add_neighborhood(self):
-        print "Opcao nao existe"
+    def add_edge(self, event):
+        print "add_edge"
+        position = event.get_coords()
+        if self.select == None:
+            self.select = self.graph.get_vertex(position)
+        else:
+            vertex = self.graph.get_vertex(position)
+            self.graph.add_edge(self.select, vertex)
+            self.select = None
+            
+            
         
     def remove_neighborhood(self):
         print "Opcao nao existe"
@@ -43,6 +53,8 @@ class DrawArea(DrawingArea):
             self.add_vertex(event)
         elif self.action == "remove_vertex":
             self.remove_vertex(event)
+        elif self.action == "add_edge":
+            self.add_edge(event)
         self.draw(self, event)
         
     def mouse_release(self, widget, event):
