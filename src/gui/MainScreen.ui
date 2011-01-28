@@ -17,7 +17,7 @@
             <child>
               <object class="GtkMenuItem" id="file">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Arquivo</property>
+                <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_file">
@@ -116,7 +116,7 @@
             <child>
               <object class="GtkMenuItem" id="edit">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Editar</property>
+                <property name="label" translatable="yes">_Edit</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_edit">
@@ -165,7 +165,7 @@
             <child>
               <object class="GtkMenuItem" id="view">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Ver</property>
+                <property name="label" translatable="yes">_View</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_view">
@@ -196,7 +196,7 @@
             <child>
               <object class="GtkMenuItem" id="help">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">_Ajuda</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_help">

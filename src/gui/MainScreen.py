@@ -1,5 +1,5 @@
 from DrawArea import DrawArea
-
+import language
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -10,6 +10,8 @@ class MainScreen(object):
     def __init__(self):
         builder = gtk.Builder()
         builder.add_from_file("gui/MainScreen.ui")
+        
+        #builder.set_translation_domain()
         builder.connect_signals(self)
         self.main_window = builder.get_object("main_screen")
         
@@ -28,7 +30,7 @@ class MainScreen(object):
         gtk.main_quit()
     
     def menu_file_new(self, widget):
-        print "menu_file_new"
+        print ("menu_file_new")
 
         draw_area = DrawArea()
         
@@ -68,7 +70,7 @@ class MainScreen(object):
         btn.connect('clicked', self.page_close_buttom_clicked, draw_area)
     
     def page_has_change(self, notebook, child, pagenum):
-        print "page_has_change"
+        print _("page_has_change")
         self.menu_file_save(child)
         self.menu_file_save_as(child)
     
@@ -77,19 +79,19 @@ class MainScreen(object):
         self.notebook.remove_page(page_number)
     
     def menu_file_open(self, widget):
-        print "menu_file_open"
+        print _("menu_file_open")
     
     def menu_file_save(self, widget):
-        print "menu_file_save"
+        print _("menu_file_save")
     
     def menu_file_save_as(self, widget):
-        print "menu_file_save_as"
+        print _("menu_file_save_as")
     
     def menu_file_revert(self, widget):
-        print "menu_file_revert"
+        print _("menu_file_revert")
             
     def menu_file_close(self, widget):
-        print "menu_file_close"
+        print _("menu_file_close")
         i = self.notebook.get_current_page()
         page = self.notebook.get_nth_page(i)
         if page and self.notebook.get_n_pages() > 0:
@@ -98,29 +100,29 @@ class MainScreen(object):
             #self.tabs.remove(page)
     
     def menu_file_quit(self, widget):
-        print "menu_file_quit"
+        print _("menu_file_quit")
         self.main_quit(widget)
     
     def menu_edit_cut(self, widget):
-        print "menu_edit_cut"
+        print _("menu_edit_cut")
     
     def menu_edit_copy(self, widget):
-        print "menu_edit_copy"
+        print _("menu_edit_copy")
     
     def menu_edit_paste(self, widget):
-        print "menu_edit_past"
+        print _("menu_edit_past")
     
     def menu_edit_delete(self, widget):
-        print "menu_edit_delete"
+        print _("menu_edit_delete")
             
     def menu_view_fullscreen_on(self, widget):
-        print "menu_view_fullscreen_on"
+        print _("menu_view_fullscreen_on")
     
     def menu_view_fullscreen_off(self, widget):
-        print "menu_view_fullscreen_off"
+        print _("menu_view_fullscreen_off")
 
     def keyboard_type(self, widget, event):
-        print "keyboard_type"
+        print _("keyboard_type")
         current_page_number = self.notebook.get_current_page()
         draw_area = self.notebook.get_nth_page(current_page_number)
         

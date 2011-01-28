@@ -1,11 +1,32 @@
-import sys,os
-sys.path.insert(0,os.path.abspath(__file__+"lib/"))
+from gui.MainScreen import MainScreen
 
-from ControllerGUI import ControllerGUI
+global _
+import sys
+import os
+import locale
+import gettext
 
+APP_NAME = "grape"
+
+local_path = os.path.realpath(os.path.dirname(sys.argv[0])) + "/language" 
+
+langs = []
+lc, encoding = locale.getdefaultlocale()
+if (lc):
+    langs = [lc]
+language = os.environ.get('LANGUAGE', None)
+if (language):
+    langs += language.split(":")
+langs += ["pt_BR", "en_US"]
+
+gettext.bindtextdomain(APP_NAME, local_path)
+gettext.textdomain(APP_NAME)
+lang = gettext.translation(APP_NAME, local_path, languages=langs, fallback = True)
+
+_ = lang.gettext
 
 if __name__ == "__main__":
-    grape = ControllerGUI()
+    grape = MainScreen()
 
 
 
