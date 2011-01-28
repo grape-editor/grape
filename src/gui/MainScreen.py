@@ -1,10 +1,12 @@
 from DrawArea import DrawArea
+
+import pygtk
+pygtk.require('2.0')
 import gtk
 import math
 
-
 class MainScreen(object):
-
+    
     def __init__(self):
         builder = gtk.Builder()
         builder.add_from_file("gui/MainScreen.ui")
@@ -12,6 +14,7 @@ class MainScreen(object):
         self.main_window = builder.get_object("main_screen")
         
         self.notebook = builder.get_object("notebook")
+        self.notebook.set_scrollable(True)
         self.notebook.connect("page-removed", self.page_has_change)
         
         self.main_window.connect("destroy", self.main_quit)
@@ -51,8 +54,15 @@ class MainScreen(object):
         hbox.show_all()
 
         #Put this tab in the notebook
-        self.notebook.append_page(draw_area, hbox) 
-        self.notebook.show_all() 
+        self.notebook.append_page(draw_area, hbox)
+        last_page = self.notebook.get_n_pages() - 1
+        if last_page > 0:
+            self.notebook.set_current_page(last_page)
+        
+        print last_page
+        print self.notebook.get_current_page()
+        
+        self.notebook.show_all()     
         
         #connect the close button        
         btn.connect('clicked', self.page_close_buttom_clicked, draw_area)

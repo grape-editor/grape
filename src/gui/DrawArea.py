@@ -37,10 +37,14 @@ class DrawArea(DrawingArea):
         position = event.get_coords()
         if self.select == None:
             self.select = self.graph.get_vertex(position)
+            if self.select != None:
+                self.select.select(True)
         else:
             vertex = self.graph.get_vertex(position)
-            self.graph.add_edge(self.select, vertex)
-            self.select = None
+            if vertex != None:
+                self.graph.add_edge(self.select, vertex)
+                self.select.select(False) 
+                self.select = None
             
             
         
