@@ -1,4 +1,4 @@
-# Portuguese translations for PACKAGE package.
+# English translations for PACKAGE package.
 # Copyright (C) 2011 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jonatas Teixeira <jonatas.teixeira@gmail.com>, 2011.
@@ -10,93 +10,93 @@ msgstr ""
 "POT-Creation-Date: 2011-01-28 21:42-0200\n"
 "PO-Revision-Date: 2011-01-28 21:42-0200\n"
 "Last-Translator: Jonatas Teixeira <jonatas.teixeira@gmail.com>\n"
-"Language-Team: Brazilian Portuguese\n"
-"Language: pt_BR\n"
+"Language-Team: English\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../gui/MainScreen.py:33
 msgid "main_screen"
-msgstr ""
+msgstr "main_screen"
 
 #: ../gui/MainScreen.py:64
 msgid "menu_file_new"
-msgstr "menu_arquivo_novo"
+msgstr "menu_file_new"
 
 #: ../gui/MainScreen.py:104
 msgid "page_has_change"
-msgstr ""
+msgstr "page_has_change"
 
 #: ../gui/MainScreen.py:113
 msgid "menu_file_open"
-msgstr ""
+msgstr "menu_file_open"
 
 #: ../gui/MainScreen.py:116
 msgid "menu_file_save"
-msgstr ""
+msgstr "menu_file_save"
 
 #: ../gui/MainScreen.py:119
 msgid "menu_file_save_as"
-msgstr ""
+msgstr "menu_file_save_as"
 
 #: ../gui/MainScreen.py:122
 msgid "menu_file_revert"
-msgstr ""
+msgstr "menu_file_revert"
 
 #: ../gui/MainScreen.py:125
 msgid "menu_file_close"
-msgstr ""
+msgstr "menu_file_close"
 
 #: ../gui/MainScreen.py:134
 msgid "menu_file_quit"
-msgstr ""
+msgstr "menu_file_quit"
 
 #: ../gui/MainScreen.py:138
 msgid "menu_edit_cut"
-msgstr ""
+msgstr "menu_edit_cut"
 
 #: ../gui/MainScreen.py:141
 msgid "menu_edit_copy"
-msgstr ""
+msgstr "menu_edit_copy"
 
 #: ../gui/MainScreen.py:144
 msgid "menu_edit_past"
-msgstr ""
+msgstr "menu_edit_past"
 
 #: ../gui/MainScreen.py:147
 msgid "menu_edit_delete"
-msgstr ""
+msgstr "menu_edit_delete"
 
 #: ../gui/MainScreen.py:150
 msgid "menu_view_fullscreen_on"
-msgstr ""
+msgstr "menu_view_fullscreen_on"
 
 #: ../gui/MainScreen.py:153
 msgid "menu_view_fullscreen_off"
-msgstr ""
+msgstr "menu_view_fullscreen_off"
 
 #: ../gui/MainScreen.py:156
 msgid "keyboard_type"
-msgstr "teclado_pressionado"
+msgstr "keyboard_type"
 
 #: ../gui/MainScreen.ui.h:1
 msgid "Grape"
-msgstr ""
+msgstr "Grape"
 
 #: ../gui/MainScreen.ui.h:2
 msgid "_Edit"
-msgstr "_Editar"
+msgstr "_Edit"
 
 #: ../gui/MainScreen.ui.h:3
 msgid "_File"
-msgstr "_Arquivo"
+msgstr "_File"
 
 #: ../gui/MainScreen.ui.h:4
 msgid "_Help"
-msgstr "_Ajuda"
+msgstr "_Help"
 
 #: ../gui/MainScreen.ui.h:5
 msgid "_View"
-msgstr "_Ver"
+msgstr "_View"

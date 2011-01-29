@@ -1,36 +1,56 @@
 from DrawArea import DrawArea
-import language
-import pygtk
-pygtk.require('2.0')
 import gtk
-import math
+import os
+import sys
+import locale
+import gettext    
 
-class MainScreen(object):
+class MainScreen(object):  
     
     def __init__(self):
+
+        domain = self.translate()
         builder = gtk.Builder()
-        builder.add_from_file("gui/MainScreen.ui")
+        builder.set_translation_domain(domain)          
+
+        path = os.path.abspath(os.path.dirname(sys.argv[0]))
+        path = os.path.join(path, "gui", "MainScreen.ui")
         
-        #builder.set_translation_domain()
+        builder.add_from_file(path)
         builder.connect_signals(self)
-        self.main_window = builder.get_object("main_screen")
         
+        self.main_window = builder.get_object(_("main_screen"))
         self.notebook = builder.get_object("notebook")
-        self.notebook.set_scrollable(True)
-        self.notebook.connect("page-removed", self.page_has_change)
         
         self.main_window.connect("destroy", self.main_quit)
         self.main_window.connect('key-press-event', self.keyboard_type) 
+        self.notebook.connect("page-removed", self.page_has_change)
+        self.notebook.set_scrollable(True)
         
         self.name = 0
         self.main_window.show_all()
         gtk.main()
 
+    def translate(self):   
+        
+        domain = "grape"
+        base_path = os.path.abspath(os.path.dirname(sys.argv[0]))
+        language_path = os.path.join(base_path, "language")
+         
+        locale.setlocale(locale.LC_ALL, '')
+        locale.bindtextdomain(domain, language_path)
+         
+        gettext.bindtextdomain(domain, language_path)
+        gettext.textdomain(domain)
+        gettext.translation(domain, language_path)
+        gettext.install(domain, language_path)
+        return domain
+        
     def main_quit(self, widget):
         gtk.main_quit()
     
     def menu_file_new(self, widget):
-        print ("menu_file_new")
+        print _("menu_file_new")
 
         draw_area = DrawArea()
         
@@ -133,3 +153,5 @@ class MainScreen(object):
             draw_area.action = "remove_vertex"
         elif key == gtk.keysyms.e or key == gtk.keysyms.E:
             draw_area.action = "add_edge"
+
+    

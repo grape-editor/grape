@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-28 16:22-0200\n"
+"POT-Creation-Date: 2011-01-28 21:42-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,62 +18,66 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../gui/MainScreen.py:33
+msgid "main_screen"
+msgstr ""
+
+#: ../gui/MainScreen.py:64
 msgid "menu_file_new"
 msgstr ""
 
-#: ../gui/MainScreen.py:73
+#: ../gui/MainScreen.py:104
 msgid "page_has_change"
 msgstr ""
 
-#: ../gui/MainScreen.py:82
+#: ../gui/MainScreen.py:113
 msgid "menu_file_open"
 msgstr ""
 
-#: ../gui/MainScreen.py:85
+#: ../gui/MainScreen.py:116
 msgid "menu_file_save"
 msgstr ""
 
-#: ../gui/MainScreen.py:88
+#: ../gui/MainScreen.py:119
 msgid "menu_file_save_as"
 msgstr ""
 
-#: ../gui/MainScreen.py:91
+#: ../gui/MainScreen.py:122
 msgid "menu_file_revert"
 msgstr ""
 
-#: ../gui/MainScreen.py:94
+#: ../gui/MainScreen.py:125
 msgid "menu_file_close"
 msgstr ""
 
-#: ../gui/MainScreen.py:103
+#: ../gui/MainScreen.py:134
 msgid "menu_file_quit"
 msgstr ""
 
-#: ../gui/MainScreen.py:107
+#: ../gui/MainScreen.py:138
 msgid "menu_edit_cut"
 msgstr ""
 
-#: ../gui/MainScreen.py:110
+#: ../gui/MainScreen.py:141
 msgid "menu_edit_copy"
 msgstr ""
 
-#: ../gui/MainScreen.py:113
+#: ../gui/MainScreen.py:144
 msgid "menu_edit_past"
 msgstr ""
 
-#: ../gui/MainScreen.py:116
+#: ../gui/MainScreen.py:147
 msgid "menu_edit_delete"
 msgstr ""
 
-#: ../gui/MainScreen.py:119
+#: ../gui/MainScreen.py:150
 msgid "menu_view_fullscreen_on"
 msgstr ""
 
-#: ../gui/MainScreen.py:122
+#: ../gui/MainScreen.py:153
 msgid "menu_view_fullscreen_off"
 msgstr ""
 
-#: ../gui/MainScreen.py:125
+#: ../gui/MainScreen.py:156
 msgid "keyboard_type"
 msgstr ""
 
