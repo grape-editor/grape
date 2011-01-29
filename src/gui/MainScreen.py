@@ -1,4 +1,6 @@
 from DrawArea import DrawArea
+from AboutDialog import AboutDialog
+
 import gtk
 import os
 import sys
@@ -19,16 +21,16 @@ class MainScreen(object):
         builder.add_from_file(path)
         builder.connect_signals(self)
         
-        self.main_window = builder.get_object(_("main_screen"))
+        self.about_dialog = builder.get_object("main_screen")
         self.notebook = builder.get_object("notebook")
         
-        self.main_window.connect("destroy", self.main_quit)
-        self.main_window.connect('key-press-event', self.keyboard_type) 
+        self.about_dialog.connect("destroy", self.main_quit)
+        self.about_dialog.connect('key-press-event', self.keyboard_type) 
         self.notebook.connect("page-removed", self.page_has_change)
         self.notebook.set_scrollable(True)
         
         self.name = 0
-        self.main_window.show_all()
+        self.about_dialog.show_all()
         gtk.main()
 
     def translate(self):   
@@ -165,6 +167,10 @@ class MainScreen(object):
     
     def menu_view_fullscreen_off(self, widget):
         print _("menu_view_fullscreen_off")
+        
+    def menu_help_about(self, widget):
+        about = AboutDialog()
+        a = about
 
     def keyboard_type(self, widget, event):
         print _("keyboard_type")

@@ -271,6 +271,16 @@
                   <object class="GtkMenu" id="menu_help">
                     <property name="visible">True</property>
                     <property name="ubuntu_local">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_help_about">
+                        <property name="label" translatable="yes">_About</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image12</property>
+                        <property name="use_stock">False</property>
+                        <signal name="activate" handler="menu_help_about"/>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -346,5 +356,9 @@
   <object class="GtkImage" id="image11">
     <property name="visible">True</property>
     <property name="stock">gtk-remove</property>
+  </object>
+  <object class="GtkImage" id="image12">
+    <property name="visible">True</property>
+    <property name="stock">gtk-about</property>
   </object>
 </interface>
