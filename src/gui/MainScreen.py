@@ -45,7 +45,21 @@ class MainScreen(object):
         gettext.translation(domain, language_path)
         gettext.install(domain, language_path)
         return domain
+    
+    def page_current_draw_area(self):
+        current_page_number = self.notebook.get_current_page()
+        draw_area = self.notebook.get_nth_page(current_page_number)
+        return draw_area 
         
+    def page_has_change(self, notebook, child, pagenum):
+        print _("page_has_change")
+        self.menu_file_save(child)
+        self.menu_file_save_as(child)
+    
+    def page_close_buttom_clicked(self, sender, widget):
+        page_number = self.notebook.page_num(widget)
+        self.notebook.remove_page(page_number)
+    
     def main_quit(self, widget):
         gtk.main_quit()
     
@@ -89,15 +103,6 @@ class MainScreen(object):
         #connect the close button        
         btn.connect('clicked', self.page_close_buttom_clicked, draw_area)
     
-    def page_has_change(self, notebook, child, pagenum):
-        print _("page_has_change")
-        self.menu_file_save(child)
-        self.menu_file_save_as(child)
-    
-    def page_close_buttom_clicked(self, sender, widget):
-        page_number = self.notebook.page_num(widget)
-        self.notebook.remove_page(page_number)
-    
     def menu_file_open(self, widget):
         print _("menu_file_open")
     
@@ -131,6 +136,26 @@ class MainScreen(object):
     
     def menu_edit_paste(self, widget):
         print _("menu_edit_past")
+        
+    def menu_edit_add_vertex(self, widget):
+        draw_area = self.page_current_draw_area()
+        if draw_area:
+            draw_area.action = "add_vertex"
+    
+    def menu_edit_remove_vertex(self, widget):
+        draw_area = self.page_current_draw_area()
+        if draw_area:
+            draw_area.action = "remove_vertex"
+    
+    def menu_edit_add_edge(self, widget):
+        draw_area = self.page_current_draw_area()
+        if draw_area:
+            draw_area.action = "add_edge"
+      
+    def menu_edit_remove_edge(self, widget):
+        draw_area = self.page_current_draw_area()
+        if draw_area:
+            draw_area.action = "remove_edge"
     
     def menu_edit_delete(self, widget):
         print _("menu_edit_delete")
@@ -143,8 +168,7 @@ class MainScreen(object):
 
     def keyboard_type(self, widget, event):
         print _("keyboard_type")
-        current_page_number = self.notebook.get_current_page()
-        draw_area = self.notebook.get_nth_page(current_page_number)
+        draw_area = self.page_current_draw_area()
         
         key = event.keyval
         if key == gtk.keysyms.a or key == gtk.keysyms.A: 
