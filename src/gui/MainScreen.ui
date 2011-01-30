@@ -4,8 +4,9 @@
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="main_screen">
     <property name="title" translatable="yes">Grape</property>
-    <property name="default_width">500</property>
-    <property name="default_height">500</property>
+    <property name="window_position">center</property>
+    <property name="default_width">900</property>
+    <property name="default_height">600</property>
     <signal name="destroy" handler="main_quit"/>
     <child>
       <object class="GtkVBox" id="vbox1">

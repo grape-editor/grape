@@ -5,6 +5,7 @@
   <object class="GtkAboutDialog" id="about_dialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">About Grape</property>
+    <property name="window_position">center</property>
     <property name="default_width">320</property>
     <property name="default_height">260</property>
     <property name="destroy_with_parent">True</property>
@@ -29,7 +30,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</property>
     <property name="authors">Jonatas Teixeira &lt;jt08@c3sl.ufpr.br&gt;
 Luan Haddad &lt;lhrs08@c3sl.ufpr.br&gt;</property>
-    <property name="logo">../images/2.png</property>
     <signal name="response" handler="about_dialog_response"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox">
