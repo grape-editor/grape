@@ -14,7 +14,7 @@ class DrawArea(DrawingArea):
         self.add_events(gtk.gdk.KEY_PRESS_MASK)
          
         
-        self.connect('expose-event', self.draw)
+        self.connect('expose-event', self.expose)
         self.connect('button-press-event', self.mouse_press)
         self.connect('button-release-event',self.mouse_release)
         self.connect('motion-notify-event',self.mouse_motion)
@@ -23,8 +23,10 @@ class DrawArea(DrawingArea):
         self.select = None
         self.title = "New Graph"
         self.graph = Graph(self.title)
+        self.cairo = None
         
-
+        self.set_double_buffered(True)
+        
     def add_vertex(self, event):
         position = event.get_coords()
         self.graph.add_vertex(position)
@@ -49,7 +51,7 @@ class DrawArea(DrawingArea):
             
         return False
             
-    def remove_Edge(self, event):
+    def remove_edge(self, event):
         print ("remove_edge")
         
     def move_vertex(self, event):
@@ -83,9 +85,9 @@ class DrawArea(DrawingArea):
         elif self.action == "add_edge":
             self.add_edge(event)
         elif self.action == "remove_edge":
-            self.remove_Edge(event)
+            self.remove_edge(event)
 
-        self.draw(self, event)
+        self.draw()
         
     def mouse_release(self, widget, event):
         print "mouse_released"
@@ -94,13 +96,25 @@ class DrawArea(DrawingArea):
         if self.select:
             position = event.get_coords()
             self.select.position = position
-            self.draw(self, event)
+            self.draw()
+            self.queue_draw()
 
-    def draw(self, widget, event):
-        area = widget.get_allocation()
-        cairo = widget.window.cairo_create()
-        cairo.rectangle(0, 0, area.width, area.height)
-        cairo.set_source_rgb(1, 1, 1)     
-        cairo.fill()
+    def create_area(self, widget, event):
+        self.area = widget.get_allocation()
         
-        self.graph.draw(cairo, area)
+        self.cairo = widget.window.cairo_create()
+        
+        self.cairo.rectangle(0, 0, self.area.width, self.area.height)
+        self.cairo.clip()
+        
+    def expose(self, widget, event):
+        self.create_area(widget, event)
+        self.cairo.rectangle(0, 0, self.area.width, self.area.height)
+        self.cairo.set_source_rgb(1, 1, 1)     
+        self.cairo.fill()
+        
+        self.graph.draw(self.cairo, self.area)
+        
+    def draw(self):
+        self.queue_draw_area(0, 0, self.area.width, self.area.height)
+        
