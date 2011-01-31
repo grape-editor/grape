@@ -1,6 +1,5 @@
 from DrawArea import DrawArea
 from AboutDialog import AboutDialog
-from copy import copy
 
 import gtk
 import os
@@ -8,7 +7,33 @@ import sys
 import locale
 import gettext    
 
-class MainScreen(object):  
+
+class MainScreen(object):
+    windows = []
+    dialogs = []
+    
+    def __init__(self):
+        gtk.notebook_set_window_creation_hook(self.window_create, None)   
+        self.window_create()
+        gtk.main()
+        
+    def window_create(self, source=None, page=None, x=None, y=None, user_data=None):
+        new_window = Window()
+        if x and y:
+            new_window.move_screen(x, y)
+        new_window.window.connect('delete-event', self.window_deleted)
+        self.windows.append(new_window.window)
+        return new_window.notebook
+
+    def window_deleted(self, window, event):
+        self.windows.remove(window)
+        if self.windows == []:
+            gtk.main_quit()
+
+
+
+
+class Window(object):  
     def __init__(self):
         domain = self.translate()
         builder = gtk.Builder()
@@ -20,22 +45,20 @@ class MainScreen(object):
         builder.add_from_file(path)
         builder.connect_signals(self)
         
-        self.main_screen = builder.get_object("main_screen")
+        self.window = builder.get_object("window")
         self.notebook = builder.get_object("notebook")
         
-        self.main_screen.connect("destroy", self.main_quit)
-        self.main_screen.connect('key-press-event', self.keyboard_type) 
+        self.window.connect("destroy", self.main_quit)
+        self.window.connect('key-press-event', self.keyboard_type) 
         self.notebook.connect("page-removed", self.page_has_change)
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
         
-        gtk.notebook_set_window_creation_hook(self.create_window, None)
-        
         self.name = 0
-        self.main_screen.show_all()
+        self.window.show_all()
         
     def move_screen(self, x, y):
-        self.main_screen.move(x, y)
+        self.window.move(x, y)
 
     def translate(self):   
         domain = "grape"
@@ -66,7 +89,7 @@ class MainScreen(object):
         widget.get_parent().remove_page(page_number)
     
     def main_quit(self, widget):
-        self.main_screen.destroy()
+        self.window.destroy()
         
     def add_tab(self, tab):
         hbox = gtk.HBox(False, 0)
@@ -178,7 +201,6 @@ class MainScreen(object):
         
     def menu_help_about(self, widget):
         about = AboutDialog()
-        a = about
 
     def keyboard_type(self, widget, event):
         print _("keyboard_type")
@@ -192,13 +214,4 @@ class MainScreen(object):
         elif key == gtk.keysyms.e or key == gtk.keysyms.E:
             draw_area.action = "add_edge"
 
-    def create_window(self, source, page, x, y, user_data):
-        m = MainScreen()
-        # self.page_close_buttom_clicked(None, page)
-        m.move_screen(x, y)
-        # page.close_button.disconnect('clicked')
-        # page.connect_object('clicked', m.page_close_buttom_clicked, tab)
-        # m.add_tab(page)
-        
-        return m.notebook
     
