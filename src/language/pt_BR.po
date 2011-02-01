@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-28 21:42-0200\n"
-"PO-Revision-Date: 2011-01-28 21:42-0200\n"
+"POT-Creation-Date: 2011-02-01 18:01-0200\n"
+"PO-Revision-Date: 2011-02-01 18:03-0200\n"
 "Last-Translator: Jonatas Teixeira <jonatas.teixeira@gmail.com>\n"
 "Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
@@ -17,86 +17,158 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../gui/MainScreen.py:33
-msgid "main_screen"
-msgstr ""
-
-#: ../gui/MainScreen.py:64
-msgid "menu_file_new"
-msgstr "menu_arquivo_novo"
-
-#: ../gui/MainScreen.py:104
+#: ../gui/Window.py:57
 msgid "page_has_change"
 msgstr ""
 
-#: ../gui/MainScreen.py:113
+#: ../gui/Window.py:109
+msgid "menu_file_new"
+msgstr ""
+
+#: ../gui/Window.py:114
 msgid "menu_file_open"
 msgstr ""
 
-#: ../gui/MainScreen.py:116
+#: ../gui/Window.py:117
 msgid "menu_file_save"
 msgstr ""
 
-#: ../gui/MainScreen.py:119
+#: ../gui/Window.py:120
 msgid "menu_file_save_as"
 msgstr ""
 
-#: ../gui/MainScreen.py:122
+#: ../gui/Window.py:123
 msgid "menu_file_revert"
 msgstr ""
 
-#: ../gui/MainScreen.py:125
+#: ../gui/Window.py:126
 msgid "menu_file_close"
 msgstr ""
 
-#: ../gui/MainScreen.py:134
+#: ../gui/Window.py:135
 msgid "menu_file_quit"
 msgstr ""
 
-#: ../gui/MainScreen.py:138
+#: ../gui/Window.py:139
 msgid "menu_edit_cut"
 msgstr ""
 
-#: ../gui/MainScreen.py:141
+#: ../gui/Window.py:142
 msgid "menu_edit_copy"
 msgstr ""
 
-#: ../gui/MainScreen.py:144
+#: ../gui/Window.py:145
 msgid "menu_edit_past"
 msgstr ""
 
-#: ../gui/MainScreen.py:147
+#: ../gui/Window.py:168
 msgid "menu_edit_delete"
 msgstr ""
 
-#: ../gui/MainScreen.py:150
+#: ../gui/Window.py:171
 msgid "menu_view_fullscreen_on"
 msgstr ""
 
-#: ../gui/MainScreen.py:153
+#: ../gui/Window.py:174
 msgid "menu_view_fullscreen_off"
 msgstr ""
 
-#: ../gui/MainScreen.py:156
+#: ../gui/Window.py:180
 msgid "keyboard_type"
-msgstr "teclado_pressionado"
+msgstr ""
 
-#: ../gui/MainScreen.ui.h:1
+#: ../gui/AboutDialog.ui.h:1
+msgid "About Grape"
+msgstr ""
+
+#: ../gui/AboutDialog.ui.h:2
+msgid "Copyright 2008-2011 Jonatas Teixeira, Luan Haddad"
+msgstr ""
+
+#: ../gui/AboutDialog.ui.h:3
+msgid "Grape is a Graph Editor to simulate A.I. algorithms"
+msgstr ""
+
+#: ../gui/AboutDialog.ui.h:4
+msgid ""
+"This program is free software: you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation, either version 3 of the License, or\n"
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: ../gui/Window.ui.h:1
 msgid "Grape"
 msgstr ""
 
-#: ../gui/MainScreen.ui.h:2
+#: ../gui/Window.ui.h:2
+msgid "_About"
+msgstr ""
+
+#: ../gui/Window.ui.h:3
+msgid "_Add edge"
+msgstr ""
+
+#: ../gui/Window.ui.h:4
+msgid "_Add vertex"
+msgstr ""
+
+#: ../gui/Window.ui.h:5
+msgid "_Close"
+msgstr ""
+
+#: ../gui/Window.ui.h:6
 msgid "_Edit"
-msgstr "_Editar"
+msgstr ""
 
-#: ../gui/MainScreen.ui.h:3
+#: ../gui/Window.ui.h:7
 msgid "_File"
-msgstr "_Arquivo"
+msgstr ""
 
-#: ../gui/MainScreen.ui.h:4
+#: ../gui/Window.ui.h:8
 msgid "_Help"
-msgstr "_Ajuda"
+msgstr ""
 
-#: ../gui/MainScreen.ui.h:5
+#: ../gui/Window.ui.h:9
+msgid "_New"
+msgstr ""
+
+#: ../gui/Window.ui.h:10
+msgid "_Open"
+msgstr ""
+
+#: ../gui/Window.ui.h:11
+msgid "_Quit"
+msgstr ""
+
+#: ../gui/Window.ui.h:12
+msgid "_Remove edge"
+msgstr ""
+
+#: ../gui/Window.ui.h:13
+msgid "_Remove vertex"
+msgstr ""
+
+#: ../gui/Window.ui.h:14
+msgid "_Revert"
+msgstr ""
+
+#: ../gui/Window.ui.h:15
+msgid "_Save"
+msgstr ""
+
+#: ../gui/Window.ui.h:16
+msgid "_Save as"
+msgstr ""
+
+#: ../gui/Window.ui.h:17
 msgid "_View"
-msgstr "_Ver"
+msgstr ""
