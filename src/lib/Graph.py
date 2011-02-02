@@ -21,11 +21,11 @@ class Vertex(object):
     def remove_neighbor(self, vertex):
         self.neighborhood.remove(vertex)
 
-    def remove_all_neighbor(self):
+    def remove_all_neighbor(self): 
         for v in self.neighborhood:
             v.remove_neighbor(self)
-        #I guess that the line below doesn't releasing memory
-        self.neighborhood = []
+        #Free all neighbothood's position list to the collector
+        del self.neighborhood[:]
                     
     def select(self, bool):
         if bool:
@@ -40,7 +40,8 @@ class Vertex(object):
         cairo.set_source_rgb(self.color[0], self.color[1], self.color[2])
         radius = self.size / 2
         cairo.arc(x, y, radius, 0, 2 * math.pi)
-        cairo.fill()
+        cairo.fill_preserve()
+        cairo.stroke()
 
 #Is needed think about this class. Because it will be useful after
 #Inside object Vertex put a Edge list. (Replace neighbor list)

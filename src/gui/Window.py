@@ -1,5 +1,7 @@
 from DrawArea import DrawArea
 from AboutDialog import AboutDialog
+from SaveAs import SaveAs
+
 
 import gtk
 import os
@@ -118,6 +120,7 @@ class Window(object):
     
     def menu_file_save_as(self, widget):
         print _("menu_file_save_as")
+        SaveAs()
     
     def menu_file_revert(self, widget):
         print _("menu_file_revert")
@@ -174,7 +177,7 @@ class Window(object):
         print _("menu_view_fullscreen_off")
         
     def menu_help_about(self, widget):
-        about = AboutDialog()
+        AboutDialog()
 
     def keyboard_type(self, widget, event):
         print _("keyboard_type")
@@ -184,7 +187,7 @@ class Window(object):
         if key == gtk.keysyms.a or key == gtk.keysyms.A: 
             draw_area.action = "add_vertex"
         elif key == gtk.keysyms.r or key == gtk.keysyms.R:
-            draw_area.action = "remove_vertex"
+            draw_area.action = "remove_edge"
         elif key == gtk.keysyms.e or key == gtk.keysyms.E:
             draw_area.action = "add_edge"
 

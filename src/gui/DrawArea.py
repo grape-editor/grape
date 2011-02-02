@@ -21,7 +21,7 @@ class DrawArea(DrawingArea):
         
         self.action = None
         self.select = None
-        self.title = "New Graph"
+        self.title = "Untitled"
         self.graph = Graph(self.title)
         self.cairo = None
         
@@ -44,15 +44,24 @@ class DrawArea(DrawingArea):
             if vertex != None:
                 self.graph.add_edge(self.select, vertex)
                 self.deselect_vertex()
-                self.action = None
+                #self.action = None
                 return True
         else:
-            self.select_vertex(event)     
-            
+            self.select_vertex(event)
         return False
             
     def remove_edge(self, event):
-        print ("remove_edge")
+        if self.select:
+            position = event.get_coords()
+            vertex = self.graph.get_vertex(position)
+            if vertex != None:
+                self.graph.remove_edge(self.select, vertex)
+                self.deselect_vertex()
+                #self.action = None
+                return True
+        else:
+            self.select_vertex(event)
+        return False
         
     def move_vertex(self, event):
         if self.select:
@@ -116,5 +125,7 @@ class DrawArea(DrawingArea):
         self.graph.draw(self.cairo, self.area)
         
     def draw(self):
+        self.cairo.save()
         self.queue_draw_area(0, 0, self.area.width, self.area.height)
+        self.cairo.restore()
         
