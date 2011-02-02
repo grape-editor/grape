@@ -6,20 +6,19 @@ from SaveAs import SaveAs
 import gtk
 import os
 import sys
-import locale
-import gettext  
 
 class Window(object):  
-    def __init__(self):
-        domain = self.translate()
-        builder = gtk.Builder()
-        builder.set_translation_domain(domain)          
+    def __init__(self, builder):
+        #domain = self.translate()
+        #builder = gtk.Builder()
+        #builder.set_translation_domain(domain)          
 
         path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = os.path.join(path, "gui", "Window.ui")
         
-        builder.add_from_file(path)
-        builder.connect_signals(self)
+        self.builder = builder
+        self.builder.add_from_file(path)
+        self.builder.connect_signals(self)
         
         self.window = builder.get_object("window")
         self.notebook = builder.get_object("notebook")
@@ -35,20 +34,6 @@ class Window(object):
         
     def move_screen(self, x, y):
         self.window.move(x, y)
-
-    def translate(self):   
-        domain = "grape"
-        base_path = os.path.abspath(os.path.dirname(sys.argv[0]))
-        language_path = os.path.join(base_path, "language")
-         
-        locale.setlocale(locale.LC_ALL, '')
-        locale.bindtextdomain(domain, language_path)
-         
-        gettext.bindtextdomain(domain, language_path)
-        gettext.textdomain(domain)
-        gettext.translation(domain, language_path)
-        gettext.install(domain, language_path)
-        return domain
     
     def page_current_draw_area(self):
         current_page_number = self.notebook.get_current_page()
@@ -178,7 +163,7 @@ class Window(object):
         
     def menu_help_about(self, widget):
         AboutDialog()
-
+        
     def keyboard_type(self, widget, event):
         print _("keyboard_type")
         draw_area = self.page_current_draw_area()

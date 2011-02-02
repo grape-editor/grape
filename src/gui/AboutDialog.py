@@ -6,11 +6,7 @@ import gettext
 
 class AboutDialog(object):  
     
-    def __init__(self):
-        #domain = self.translate()
-        builder = gtk.Builder()
-        #builder.set_translation_domain(domain)          
-        
+    def __init__(self, builder):       
         path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = os.path.join(path, "gui", "AboutDialog.ui")        
         builder.add_from_file(path)
@@ -29,18 +25,5 @@ class AboutDialog(object):
         self.file_chooser.show_all()
 
     def about_dialog_response(self, widget, event):
-        self.file_chooser.destroy() 
+        self.about_dialog.destroy() 
 
-    def translate(self):   
-        domain = "grape"
-        base_path = os.path.abspath(os.path.dirname(sys.argv[0]))
-        language_path = os.path.join(base_path, "language")
-         
-        locale.setlocale(locale.LC_ALL, '')
-        locale.bindtextdomain(domain, language_path)
-         
-        gettext.bindtextdomain(domain, language_path)
-        gettext.textdomain(domain)
-        gettext.translation(domain, language_path)
-        gettext.install(domain, language_path)
-        return domain
