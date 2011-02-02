@@ -14,7 +14,6 @@
         <child>
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
-            <property name="ubuntu_local">True</property>
             <child>
               <object class="GtkMenuItem" id="file">
                 <property name="visible">True</property>
@@ -23,7 +22,6 @@
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_file">
                     <property name="visible">True</property>
-                    <property name="ubuntu_local">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_new">
                         <property name="label" translatable="yes">_New</property>
@@ -129,7 +127,6 @@
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_edit">
                     <property name="visible">True</property>
-                    <property name="ubuntu_local">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_cut">
                         <property name="label">gtk-cut</property>
@@ -240,7 +237,6 @@
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_view">
                     <property name="visible">True</property>
-                    <property name="ubuntu_local">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_view_fullscreen_on">
                         <property name="label">gtk-fullscreen</property>
@@ -270,8 +266,7 @@
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_help">
-                    <property name="visible">True</property>
-                    <property name="ubuntu_local">True</property>
+                    <property name="visible">True</property>        
                     <child>
                       <object class="GtkImageMenuItem" id="menu_help_about">
                         <property name="label" translatable="yes">_About</property>
