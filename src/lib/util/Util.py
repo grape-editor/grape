@@ -1,7 +1,7 @@
 
 
     
-def rgb_to_hex(self, rgb):
+def rgb_to_hex(rgb):
     import struct    
     r = rgb[0] * 255
     g = rgb[1] * 255
@@ -12,7 +12,7 @@ def rgb_to_hex(self, rgb):
     print hex
     return hex
 
-def hex_to_rgb(self, hex):
+def hex_to_rgb(hex):
     import struct
     
     rgb = struct.unpack('BBB', hex.decode('hex'))
