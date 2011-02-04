@@ -22,7 +22,7 @@ class MainScreen(object):
     def window_create(self, source=None, page=None, x=None, y=None, user_data=None):
         new_window = Window(self.builder)
         if x and y:
-            new_window.move_screen(x, y)
+            new_window.window_move_screen(x, y)
         new_window.window.connect('delete-event', self.window_deleted)
         self.windows.append(new_window.window)
         return new_window.notebook

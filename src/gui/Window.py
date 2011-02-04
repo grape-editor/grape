@@ -23,36 +23,30 @@ class Window(object):
         self.window = builder.get_object("window")
         self.notebook = builder.get_object("notebook")
         
-        self.window.connect("destroy", self.main_quit)
-        self.window.connect('key-press-event', self.keyboard_type) 
-        self.notebook.connect("page-removed", self.page_has_change)
+        #self.window.connect("destroy", self.window_main_quit)
+        self.window.connect('key-press-event', self.window_keyboard_type) 
+        #self.notebook.connect("page-removed", self.notebook_page_has_change)
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
         
         self.name = 0
         self.window.show_all()
         
-    def move_screen(self, x, y):
-        self.window.move(x, y)
-    
-    def page_current_draw_area(self):
+    def notebook_page_current_draw_area(self):
         current_page_number = self.notebook.get_current_page()
         draw_area = self.notebook.get_nth_page(current_page_number)
         return draw_area 
         
-    def page_has_change(self, notebook, child, pagenum):
-        print _("page_has_change")
+    def notebook_page_has_change(self, notebook, child, pagenum):
+        print _("notebook_page_has_change")
         self.menu_file_save(child)
         self.menu_file_save_as(child)
     
-    def page_close_buttom_clicked(self, widget):
+    def notebook_page_close_buttom_clicked(self, widget):
         page_number = widget.get_parent().page_num(widget)
         widget.get_parent().remove_page(page_number)
-    
-    def main_quit(self, widget):
-        self.window.destroy()
         
-    def add_tab(self, tab):
+    def notebook_add_tab(self, tab):
         hbox = gtk.HBox(False, 0)
         #get a stock close button image
         close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
@@ -87,7 +81,7 @@ class Window(object):
         self.notebook.set_tab_detachable(tab, True)
         
         #connect the close button        
-        btn.connect_object('clicked', self.page_close_buttom_clicked, tab)
+        btn.connect_object('clicked', self.notebook_page_close_buttom_clicked, tab)
         self.notebook.show_all()
         
         tab.close_button = btn
@@ -95,7 +89,7 @@ class Window(object):
     def menu_file_new(self, widget):
         print _("menu_file_new")
         draw_area = DrawArea()
-        self.add_tab(draw_area)
+        self.notebook_add_tab(draw_area)
     
     def menu_file_open(self, widget):
         print _("menu_file_open")
@@ -123,7 +117,7 @@ class Window(object):
     
     def menu_file_quit(self, widget):
         print _("menu_file_quit")
-        self.main_quit(widget)
+        self.window_main_quit(widget)
     
     def menu_edit_cut(self, widget):
         print _("menu_edit_cut")
@@ -135,22 +129,22 @@ class Window(object):
         print _("menu_edit_past")
         
     def menu_edit_add_vertex(self, widget):
-        draw_area = self.page_current_draw_area()
+        draw_area = self.notebook_page_current_draw_area()
         if draw_area:
             draw_area.action = "add_vertex"
     
     def menu_edit_remove_vertex(self, widget):
-        draw_area = self.page_current_draw_area()
+        draw_area = self.notebook_page_current_draw_area()
         if draw_area:
             draw_area.action = "remove_vertex"
     
     def menu_edit_add_edge(self, widget):
-        draw_area = self.page_current_draw_area()
+        draw_area = self.notebook_page_current_draw_area()
         if draw_area:
             draw_area.action = "add_edge"
       
     def menu_edit_remove_edge(self, widget):
-        draw_area = self.page_current_draw_area()
+        draw_area = self.notebook_page_current_draw_area()
         if draw_area:
             draw_area.action = "remove_edge"
     
@@ -166,9 +160,9 @@ class Window(object):
     def menu_help_about(self, widget):
         AboutDialog()
         
-    def keyboard_type(self, widget, event):
-        print _("keyboard_type")
-        draw_area = self.page_current_draw_area()
+    def window_keyboard_type(self, widget, event):
+        print _("window_keyboard_type")
+        draw_area = self.notebook_page_current_draw_area()
         
         key = event.keyval
         if key == gtk.keysyms.a or key == gtk.keysyms.A: 
@@ -178,4 +172,10 @@ class Window(object):
         elif key == gtk.keysyms.e or key == gtk.keysyms.E:
             draw_area.action = "add_edge"
 
+    def window_move_screen(self, x, y):
+        self.window.move(x, y)
+    
+    def window_main_quit(self, widget):
+        self.window.destroy()
+    
     

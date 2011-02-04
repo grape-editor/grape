@@ -7,7 +7,7 @@
     <property name="window_position">center</property>
     <property name="default_width">900</property>
     <property name="default_height">600</property>
-    <signal name="destroy" handler="main_quit"/>
+    <signal name="destroy" handler="window_main_quit"/>
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
@@ -266,7 +266,7 @@
                 <property name="use_underline">True</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_help">
-                    <property name="visible">True</property>        
+                    <property name="visible">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_help_about">
                         <property name="label" translatable="yes">_About</property>
@@ -291,6 +291,7 @@
           <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <signal name="page_removed" handler="notebook_page_has_change"/>
           </object>
           <packing>
             <property name="position">1</property>
