@@ -1,8 +1,10 @@
-import lib.elementtree.ElementTree as ElementTree
+# import lib.elementtree.ElementTree as ElementTree
 import lib.util.Util as Util
 
 import os
 import sys
+
+import xml.etree.ElementTree as ElementTree
 
 class SaveAs(object):  
     
@@ -28,6 +30,7 @@ class SaveAs(object):
         self.file_chooser_dialog_close()
         
     def file_chooser_dialog_save(self, widget):
+        import gzip
         # build a tree structure
         name = self.file_chooser.get_filename()
         grape = ElementTree.Element("grape")
@@ -54,10 +57,12 @@ class SaveAs(object):
                 neighbor_id = ElementTree.SubElement(vertex_neighbors, "neighbor_id")
                 neighbor_id.text = str(neighbor.id) 
         
-        tree = ElementTree.ElementTree(grape)
-        tree.write(name)
-        
-        self.file_chooser_dialog_close()
-    
+        if not name.endswith('.grape'):
+            name += '.grape'
 
+        f = gzip.open(name, 'wb')
+        f.write(ElementTree.tostring(grape))
+        f.close()
+
+        self.file_chooser_dialog_close()
 

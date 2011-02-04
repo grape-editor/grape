@@ -54,11 +54,11 @@ class Vertex(object):
 
 
 class Graph(object):
-    
-    def __init__(self, title):
+    def __init__(self, title, complete=False):
         self.graph_title = title
         self.vertex_id = 0
         self.vertex = []
+        self.complete = complete
 
     def get_vertex(self, position):
         current_x = position[0]
@@ -76,6 +76,10 @@ class Graph(object):
         vertex = Vertex(self.vertex_id, position)  
         vertex.position = position
         self.vertex_id = self.vertex_id + 1
+        if self.complete:
+            vertex.visited = False
+            for v in self.vertex:
+                self.add_edge(vertex, v)
         self.vertex.append(vertex)
         print "ok"
     

@@ -90,6 +90,11 @@ class Window(object):
         print _("menu_file_new")
         draw_area = DrawArea()
         self.notebook_add_tab(draw_area)
+
+    def menu_file_new_complete(self, widget):
+        print _("menu_file_new")
+        draw_area = DrawArea(True)
+        self.notebook_add_tab(draw_area)
     
     def menu_file_open(self, widget):
         print _("menu_file_open")

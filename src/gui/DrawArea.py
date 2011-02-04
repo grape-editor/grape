@@ -5,7 +5,7 @@ import gtk
 
 class DrawArea(DrawingArea):
     
-    def __init__(self):
+    def __init__(self, complete=False):
         DrawingArea.__init__(self)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
         self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
@@ -21,7 +21,7 @@ class DrawArea(DrawingArea):
         self.action = None
         self.select = None
         self.title = "Untitled"
-        self.graph = Graph(self.title)
+        self.graph = Graph(self.title, complete)
         self.cairo = None
         
         self.set_double_buffered(True)
