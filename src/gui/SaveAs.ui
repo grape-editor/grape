@@ -2,46 +2,28 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
+  <object class="GtkFileFilter" id="filefilter1"/>
+  <object class="GtkFileFilter" id="filefilter2"/>
+  <object class="GtkListStore" id="liststore1"/>
+  <object class="GtkFileFilter" id="filefilter3"/>
   <object class="GtkFileChooserDialog" id="file_chooser_dialog">
-    <property name="border_width">5</property>
-    <property name="title" translatable="yes">Save as...</property>
+    <property name="title" translatable="yes">Save as..</property>
+    <property name="window_position">center</property>
+    <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="skip_pager_hint">True</property>
+    <property name="urgency_hint">True</property>
+    <property name="has_separator">True</property>
     <property name="action">save</property>
+    <property name="do_overwrite_confirmation">True</property>
+    <property name="file_system_backend">.grape</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog_vbox">
+      <object class="GtkVBox" id="dialog-vbox4">
         <property name="visible">True</property>
         <property name="spacing">3</property>
-        <child>
-          <object class="GtkHBox" id="hbox1">
-            <property name="visible">True</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <object class="GtkLabel" id="type">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">type:</property>
-                <property name="justify">right</property>
-              </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkComboBox" id="combo_box">
-                <property name="visible">True</property>
-              </object>
-              <packing>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="position">2</property>
-          </packing>
-        </child>
         <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog_action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area4">
             <property name="visible">True</property>
             <property name="layout_style">end</property>
             <child>

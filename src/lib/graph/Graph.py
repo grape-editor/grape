@@ -1,7 +1,8 @@
 class Vertex(object):
 
-    def __init__(self, name, position):
-        self.name = name
+    def __init__(self, id, position):
+        self.id = id
+        self.name = "Noname"
         self.color = [0, 0, 0]
         self.position = position
         self.neighborhood = []
@@ -56,7 +57,7 @@ class Graph(object):
     
     def __init__(self, title):
         self.graph_title = title
-        self.vertex_title = 0
+        self.vertex_id = 0
         self.vertex = []
 
     def get_vertex(self, position):
@@ -72,9 +73,9 @@ class Graph(object):
         return None
     
     def add_vertex(self, position):
-        vertex = Vertex(self.vertex_title, position)        
+        vertex = Vertex(self.vertex_id, position)  
         vertex.position = position
-        self.vertex_title = self.vertex_title + 1
+        self.vertex_id = self.vertex_id + 1
         self.vertex.append(vertex)
         print "ok"
     

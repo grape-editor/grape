@@ -1,5 +1,5 @@
 from gtk import DrawingArea
-from lib.Graph import Graph
+from lib.graph.Graph import Graph
 
 import gtk
 
@@ -13,7 +13,6 @@ class DrawArea(DrawingArea):
         self.add_events(gtk.gdk.BUTTON1_MOTION_MASK)
         self.add_events(gtk.gdk.KEY_PRESS_MASK)
          
-        
         self.connect('expose-event', self.expose)
         self.connect('button-press-event', self.mouse_press)
         self.connect('button-release-event',self.mouse_release)

@@ -105,13 +105,15 @@ class Window(object):
     
     def menu_file_save_as(self, widget):
         print _("menu_file_save_as")
-        SaveAs()
+        i = self.notebook.get_current_page()
+        draw_area = self.notebook.get_nth_page(i)
+        if draw_area and self.notebook.get_n_pages() > 0:
+            SaveAs(self.builder, draw_area.graph)
     
     def menu_file_revert(self, widget):
         print _("menu_file_revert")
             
     def menu_file_close(self, widget):
-        print _("menu_file_close")
         i = self.notebook.get_current_page()
         page = self.notebook.get_nth_page(i)
         if page and self.notebook.get_n_pages() > 0:
