@@ -54,11 +54,12 @@ class Vertex(object):
 
 
 class Graph(object):
-    def __init__(self, title, complete=False):
-        self.graph_title = title
+    def __init__(self, complete=False):
+        self.title = "Untitled"
         self.vertex_id = 0
         self.vertex = []
         self.complete = complete
+        
 
     def get_vertex(self, position):
         current_x = position[0]

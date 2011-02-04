@@ -13,16 +13,16 @@ class AboutDialog(object):
 
         builder.connect_signals(self)
         
-        self.file_chooser = builder.get_object("file_chooser")
+        self.about_dialog = builder.get_object("about_dialog")
         
         path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = os.path.join(path, "images", "logo.png")
         logo = gtk.gdk.pixbuf_new_from_file(path)
         
-        self.file_chooser.set_logo(logo)
+        self.about_dialog.set_logo(logo)
         
-        self.file_chooser.connect("response", self.about_dialog_response)
-        self.file_chooser.show_all()
+        self.about_dialog.connect("response", self.about_dialog_response)
+        self.about_dialog.show_all()
 
     def about_dialog_response(self, widget, event):
         self.about_dialog.destroy() 

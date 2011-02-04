@@ -31,7 +31,7 @@ class MainScreen(object):
         self.windows.remove(window)
         if self.windows == []:
             gtk.main_quit()
-
+    
     def translate(self):   
         domain = "grape"
         base_path = os.path.abspath(os.path.dirname(sys.argv[0]))

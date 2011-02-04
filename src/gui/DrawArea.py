@@ -4,8 +4,7 @@ from lib.graph.Graph import Graph
 import gtk
 
 class DrawArea(DrawingArea):
-    
-    def __init__(self, complete=False):
+    def __init__(self, changed_method, complete=False):
         DrawingArea.__init__(self)
         self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
         self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
@@ -20,11 +19,19 @@ class DrawArea(DrawingArea):
         
         self.action = None
         self.select = None
-        self.title = "Untitled"
-        self.graph = Graph(self.title, complete)
+        self.graph = Graph(complete)
         self.cairo = None
+        self.changed = False
+        self.path = None
         
         self.set_double_buffered(True)
+           
+        self.changed_method = changed_method
+
+    def set_changed(self, value):
+        if self.changed != value:
+            self.changed = value
+            self.changed_method(self)
         
     def add_vertex(self, event):
         position = event.get_coords()
@@ -80,10 +87,10 @@ class DrawArea(DrawingArea):
             self.select.select(False)
             self.select = None
         
-    def remove_neighborhood(self):
-        print "Opcao nao existe"
-        
-    def mouse_press(self, widget, event):       
+    def mouse_press(self, widget, event):
+        if self.action != None:
+            self.set_changed(True)
+            
         if self.action == None:
             self.select_vertex(event)
         elif self.action == "add_vertex":
@@ -98,10 +105,11 @@ class DrawArea(DrawingArea):
         self.draw()
         
     def mouse_release(self, widget, event):
-        print "mouse_released"
+        pass
         
     def mouse_motion(self, widget, event):
         if self.select:
+            self.set_changed(True)
             position = event.get_coords()
             self.select.position = position
             self.draw()

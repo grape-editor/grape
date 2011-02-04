@@ -36,17 +36,13 @@ class Window(object):
         current_page_number = self.notebook.get_current_page()
         draw_area = self.notebook.get_nth_page(current_page_number)
         return draw_area 
-        
-    def notebook_page_has_change(self, notebook, child, pagenum):
-        print _("notebook_page_has_change")
-        self.menu_file_save(child)
-        self.menu_file_save_as(child)
     
     def notebook_page_close_buttom_clicked(self, widget):
         page_number = widget.get_parent().page_num(widget)
         widget.get_parent().remove_page(page_number)
-        
+       
     def notebook_add_tab(self, tab):
+        #Put this tab in the notebook
         hbox = gtk.HBox(False, 0)
         #get a stock close button image
         close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
@@ -64,54 +60,73 @@ class Window(object):
         btn.modify_style(style)
         
         #Added title and buttom
-        hbox.pack_start(gtk.Label(tab.title))
+        hbox.pack_start(gtk.Label(tab.graph.title))
         hbox.pack_start(btn, False, False)        
-        hbox.show_all()
-
-        #Put this tab in the notebook
+        
         self.notebook.append_page(tab, hbox)
         last_page = self.notebook.get_n_pages() - 1
         if last_page > 0:
             self.notebook.set_current_page(last_page)
         
-        print last_page
-        print self.notebook.get_current_page()
-        
         self.notebook.set_tab_reorderable(tab, True)
         self.notebook.set_tab_detachable(tab, True)
         
         #connect the close button        
+        n = self.notebook.page_num(tab)
+        
         btn.connect_object('clicked', self.notebook_page_close_buttom_clicked, tab)
+        hbox.add_events(gtk.gdk.ALL_EVENTS_MASK)
+        hbox.connect_object("button-press-event", self.notebook_page_hbox_clicked, tab)
+        
+        hbox.show_all()
         self.notebook.show_all()
         
         tab.close_button = btn
+        self.notebook.set_current_page(n)
+
+    def notebook_page_hbox_clicked(self, widget):
+        page_number = widget.get_parent().page_num(widget)
+        widget.get_parent().remove_page(page_number)        
+    
+    def notebook_tab_changed(self, drawarea):
+        box = self.notebook.get_tab_label(drawarea)
+        label = box.get_children()[0]
+        if drawarea.changed:
+            label.set_label("* " + drawarea.graph.title)
+        else:
+            label.set_label(drawarea.graph.title)
     
     def menu_file_new(self, widget):
-        print _("menu_file_new")
-        draw_area = DrawArea()
+        draw_area = DrawArea(self.notebook_tab_changed)
         self.notebook_add_tab(draw_area)
 
     def menu_file_new_complete(self, widget):
-        print _("menu_file_new")
-        draw_area = DrawArea(True)
+        draw_area = DrawArea(self.notebook_tab_changed, True)
         self.notebook_add_tab(draw_area)
     
     def menu_file_open(self, widget):
-        print _("menu_file_open")
-    
+        pass
+            
     def menu_file_save(self, widget):
-        print _("menu_file_save")
+        i = self.notebook.get_current_page()
+        draw_area = self.notebook.get_nth_page(i)
+        if draw_area:
+            if not draw_area.path:
+                self.menu_file_save_as(widget)
+            else:
+                save_as = SaveAs(self.builder, draw_area)
+                save_as.save_file(draw_area.path)
     
     def menu_file_save_as(self, widget):
-        print _("menu_file_save_as")
         i = self.notebook.get_current_page()
         draw_area = self.notebook.get_nth_page(i)
         if draw_area and self.notebook.get_n_pages() > 0:
-            SaveAs(self.builder, draw_area.graph)
+            save_as = SaveAs(self.builder, draw_area)
+            save_as.show_file_chooser()
     
     def menu_file_revert(self, widget):
-        print _("menu_file_revert")
-            
+        pass
+                    
     def menu_file_close(self, widget):
         i = self.notebook.get_current_page()
         page = self.notebook.get_nth_page(i)
@@ -121,17 +136,16 @@ class Window(object):
             #self.tabs.remove(page)
     
     def menu_file_quit(self, widget):
-        print _("menu_file_quit")
         self.window_main_quit(widget)
     
     def menu_edit_cut(self, widget):
-        print _("menu_edit_cut")
-    
+        pass
+            
     def menu_edit_copy(self, widget):
-        print _("menu_edit_copy")
-    
+        pass
+            
     def menu_edit_paste(self, widget):
-        print _("menu_edit_past")
+        pass
         
     def menu_edit_add_vertex(self, widget):
         draw_area = self.notebook_page_current_draw_area()
@@ -154,26 +168,25 @@ class Window(object):
             draw_area.action = "remove_edge"
     
     def menu_edit_delete(self, widget):
-        print _("menu_edit_delete")
-            
+        pass
+                    
     def menu_view_fullscreen_on(self, widget):
-        print _("menu_view_fullscreen_on")
-    
+        pass
+        
     def menu_view_fullscreen_off(self, widget):
-        print _("menu_view_fullscreen_off")
+        pass
         
     def menu_help_about(self, widget):
-        AboutDialog()
+        AboutDialog(self.builder)
         
     def window_keyboard_type(self, widget, event):
-        print _("window_keyboard_type")
         draw_area = self.notebook_page_current_draw_area()
         
         key = event.keyval
         if key == gtk.keysyms.a or key == gtk.keysyms.A: 
             draw_area.action = "add_vertex"
         elif key == gtk.keysyms.r or key == gtk.keysyms.R:
-            draw_area.action = "remove_edge"
+            draw_area.action = "remove_vertex"
         elif key == gtk.keysyms.e or key == gtk.keysyms.E:
             draw_area.action = "add_edge"
 
@@ -182,5 +195,3 @@ class Window(object):
     
     def window_main_quit(self, widget):
         self.window.destroy()
-    
-    

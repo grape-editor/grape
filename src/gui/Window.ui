@@ -302,7 +302,6 @@
           <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <signal name="page_removed" handler="notebook_page_has_change"/>
           </object>
           <packing>
             <property name="position">1</property>

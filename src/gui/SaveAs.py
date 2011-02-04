@@ -8,31 +8,31 @@ import xml.etree.ElementTree as ElementTree
 
 class SaveAs(object):  
     
-    def __init__(self, builder, graph):   
+    def __init__(self, builder, drawarea):
         path = os.path.abspath(os.path.dirname(sys.argv[0]))
         path = os.path.join(path, "gui", "SaveAs.ui")        
-        builder.add_from_file(path)
-        builder.connect_signals(self)
+        self.builder = builder
+        self.builder.add_from_file(path)
+        self.builder.connect_signals(self)
         
-        self.graph = graph
-        self.file_chooser = builder.get_object("file_chooser_dialog")
-        self.file_chooser.show_all()        
+        self.drawarea = drawarea
+        self.graph = drawarea.graph
 
-#    def file_chooser_dialog_response(self, widget, event):
-#        print event
-#        if event == -4:
-#            self.file_chooser_dialog_close()
+    def file_chooser_dialog_file_activated(self, widget):
+        print "oi"
 
+    def show_file_chooser(self):
+        self.file_chooser = self.builder.get_object("file_chooser_dialog")
+        self.file_chooser.show_all()
+    
     def file_chooser_dialog_close(self):
         self.file_chooser.destroy()
         
     def file_chooser_dialog_cancel(self, widget):
         self.file_chooser_dialog_close()
-        
-    def file_chooser_dialog_save(self, widget):
+    
+    def save_file(self, name):
         import gzip
-        # build a tree structure
-        name = self.file_chooser.get_filename()
         grape = ElementTree.Element("grape")
         
         head = ElementTree.SubElement(grape, "head")      
@@ -57,12 +57,27 @@ class SaveAs(object):
                 neighbor_id = ElementTree.SubElement(vertex_neighbors, "neighbor_id")
                 neighbor_id.text = str(neighbor.id) 
         
-        if not name.endswith('.grape'):
-            name += '.grape'
+        if not name.endswith('.cgf'):
+            name += '.cgf'
 
         f = gzip.open(name, 'wb')
         f.write(ElementTree.tostring(grape))
         f.close()
-
+        
+        self.drawarea.set_changed(False)
+            
+#    def file_chooser_dialog_save_key(self, widget, event):
+#        import gtk
+#        key = event.keyval
+#        if key == gtk.keysyms.Return or key == gtk.keysyms.KP_Enter:
+#            self.file_chooser_dialog_save(widget)
+#        elif key == gtk.keysyms.Escape:
+#            self.file_chooser_dialog_cancel(widget)
+        
+    def file_chooser_dialog_save(self, widget):
+        # build a tree structure
+        name = self.file_chooser.get_filename()
+        self.save_file(name)
+        self.drawarea.path = name
         self.file_chooser_dialog_close()
 
