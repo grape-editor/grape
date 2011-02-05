@@ -1,4 +1,3 @@
-# import lib.elementtree.ElementTree as ElementTree
 import lib.util.Util as Util
 
 import os

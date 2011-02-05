@@ -1,7 +1,5 @@
 from DrawArea import DrawArea
 from AboutDialog import AboutDialog
-from SaveAs import SaveAs
-from Open import Open
 from FileChooserDialog import FileChooserDialog
 
 
