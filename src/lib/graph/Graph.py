@@ -7,6 +7,7 @@ class Vertex(object):
         self.name = "Noname"
         self.color = [0, 0, 0]
         self.size = 10
+        self.visited = False
     
     def set_options(self, id, position, name, color, size):
         self.id = id

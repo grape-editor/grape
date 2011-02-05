@@ -5,6 +5,7 @@ import sys
 import gtk
 
 from xml.etree import ElementTree
+from gzip import GzipFile
 
 class FileChooserDialog(object):  
     
@@ -27,10 +28,13 @@ class FileChooserDialog(object):
             
     def open_file(self, name):
         import gzip
+        import base64
         
-        #decompress file
-        f = gzip.open(name, 'rb')
-        file_content = f.read()
+        #Open, Read, Decode, Decompress file
+        f = open(name, 'rb')
+        file_encoded = f.read()
+        file_compressed = base64.b64decode(file_encoded)
+        file_content = gzip.zlib.decompress(file_compressed)
         f.close()
         
         #Get general informations about graph
@@ -40,7 +44,7 @@ class FileChooserDialog(object):
         self.drawarea.graph.title = title.text
         
         #Get vertexes list and create vertex in graph with yours settings    
-        vertex = grape.findall("vertex")   
+        vertex = grape.findall("vertex")
         for v in vertex:
             vertex_id = v.find("id")
             id = int(vertex_id.text)
@@ -52,8 +56,8 @@ class FileChooserDialog(object):
             color = Util.hex_to_rgb(vertex_options.get("color"))
             name = vertex_options.text
             new_vertex = self.drawarea.graph.add_vertex(position)
-            new_vertex.set_option(position, id, name, color, size)
-        
+            new_vertex.set_options(id, position, name, color, size)
+            
         #For each vertex now is building yours adjacency list or yours neighborhood
         for v in vertex:
             vertex_id = v.find("id")
@@ -71,7 +75,8 @@ class FileChooserDialog(object):
         
     def save_file(self, name):
         import gzip
-        
+        import base64
+                
         #Put general info about graph in xml file
         grape = ElementTree.Element("grape")
         head = ElementTree.SubElement(grape, "head")      
@@ -101,11 +106,14 @@ class FileChooserDialog(object):
         if not name.endswith('.cgf'):
             name += '.cgf'
 
-        #Compress the xml result with gzip and write on disc
-        f = gzip.open(name, 'wb')
-        f.write(ElementTree.tostring(grape))
+        #Compress, encode, write the result on disc
+        f = open(name, 'wb')
+        data = ElementTree.tostring(grape)
+        compress = gzip.zlib.compress(data)
+        encoded = base64.b64encode(compress)
+        f.write(encoded)
         f.close()
-        
+
         self.drawarea.set_changed(False)
 
     def file_chooser_dialog_show(self):
