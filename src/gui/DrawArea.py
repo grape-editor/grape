@@ -46,7 +46,7 @@ class DrawArea(DrawingArea):
     def add_edge(self, event):
         if self.select:
             position = event.get_coords()
-            vertex = self.graph.get_vertex(position)
+            vertex = self.graph.get_vertex_position(position)
             if vertex != None:
                 self.graph.add_edge(self.select, vertex)
                 self.deselect_vertex()
@@ -59,7 +59,7 @@ class DrawArea(DrawingArea):
     def remove_edge(self, event):
         if self.select:
             position = event.get_coords()
-            vertex = self.graph.get_vertex(position)
+            vertex = self.graph.get_vertex_position(position)
             if vertex != None:
                 self.graph.remove_edge(self.select, vertex)
                 self.deselect_vertex()
@@ -78,7 +78,7 @@ class DrawArea(DrawingArea):
         if self.select:
             self.deselect_vertex()
         position = event.get_coords()
-        self.select = self.graph.get_vertex(position)
+        self.select = self.graph.get_vertex_position(position)
         if self.select:
             self.select.select(True)
     
@@ -135,4 +135,3 @@ class DrawArea(DrawingArea):
         self.cairo.save()
         self.queue_draw_area(0, 0, self.area.width, self.area.height)
         self.cairo.restore()
-        

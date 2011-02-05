@@ -1,12 +1,13 @@
 class Vertex(object):
 
-    def __init__(self, id, position):
+    def __init__(self, id):
         self.id = id
+        self.position = None
+        self.neighborhood = []
         self.name = "Noname"
         self.color = [0, 0, 0]
-        self.position = position
-        self.neighborhood = []
         self.size = 10
+        self.visited = False
       
     def is_neighbor(self, vertex):
         for v in self.neighborhood:
@@ -61,7 +62,7 @@ class Graph(object):
         self.complete = complete
         
 
-    def get_vertex(self, position):
+    def get_vertex_position(self, position):
         current_x = position[0]
         current_y = position[1]
         for v in self.vertex:
@@ -72,34 +73,41 @@ class Graph(object):
                 if (y - r) <= current_y and (y + r) >= current_y:
                     return v
         return None
+
+    def get_vertex_id(self, id):
+        for v in self.vertex:
+            if v.id == id:
+                return v
+        return None
     
-    def add_vertex(self, position):
-        vertex = Vertex(self.vertex_id, position)  
+    def add_vertex(self, position, id=None, name=None, color=None, size=None ):
+        vertex = Vertex(self.vertex_id)  
         vertex.position = position
-        self.vertex_id = self.vertex_id + 1
+        if id:
+            vertex.id = id
+            vertex.name = name
+            vertex.color = color
+            vertex.size = size
+        else:
+            self.vertex_id = self.vertex_id + 1
         if self.complete:
-            vertex.visited = False
             for v in self.vertex:
                 self.add_edge(vertex, v)
         self.vertex.append(vertex)
-        print "ok"
     
     def remove_vertex(self, position):
-        vertex = self.get_vertex(position) 
+        vertex = self.get_vertex_position(position) 
         if  vertex != None:
             vertex.remove_all_neighbor()
             self.vertex.remove(vertex)
-            print "ok"
 
     def add_edge(self, vertex1, vertex2):
         vertex1.add_neighbor(vertex2)
         vertex2.add_neighbor(vertex1)
-        print "ok"
 
     def remove_edge(self, vertex1, vertex2):
         vertex1.remove_neighbor(vertex2)
         vertex2.remove_neighbor(vertex1)
-        print "ok"
     
     def draw_vertex(self, cairo, area, vertex):
         vertex.draw(cairo, area)
@@ -116,7 +124,7 @@ class Graph(object):
             self.draw_vertex(cairo, area, v)
             v.visited = True
             for n in v.neighborhood:
-                if n.visited != True:
+                if not n.visited:
                     self.draw_edge(cairo, area, v, n)
                
         for v in self.vertex:

@@ -1,6 +1,8 @@
 from DrawArea import DrawArea
 from AboutDialog import AboutDialog
 from SaveAs import SaveAs
+from Open import Open
+from FileChooserDialog import FileChooserDialog
 
 
 import gtk
@@ -75,18 +77,12 @@ class Window(object):
         n = self.notebook.page_num(tab)
         
         btn.connect_object('clicked', self.notebook_page_close_buttom_clicked, tab)
-        hbox.add_events(gtk.gdk.ALL_EVENTS_MASK)
-        hbox.connect_object("button-press-event", self.notebook_page_hbox_clicked, tab)
         
         hbox.show_all()
         self.notebook.show_all()
         
         tab.close_button = btn
         self.notebook.set_current_page(n)
-
-    def notebook_page_hbox_clicked(self, widget):
-        page_number = widget.get_parent().page_num(widget)
-        widget.get_parent().remove_page(page_number)        
     
     def notebook_tab_changed(self, drawarea):
         box = self.notebook.get_tab_label(drawarea)
@@ -105,8 +101,14 @@ class Window(object):
         self.notebook_add_tab(draw_area)
     
     def menu_file_open(self, widget):
-        pass
-            
+        draw_area = DrawArea(self.notebook_tab_changed)
+        open_file = FileChooserDialog(self.builder, draw_area)
+        open_file.file_chooser_dialog_method_open()
+        open_file.file_chooser_dialog_show()
+        self.notebook_add_tab(draw_area)
+        #draw_area.expose(widget, None)
+        
+  
     def menu_file_save(self, widget):
         i = self.notebook.get_current_page()
         draw_area = self.notebook.get_nth_page(i)
@@ -114,15 +116,16 @@ class Window(object):
             if not draw_area.path:
                 self.menu_file_save_as(widget)
             else:
-                save_as = SaveAs(self.builder, draw_area)
-                save_as.save_file(draw_area.path)
+                save = FileChooserDialog(self.builder, draw_area)
+                save.save_file(draw_area.path)
     
     def menu_file_save_as(self, widget):
         i = self.notebook.get_current_page()
         draw_area = self.notebook.get_nth_page(i)
         if draw_area and self.notebook.get_n_pages() > 0:
-            save_as = SaveAs(self.builder, draw_area)
-            save_as.show_file_chooser()
+            save_as = FileChooserDialog(self.builder, draw_area)
+            save_as.file_chooser_dialog_method_save()
+            save_as.file_chooser_dialog_show()
     
     def menu_file_revert(self, widget):
         pass
