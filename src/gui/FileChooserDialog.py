@@ -14,31 +14,36 @@ class FileChooserDialog(object):
         self.builder = builder
         self.builder.add_from_file(path)
         self.builder.connect_signals(self)
-        
-        self.file_chooser = self.builder.get_object("file_chooser_dialog")        
+        self.file_chooser = self.builder.get_object("file_chooser_dialog")
+                
         self.drawarea = drawarea
         self.graph = drawarea.graph
 
     def file_chooser_dialog_file_activated(self, widget):
-        print "oi"
-    
+        if self.method == "save":
+            self.file_chooser_dialog_save(widget)
+        elif self.method == "open":
+            self.file_chooser_dialog_open(widget)
+            
     def open_file(self, name):
         import gzip
         
+        #decompress file
         f = gzip.open(name, 'rb')
         file_content = f.read()
         f.close()
+        
+        #Get general informations about graph
         grape = ElementTree.fromstring(file_content)
         head = grape.find("head")
         title = head.find("title")
-
-        self.drawarea.graph.title = title.text 
-               
-        vertex = grape.findall("vertex")        
+        self.drawarea.graph.title = title.text
+        
+        #Get vertexes list and create vertex in graph with yours settings    
+        vertex = grape.findall("vertex")   
         for v in vertex:
             vertex_id = v.find("id")
             id = int(vertex_id.text)
-            
             vertex_options = v.find("options")
             position = []
             position.append(float(vertex_options.get("x")))
@@ -46,39 +51,35 @@ class FileChooserDialog(object):
             size = int(vertex_options.get("size"))
             color = Util.hex_to_rgb(vertex_options.get("color"))
             name = vertex_options.text
-            
-            self.drawarea.graph.add_vertex(position, id, name, color, size)
+            new_vertex = self.drawarea.graph.add_vertex(position)
+            new_vertex.set_option(position, id, name, color, size)
         
-        
+        #For each vertex now is building yours adjacency list or yours neighborhood
         for v in vertex:
             vertex_id = v.find("id")
             id = int(vertex_id.text)
             vertex1 = self.drawarea.graph.get_vertex_id(id)
-            
             neighborhood = v.find("neighborhood")
             neighbor_id = neighborhood.findall("neighbor_id")
-            
             for neighbor in neighbor_id:
                 id = int(neighbor.text)
                 vertex2 = self.drawarea.graph.get_vertex_id(id)
                 self.drawarea.graph.add_edge(vertex1, vertex2)
-            
-            
-        
-        #for vertex in grape.getiterator('vertex'):
-        #    print "User" , vertex.attrib["x"]
-        #    ElementTree.dump(vertex)
-        
+
+        self.drawarea.set_changed(False)
+
         
     def save_file(self, name):
         import gzip
+        
+        #Put general info about graph in xml file
         grape = ElementTree.Element("grape")
         head = ElementTree.SubElement(grape, "head")      
         title = ElementTree.SubElement(head, "title")
-
         self.graph.graph_title = os.path.basename(name)
         title.text = self.graph.title
-         
+        
+        #Put all vertexes with your settings in xml file 
         for v in self.graph.vertex:
             vertex = ElementTree.SubElement(grape, "vertex")
             vertex_id = ElementTree.SubElement(vertex, "id")
@@ -90,14 +91,17 @@ class FileChooserDialog(object):
             vertex_options.set("y", str(v.position[1]))
             vertex_options.text = v.name
             
+            #Here is put all adjacency list into of  xml file
             vertex_neighbors = ElementTree.SubElement(vertex, "neighborhood")
             for neighbor in v.neighborhood:
                 neighbor_id = ElementTree.SubElement(vertex_neighbors, "neighbor_id")
                 neighbor_id.text = str(neighbor.id) 
         
+        #Verify extension of file
         if not name.endswith('.cgf'):
             name += '.cgf'
 
+        #Compress the xml result with gzip and write on disc
         f = gzip.open(name, 'wb')
         f.write(ElementTree.tostring(grape))
         f.close()
@@ -124,6 +128,7 @@ class FileChooserDialog(object):
         self.file_chooser.destroy()
 
     def file_chooser_dialog_method_open(self):
+        self.method = "open"
         confirm = self.builder.get_object("button_confirm")
         confirm.set_label(_("Open"))
         confirm.connect('clicked', self.file_chooser_dialog_open)
@@ -131,6 +136,7 @@ class FileChooserDialog(object):
         self.file_chooser.set_title(_("Open"))
         
     def file_chooser_dialog_method_save(self):
+        self.method = "save"
         confirm = self.builder.get_object("button_confirm")
         confirm.set_label(_("Save"))
         confirm.connect('clicked', self.file_chooser_dialog_save)

@@ -59,7 +59,7 @@ class Window(object):
         style.ythickness = 0
         btn.modify_style(style)
         
-        #Added title and buttom
+        #Added title and button
         hbox.pack_start(gtk.Label(tab.graph.title))
         hbox.pack_start(btn, False, False)        
         

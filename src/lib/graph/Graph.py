@@ -7,8 +7,14 @@ class Vertex(object):
         self.name = "Noname"
         self.color = [0, 0, 0]
         self.size = 10
-        self.visited = False
-      
+    
+    def set_options(self, id, position, name, color, size):
+        self.id = id
+        self.position = position
+        self.name = name
+        self.color = color
+        self.size = size
+              
     def is_neighbor(self, vertex):
         for v in self.neighborhood:
             if v == vertex:
@@ -80,20 +86,15 @@ class Graph(object):
                 return v
         return None
     
-    def add_vertex(self, position, id=None, name=None, color=None, size=None ):
+    def add_vertex(self, position):
         vertex = Vertex(self.vertex_id)  
         vertex.position = position
-        if id:
-            vertex.id = id
-            vertex.name = name
-            vertex.color = color
-            vertex.size = size
-        else:
-            self.vertex_id = self.vertex_id + 1
+        self.vertex_id = self.vertex_id + 1
         if self.complete:
             for v in self.vertex:
                 self.add_edge(vertex, v)
         self.vertex.append(vertex)
+        return vertex
     
     def remove_vertex(self, position):
         vertex = self.get_vertex_position(position) 
