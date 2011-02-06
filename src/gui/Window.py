@@ -22,10 +22,8 @@ class Window(object):
         
         self.window = builder.get_object("window")
         self.notebook = builder.get_object("notebook")
-        
-        #self.window.connect("destroy", self.window_main_quit)
-        self.window.connect('key-press-event', self.window_keyboard_type) 
-        #self.notebook.connect("page-removed", self.notebook_page_has_change)
+        self.window.connect('key_press_event', self.window_keyboard_press)
+
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
         
@@ -180,17 +178,25 @@ class Window(object):
     def menu_help_about(self, widget):
         AboutDialog(self.builder)
         
-    def window_keyboard_type(self, widget, event):
+    def window_keyboard_press(self, widget, event):
         draw_area = self.notebook_page_current_draw_area()
         
         key = event.keyval
-        if key == gtk.keysyms.a or key == gtk.keysyms.A: 
-            draw_area.action = "add_vertex"
-        elif key == gtk.keysyms.r or key == gtk.keysyms.R:
-            draw_area.action = "remove_vertex"
-        elif key == gtk.keysyms.e or key == gtk.keysyms.E:
-            draw_area.action = "add_edge"
-
+        
+        if key == gtk.keysyms.Right:
+            if draw_area:
+                draw_area.move_select_right() 
+        elif key == gtk.keysyms.Left:
+            if draw_area:
+                draw_area.move_select_left()
+        elif key == gtk.keysyms.Up:
+            if draw_area:
+                draw_area.move_select_up()
+        elif key == gtk.keysyms.Down: 
+            if draw_area:
+                draw_area.move_select_down()
+            
+            
     def window_move_screen(self, x, y):
         self.window.move(x, y)
     

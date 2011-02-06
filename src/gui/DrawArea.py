@@ -1,6 +1,5 @@
 from gtk import DrawingArea
 from lib.graph.Graph import Graph
-
 import gtk
 
 class DrawArea(DrawingArea):
@@ -15,10 +14,10 @@ class DrawArea(DrawingArea):
         self.connect('expose-event', self.expose)
         self.connect('button-press-event', self.mouse_press)
         self.connect('button-release-event',self.mouse_release)
-        self.connect('motion-notify-event',self.mouse_motion)
+        self.connect('motion-notify-event',self.mouse_motion) 
         
         self.action = None
-        self.select = None
+        self.select = []
         self.graph = Graph(complete)
         self.cairo = None
         self.changed = False
@@ -49,7 +48,7 @@ class DrawArea(DrawingArea):
             vertex = self.graph.get_vertex_position(position)
             if vertex != None:
                 self.graph.add_edge(self.select, vertex)
-                self.deselect_vertex()
+                self.deselect_all_vertex()
                 #self.action = None
                 return True
         else:
@@ -62,7 +61,7 @@ class DrawArea(DrawingArea):
             vertex = self.graph.get_vertex_position(position)
             if vertex != None:
                 self.graph.remove_edge(self.select, vertex)
-                self.deselect_vertex()
+                self.deselect_all_vertex()
                 #self.action = None
                 return True
         else:
@@ -70,29 +69,33 @@ class DrawArea(DrawingArea):
         return False
         
     def move_vertex(self, event):
-        if self.select:
-            self.deselect_vertex()
+        #if len(self.select) > 0:
+        #    self.deselect_all_vertex()
         self.select_vertex(event)
             
     def select_vertex(self, event):
-        if self.select:
-            self.deselect_vertex()
         position = event.get_coords()
-        self.select = self.graph.get_vertex_position(position)
-        if self.select:
-            self.select.select(True)
+        vertex = self.graph.get_vertex_position(position)
+        
+        if vertex:
+            vertex.select(True)
+            if self.select.count(vertex) == 1:
+                self.select.remove(vertex)
+            self.select.append(vertex)
+        else:
+            self.deselect_all_vertex()
     
-    def deselect_vertex(self):
-        if self.select:
-            self.select.select(False)
-            self.select = None
+    def deselect_all_vertex(self):
+        if len(self.select) > 0:
+            for vertex in self.select:
+                vertex.select(False)
+            self.select  = []
         
     def mouse_press(self, widget, event):
         if self.action != None:
             self.set_changed(True)
-            
         if self.action == None:
-            self.select_vertex(event)
+            self.move_vertex(event)
         elif self.action == "add_vertex":
             self.add_vertex(event)
         elif self.action == "remove_vertex":
@@ -101,19 +104,73 @@ class DrawArea(DrawingArea):
             self.add_edge(event)
         elif self.action == "remove_edge":
             self.remove_edge(event)
-
+            
         self.draw()
         
     def mouse_release(self, widget, event):
         pass
-        
+    
     def mouse_motion(self, widget, event):
-        if self.select:
+        if len(self.select) > 0:
+            start_position = self.select[-1].position
+            end_position = event.get_coords()
+            
+            delta_x = end_position[0] - start_position[0]
+            delta_y = end_position[1] - start_position[1]
+                        
             self.set_changed(True)
-            position = event.get_coords()
-            self.select.position = position
+            for vertex in self.select:
+                new_position = [vertex.position[0] + delta_x, vertex.position[1] + delta_y]
+                vertex.position = new_position
+            
             self.draw()
             self.queue_draw()
+    
+            
+
+            
+
+#    def keyboard_press(self, widget, event):
+#        keyname = gtk.gdk.keyval_name(event.keyval)
+#        print "Key %s (%d) was pressed" % (keyname, event.keyval)
+#        if event.state & gtk.gdk.CONTROL_MASK:
+#            print "Control was being held down"
+#        if event.state & gtk.gdk.MOD1_MASK:
+#            print "Alt was being held down"
+#        if event.state & gtk.gdk.SHIFT_MASK:
+#            print "Shift was being held down"
+
+    def move_select_right(self):
+        if len(self.select) == 1:
+            order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
+            
+            for x in order_x:
+                print x.position
+            print len(order_x)
+            
+            for x in order_x:
+                if x.position[0] <= self.select.first.position[0]:
+                    order_x.remove(x)
+                    
+            for x in order_x:
+                print x.position 
+            print len(order_x)
+            
+    def move_select_left(self):
+        order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
+        for x in order_x:
+            print x.position 
+         
+    def move_select_up(self):
+        order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
+        for y in order_y:
+            print y.position 
+         
+    def move_select_down(self):
+        order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
+        for y in order_y:
+            print y.position 
+         
 
     def create_area(self, widget, event):
         self.area = widget.get_allocation()

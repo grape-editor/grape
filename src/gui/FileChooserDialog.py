@@ -5,7 +5,6 @@ import sys
 import gtk
 
 from xml.etree import ElementTree
-from gzip import GzipFile
 
 class FileChooserDialog(object):  
     
@@ -30,7 +29,7 @@ class FileChooserDialog(object):
         import gzip
         import base64
         
-        #Open, Read, Decode, Decompress file
+        #Open, Read, Decode, Descompress file
         f = open(name, 'rb')
         file_encoded = f.read()
         file_compressed = base64.b64decode(file_encoded)
