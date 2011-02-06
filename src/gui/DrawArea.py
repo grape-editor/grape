@@ -69,8 +69,10 @@ class DrawArea(DrawingArea):
         return False
         
     def move_vertex(self, event):
-        #if len(self.select) > 0:
-        #    self.deselect_all_vertex()
+        #Coment here to take this code cool
+        if len(self.select) > 0:
+            self.deselect_all_vertex()
+        ###
         self.select_vertex(event)
             
     def select_vertex(self, event):
@@ -143,18 +145,38 @@ class DrawArea(DrawingArea):
     def move_select_right(self):
         if len(self.select) == 1:
             order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
+            index_x = order_x.index(self.select[0]) + 1           
+            order_x = order_x[index_x:]
+            #index_x = 0
+            #order_y = sorted(order_x, key=lambda vertex: vertex.position[1])
+            #index_y = order_y.index(self.select[0]) 
             
-            for x in order_x:
-                print x.position
-            print len(order_x)
+            next_vertex = self.select[0]
             
-            for x in order_x:
-                if x.position[0] <= self.select.first.position[0]:
-                    order_x.remove(x)
-                    
-            for x in order_x:
-                print x.position 
-            print len(order_x)
+            #Idiot Solution
+            shortest = None
+            for vertex in order_x:
+                if not shortest:
+                    delta_x = self.select[0].position[0] - vertex.position[0]
+                    delta_y = self.select[0].position[1] - vertex.position[1]
+                    distance = ((delta_x ** 2) + (delta_y ** 2)) ** 0.5
+                    shortest = distance
+                    next_vertex = vertex
+                else:
+                    delta_x = self.select[0].position[0] - vertex.position[0]
+                    delta_y = self.select[0].position[1] - vertex.position[1]
+                    distance = ((delta_x ** 2) + (delta_y ** 2)) ** 0.5
+                    if distance < shortest:
+                        shortest = distance
+                        next_vertex = vertex     
+            
+            
+            self.deselect_all_vertex()
+            next_vertex.select(True)
+            self.select.append(next_vertex)                
+            self.draw()
+
+            
             
     def move_select_left(self):
         order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
