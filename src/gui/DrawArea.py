@@ -69,9 +69,9 @@ class DrawArea(DrawingArea):
         return False
         
     def move_vertex(self, event):
-        #Coment here to take this code cool
-        if len(self.select) > 0:
-            self.deselect_all_vertex()
+        #Comment here to take this code cool
+        #if len(self.select) > 0:
+        #    self.deselect_all_vertex()
         ###
         self.select_vertex(event)
             
@@ -127,10 +127,6 @@ class DrawArea(DrawingArea):
             
             self.draw()
             self.queue_draw()
-    
-            
-
-            
 
 #    def keyboard_press(self, widget, event):
 #        keyname = gtk.gdk.keyval_name(event.keyval)
@@ -145,55 +141,82 @@ class DrawArea(DrawingArea):
     def move_select_right(self):
         if len(self.select) == 1:
             order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
-            index_x = order_x.index(self.select[0]) + 1           
+            index_x = order_x.index(self.select[0])
             order_x = order_x[index_x:]
             #index_x = 0
             #order_y = sorted(order_x, key=lambda vertex: vertex.position[1])
-            #index_y = order_y.index(self.select[0]) 
+            #index_y = order_y.index(self.select[0])
             
-            next_vertex = self.select[0]
-            
+            ##################################################################
             #Idiot Solution
-            shortest = None
-            for vertex in order_x:
-                if not shortest:
-                    delta_x = self.select[0].position[0] - vertex.position[0]
-                    delta_y = self.select[0].position[1] - vertex.position[1]
-                    distance = ((delta_x ** 2) + (delta_y ** 2)) ** 0.5
-                    shortest = distance
-                    next_vertex = vertex
-                else:
-                    delta_x = self.select[0].position[0] - vertex.position[0]
-                    delta_y = self.select[0].position[1] - vertex.position[1]
-                    distance = ((delta_x ** 2) + (delta_y ** 2)) ** 0.5
-                    if distance < shortest:
-                        shortest = distance
-                        next_vertex = vertex     
-            
+            next_vertex = self.get_shortest_neighbor(self.select[0], order_x)
+            ##################################################################
             
             self.deselect_all_vertex()
             next_vertex.select(True)
-            self.select.append(next_vertex)                
+            self.select.append(next_vertex)
+            self.draw()            
             self.draw()
-
-            
             
     def move_select_left(self):
-        order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
-        for x in order_x:
-            print x.position 
+        if len(self.select) == 1:
+            order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
+            index_x = order_x.index(self.select[0])           
+            order_x = order_x[:index_x]
+            
+            next_vertex = self.get_shortest_neighbor(self.select[0], order_x)
+                                         
+            self.deselect_all_vertex()
+            next_vertex.select(True)
+            self.select.append(next_vertex)
+            self.draw() 
          
     def move_select_up(self):
-        order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
-        for y in order_y:
-            print y.position 
-         
+        if len(self.select) == 1:
+            order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
+            index_y = order_y.index(self.select[0])           
+            order_y = order_y[:index_y]
+            
+            next_vertex = self.get_shortest_neighbor(self.select[0], order_y)
+                                                                                          
+            self.deselect_all_vertex()
+            next_vertex.select(True)
+            self.select.append(next_vertex)
+            self.draw()
+            
     def move_select_down(self):
-        order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
-        for y in order_y:
-            print y.position 
-         
-
+        if len(self.select) == 1:
+            order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
+            index_y = order_y.index(self.select[0])
+            order_y = order_y[index_y:]
+            
+            next_vertex = self.get_shortest_neighbor(self.select[0], order_y)
+                                         
+            self.deselect_all_vertex()
+            next_vertex.select(True)
+            self.select.append(next_vertex)
+            self.draw()
+    
+    
+    def get_shortest_neighbor(self, vertex, neighbor):
+        #Please, optimize this method..
+        #Its using brute force!
+        
+        if neighbor.count(vertex) == 1:
+            neighbor.remove(vertex)
+        shortest_vertex = vertex
+        shortest_distance = None
+        for vertex in neighbor:
+            delta_x = self.select[0].position[0] - vertex.position[0]
+            delta_y = self.select[0].position[1] - vertex.position[1]
+            distance = ((delta_x ** 2) + (delta_y ** 2)) ** 0.5
+            if not shortest_distance or distance < shortest_distance:
+                shortest_distance = distance
+                shortest_vertex = vertex
+                
+        return shortest_vertex
+          
+          
     def create_area(self, widget, event):
         self.area = widget.get_allocation()
         
