@@ -36,14 +36,30 @@ class MainScreen(object):
         domain = "grape"
         base_path = os.path.abspath(os.path.dirname(sys.argv[0]))
         language_path = os.path.join(base_path, "language")
-         
-        locale.setlocale(locale.LC_ALL, '')
-        locale.bindtextdomain(domain, language_path)
-         
+
+        langs = []
+        lc, encoding = locale.getdefaultlocale()
+        if (lc):
+            langs = [lc]
+        language = os.environ.get('LANGUAGE', None)
+        if (language):
+            langs += language.split(":")
+        langs += ["pt_BR", "en_US"]
+
+        print langs
         gettext.bindtextdomain(domain, language_path)
         gettext.textdomain(domain)
-        gettext.translation(domain, language_path)
+        lang = gettext.translation(domain, language_path, languages=langs, fallback = True)
+
+#        gettext.translation(domain, language_path, languages=['en_US'])
+#        print locale.getlocale()
+#        locale.setlocale(locale.LC_ALL, '')
+#        locale.bindtextdomain(domain, language_path)
+#        gettext.bindtextdomain(domain, language_path)
+#        gettext.textdomain(domain)
+#        gettext.translation(domain, language_path)
         gettext.install(domain, language_path)
+        
         return domain
 
 

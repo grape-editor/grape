@@ -143,13 +143,31 @@ class DrawArea(DrawingArea):
             order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
             index_x = order_x.index(self.select[0])
             order_x = order_x[index_x:]
-            #index_x = 0
-            #order_y = sorted(order_x, key=lambda vertex: vertex.position[1])
-            #index_y = order_y.index(self.select[0])
+#            index_x = 0
+            order_y = sorted(order_x, key=lambda vertex: vertex.position[1])
+#            index_y = order_y.index(self.select[0])
             
             ##################################################################
+            #Nando's solution
+            next_vertex = None
+            neighbor_radius = 0
+            while not next_vertex:
+                point_max = self.select[0].position[1] + neighbor_radius
+                point_min = self.select[0].position[1] - neighbor_radius
+                for current in order_y:
+                    if not current == self.select[0]:
+                        if current.position[1] == point_max:
+                            next_vertex = current
+                            break
+                        elif current.position[1] == point_min:
+                            next_vertex = current
+                            break
+                neighbor_radius += 1
+            ##################################################################
+                
+            ##################################################################
             #Idiot Solution
-            next_vertex = self.get_shortest_neighbor(self.select[0], order_x)
+            #next_vertex = self.get_shortest_neighbor(self.select[0], order_x)
             ##################################################################
             
             self.deselect_all_vertex()
@@ -163,9 +181,23 @@ class DrawArea(DrawingArea):
             order_x = sorted(self.graph.vertex, key=lambda vertex: vertex.position[0])
             index_x = order_x.index(self.select[0])           
             order_x = order_x[:index_x]
-            
-            next_vertex = self.get_shortest_neighbor(self.select[0], order_x)
-                                         
+            order_y = sorted(order_x, key=lambda vertex: vertex.position[1])
+
+            next_vertex = None
+            neighbor_radius = 0
+            while not next_vertex:
+                point_max = self.select[0].position[1] + neighbor_radius
+                point_min = self.select[0].position[1] - neighbor_radius
+                for current in order_y:
+                    if not current == self.select[0]:
+                        if current.position[1] == point_max:
+                            next_vertex = current
+                            break
+                        elif current.position[1] == point_min:
+                            next_vertex = current
+                            break
+                neighbor_radius += 1
+
             self.deselect_all_vertex()
             next_vertex.select(True)
             self.select.append(next_vertex)
@@ -176,9 +208,23 @@ class DrawArea(DrawingArea):
             order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
             index_y = order_y.index(self.select[0])           
             order_y = order_y[:index_y]
-            
-            next_vertex = self.get_shortest_neighbor(self.select[0], order_y)
-                                                                                          
+            order_x = sorted(order_y, key=lambda vertex: vertex.position[0])
+                        
+            next_vertex = None
+            neighbor_radius = 0
+            while not next_vertex:
+                point_max = self.select[0].position[0] + neighbor_radius
+                point_min = self.select[0].position[0] - neighbor_radius
+                for current in order_x:
+                    if not current == self.select[0]:
+                        if current.position[0] == point_max:
+                            next_vertex = current
+                            break
+                        elif current.position[0] == point_min:
+                            next_vertex = current
+                            break
+                neighbor_radius += 1
+                                                    
             self.deselect_all_vertex()
             next_vertex.select(True)
             self.select.append(next_vertex)
@@ -189,14 +235,27 @@ class DrawArea(DrawingArea):
             order_y = sorted(self.graph.vertex, key=lambda vertex: vertex.position[1])
             index_y = order_y.index(self.select[0])
             order_y = order_y[index_y:]
-            
-            next_vertex = self.get_shortest_neighbor(self.select[0], order_y)
+            order_x = sorted(order_y, key=lambda vertex: vertex.position[0])
+                        
+            next_vertex = None
+            neighbor_radius = 0
+            while not next_vertex:
+                point_max = self.select[0].position[0] + neighbor_radius
+                point_min = self.select[0].position[0] - neighbor_radius
+                for current in order_x:
+                    if not current == self.select[0]:
+                        if current.position[0] == point_max:
+                            next_vertex = current
+                            break
+                        elif current.position[0] == point_min:
+                            next_vertex = current
+                            break
+                neighbor_radius += 1
                                          
             self.deselect_all_vertex()
             next_vertex.select(True)
             self.select.append(next_vertex)
             self.draw()
-    
     
     def get_shortest_neighbor(self, vertex, neighbor):
         #Please, optimize this method..
