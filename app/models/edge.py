@@ -7,9 +7,9 @@ class Edge(object):
         self.start = start
         self.end = end
         self.bidirectional = bidirectional
-        
+
         start.add_edge(self)
-        
+
         if self.bidirectional:
             end.add_edge(self)
-        
+

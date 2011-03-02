@@ -2,17 +2,18 @@ import os
 import gtk
 
 class FileChooserShow(object):
-    
+
     def __init__(self, builder, type):
-        self.builder = builder    
+        self.builder = builder
         current_path = os.path.dirname(__file__)
         path = os.path.join(current_path, "show.ui")
         self.builder.add_from_file(path)
         self.builder.connect_signals(self)
         self.file_chooser = self.builder.get_object("file_chooser_show")
-        
+        self.path = None
+
         self.create_buttons(type)
-    
+
     def create_buttons(self, type):
         if type == "save":
             label = _("Save")
@@ -22,7 +23,7 @@ class FileChooserShow(object):
             title = _("Open")
         else:
             return
-            
+
         confirm = self.builder.get_object("button_confirm")
         confirm.set_label(label)
         confirm.connect('clicked', self.confirm)
@@ -33,8 +34,11 @@ class FileChooserShow(object):
         self.path = self.file_chooser.get_filename()
         self.file_chooser.destroy()
 
-    def show(self):
-        self.file_chooser.show_all()
+    def run(self):
+        self.file_chooser.run()
+
+        if self.file_chooser:
+            self.file_chooser.destroy()
 
     def cancel(self, widget):
         self.file_chooser.destroy()

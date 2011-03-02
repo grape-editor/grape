@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
@@ -14,6 +14,7 @@
     <property name="has_separator">True</property>
     <property name="do_overwrite_confirmation">True</property>
     <signal name="file_activated" handler="confirm"/>
+    <signal name="close" handler="cancel"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox">
         <property name="visible">True</property>
