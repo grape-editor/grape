@@ -9,6 +9,7 @@ class Vertex(object):
         self.color = [0, 0, 0]
         self.size = 10
         self.selected = False
+        self.touching_edges = []
 
     def select(self):
         self.selected = True
@@ -17,11 +18,10 @@ class Vertex(object):
         self.selected = False
 
     def has_edge(self, edge):
-        for e in self.adjacencies:
-            if e == edge:
-                return True
+        return edge in self.adjacencies
 
-        return False
+    def touches_edge(self, edge):
+        return edge in self.touching_edges
 
     def add_edge(self, edge):
         if not self.has_edge(edge):
@@ -29,7 +29,14 @@ class Vertex(object):
 
     def remove_edge(self, edge):
         if self.has_edge(edge):
+            if edge.start.touches_edge(edge):
+                edge.start.touching_edges.remove(edge)
+
+            if edge.end.touches_edge(edge):
+                edge.end.touching_edges.remove(edge)
+
             self.adjacencies.remove(edge)
+            del edge
 
     def clear_adjacencies(self):
         for e in self.adjacencies:

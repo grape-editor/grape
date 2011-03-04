@@ -10,6 +10,12 @@ class Edge(object):
 
         start.add_edge(self)
 
+        start.touching_edges.append(self)
+        end.touching_edges.append(self)
+
         if self.bidirectional:
             end.add_edge(self)
+
+    def touches(self, vertex):
+        return vertex == self.start or vertex == self.end
 
