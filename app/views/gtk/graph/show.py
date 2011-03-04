@@ -32,7 +32,7 @@ class GraphShow(EventBox):
         self.controller = GraphsController()
 
         self.graph = Graph()
-        self.area = GraphArea(self.graph)
+        self.area = GraphArea(self.graph, self.controller)
         self.add(self.area)
 
     def set_changed(self, value):

@@ -6,12 +6,13 @@ import math
 
 class GraphArea(DrawingArea):
 
-    def __init__(self, graph):
+    def __init__(self, graph, controller):
         DrawingArea.__init__(self)
 
         self.connect('expose-event', self.expose)
 
         self.graph = graph
+        self.controller = controller
         self.cairo = None
         self.path = None
         self.adding_edge = None
@@ -58,13 +59,10 @@ class GraphArea(DrawingArea):
         cairo.line_to(arrow_x2, arrow_y2)
         cairo.stroke()
 
-    def draw_edges(self, cairo, area, vertex1, vertex2, touching=None):
+    def draw_edges(self, cairo, area, vertex1, vertex2):
         edges = []
 
-        if not touching:
-            touching = vertex1.touching_edges
-
-        for edge in touching:
+        for edge in vertex1.touching_edges:
             if edge.touches(vertex2):
                 edges.append(edge)
                 edge.visited = True
@@ -147,6 +145,12 @@ class GraphArea(DrawingArea):
         angle = math.atan2(y2 - y1, x2 - x1) + math.pi
         radius = edge.end.size / 2
 
+        x1 = x1 - radius * math.cos(angle)
+        y1 = y1 - radius * math.sin(angle)
+
+        x2 = x2 + radius * math.cos(angle)
+        y2 = y2 + radius * math.sin(angle)
+
         cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
         cairo.set_line_width(edge.width)
 
@@ -162,30 +166,12 @@ class GraphArea(DrawingArea):
             edge.visited = False
 
         for vertex in self.graph.vertices:
-            self.draw_vertex(cairo, area, vertex)
-
-            vertex.visited = True
-            touching = list(vertex.touching_edges)
-
-            if self.adding_edge:
-                end = self.graph.find_by_position(self.adding_edge[1])
-
-                if end == vertex:
-                    start = self.graph.find_by_position(self.adding_edge[0])
-                    edge = Edge(-1, start, end, not self.graph.directed, False)
-                    edge.color = [0.7, 0.7, 0.7]
-                    edge.visited = False
-
-                    touching.append(edge)
-
-                    self.adding_edge = None
-
-            for edge in touching:
+            for edge in vertex.touching_edges:
                 if not edge.visited:
-                    self.draw_edges(cairo, area, edge.start, edge.end, touching)
+                    self.draw_edges(cairo, area, edge.start, edge.end)
 
         for vertex in self.graph.vertices:
-            vertex.visited = None
+            self.draw_vertex(cairo, area, vertex)
 
         for edge in self.graph.edges:
             edge.visited = None
@@ -197,6 +183,9 @@ class GraphArea(DrawingArea):
             cairo.move_to(self.adding_edge[0][0], self.adding_edge[0][1])
             cairo.line_to(self.adding_edge[1][0], self.adding_edge[1][1])
             cairo.stroke()
+
+            if self.graph.directed:
+                self.draw_arrow(cairo, self.adding_edge[0], self.adding_edge[1])
 
             self.adding_edge = None
 
