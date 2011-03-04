@@ -3,6 +3,7 @@ from app.models.graph import Graph
 from app.controllers.graphs_controller import GraphsController
 from app.helpers.graph_helper import *
 from app.views.gtk.graph.area import GraphArea
+#from app.views.gtk.vertex.edit import VertexEdit
 import gtk
 import math
 
@@ -106,21 +107,49 @@ class GraphShow(EventBox):
             self.controller.clear_selection(self.graph)
 
     def mouse_press(self, widget, event):
-        if self.action != None:
-            self.set_changed(True)
-        if self.action == None:
-            self.select_vertex(event)
-        elif self.action == "add_vertex":
-            self.add_vertex(event)
-        elif self.action == "remove_vertex":
-            self.remove_vertex(event)
-        elif self.action == "add_edge":
-            self.add_edge(event)
-        elif self.action == "remove_edge":
-            self.remove_edge(event)
+        if event.button == 1:
+            if self.action != None:
+                self.set_changed(True)
+            if self.action == None:
+                self.select_vertex(event)
+            elif self.action == "add_vertex":
+                self.add_vertex(event)
+            elif self.action == "remove_vertex":
+                self.remove_vertex(event)
+            elif self.action == "add_edge":
+                self.add_edge(event)
+            elif self.action == "remove_edge":
+                self.remove_edge(event)
+        elif event.button == 2:
+            pass
+        elif event.button == 3:
+            self.open_settings(event)
+            
 
         self.area.queue_draw()
         self.mouse_motion(widget, event)
+
+    def open_settings(self, event):
+        position = event.get_coords()
+        vertex = self.graph.find_by_position(position)
+
+        if vertex:
+            pop = gtk.Menu()
+            menu_item1 =  gtk.MenuItem("Editar")
+            menu_item2 =  gtk.MenuItem("Remover")
+            menu_item3 =  gtk.MenuItem("=D")
+            menu_item4 =  gtk.MenuItem("\o/")
+            pop.append(menu_item1)
+            pop.append(menu_item2)
+            pop.append(menu_item3)
+            pop.append(menu_item4)
+
+            time = event.time
+
+             
+            pop.show_all()   
+            pop.popup(None, None, None, event.button, time)
+
 
     def mouse_release(self, widget, event):
         self.last_clicked = None
