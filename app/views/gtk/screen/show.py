@@ -185,12 +185,10 @@ class ScreenShow(object):
         pass
 
     def menu_view_fullscreen_on(self, widget):
-        # TODO - Fullscreen mode
-        pass
+        self.screen.fullscreen()
 
     def menu_view_fullscreen_off(self, widget):
-        # TODO - Fullscreen mode
-        pass
+        self.screen.unfullscreen()
 
     def menu_help_about(self, widget):
         AboutShow(self.builder)
