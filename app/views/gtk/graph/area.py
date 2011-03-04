@@ -168,7 +168,10 @@ class GraphArea(DrawingArea):
         for vertex in self.graph.vertices:
             for edge in vertex.touching_edges:
                 if not edge.visited:
-                    self.draw_edges(cairo, area, edge.start, edge.end)
+                    if euclidean_distance(edge.start.position, edge.end.position) < 5:
+                        edge.visited = True
+                    else:
+                        self.draw_edges(cairo, area, edge.start, edge.end)
 
         for vertex in self.graph.vertices:
             self.draw_vertex(cairo, area, vertex)
