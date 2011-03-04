@@ -180,6 +180,7 @@ class GraphArea(DrawingArea):
             cairo.set_source_rgb(0.7, 0.7, 0.7)
             cairo.set_line_width(1)
 
+            cairo.set_dash((4, 1), 1)
             cairo.move_to(self.adding_edge[0][0], self.adding_edge[0][1])
             cairo.line_to(self.adding_edge[1][0], self.adding_edge[1][1])
             cairo.stroke()

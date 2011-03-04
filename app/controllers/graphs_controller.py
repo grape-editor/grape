@@ -11,7 +11,7 @@ class GraphsController(object):
 
     def remove_vertex(self, graph, vertex):
         if vertex:
-            vertex.clear_adjacencies()
+            vertex.clear_touching()
             graph.vertices.remove(vertex)
 
     def add_edge(self, graph, start, end):

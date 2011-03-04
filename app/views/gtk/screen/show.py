@@ -23,6 +23,9 @@ class ScreenShow(object):
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
 
+        tab = GraphShow(self.tab_changed)
+        self.add_notebook_tab(tab)
+
         self.name = 0
         self.screen.show_all()
 

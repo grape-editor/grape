@@ -119,7 +119,8 @@ class GraphShow(EventBox):
         elif self.action == "remove_edge":
             self.remove_edge(event)
 
-        self.area.draw()
+        self.area.queue_draw()
+        self.mouse_motion(widget, event)
 
     def mouse_release(self, widget, event):
         self.last_clicked = None
