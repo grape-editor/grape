@@ -15,7 +15,7 @@ bq. _to be written_
 
 h2. Authors
 
-fnn. Jonatas Teixeira
-Luan Haddad Ricardo dos Santos
-Oriented by Alexandre Direne for UFPR's computers science degree.
+* Jonatas Teixeira
+* Luan Haddad Ricardo dos Santos
+* Oriented by Alexandre Direne for UFPR's computers science degree.
 
