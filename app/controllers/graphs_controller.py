@@ -14,8 +14,8 @@ class GraphsController(object):
             vertex.clear_adjacencies()
             graph.vertices.remove(vertex)
 
-    def add_edge(self, graph, start, end, bidirectional=True):
-        edge = Edge(graph.edge_id, start, end, bidirectional)
+    def add_edge(self, graph, start, end):
+        edge = Edge(graph.edge_id, start, end, not graph.directed)
         graph.edges.append(edge)
         graph.edge_id += 1
 

@@ -12,6 +12,7 @@ class Graph(object):
         self.title = title
         self.selected_vertices_cache = None
         self.path = None
+        self.directed = False
 
     def find_by_position(self, position):
          current_x = position[0]
