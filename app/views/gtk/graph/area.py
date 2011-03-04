@@ -145,7 +145,7 @@ class GraphArea(DrawingArea):
         x2, y2 = edge.end.position[0], edge.end.position[1]
 
         angle = math.atan2(y2 - y1, x2 - x1) + math.pi
-        radius = edge.end.size / 2s
+        radius = edge.end.size / 2
 
         cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
         cairo.set_line_width(edge.width)
