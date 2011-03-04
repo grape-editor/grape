@@ -144,11 +144,8 @@ class GraphShow(EventBox):
             pop.append(menu_item3)
             pop.append(menu_item4)
 
-            time = event.time
-
-             
             pop.show_all()   
-            pop.popup(None, None, None, event.button, time)
+            pop.popup(None, None, None, event.button, event.time)
 
 
     def mouse_release(self, widget, event):
