@@ -204,7 +204,7 @@ class GraphArea(DrawingArea):
     def expose(self, widget, event):
         self.create_area(widget, event)
         self.cairo.rectangle(0, 0, self.area.width, self.area.height)
-        self.cairo.set_source_rgb(1, 1, 1)
+        self.cairo.set_source_rgb(0.98, 1, 0.98)
         self.cairo.fill()
 
         self.draw_graph(self.cairo, self.area)

@@ -8,6 +8,7 @@ import gtk
 import math
 
 # TODO - Add scrollbars to graph
+# TODO - (BUG) When one vertex (that have more than 2 edges with another vertex) is moved until the left top we have a float division by zero.
 
 class GraphShow(EventBox):
     def __init__(self, changed_method):
@@ -58,7 +59,6 @@ class GraphShow(EventBox):
         self.area.queue_draw()
 
     def add_edge(self):
-        # TODO - If 0 selected => Select first vertex else if 1 selected => Put edge beetween both, else Create edges from everyone to everyone
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.find_by_position(self.last_position_clicked)
 
@@ -69,16 +69,26 @@ class GraphShow(EventBox):
                 self.area.queue_draw()
                 return True
 
-        self.area.queue_draw()
-        return False 
+        if len(self.graph.selected_vertices()) > 1:
+            # TODO - Check if the edges are birectionals or dont
+            for vertex1 in self.graph.selected_vertices():
+                for vertex2 in self.graph.selected_vertices():
+                    if vertex1 != vertex2:
+                        self.controller.add_edge(self.graph, vertex1, vertex2)
+
+            self.controller.clear_selection(self.graph)
+            self.action = None
+            self.area.queue_draw()
+            return True
+
+        return False
 
     def remove_edge(self):
-        # TODO - If 0 selected => Select first vertex else if 1 selected => Remove edge beetween both, else remove all edges from everyone to everyone
+        # TODO - Handle multiple edges
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.find_by_position(self.last_position_clicked)
 
             if vertex != None:
-                # TODO - Handle multiple edges
                 edge = self.graph.find_edge(self.graph.selected_vertices()[0], vertex)
                 self.controller.remove_edge(self.graph, edge[0])
                 self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
@@ -86,7 +96,18 @@ class GraphShow(EventBox):
                 self.area.queue_draw()
                 return True
 
-        self.area.queue_draw()
+        elif len(self.graph.selected_vertices()) > 1:
+            for vertex1 in self.graph.selected_vertices():
+                for vertex2 in self.graph.selected_vertices():
+                    if vertex1 != vertex2:
+                        edge = self.graph.find_edge(vertex1, vertex2)
+                        self.controller.remove_edge(self.graph, edge[0])
+
+            self.controller.clear_selection(self.graph)
+            self.action = None
+            self.area.queue_draw()
+            return True
+
         return False
 
     def select_vertex(self, event):
@@ -110,7 +131,6 @@ class GraphShow(EventBox):
 
     def mouse_press(self, widget, event):
         self.last_position_clicked = event.get_coords()
-        print self.last_position_clicked
 
         if event.button == 1:
             if self.action != None:
@@ -148,6 +168,7 @@ class GraphShow(EventBox):
             self.menu_edit_edge = gtk.MenuItem(_("_Edit edge settings"))
 
 
+
             self.menu_add_edge.connect("activate", lambda event: self.add_edge())
             self.menu_remove_edge.connect("activate", lambda event: self.remove_edge())
             self.menu_add_vertex.connect("activate", lambda event: self.add_vertex())
@@ -166,6 +187,7 @@ class GraphShow(EventBox):
             self.menu.append(self.menu_edit_edge)
 
         if vertex:
+            self.select_vertex(event)
             self.menu_add_vertex.set_sensitive(False)
             self.menu_edit_edge.set_sensitive(False)
         else:
