@@ -58,6 +58,7 @@ class GraphShow(EventBox):
         self.area.queue_draw()
 
     def add_edge(self):
+        # TODO - If 0 selected => Select first vertex else if 1 selected => Put edge beetween both, else Create edges from everyone to everyone
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.find_by_position(self.last_position_clicked)
 
@@ -71,8 +72,8 @@ class GraphShow(EventBox):
         self.area.queue_draw()
         return False 
 
-
     def remove_edge(self):
+        # TODO - If 0 selected => Select first vertex else if 1 selected => Remove edge beetween both, else remove all edges from everyone to everyone
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.find_by_position(self.last_position_clicked)
 
@@ -109,6 +110,8 @@ class GraphShow(EventBox):
 
     def mouse_press(self, widget, event):
         self.last_position_clicked = event.get_coords()
+        print self.last_position_clicked
+
         if event.button == 1:
             if self.action != None:
                 self.set_changed(True)
@@ -129,7 +132,6 @@ class GraphShow(EventBox):
         elif event.button == 3:
             self.open_settings(event)
 
-
         self.area.queue_draw()
         self.mouse_motion(widget, event)
 
@@ -145,8 +147,6 @@ class GraphShow(EventBox):
             self.menu_edit_vertex = gtk.MenuItem(_("_Edit vertex settings"))
             self.menu_edit_edge = gtk.MenuItem(_("_Edit edge settings"))
 
-            def action(string):
-                self.action = string
 
             self.menu_add_edge.connect("activate", lambda event: self.add_edge())
             self.menu_remove_edge.connect("activate", lambda event: self.remove_edge())
