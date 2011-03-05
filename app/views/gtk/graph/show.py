@@ -25,8 +25,11 @@ class GraphShow(EventBox):
         self.connect('motion-notify-event', self.mouse_motion)
 
         self.action = None
+        self.menu = None
 
-        self.last_clicked = None
+        self.last_vertex_clicked = None
+        self.last_position_clicked = None
+
         self.changed = False
         self.changed_method = changed_method
 
@@ -36,42 +39,42 @@ class GraphShow(EventBox):
         self.area = GraphArea(self.graph, self.controller)
         self.add(self.area)
 
+
     def set_changed(self, value):
         if self.changed != value:
             self.changed = value
             self.changed_method(self)
 
-    def add_vertex(self, event):
-        position = event.get_coords()
-        self.controller.add_vertex(self.graph, position)
+    def add_vertex(self):
+        self.controller.add_vertex(self.graph, self.last_position_clicked)
         self.action = None
+        self.area.queue_draw()
 
-    def remove_vertex(self, event):
-        position = event.get_coords()
-        vertex = self.graph.find_by_position(position)
-        self.controller.remove_vertex(self.graph, vertex)
+    def remove_vertex(self):  
+        for vertex in self.graph.selected_vertices():
+            self.controller.remove_vertex(self.graph, vertex)
+
         self.action = None
+        self.area.queue_draw()
 
-    def add_edge(self, event):
+    def add_edge(self):
         if len(self.graph.selected_vertices()) == 1:
-            position = event.get_coords()
-            vertex = self.graph.find_by_position(position)
+            vertex = self.graph.find_by_position(self.last_position_clicked)
 
             if vertex != None:
                 self.controller.add_edge(self.graph, self.graph.selected_vertices()[0], vertex)
                 self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
                 self.action = None
-
+                self.area.queue_draw()
                 return True
-        else:
-            self.select_vertex(event)
 
-        return False
+        self.area.queue_draw()
+        return False 
 
-    def remove_edge(self, event):
+
+    def remove_edge(self):
         if len(self.graph.selected_vertices()) == 1:
-            position = event.get_coords()
-            vertex = self.graph.find_by_position(position)
+            vertex = self.graph.find_by_position(self.last_position_clicked)
 
             if vertex != None:
                 # TODO - Handle multiple edges
@@ -79,16 +82,14 @@ class GraphShow(EventBox):
                 self.controller.remove_edge(self.graph, edge[0])
                 self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
                 self.action = None
-
+                self.area.queue_draw()
                 return True
-        else:
-            self.select_vertex(event)
 
+        self.area.queue_draw()
         return False
 
     def select_vertex(self, event):
-        position = event.get_coords()
-        vertex = self.graph.find_by_position(position)
+        vertex = self.graph.find_by_position(self.last_position_clicked)
 
         from gtk.gdk import CONTROL_MASK, SHIFT_MASK
 
@@ -102,54 +103,80 @@ class GraphShow(EventBox):
             else:
                 self.controller.select_vertex(self.graph, vertex)
 
-            self.last_clicked = vertex
+            self.last_vertex_clicked = vertex
         else:
             self.controller.clear_selection(self.graph)
 
     def mouse_press(self, widget, event):
+        self.last_position_clicked = event.get_coords()
         if event.button == 1:
             if self.action != None:
                 self.set_changed(True)
             if self.action == None:
                 self.select_vertex(event)
             elif self.action == "add_vertex":
-                self.add_vertex(event)
+                self.add_vertex()
             elif self.action == "remove_vertex":
-                self.remove_vertex(event)
+                self.remove_vertex()
             elif self.action == "add_edge":
-                self.add_edge(event)
+                if not self.add_edge():
+                    self.select_vertex(event)
             elif self.action == "remove_edge":
-                self.remove_edge(event)
+                if not self.remove_edge():
+                    self.select_vertex(event)
         elif event.button == 2:
             pass
         elif event.button == 3:
             self.open_settings(event)
-            
+
 
         self.area.queue_draw()
         self.mouse_motion(widget, event)
 
     def open_settings(self, event):
-        position = event.get_coords()
-        vertex = self.graph.find_by_position(position)
+        vertex = self.graph.find_by_position(self.last_position_clicked)
+
+        if not self.menu:
+            self.menu = gtk.Menu()
+            self.menu_add_edge = gtk.MenuItem(_("_Add edge"))
+            self.menu_remove_edge = gtk.MenuItem(_("_Remove edge"))
+            self.menu_add_vertex = gtk.MenuItem(_("_Add vertex"))
+            self.menu_remove_vertex = gtk.MenuItem(_("_Remove vertex"))
+            self.menu_edit_vertex = gtk.MenuItem(_("_Edit vertex settings"))
+            self.menu_edit_edge = gtk.MenuItem(_("_Edit edge settings"))
+
+            def action(string):
+                self.action = string
+
+            self.menu_add_edge.connect("activate", lambda event: self.add_edge())
+            self.menu_remove_edge.connect("activate", lambda event: self.remove_edge())
+            self.menu_add_vertex.connect("activate", lambda event: self.add_vertex())
+            self.menu_remove_vertex.connect("activate", lambda event: self.remove_vertex())
+#            self.menu_edit_vertex.connect("activate", )
+#            self.menu_edit_edge.connect("activate", )
+
+
+            self.menu.append(self.menu_add_vertex)
+            self.menu.append(self.menu_remove_vertex)
+            self.menu.append(gtk.SeparatorMenuItem())
+            self.menu.append(self.menu_add_edge)
+            self.menu.append(self.menu_remove_edge) 
+            self.menu.append(gtk.SeparatorMenuItem())
+            self.menu.append(self.menu_edit_vertex)
+            self.menu.append(self.menu_edit_edge)
 
         if vertex:
-            pop = gtk.Menu()
-            menu_item1 =  gtk.MenuItem("Editar")
-            menu_item2 =  gtk.MenuItem("Remover")
-            menu_item3 =  gtk.MenuItem("=D")
-            menu_item4 =  gtk.MenuItem("\o/")
-            pop.append(menu_item1)
-            pop.append(menu_item2)
-            pop.append(menu_item3)
-            pop.append(menu_item4)
+            self.menu_add_vertex.set_sensitive(False)
+            self.menu_edit_edge.set_sensitive(False)
+        else:
+            self.menu_add_vertex.set_sensitive(True)
+            self.menu_edit_edge.set_sensitive(True)
 
-            pop.show_all()   
-            pop.popup(None, None, None, event.button, event.time)
-
+        self.menu.show_all()   
+        self.menu.popup(None, None, None, event.button, event.time)
 
     def mouse_release(self, widget, event):
-        self.last_clicked = None
+        self.last_vertex_clicked = None
 
     def mouse_motion(self, widget, event):
         selected_vertices = self.graph.selected_vertices()
@@ -162,9 +189,9 @@ class GraphShow(EventBox):
         else:
             self.area.adding_edge = None
 
-        if len(selected_vertices) > 0 and self.last_clicked:
+        if len(selected_vertices) > 0 and self.last_vertex_clicked:
             end_position = event.get_coords()
-            start_position = self.last_clicked.position
+            start_position = self.last_vertex_clicked.position
 
             delta_x = end_position[0] - start_position[0]
             delta_y = end_position[1] - start_position[1]
