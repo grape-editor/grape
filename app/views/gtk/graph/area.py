@@ -19,6 +19,8 @@ class GraphArea(DrawingArea):
 
         self.set_double_buffered(True)
 
+        self.set_size_request(8096, 8096)
+
     def draw_vertex(self, cairo, area, vertex):
         import math
 

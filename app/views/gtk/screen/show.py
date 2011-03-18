@@ -114,6 +114,8 @@ class ScreenShow(object):
         tab.close_button = btn
         self.notebook.set_current_page(n)
 
+        tab.centralize()
+
     def tab_changed(self, tab):
         box = self.notebook.get_tab_label(tab)
         label = box.get_children()[0]
@@ -229,6 +231,13 @@ class ScreenShow(object):
     def menu_view_fullscreen_off(self, widget):
         self.screen.unfullscreen()
 
+    def menu_view_fullscreen(self, widget):
+        if widget.get_active():
+            self.screen.fullscreen()
+        else:
+            self.screen.unfullscreen()
+
+
     def menu_help_about(self, widget):
         AboutShow(self.builder)
 
@@ -248,7 +257,7 @@ class ScreenShow(object):
             direction = "down"
 
         if tab and direction:
-            tab.controlelr.move_selection(tab.graph, direction)
+            tab.controller.move_selection(tab.graph, direction)
 
     def move_screen(self, x, y):
         self.screen.move(x, y)

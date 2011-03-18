@@ -1,4 +1,4 @@
-from gtk import DrawingArea, EventBox
+from gtk import DrawingArea, EventBox, ScrolledWindow
 from app.models.graph import Graph
 from app.controllers.graphs_controller import GraphsController
 from app.helpers.graph_helper import *
@@ -10,20 +10,22 @@ import math
 # TODO - Add scrollbars to graph
 # TODO - (BUG) When one vertex (that have more than 2 edges with another vertex) is moved until the left top we have a float division by zero.
 
-class GraphShow(EventBox):
+class GraphShow(ScrolledWindow):
     def __init__(self, changed_method):
-        EventBox.__init__(self)
+        ScrolledWindow.__init__(self)
 
-        self.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-        self.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
-        self.add_events(gtk.gdk.MOTION_NOTIFY)
-        self.add_events(gtk.gdk.BUTTON1_MOTION_MASK)
-        self.add_events(gtk.gdk.KEY_PRESS_MASK)
-        self.set_events(gtk.gdk.POINTER_MOTION_MASK | gtk.gdk.POINTER_MOTION_HINT_MASK)
+        self.event_box = EventBox()
 
-        self.connect('button-press-event', self.mouse_press)
-        self.connect('button-release-event', self.mouse_release)
-        self.connect('motion-notify-event', self.mouse_motion)
+        self.event_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.event_box.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+        self.event_box.add_events(gtk.gdk.MOTION_NOTIFY)
+        self.event_box.add_events(gtk.gdk.BUTTON1_MOTION_MASK)
+        self.event_box.add_events(gtk.gdk.KEY_PRESS_MASK)
+        self.event_box.set_events(gtk.gdk.POINTER_MOTION_MASK | gtk.gdk.POINTER_MOTION_HINT_MASK)
+
+        self.event_box.connect('button-press-event', self.mouse_press)
+        self.event_box.connect('button-release-event', self.mouse_release)
+        self.event_box.connect('motion-notify-event', self.mouse_motion)
 
         self.action = None
         self.menu = None
@@ -38,8 +40,22 @@ class GraphShow(EventBox):
 
         self.graph = Graph()
         self.area = GraphArea(self.graph, self.controller)
-        self.add(self.area)
+        self.add_with_viewport(self.event_box)
+        self.event_box.add(self.area)
 
+    def centralize(self):
+        w, h = self.area.get_size_request()
+#        self.get_vscrollbar().set_range(2, w)
+
+#IMPOSSIVEL.. PERDEMOS..
+#VAMOS TROCAR DE TEMA DO TG..
+
+#        self.get_vscrollbar().set_value(w / 2)
+#        self.get_hscrollbar().set_value(h / 2)
+
+#        print w / 2, h / 2
+#        print self.get_vscrollbar().get_value(), self.get_hscrollbar().get_value()
+        self.area.queue_draw()
 
     def set_changed(self, value):
         if self.changed != value:
