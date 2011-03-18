@@ -8,7 +8,7 @@ import sys
 
 class ScreenShow(object):
 
-    def __init__(self, builder):
+    def __init__(self, builder, hook=False):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "show.ui")
 
@@ -23,8 +23,9 @@ class ScreenShow(object):
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
 
-        tab = GraphShow(self.tab_changed)
-        self.add_notebook_tab(tab)
+        if not hook:
+            tab = GraphShow(self.tab_changed)
+            self.add_notebook_tab(tab)
 
         self.name = 0
         self.screen.show_all()
@@ -35,8 +36,11 @@ class ScreenShow(object):
         return tab, current_page_number
 
     def close_tab_clicked(self, widget):
+        number_of_pages = widget.get_parent().get_n_pages() - 1
         page_number = widget.get_parent().page_num(widget)
         widget.get_parent().remove_page(page_number)
+        if number_of_pages == 0:
+            self.main_quit(widget)
 
     def add_notebook_tab(self, tab):
         hbox = gtk.HBox(False, 0)

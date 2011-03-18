@@ -18,8 +18,7 @@ class ApplicationLayout(object):
         gtk.main()
 
     def screen_create(self, source=None, page=None, x=None, y=None, user_data=None):
-        screen = ScreenShow(self.builder)
-
+        screen = ScreenShow(self.builder, page != None)
         if x and y:
             screen.move_screen(x, y)
 

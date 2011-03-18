@@ -51,7 +51,7 @@ class GraphShow(EventBox):
         self.action = None
         self.area.queue_draw()
 
-    def remove_vertex(self):  
+    def remove_vertex(self):
         for vertex in self.graph.selected_vertices():
             self.controller.remove_vertex(self.graph, vertex)
 
@@ -181,7 +181,7 @@ class GraphShow(EventBox):
             self.menu.append(self.menu_remove_vertex)
             self.menu.append(gtk.SeparatorMenuItem())
             self.menu.append(self.menu_add_edge)
-            self.menu.append(self.menu_remove_edge) 
+            self.menu.append(self.menu_remove_edge)
             self.menu.append(gtk.SeparatorMenuItem())
             self.menu.append(self.menu_edit_vertex)
             self.menu.append(self.menu_edit_edge)
@@ -194,7 +194,7 @@ class GraphShow(EventBox):
             self.menu_add_vertex.set_sensitive(True)
             self.menu_edit_edge.set_sensitive(True)
 
-        self.menu.show_all()   
+        self.menu.show_all()
         self.menu.popup(None, None, None, event.button, event.time)
 
     def mouse_release(self, widget, event):
