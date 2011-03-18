@@ -167,15 +167,12 @@ class GraphShow(EventBox):
             self.menu_edit_vertex = gtk.MenuItem(_("_Edit vertex settings"))
             self.menu_edit_edge = gtk.MenuItem(_("_Edit edge settings"))
 
-
-
             self.menu_add_edge.connect("activate", lambda event: self.add_edge())
             self.menu_remove_edge.connect("activate", lambda event: self.remove_edge())
             self.menu_add_vertex.connect("activate", lambda event: self.add_vertex())
             self.menu_remove_vertex.connect("activate", lambda event: self.remove_vertex())
 #            self.menu_edit_vertex.connect("activate", )
 #            self.menu_edit_edge.connect("activate", )
-
 
             self.menu.append(self.menu_add_vertex)
             self.menu.append(self.menu_remove_vertex)

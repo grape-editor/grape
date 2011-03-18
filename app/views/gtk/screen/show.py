@@ -39,8 +39,9 @@ class ScreenShow(object):
         number_of_pages = widget.get_parent().get_n_pages() - 1
         page_number = widget.get_parent().page_num(widget)
         widget.get_parent().remove_page(page_number)
-        if number_of_pages == 0:
-            self.main_quit(widget)
+
+        # if number_of_pages == 0:
+        #    self.main_quit(widget)
 
     def add_notebook_tab(self, tab):
         hbox = gtk.HBox(False, 0)
@@ -97,6 +98,7 @@ class ScreenShow(object):
         file_chooser.run()
 
         tab.graph = tab.graph.open(file_chooser.path)
+        tab.area.graph = tab.graph
         tab.changed = False
 
         self.add_notebook_tab(tab)
