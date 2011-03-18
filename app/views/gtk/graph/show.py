@@ -73,7 +73,7 @@ class GraphShow(ScrolledWindow):
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.find_by_position(self.last_position_clicked)
 
-            if vertex != None:
+            if vertex != None and vertex != self.graph.selected_vertices()[0]:
                 self.controller.add_edge(self.graph, self.graph.selected_vertices()[0], vertex)
                 self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
                 self.action = None
@@ -97,6 +97,7 @@ class GraphShow(ScrolledWindow):
 
             return True
 
+        self.action = "add_edge"
         return False
 
     def remove_edge(self):
@@ -106,10 +107,11 @@ class GraphShow(ScrolledWindow):
 
             if vertex != None:
                 edge = self.graph.find_edge(self.graph.selected_vertices()[0], vertex)
-                self.controller.remove_edge(self.graph, edge[0])
-                self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
-                self.action = None
-                self.area.queue_draw()
+                if len(edge) > 0:
+                    self.controller.remove_edge(self.graph, edge[0])
+                    self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
+                    self.action = None
+                    self.area.queue_draw()
                 return True
 
         elif len(self.graph.selected_vertices()) > 1:
@@ -175,8 +177,10 @@ class GraphShow(ScrolledWindow):
     def right_click_menu(self, event):
         vertex = self.graph.find_by_position(self.last_position_clicked)
 
+        if len(self.graph.selected_vertices()) == 0 and vertex:
+            self.controller.select_vertex(self.graph, vertex)
+
         def execute_action(event, action):
-            self.select_vertex(event)
             action()
 
         if not self.menu:
@@ -215,7 +219,7 @@ class GraphShow(ScrolledWindow):
             self.menu_add_vertex.set_sensitive(True)
             self.menu_edit_vertex.set_sensitive(False)
             self.menu_remove_vertex.set_sensitive(False)
-            self.menu_add_edge.set_sensitive(False)
+            self.menu_add_edge.set_sensitive(len(self.graph.selected_vertices()) > 0)
             self.menu_remove_edge.set_sensitive(False)
             self.menu_edit_edge.set_sensitive(False)
 
