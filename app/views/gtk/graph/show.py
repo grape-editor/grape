@@ -45,17 +45,11 @@ class GraphShow(ScrolledWindow):
 
     def centralize(self):
         w, h = self.area.get_size_request()
-#        self.get_vscrollbar().set_range(2, w)
+        self.get_vscrollbar().set_range(0, h)
+        self.get_hscrollbar().set_range(0, w)
 
-#IMPOSSIVEL.. PERDEMOS..
-#VAMOS TROCAR DE TEMA DO TG..
-
-#        self.get_vscrollbar().set_value(w / 2)
-#        self.get_hscrollbar().set_value(h / 2)
-
-#        print w / 2, h / 2
-#        print self.get_vscrollbar().get_value(), self.get_hscrollbar().get_value()
-        self.area.queue_draw()
+        self.get_vscrollbar().set_value(h / 2)
+        self.get_hscrollbar().set_value(w / 2)
 
     def set_changed(self, value):
         if self.changed != value:

@@ -238,28 +238,11 @@
                   <object class="GtkMenu" id="menu_view">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_view_fullscreen_on">
-                        <property name="label">gtk-fullscreen</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="menu_view_fullscreen_on"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="menu_view_fullscreen_off">
-                        <property name="label">gtk-leave-fullscreen</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <signal name="activate" handler="menu_view_fullscreen_off"/>
-                      </object>
-                    </child>
-                    <child>
                       <object class="GtkCheckMenuItem" id="menu_view_fullscreen">
                         <property name="visible">True</property>
                         <property name="label">Fullscreen</property>
                         <property name="use_underline">True</property>
+                        <accelerator key="F11" signal="activate"/>
                         <signal name="toggled" handler="menu_view_fullscreen"/>
                       </object>
                     </child>

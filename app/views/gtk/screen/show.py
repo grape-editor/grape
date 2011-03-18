@@ -225,12 +225,6 @@ class ScreenShow(object):
         # TODO - Handle delete keypress
         pass
 
-    def menu_view_fullscreen_on(self, widget):
-        self.screen.fullscreen()
-
-    def menu_view_fullscreen_off(self, widget):
-        self.screen.unfullscreen()
-
     def menu_view_fullscreen(self, widget):
         if widget.get_active():
             self.screen.fullscreen()
