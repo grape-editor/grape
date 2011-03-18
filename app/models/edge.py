@@ -8,10 +8,10 @@ class Edge(object):
         self.end = end
         self.bidirectional = bidirectional
 
-        start.add_edge(self)
-
         start.touching_edges.append(self)
         end.touching_edges.append(self)
+
+        start.add_edge(self)
 
         if self.bidirectional:
             end.add_edge(self)

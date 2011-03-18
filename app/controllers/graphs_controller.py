@@ -11,13 +11,16 @@ class GraphsController(object):
 
     def remove_vertex(self, graph, vertex):
         if vertex:
-            vertex.clear_touching()
+            to_be_removed = list(vertex.touching_edges)
+            map(lambda e: self.remove_edge(graph, e), to_be_removed)
             graph.vertices.remove(vertex)
 
     def add_edge(self, graph, start, end):
         edge = Edge(graph.edge_id, start, end, not graph.directed)
         graph.edges.append(edge)
         graph.edge_id += 1
+
+        print edge.id
 
         return edge
 

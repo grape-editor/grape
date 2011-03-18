@@ -38,17 +38,6 @@ class Vertex(object):
             self.adjacencies.remove(edge)
             del edge
 
-    def clear_touching(self):
-        for e in self.touching_edges:
-            start = e.start
-            end = e.end
-            if start != self:
-                start.remove_edge(e)
-            if end != self:
-                end.remove_edge(e)
-
-        del self.adjacencies[:]
-
     def clear_adjacencies(self):
         for e in self.adjacencies:
             start = e.start
