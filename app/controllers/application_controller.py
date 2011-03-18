@@ -1,2 +1,3 @@
 class ApplicationController(object):
     pass
+

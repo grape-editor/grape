@@ -7,10 +7,9 @@ from app.views.gtk.graph.area import GraphArea
 import gtk
 import math
 
-# TODO - Add scrollbars to graph
-# TODO - (BUG) When one vertex (that have more than 2 edges with another vertex) is moved until the left top we have a float division by zero.
 
 class GraphShow(ScrolledWindow):
+
     def __init__(self, changed_method):
         ScrolledWindow.__init__(self)
 
@@ -48,8 +47,10 @@ class GraphShow(ScrolledWindow):
         self.get_vscrollbar().set_range(0, h)
         self.get_hscrollbar().set_range(0, w)
 
-        self.get_vscrollbar().set_value(h / 2)
-        self.get_hscrollbar().set_value(w / 2)
+        # TODO - Find a way to make this decent
+
+        self.get_vscrollbar().set_value(h / 2 - 500)
+        self.get_hscrollbar().set_value(w / 2 - 500)
 
     def set_changed(self, value):
         if self.changed != value:
@@ -62,8 +63,8 @@ class GraphShow(ScrolledWindow):
         self.area.queue_draw()
 
     def remove_vertex(self):
-        for vertex in self.graph.selected_vertices():
-            self.controller.remove_vertex(self.graph, vertex)
+        to_be_removed = list(self.graph.selected_vertices())
+        map(lambda vertex: self.controller.remove_vertex(self.graph, vertex), to_be_removed)
 
         self.action = None
         self.area.queue_draw()
@@ -80,15 +81,20 @@ class GraphShow(ScrolledWindow):
                 return True
 
         if len(self.graph.selected_vertices()) > 1:
-            # TODO - Check if the edges are birectionals or dont
-            for vertex1 in self.graph.selected_vertices():
-                for vertex2 in self.graph.selected_vertices():
-                    if vertex1 != vertex2:
-                        self.controller.add_edge(self.graph, vertex1, vertex2)
+            for i in range(len(self.graph.selected_vertices())):
+                for j in range(i, len(self.graph.selected_vertices())):
+                    vertex1 = self.graph.selected_vertices()[i]
+                    vertex2 = self.graph.selected_vertices()[j]
+
+                    self.controller.add_edge(self.graph, vertex1, vertex2)
+
+                    if self.graph.directed:
+                        self.controller.add_edge(self.graph, vertex2, vertex1)
 
             self.controller.clear_selection(self.graph)
             self.action = None
             self.area.queue_draw()
+
             return True
 
         return False
@@ -111,7 +117,8 @@ class GraphShow(ScrolledWindow):
                 for vertex2 in self.graph.selected_vertices():
                     if vertex1 != vertex2:
                         edge = self.graph.find_edge(vertex1, vertex2)
-                        self.controller.remove_edge(self.graph, edge[0])
+                        if len(edge) > 0:
+                            self.controller.remove_edge(self.graph, edge[0])
 
             self.controller.clear_selection(self.graph)
             self.action = None
@@ -160,13 +167,17 @@ class GraphShow(ScrolledWindow):
         elif event.button == 2:
             pass
         elif event.button == 3:
-            self.open_settings(event)
+            self.right_click_menu(event)
 
         self.area.queue_draw()
         self.mouse_motion(widget, event)
 
-    def open_settings(self, event):
+    def right_click_menu(self, event):
         vertex = self.graph.find_by_position(self.last_position_clicked)
+
+        def execute_action(event, action):
+            self.select_vertex(event)
+            action()
 
         if not self.menu:
             self.menu = gtk.Menu()
@@ -177,10 +188,10 @@ class GraphShow(ScrolledWindow):
             self.menu_edit_vertex = gtk.MenuItem(_("_Edit vertex settings"))
             self.menu_edit_edge = gtk.MenuItem(_("_Edit edge settings"))
 
-            self.menu_add_edge.connect("activate", lambda event: self.add_edge())
-            self.menu_remove_edge.connect("activate", lambda event: self.remove_edge())
-            self.menu_add_vertex.connect("activate", lambda event: self.add_vertex())
-            self.menu_remove_vertex.connect("activate", lambda event: self.remove_vertex())
+            self.menu_add_edge.connect("activate", execute_action, self.add_edge)
+            self.menu_remove_edge.connect("activate", execute_action, self.remove_edge)
+            self.menu_add_vertex.connect("activate", execute_action, self.add_vertex)
+            self.menu_remove_vertex.connect("activate", execute_action, self.remove_vertex)
 #            self.menu_edit_vertex.connect("activate", )
 #            self.menu_edit_edge.connect("activate", )
 
@@ -194,12 +205,19 @@ class GraphShow(ScrolledWindow):
             self.menu.append(self.menu_edit_edge)
 
         if vertex:
-            self.select_vertex(event)
             self.menu_add_vertex.set_sensitive(False)
+            self.menu_edit_vertex.set_sensitive(True)
+            self.menu_remove_vertex.set_sensitive(True)
+            self.menu_add_edge.set_sensitive(True)
+            self.menu_remove_edge.set_sensitive(True)
             self.menu_edit_edge.set_sensitive(False)
         else:
             self.menu_add_vertex.set_sensitive(True)
-            self.menu_edit_edge.set_sensitive(True)
+            self.menu_edit_vertex.set_sensitive(False)
+            self.menu_remove_vertex.set_sensitive(False)
+            self.menu_add_edge.set_sensitive(False)
+            self.menu_remove_edge.set_sensitive(False)
+            self.menu_edit_edge.set_sensitive(False)
 
         self.menu.show_all()
         self.menu.popup(None, None, None, event.button, event.time)

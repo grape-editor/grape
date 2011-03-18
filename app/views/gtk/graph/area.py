@@ -4,6 +4,7 @@ from app.models.edge import Edge
 import gtk
 import math
 
+
 class GraphArea(DrawingArea):
 
     def __init__(self, graph, controller):
@@ -34,10 +35,24 @@ class GraphArea(DrawingArea):
         if vertex.selected:
             cairo.set_source_rgb(0.4, 0.8, 0.2)
         else:
-            cairo.set_source_rgb(vertex.color[0], vertex.color[1], vertex.color[2])
+            r, g, b = vertex.fill_color[0], vertex.fill_color[1], vertex.fill_color[2]
+            cairo.set_source_rgb(r, g, b)
 
         cairo.arc(x, y, radius, 0, 2 * math.pi)
         cairo.fill_preserve()
+
+        r, g, b = vertex.border_color[0], vertex.border_color[1], vertex.border_color[2]
+        cairo.set_source_rgb(r, g, b)
+        cairo.set_line_width(vertex.border_size)
+        cairo.arc(x, y, radius, 0, 2 * math.pi)
+        cairo.stroke()
+
+        font_size = 12
+        cairo.set_font_size(font_size)
+        x -= font_size
+        y += font_size / 3.25
+        cairo.move_to(x, y)
+        cairo.show_text("%3s" % vertex.title)
         cairo.stroke()
 
     def draw_arrow(self, cairo, p1, p2):
@@ -88,8 +103,10 @@ class GraphArea(DrawingArea):
         alpha = 0
         step = 16 * math.pi / (32 + distance)
         bhaskara_a = angular_coeficient ** 2 + 1
-        bhaskara_b = (2 * angular_coeficient * constant) - (2 * mx) - (2 * angular_coeficient * my)
-        bhaskara_c = (mx ** 2) - (2 * constant * my) + (my ** 2) + (constant ** 2)
+        bhaskara_b = (2 * angular_coeficient * constant) - (2 * mx)
+        bhaskara_b -= (2 * angular_coeficient * my)
+        bhaskara_c = (mx ** 2) - (2 * constant * my) + (my ** 2)
+        bhaskara_c += (constant ** 2)
 
         stack = list(edges)
 

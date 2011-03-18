@@ -1,6 +1,7 @@
 from app.models.vertex import Vertex
 from app.models.edge import Edge
 
+
 class GraphsController(object):
     def add_vertex(self, graph, position):
         vertex = Vertex(graph.vertex_id, position)
@@ -20,11 +21,12 @@ class GraphsController(object):
         graph.edges.append(edge)
         graph.edge_id += 1
 
-        print edge.id
-
         return edge
 
     def remove_edge(self, graph, edge):
+        if not graph.has_edge(edge):
+            return
+
         # TODO - Figure out how to handle multiple edges
         edge.start.remove_edge(edge)
 
@@ -66,7 +68,6 @@ class GraphsController(object):
                 slice = lambda arr, index: arr[index + 1:]
             else:
                 return None
-
 
             ordered = sorted(graph.vertices, key=lambda vertex: vertex.position[sort_index])
             index = ordered.index(selected[0])

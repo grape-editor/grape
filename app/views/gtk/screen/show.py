@@ -171,10 +171,11 @@ class ScreenShow(object):
 
         if tab and self.notebook.get_n_pages() > 0:
             tab.graph = tab.graph.open(tab.graph.path)
+            tab.area.graph = tab.graph
             tab.changed = False
             self.tab_changed(tab)
 
-        tab.draw()
+        tab.queue_draw()
 
     def menu_file_close(self, widget):
         tab, i = self.current_tab()
@@ -252,6 +253,8 @@ class ScreenShow(object):
 
         if tab and direction:
             tab.controller.move_selection(tab.graph, direction)
+
+        tab.queue_draw()
 
     def move_screen(self, x, y):
         self.screen.move(x, y)

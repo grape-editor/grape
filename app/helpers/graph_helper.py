@@ -1,5 +1,6 @@
 import math
 
+
 def bhaskara(a, b, c):
     delta = b ** 2 - 4 * a * c
 
@@ -12,17 +13,20 @@ def bhaskara(a, b, c):
 
     return (xi, xii)
 
+
 def intersect_circles(b, c, a, r):
     bx, by = b
     cx, cy = c
 
     coef = (cy - by) / (- (cx - bx))
-    cte = (- (cx ** 2) - (cy ** 2) + bx ** 2 + by ** 2 + (r ** 2) - (a ** 2)) / (-2 * cx + 2 * bx)
+    cte = (- (cx ** 2) - (cy ** 2) + bx ** 2 + by ** 2 + (r ** 2) - (a ** 2))
+    cte /= (-2 * cx + 2 * bx)
 
     bhaskara_a = coef ** 2 + 1
     bhaskara_b = 2 * coef * cte - 2 * coef * cx - 2 * cy
     bhaskara_c = cte ** 2 - 2 * cte * cx + cx ** 2 + cy ** 2 - r ** 2
 
+    # TODO - Bug (delta < 0)
     yi, yii = bhaskara(bhaskara_a, bhaskara_b, bhaskara_c)
 
     xi = yi * coef + cte
@@ -30,8 +34,10 @@ def intersect_circles(b, c, a, r):
 
     return ((xi, yi), (xii, yii))
 
+
 def euclidean_distance(p1, p2):
     return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+
 
 def nearest_points(points1, points2):
     if len(points1) != 2 or len(points2) != 2:

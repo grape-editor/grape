@@ -3,7 +3,9 @@ import base64
 import pickle
 import os
 
+
 class Graph(object):
+
     def __init__(self, title="Untitled"):
         self.vertex_id = 0
         self.edge_id = 0
@@ -15,19 +17,19 @@ class Graph(object):
         self.directed = True
 
     def find_by_position(self, position):
-         current_x = position[0]
-         current_y = position[1]
+        current_x = position[0]
+        current_y = position[1]
 
-         for v in self.vertices:
-             r = v.size / 2
-             x = v.position[0]
-             y = v.position[1]
+        for v in self.vertices:
+            r = v.size / 2
+            x = v.position[0]
+            y = v.position[1]
 
-             if (x - r) <= current_x and (x + r) >= current_x :
-                 if (y - r) <= current_y and (y + r) >= current_y:
-                     return v
+            if (x - r) <= current_x and (x + r) >= current_x:
+                if (y - r) <= current_y and (y + r) >= current_y:
+                    return v
 
-         return None
+        return None
 
     def find(self, id):
         lo = 0
@@ -68,6 +70,9 @@ class Graph(object):
                 selected.append(v)
 
         return selected
+
+    def has_edge(self, edge):
+        return edge in self.edges
 
     # TODO - Header
 

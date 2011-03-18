@@ -1,6 +1,7 @@
 import os
 import gtk
 
+
 class FileChooserShow(object):
 
     def __init__(self, builder, type):

@@ -1,6 +1,7 @@
 import gtk.gdk
 import os
 
+
 class AboutShow(object):
 
     def __init__(self, builder):
@@ -10,7 +11,8 @@ class AboutShow(object):
         builder.connect_signals(self)
 
         self.about_show = builder.get_object("about_show")
-        path = os.path.join(current_path, "..", "..", "..", "..", "resources", "images", "logo.png")
+        path = os.path.join(current_path, "..", "..", "..", "..")
+        path = os.path.join(path, "resources", "images", "logo.png")
         logo = gtk.gdk.pixbuf_new_from_file(path)
 
         self.about_show.set_logo(logo)
