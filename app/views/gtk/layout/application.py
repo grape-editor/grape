@@ -22,16 +22,28 @@ class ApplicationLayout(object):
         if x and y:
             screen.move_screen(x, y)
 
-        screen.screen.connect('destroy', self.screen_deleted)
+        screen.screen.connect('delete-event', self.screen_deleted)
         self.screens.append(screen.screen)
 
         return screen.notebook
 
-    def screen_deleted(self, widget):
+    def screen_deleted(self, widget, event):
+        screen = widget.parent_screen
+
+        for i in range(screen.notebook.get_n_pages()):
+            tab = screen.notebook.get_nth_page(0)
+            if not screen.close_tab(tab):
+                return True
+
+        if screen.notebook.get_n_pages() > 0:
+            return True
+
         self.screens.remove(widget)
 
         if len(self.screens) == 0:
             gtk.main_quit()
+
+        return False
 
     def translate(self):
         domain = "grape"

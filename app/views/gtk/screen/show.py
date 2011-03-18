@@ -19,6 +19,7 @@ class ScreenShow(object):
         self.screen = builder.get_object("screen_show")
         self.notebook = builder.get_object("notebook")
         self.screen.connect('key_press_event', self.keyboard_press)
+        self.screen.parent_screen = self
 
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
@@ -30,18 +31,52 @@ class ScreenShow(object):
         self.name = 0
         self.screen.show_all()
 
+    def close_tab(self, tab):
+        page_number = tab.get_parent().page_num(tab)
+
+        if tab.changed:
+            self.notebook.set_current_page(page_number)
+            title = _("Save changes?")
+            message_prefix = _("Your file")
+            message_suffix = _("has been changed.\nDo you save its changes?")
+            message = message_prefix + " \"" + tab.graph.title + "\" " + message_suffix
+            dialog = gtk.MessageDialog(parent=self.screen, flags=gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL, type=gtk.MESSAGE_WARNING, message_format=message)
+            dialog.set_title(title)
+
+            save = gtk.STOCK_SAVE_AS
+            if tab.graph.path:
+                save = gtk.STOCK_SAVE
+
+            dialog.add_buttons(gtk.STOCK_NO, gtk.RESPONSE_NO)
+            dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+            dialog.add_buttons(save, gtk.RESPONSE_YES)
+
+            dialog.show_all()
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == gtk.RESPONSE_CANCEL:
+                return False
+            elif response == gtk.RESPONSE_YES:
+                self.menu_file_save(None)
+
+                if tab.changed:
+                    return False
+
+        tab.get_parent().remove_page(page_number)
+        return True
+
+        # number_of_pages = widget.get_parent().get_n_pages() - 1
+        # if number_of_pages == 0:
+        #    self.main_quit(widget)
+
     def current_tab(self):
         current_page_number = self.notebook.get_current_page()
         tab = self.notebook.get_nth_page(current_page_number)
         return tab, current_page_number
 
     def close_tab_clicked(self, widget):
-        number_of_pages = widget.get_parent().get_n_pages() - 1
-        page_number = widget.get_parent().page_num(widget)
-        widget.get_parent().remove_page(page_number)
-
-        # if number_of_pages == 0:
-        #    self.main_quit(widget)
+        self.close_tab(widget)
 
     def add_notebook_tab(self, tab):
         hbox = gtk.HBox(False, 0)
@@ -133,7 +168,6 @@ class ScreenShow(object):
         tab, i = self.current_tab()
 
         if tab and self.notebook.get_n_pages() > 0:
-            print tab.graph.path
             tab.graph = tab.graph.open(tab.graph.path)
             tab.changed = False
             self.tab_changed(tab)
@@ -144,8 +178,7 @@ class ScreenShow(object):
         tab, i = self.current_tab()
 
         if tab and self.notebook.get_n_pages() > 0:
-            self.notebook.remove_page(i)
-            tab.destroy()
+            self.close_tab(tab)
 
     def menu_file_quit(self, widget):
         self.main_quit(widget)
