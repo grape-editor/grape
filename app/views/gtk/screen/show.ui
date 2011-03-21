@@ -79,6 +79,7 @@
                       <object class="GtkImageMenuItem" id="menu_file_revert">
                         <property name="label" translatable="yes">_Revert</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">image5</property>
                         <property name="use_stock">False</property>
@@ -282,6 +283,7 @@
           <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <signal name="switch-page" handler="tab_switched"/>
           </object>
           <packing>
             <property name="position">1</property>

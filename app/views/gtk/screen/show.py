@@ -18,6 +18,7 @@ class ScreenShow(object):
 
         self.screen = builder.get_object("screen_show")
         self.notebook = builder.get_object("notebook")
+
         self.screen.connect('key_press_event', self.keyboard_press)
         self.screen.parent_screen = self
 
@@ -30,7 +31,7 @@ class ScreenShow(object):
 
         self.name = 0
         self.screen.show_all()
-
+ 
     def close_tab(self, tab):
         page_number = tab.get_parent().page_num(tab)
 
@@ -78,6 +79,15 @@ class ScreenShow(object):
     def close_tab_clicked(self, widget):
         self.close_tab(widget)
 
+    def tab_switched(self, widget, tab, page_number):
+        menu_file_revert = self.builder.get_object("menu_file_revert")
+        tab, page_number = self.current_tab()
+        
+        if tab.changed and tab.graph.path:
+            menu_file_revert.set_sensitive(True)
+        else:
+            menu_file_revert.set_sensitive(False)
+            
     def add_notebook_tab(self, tab):
         hbox = gtk.HBox(False, 0)
         close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
@@ -167,15 +177,36 @@ class ScreenShow(object):
                 self.tab_changed(tab)
 
     def menu_file_revert(self, widget):
-        tab, i = self.current_tab()
+        tab, page_number = self.current_tab()
 
-        if tab and self.notebook.get_n_pages() > 0:
-            tab.graph = tab.graph.open(tab.graph.path)
-            tab.area.graph = tab.graph
-            tab.changed = False
-            self.tab_changed(tab)
+        if tab.changed:
+            self.notebook.set_current_page(page_number)
+            title = _("Revert changes?")
+            message_prefix = _("Revert unsaved changes to document")
+            message_suffix = _("?")
+            message = message_prefix + " \"" + tab.graph.title + "\" " + message_suffix
+            dialog = gtk.MessageDialog(parent=self.screen, flags=gtk.DIALOG_DESTROY_WITH_PARENT | gtk.DIALOG_MODAL, type=gtk.MESSAGE_QUESTION, message_format=message)
+            dialog.set_title(title)
 
-        tab.queue_draw()
+            dialog.add_buttons(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
+            dialog.add_buttons(gtk.STOCK_REVERT_TO_SAVED, gtk.RESPONSE_YES)
+
+            dialog.show_all()
+            response = dialog.run()
+            dialog.destroy()
+
+            if response == gtk.RESPONSE_CANCEL:
+                return False
+            elif response == gtk.RESPONSE_YES:
+                if tab.graph.path:
+                    tab.graph = tab.graph.open(tab.graph.path)
+                    tab.area.graph = tab.graph
+                    tab.changed = False
+                    self.tab_changed(tab)
+                    tab.queue_draw()
+                    
+                return True
+
 
     def menu_file_close(self, widget):
         tab, i = self.current_tab()
