@@ -60,6 +60,9 @@ class GraphShow(ScrolledWindow):
         self.get_hscrollbar().set_value(w / 2 - 500)
 
     def set_changed(self, value):
+    
+        #TODO - Find another place to save UNDO/REDO states
+        self.add_action_list()
         if self.changed != value:
             self.changed = value
             self.changed_method(self)
@@ -267,7 +270,6 @@ class GraphShow(ScrolledWindow):
 
     def mouse_release(self, widget, event):
         self.last_vertex_clicked = None
-        self.add_action_list()
 
     def mouse_motion(self, widget, event):
         selected_vertices = self.graph.selected_vertices()
