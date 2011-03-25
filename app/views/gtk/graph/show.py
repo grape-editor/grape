@@ -158,7 +158,7 @@ class GraphShow(ScrolledWindow):
     def add_action_list(self):  
         graph = pickle.dumps(self.area.graph)
         
-        if (len(self.action_list) - 1 > self.action_list_index):
+        if (self.action_list_index < len(self.action_list) - 1):
             self.action_list = self.action_list[:self.action_list_index]
 
         self.action_list.append(graph)
@@ -178,7 +178,7 @@ class GraphShow(ScrolledWindow):
 
         return None
     
-    def next_action_list(self):  
+    def next_action_list(self):    
         if (self.action_list_index < len(self.action_list) - 1):
             self.action_list_index += 1
             graph = self.action_list[self.action_list_index]
