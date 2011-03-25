@@ -238,6 +238,8 @@ class ScreenShow(object):
         graph = tab.prev_action_list()
         if graph:
             tab.area.graph = graph
+            tab.graph = graph
+            
         tab.queue_draw()
         
     def menu_edit_redo(self, widget):
@@ -245,6 +247,7 @@ class ScreenShow(object):
         graph = tab.prev_action_list()
         if graph:
             tab.area.graph = graph
+            tab.graph = graph
         
         tab.queue_draw()
         
