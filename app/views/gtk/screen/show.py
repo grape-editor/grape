@@ -229,6 +229,25 @@ class ScreenShow(object):
         # TODO - Paste
         pass
 
+    def menu_edit_delete(self, widget):
+        # TODO - Handle delete keypress
+        pass
+   
+    def menu_edit_undo(self, widget):
+        tab, i = self.current_tab()
+        graph = tab.prev_action_list()
+        if graph:
+            tab.area.graph = graph
+        tab.queue_draw()
+        
+    def menu_edit_redo(self, widget):
+        tab, i = self.current_tab()
+        graph = tab.prev_action_list()
+        if graph:
+            tab.area.graph = graph
+        
+        tab.queue_draw()
+        
     def menu_edit_add_vertex(self, widget):
         tab, i = self.current_tab()
 
@@ -253,8 +272,16 @@ class ScreenShow(object):
         if tab:
             tab.action = "remove_edge"
 
-    def menu_edit_delete(self, widget):
-        # TODO - Handle delete keypress
+    def menu_view_zoom_in(self, widget):
+        # TODO Zoom in
+        pass
+
+    def menu_view_zoom_out(self, widget):
+        # TODO Zoom out
+        pass
+        
+    def menu_view_zoom_default(self, widget):
+        # TODO Zoom default
         pass
 
     def menu_view_fullscreen(self, widget):

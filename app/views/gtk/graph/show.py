@@ -6,6 +6,7 @@ from app.views.gtk.graph.area import GraphArea
 #from app.views.gtk.vertex.edit import VertexEdit
 import gtk
 import math
+import pickle
 
 
 class GraphShow(ScrolledWindow):
@@ -37,10 +38,16 @@ class GraphShow(ScrolledWindow):
 
         self.controller = GraphsController()
 
+
         self.graph = Graph()
         self.area = GraphArea(self.graph, self.controller)
         self.add_with_viewport(self.event_box)
         self.event_box.add(self.area)
+        
+        self.action_list = []
+        self.action_list_index = 0
+        self.add_action_list()
+
 
     def centralize(self):
         w, h = self.area.get_size_request()
@@ -148,6 +155,38 @@ class GraphShow(ScrolledWindow):
         else:
             self.controller.clear_selection(self.graph)
 
+    def add_action_list(self):  
+        graph = pickle.dumps(self.area.graph)
+        
+        if (len(self.action_list) - 1 > self.action_list_index):
+            self.action_list = self.action_list[:self.action_list_index]
+
+        self.action_list.append(graph)
+        
+        if (len(self.action_list) == 1):
+            self.action_list_index = 0
+        else:
+            self.action_list_index += 1
+        
+    def prev_action_list(self):
+        if (self.action_list_index > 0 and len(self.action_list) > 0):
+            self.action_list_index -= 1
+            graph = self.action_list[self.action_list_index]
+            graph = pickle.loads(graph)
+
+            return graph
+
+        return None
+    
+    def next_action_list(self):  
+        if (self.action_list_index < len(self.action_list) - 1):
+            self.action_list_index += 1
+            graph = self.action_list[self.action_list_index]
+            graph = pickle.loads(graph)
+            return graph
+
+        return None
+    
     def mouse_press(self, widget, event):
         self.last_position_clicked = event.get_coords()
 
@@ -228,6 +267,7 @@ class GraphShow(ScrolledWindow):
 
     def mouse_release(self, widget, event):
         self.last_vertex_clicked = None
+        self.add_action_list()
 
     def mouse_motion(self, widget, event):
         selected_vertices = self.graph.selected_vertices()

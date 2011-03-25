@@ -24,11 +24,10 @@
                     <property name="visible">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_new">
-                        <property name="label" translatable="yes">_New</property>
+                        <property name="label">gtk-new</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image1</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="n" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="menu_file_new"/>
@@ -36,11 +35,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_open">
-                        <property name="label" translatable="yes">_Open</property>
+                        <property name="label">gtk-open</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image2</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="o" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="menu_file_open"/>
@@ -53,11 +51,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_save">
-                        <property name="label" translatable="yes">_Save</property>
+                        <property name="label">gtk-save</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image3</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="menu_file_save"/>
@@ -65,11 +62,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_save_as">
-                        <property name="label" translatable="yes">_Save as</property>
+                        <property name="label">gtk-save-as</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image4</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="s" signal="activate" modifiers="GDK_SHIFT_MASK | GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="menu_file_save_as"/>
@@ -77,12 +73,11 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_revert">
-                        <property name="label" translatable="yes">_Revert</property>
+                        <property name="label">gtk-revert-to-saved</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image5</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <signal name="activate" handler="menu_file_revert"/>
                       </object>
@@ -94,11 +89,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_close">
-                        <property name="label" translatable="yes">_Close</property>
+                        <property name="label">gtk-close</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image6</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="w" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="menu_file_close"/>
@@ -106,11 +100,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_file_quit">
-                        <property name="label" translatable="yes">_Quit</property>
+                        <property name="label">gtk-quit</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image7</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="q" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <signal name="activate" handler="menu_file_quit"/>
@@ -174,27 +167,25 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_add_vertex">
-                        <property name="label" translatable="yes">_Add vertex</property>
+                      <object class="GtkImageMenuItem" id="menu_edit_undo">
+                        <property name="label">gtk-undo</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image8</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
-                        <accelerator key="v" signal="activate"/>
-                        <signal name="activate" handler="menu_edit_add_vertex"/>
+                        <accelerator key="z" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="menu_edit_undo"/>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_remove_vertex">
-                        <property name="label" translatable="yes">_Remove vertex</property>
+                      <object class="GtkImageMenuItem" id="menu_edit_redo">
+                        <property name="label">gtk-redo</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image9</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
-                        <accelerator key="v" signal="activate" modifiers="GDK_SHIFT_MASK"/>
-                        <signal name="activate" handler="menu_edit_remove_vertex"/>
+                        <accelerator key="y" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="menu_edit_redo"/>
                       </object>
                     </child>
                     <child>
@@ -203,12 +194,38 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_add_edge">
-                        <property name="label" translatable="yes">_Add edge</property>
+                      <object class="GtkImageMenuItem" id="menu_edit_add_vertex">
+                        <property name="label">gtk-add</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image10</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <accelerator key="v" signal="activate"/>
+                        <signal name="activate" handler="menu_edit_add_vertex"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_edit_remove_vertex">
+                        <property name="label">gtk-remove</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <accelerator key="v" signal="activate" modifiers="GDK_SHIFT_MASK"/>
+                        <signal name="activate" handler="menu_edit_remove_vertex"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_3">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_edit_add_edge">
+                        <property name="label">gtk-add</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="e" signal="activate"/>
                         <signal name="activate" handler="menu_edit_add_edge"/>
@@ -216,11 +233,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_remove_edge">
-                        <property name="label" translatable="yes">_Remove edge</property>
+                        <property name="label">gtk-remove</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image11</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="e" signal="activate" modifiers="GDK_SHIFT_MASK"/>
                         <signal name="activate" handler="menu_edit_remove_edge"/>
@@ -238,6 +254,42 @@
                 <child type="submenu">
                   <object class="GtkMenu" id="menu_view">
                     <property name="visible">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_view_zoom_in">
+                        <property name="label">gtk-zoom-in</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <accelerator key="plus" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="menu_view_zoom_in"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_view_zoom_out">
+                        <property name="label">gtk-zoom-out</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <accelerator key="minus" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="activate" handler="menu_view_zoom_out"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_view_zoom_default">
+                        <property name="label">gtk-zoom-100</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <signal name="activate" handler="menu_view_zoom_default"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_view_separator_1">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkCheckMenuItem" id="menu_view_fullscreen">
                         <property name="visible">True</property>
@@ -261,11 +313,11 @@
                     <property name="visible">True</property>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_help_about">
-                        <property name="label" translatable="yes">_About</property>
+                        <property name="label">gtk-about</property>
                         <property name="visible">True</property>
                         <property name="use_underline">True</property>
-                        <property name="image">image12</property>
-                        <property name="use_stock">False</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
                         <signal name="activate" handler="menu_help_about"/>
                       </object>
                     </child>
@@ -282,12 +334,14 @@
         <child>
           <object class="GtkToolbar" id="toolbar">
             <property name="visible">True</property>
+            <property name="toolbar_style">icons</property>
             <child>
               <object class="GtkToolButton" id="toolbutton_new">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">New</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-new</property>
+                <signal name="clicked" handler="menu_file_new"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -300,6 +354,7 @@
                 <property name="label" translatable="yes">Open</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-open</property>
+                <signal name="clicked" handler="menu_file_open"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -312,6 +367,7 @@
                 <property name="label" translatable="yes">Save</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-save</property>
+                <signal name="clicked" handler="menu_file_save"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -333,6 +389,7 @@
                 <property name="label" translatable="yes">Undo</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-undo</property>
+                <signal name="clicked" handler="menu_edit_undo"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -345,6 +402,7 @@
                 <property name="label" translatable="yes">Redo</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-redo</property>
+                <signal name="clicked" handler="menu_edit_redo"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -361,10 +419,38 @@
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="toolbutton1">
+              <object class="GtkToolButton" id="toolbutton_zoom_in">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">toolbutton1</property>
+                <property name="label" translatable="yes">Zoom in</property>
                 <property name="use_underline">True</property>
+                <property name="stock_id">gtk-zoom-in</property>
+                <signal name="clicked" handler="menu_view_zoom_in"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_zoom_out">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Zoom out</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-zoom-out</property>
+                <signal name="clicked" handler="menu_view_zoom_out"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_zoom_default">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Zoom default</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-zoom-100</property>
+                <signal name="clicked" handler="menu_view_zoom_default"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -399,53 +485,5 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="stock">gtk-new</property>
-  </object>
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="stock">gtk-open</property>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="stock">gtk-save</property>
-  </object>
-  <object class="GtkImage" id="image4">
-    <property name="visible">True</property>
-    <property name="stock">gtk-save-as</property>
-  </object>
-  <object class="GtkImage" id="image5">
-    <property name="visible">True</property>
-    <property name="stock">gtk-revert-to-saved</property>
-  </object>
-  <object class="GtkImage" id="image6">
-    <property name="visible">True</property>
-    <property name="stock">gtk-close</property>
-  </object>
-  <object class="GtkImage" id="image7">
-    <property name="visible">True</property>
-    <property name="stock">gtk-quit</property>
-  </object>
-  <object class="GtkImage" id="image8">
-    <property name="visible">True</property>
-    <property name="stock">gtk-add</property>
-  </object>
-  <object class="GtkImage" id="image9">
-    <property name="visible">True</property>
-    <property name="stock">gtk-remove</property>
-  </object>
-  <object class="GtkImage" id="image10">
-    <property name="visible">True</property>
-    <property name="stock">gtk-add</property>
-  </object>
-  <object class="GtkImage" id="image11">
-    <property name="visible">True</property>
-    <property name="stock">gtk-remove</property>
-  </object>
-  <object class="GtkImage" id="image12">
-    <property name="visible">True</property>
-    <property name="stock">gtk-about</property>
   </object>
 </interface>
