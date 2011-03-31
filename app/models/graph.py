@@ -16,6 +16,27 @@ class Graph(object):
         self.path = None
         self.directed = False
 
+    def find_in_area(self, x, y, w, h):
+        vertices = []
+
+        for v in self.vertices:
+            vx = v.position[0]
+            vy = v.position[1]
+
+            def in_range(position, p, r):
+                if r > 0:
+                    return (position >= p and position <= (p + r))
+                else:
+                    return (position <= p and position >= (p + r))
+
+            in_x = in_range(vx, x, w)
+            in_y = in_range(vy, y, h)
+
+            if in_x and in_y:
+                vertices.append(v)
+
+        return vertices
+
     def find_by_position(self, position):
         current_x = position[0]
         current_y = position[1]

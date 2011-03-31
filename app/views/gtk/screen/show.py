@@ -31,7 +31,7 @@ class ScreenShow(object):
 
         self.name = 0
         self.screen.show_all()
- 
+
     def close_tab(self, tab):
         page_number = tab.get_parent().page_num(tab)
 
@@ -82,12 +82,12 @@ class ScreenShow(object):
     def tab_switched(self, widget, tab, page_number):
         menu_file_revert = self.builder.get_object("menu_file_revert")
         tab, page_number = self.current_tab()
-        
+
         if tab.changed and tab.graph.path:
             menu_file_revert.set_sensitive(True)
         else:
             menu_file_revert.set_sensitive(False)
-            
+
     def add_notebook_tab(self, tab):
         hbox = gtk.HBox(False, 0)
         close_image = gtk.image_new_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
@@ -144,13 +144,18 @@ class ScreenShow(object):
         file_chooser = FileChooserShow(self.builder, "open")
         file_chooser.run()
 
-        tab.graph = tab.graph.open(file_chooser.path)
-        tab.area.graph = tab.graph
-        tab.changed = False
+        if file_chooser.path:
+            tab.graph = tab.graph.open(file_chooser.path)
+            tab.area.graph = tab.graph
+            tab.changed = False
 
-        self.add_notebook_tab(tab)
+            self.add_notebook_tab(tab)
 
-        self.tab_changed(tab)
+            self.tab_changed(tab)
+        else:
+            del tab
+
+        del file_chooser
 
     def menu_file_save(self, widget):
         tab, i = self.current_tab()
@@ -175,6 +180,8 @@ class ScreenShow(object):
 
                 tab.changed = False
                 self.tab_changed(tab)
+
+            del file_chooser
 
     def menu_file_revert(self, widget):
         tab, page_number = self.current_tab()
@@ -204,7 +211,7 @@ class ScreenShow(object):
                     tab.changed = False
                     self.tab_changed(tab)
                     tab.queue_draw()
-                    
+
                 return True
 
 
@@ -232,25 +239,25 @@ class ScreenShow(object):
     def menu_edit_delete(self, widget):
         # TODO - Handle delete keypress
         pass
-   
+
     def menu_edit_undo(self, widget):
         tab, i = self.current_tab()
         graph = tab.prev_action_list()
         if graph:
             tab.area.graph = graph
             tab.graph = graph
-            
+
         tab.queue_draw()
-        
+
     def menu_edit_redo(self, widget):
         tab, i = self.current_tab()
         graph = tab.next_action_list()
         if graph:
             tab.area.graph = graph
             tab.graph = graph
-        
+
         tab.queue_draw()
-        
+
     def menu_edit_add_vertex(self, widget):
         tab, i = self.current_tab()
 
@@ -282,7 +289,7 @@ class ScreenShow(object):
     def menu_view_zoom_out(self, widget):
         # TODO Zoom out
         pass
-        
+
     def menu_view_zoom_default(self, widget):
         # TODO Zoom default
         pass

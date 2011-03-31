@@ -1,7 +1,0 @@
-#!/usr/bin/python
-
-from app.views.gtk.layout.application import ApplicationLayout
-
-if __name__ == "__main__":
-    grape = ApplicationLayout()
-
