@@ -35,6 +35,14 @@ class GraphsController(object):
 
         graph.edges.remove(edge)
 
+    def toggle_vertex_selection(self, graph, vertex):
+        graph.selected_vertices_cache = None
+
+        if vertex.selected:
+            vertex.deselect()
+        else:
+            vertex.select()
+
     def select_vertex(self, graph, vertex):
         graph.selected_vertices_cache = None
         vertex.select()

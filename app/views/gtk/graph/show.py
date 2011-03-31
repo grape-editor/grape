@@ -33,17 +33,18 @@ class GraphShow(ScrolledWindow):
         self.last_vertex_clicked = None
         self.last_position_clicked = None
 
+        self.box_selecting = None
+
         self.changed = False
         self.changed_method = changed_method
 
         self.controller = GraphsController()
 
-
         self.graph = Graph()
         self.area = GraphArea(self.graph, self.controller)
         self.add_with_viewport(self.event_box)
         self.event_box.add(self.area)
-        
+
         self.action_list = []
         self.action_list_index = 0
         self.add_action_list()
@@ -60,7 +61,7 @@ class GraphShow(ScrolledWindow):
         self.get_hscrollbar().set_value(w / 2 - 500)
 
     def set_changed(self, value):
-    
+
         #TODO - Find another place to save UNDO/REDO states
         self.add_action_list()
         if self.changed != value:
@@ -139,6 +140,24 @@ class GraphShow(ScrolledWindow):
 
         return False
 
+    def select_area(self, event, area):
+        if not area: return
+
+        x, y, w, h = area
+        vertices = self.graph.find_in_area(x, y, w, h)
+
+        from gtk.gdk import CONTROL_MASK, SHIFT_MASK
+
+        if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
+            self.controller.clear_selection(self.graph)
+
+        method = self.controller.select_vertex
+
+        if (event.state & CONTROL_MASK):
+            method = self.controller.toggle_vertex_selection
+
+        map(lambda vertex: method(self.graph, vertex), vertices)
+
     def select_vertex(self, event):
         vertex = self.graph.find_by_position(self.last_position_clicked)
 
@@ -156,21 +175,21 @@ class GraphShow(ScrolledWindow):
 
             self.last_vertex_clicked = vertex
         else:
-            self.controller.clear_selection(self.graph)
+            self.box_selecting = self.last_position_clicked
 
-    def add_action_list(self):  
+    def add_action_list(self):
         graph = pickle.dumps(self.area.graph)
-        
+
         if (self.action_list_index < len(self.action_list) - 1):
             self.action_list = self.action_list[:self.action_list_index]
 
         self.action_list.append(graph)
-        
+
         if (len(self.action_list) == 1):
             self.action_list_index = 0
         else:
             self.action_list_index += 1
-        
+
     def prev_action_list(self):
         if (self.action_list_index > 0 and len(self.action_list) > 0):
             self.action_list_index -= 1
@@ -180,8 +199,8 @@ class GraphShow(ScrolledWindow):
             return graph
 
         return None
-    
-    def next_action_list(self):    
+
+    def next_action_list(self):
         if (self.action_list_index < len(self.action_list) - 1):
             self.action_list_index += 1
             graph = self.action_list[self.action_list_index]
@@ -189,7 +208,7 @@ class GraphShow(ScrolledWindow):
             return graph
 
         return None
-    
+
     def mouse_press(self, widget, event):
         self.last_position_clicked = event.get_coords()
 
@@ -270,8 +289,19 @@ class GraphShow(ScrolledWindow):
 
     def mouse_release(self, widget, event):
         self.last_vertex_clicked = None
+        self.box_selecting = None
+        self.select_area(event, self.area.selected_area)
+        self.area.selected_area = None
+        self.area.queue_draw()
 
     def mouse_motion(self, widget, event):
+        if self.box_selecting:
+            x, y = self.box_selecting
+            w, h = [e - s for e, s in zip(event.get_coords(), self.box_selecting)]
+            self.area.selected_area = (x, y, w, h)
+            self.area.queue_draw()
+            return
+
         selected_vertices = self.graph.selected_vertices()
 
         if self.action == "add_edge" and len(selected_vertices) == 1:

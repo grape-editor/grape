@@ -20,7 +20,23 @@ class GraphArea(DrawingArea):
 
         self.set_double_buffered(True)
 
+        self.selected_area = None
+
         self.set_size_request(8096, 8096)
+
+    def draw_selection_box(self, cairo):
+        if not self.selected_area: return
+
+        x, y, w, h = self.selected_area
+
+        cairo.set_line_width(1.5)
+        cairo.rectangle(x, y, w, h)
+
+        cairo.set_source_rgba(0.7, 0.7, 1.0, 0.5)
+        cairo.fill_preserve()
+
+        cairo.set_source_rgba(0.3, 0.3, 0.7, 0.8)
+        cairo.stroke()
 
     def draw_vertex(self, cairo, area, vertex):
         import math
@@ -227,6 +243,7 @@ class GraphArea(DrawingArea):
         self.cairo.fill()
 
         self.draw_graph(self.cairo, self.area)
+        self.draw_selection_box(self.cairo)
 
     def draw(self):
         self.cairo.save()
