@@ -291,16 +291,16 @@ class ScreenShow(object):
             tab.action = "remove_edge"
 
     def menu_view_zoom_in(self, widget):
-        # TODO Zoom in
-        pass
+        tab, i = self.current_tab()
+        tab.zoom_in()
 
     def menu_view_zoom_out(self, widget):
-        # TODO Zoom out
-        pass
+        tab, i = self.current_tab()
+        tab.zoom_out()
 
     def menu_view_zoom_default(self, widget):
-        # TODO Zoom default
-        pass
+        tab, i = self.current_tab()
+        tab.zoom_default()
 
     def menu_view_fullscreen(self, widget):
         if widget.get_active():

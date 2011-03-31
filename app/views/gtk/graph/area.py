@@ -3,6 +3,7 @@ from app.helpers.graph_helper import *
 from app.models.edge import Edge
 import gtk
 import math
+import cairo as cairolib
 
 
 class GraphArea(DrawingArea):
@@ -21,6 +22,8 @@ class GraphArea(DrawingArea):
         self.set_double_buffered(True)
 
         self.selected_area = None
+
+        self.zoom = 1
 
         self.set_size_request(8096, 8096)
 
@@ -238,6 +241,8 @@ class GraphArea(DrawingArea):
 
     def expose(self, widget, event):
         self.create_area(widget, event)
+        m = cairolib.Matrix(self.zoom, 0, 0, self.zoom, 0, 0)
+        self.cairo.transform(m)
         self.cairo.rectangle(0, 0, self.area.width, self.area.height)
         self.cairo.set_source_rgb(0.98, 1, 0.98)
         self.cairo.fill()
