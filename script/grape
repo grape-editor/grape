@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+import os
+import sys
+
+path = os.path.abspath(os.path.dirname(sys.argv[0]))
+path = os.path.join(path, '..')
+
+if not path in sys.path:
+    sys.path.insert(0, path)
+
+from app.views.gtk.layout.application import ApplicationLayout
+
+if __name__ == "__main__":
+    grape = ApplicationLayout()
+

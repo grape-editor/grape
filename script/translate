@@ -14,4 +14,3 @@ rm ../app/views/*.h
 mkdir -p pt_BR/LC_MESSAGES
 msgfmt --output-file=pt_BR/LC_MESSAGES/grape.mo pt_BR.po
 
-
