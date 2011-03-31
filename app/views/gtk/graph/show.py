@@ -60,8 +60,6 @@ class GraphShow(ScrolledWindow):
         self.get_hscrollbar().set_value(w / 2 - 500)
 
     def set_changed(self, value):
-    
-        #TODO - Find another place to save UNDO/REDO states
         self.add_action_list()
         if self.changed != value:
             self.changed = value
@@ -153,10 +151,10 @@ class GraphShow(ScrolledWindow):
                 self.controller.deselect_vertex(self.graph, vertex)
             else:
                 self.controller.select_vertex(self.graph, vertex)
-
             self.last_vertex_clicked = vertex
         else:
             self.controller.clear_selection(self.graph)
+
 
     def add_action_list(self):  
         graph = pickle.dumps(self.area.graph)
