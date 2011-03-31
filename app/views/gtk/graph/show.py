@@ -30,6 +30,8 @@ class GraphShow(ScrolledWindow):
         self.action = None
         self.menu = None
 
+        self.box = None
+
         self.last_vertex_clicked = None
         self.last_position_clicked = None
 

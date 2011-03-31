@@ -106,6 +106,7 @@ class ScreenShow(object):
         hbox.pack_start(btn, False, False)
 
         self.notebook.append_page(tab, hbox)
+        tab.box = hbox
         last_page = self.notebook.get_n_pages() - 1
 
         if last_page > 0:
@@ -127,13 +128,19 @@ class ScreenShow(object):
         tab.centralize()
 
     def tab_changed(self, tab):
-        box = self.notebook.get_tab_label(tab)
+        box = tab.box
         label = box.get_children()[0]
+
+        menu_file_revert = self.builder.get_object("menu_file_revert")
 
         if tab.changed:
             label.set_label("* " + tab.graph.title)
+
+            if tab.graph.path:
+                menu_file_revert.set_sensitive(True)
         else:
             label.set_label(tab.graph.title)
+            menu_file_revert.set_sensitive(False)
 
     def menu_file_new(self, widget):
         tab = GraphShow(self.tab_changed)
@@ -222,6 +229,7 @@ class ScreenShow(object):
             self.close_tab(tab)
 
     def menu_file_quit(self, widget):
+        self.screen.event(gtk.gdk.Event(gtk.gdk.DELETE))
         self.main_quit(widget)
 
     def menu_edit_cut(self, widget):
@@ -318,11 +326,14 @@ class ScreenShow(object):
             direction = "up"
         elif key == gtk.keysyms.Down:
             direction = "down"
+        elif key == gtk.keysyms.Escape:
+            tab.action = None
 
         if tab and direction:
             tab.controller.move_selection(tab.graph, direction)
 
-        tab.queue_draw()
+        if tab:
+            tab.queue_draw()
 
     def move_screen(self, x, y):
         self.screen.move(x, y)
