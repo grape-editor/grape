@@ -88,9 +88,7 @@ class GraphShow(ScrollableGraph):
         self.area.queue_draw()
 
     def mouse_scroll(self, widget, event):
-        from gtk.gdk import CONTROL_MASK, SHIFT_MASK
-
-        if not (event.state & CONTROL_MASK):
+        if not (event.state & gtk.gdk.CONTROL_MASK):
             return
 
         center = map(lambda v: v / self.area.zoom,event.get_coords())
@@ -140,7 +138,6 @@ class GraphShow(ScrollableGraph):
                     if self.graph.directed:
                         self.controller.add_edge(self.graph, vertex2, vertex1)
 
-            self.controller.clear_selection(self.graph)
             self.action = None
             self.area.queue_draw()
 
@@ -213,6 +210,7 @@ class GraphShow(ScrollableGraph):
             self.last_vertex_clicked = vertex
         else:
             self.box_selecting = self.last_position_clicked
+            self.action = None
 
     def add_action_list(self):
         graph = pickle.dumps(self.area.graph)
