@@ -125,8 +125,6 @@ class ScreenShow(object):
         tab.close_button = btn
         self.notebook.set_current_page(n)
 
-        tab.centralize()
-
     def tab_changed(self, tab):
         box = tab.box
         label = box.get_children()[0]
@@ -273,6 +271,7 @@ class ScreenShow(object):
 
         if tab:
             tab.action = "add_edge"
+            tab.add_edge()
 
     def menu_edit_remove_edge(self, widget):
         tab, i = self.current_tab()
@@ -317,7 +316,10 @@ class ScreenShow(object):
         elif key == gtk.keysyms.Down:
             direction = "down"
         elif key == gtk.keysyms.Escape:
-            tab.action = None
+            if tab.action:
+                tab.action = None
+            else:
+                tab.controller.clear_selection(tab.graph)
 
         if tab and direction:
             tab.controller.move_selection(tab.graph, direction)
