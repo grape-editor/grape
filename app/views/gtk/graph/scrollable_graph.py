@@ -28,20 +28,18 @@ class ScrollableGraph(gtk.Table):
         self.vbox.reorder_child(widget, 0)
 
     def on_hadjustment_changed(self, event):
-        pass
         # If the scrollbar is needed, show it, otherwise hide it
-#        if (self.hadjustment.page_size == self.hadjustment.upper):
-#            self.hscrollbar.hide()
-#        else:
-#            self.hscrollbar.show()
+        if (self.hadjustment.page_size == self.hadjustment.upper):
+            self.hscrollbar.hide()
+        else:
+            self.hscrollbar.show()
 
     def on_vadjustment_changed(self, event):
-        pass
         # If the scrollbar is needed, show it, otherwise hide it
-#        if (self.vadjustment.page_size == self.vadjustment.upper):
-#            self.vscrollbar.hide()
-#        else:
-#            self.vscrollbar.show()
+        if (self.vadjustment.page_size == self.vadjustment.upper):
+            self.vscrollbar.hide()
+        else:
+            self.vscrollbar.show()
 
     def on_widget_scroll_event(self, widget, event):
         if ((event.direction == gtk.gdk.SCROLL_UP) or (event.direction == gtk.gdk.SCROLL_DOWN)):

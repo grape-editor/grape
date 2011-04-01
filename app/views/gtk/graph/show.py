@@ -27,6 +27,7 @@ class GraphShow(ScrollableGraph):
         self.event_box.connect('button-press-event', self.mouse_press)
         self.event_box.connect('button-release-event', self.mouse_release)
         self.event_box.connect('motion-notify-event', self.mouse_motion)
+        self.event_box.connect('scroll-event', self.mouse_scroll)
 
         self.action = None
         self.menu = None
@@ -56,33 +57,43 @@ class GraphShow(ScrollableGraph):
 
         self.add_scrollable_widget(self.viewport)
 
-    def zoom_in(self):
-        self.area.zoom *= 1.1
-        self.do_zoom()
+    def zoom_in(self, center=None):
+        if self.area.zoom < 20:
+            self.area.zoom *= 1.1
+        self.do_zoom(center)
 
-    def zoom_out(self):
-        self.area.zoom /= 1.1
-        self.do_zoom()
+    def zoom_out(self, center=None):
+        if self.area.zoom > 0.1:
+            self.area.zoom /= 1.1
+        self.do_zoom(center)
 
     def zoom_default(self):
         self.area.zoom = 1
         self.do_zoom()
 
-    def do_zoom(self):
+    def do_zoom(self, center=None):
         w, h = self.area.get_size_request()
         w *= self.area.zoom
         h *= self.area.zoom
 
-        x = self.hadjustment.value / self.hadjustment.upper
-        y = self.vadjustment.value / self.vadjustment.upper
+        x = w * self.hadjustment.value / self.hadjustment.upper
+        y = h * self.vadjustment.value / self.vadjustment.upper
 
         self.hadjustment.upper = w
         self.vadjustment.upper = h
 
-        self.hadjustment.value = x * self.hadjustment.upper
-        self.vadjustment.value = y * self.vadjustment.upper
+        self.hadjustment.value = x
+        self.vadjustment.value = y
 
         self.area.queue_draw()
+
+    def mouse_scroll(self, widget, event):
+        center = map(lambda v: v / self.area.zoom,event.get_coords())
+
+        if event.direction == gtk.gdk.SCROLL_UP:
+            self.zoom_in(center)
+        else:
+            self.zoom_out(center)
 
     def set_changed(self, value):
         self.add_action_list()
