@@ -140,8 +140,12 @@ class GraphShow(ScrollableGraph):
                     if self.graph.directed:
                         self.controller.add_edge(self.graph, vertex2, vertex1)
 
-            self.controller.clear_selection(self.graph)
-            self.add_state()
+            selected_vertices = list(self.graph.selected_vertices())
+            if len(selected_vertices):
+                self.controller.clear_selection(self.graph)
+                self.add_state()
+                for vertex in selected_vertices:
+                    self.controller.select_vertex(self.graph, vertex)
 
             self.action = None
             self.area.queue_draw()
