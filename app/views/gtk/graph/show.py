@@ -1,61 +1,14 @@
+import gtk
+import math
+import pickle
 from gtk import DrawingArea, EventBox, ScrolledWindow
+
 from app.models.graph import Graph
 from app.controllers.graphs_controller import GraphsController
 from app.helpers.graph_helper import *
 from app.views.gtk.graph.area import GraphArea
+from app.views.gtk.graph.scrollable_graph import ScrollableGraph
 #from app.views.gtk.vertex.edit import VertexEdit
-import gtk
-import math
-import pickle
-
-class ScrollableGraph(gtk.Table):
-
-    def __init__(self):
-        gtk.Table.__init__(self)
-
-        self.hadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
-        self.vadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
-
-        self.vbox = gtk.VBox(False, 0)
-        self.hadjustment.connect('changed', self.on_hadjustment_changed)
-        self.vadjustment.connect('changed', self.on_vadjustment_changed)
-        self.hscrollbar = gtk.HScrollbar(self.hadjustment)
-        self.vscrollbar = gtk.VScrollbar(self.vadjustment)
-        self.attach(self.vbox, 0, 1, 0, 1, gtk.EXPAND|gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
-        self.attach(self.hscrollbar, 0, 1, 1, 2, gtk.EXPAND|gtk.FILL, gtk.FILL, 0, 0)
-        self.attach(self.vscrollbar, 1, 2, 0, 1, gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
-
-    def add_scrollable_widget(self, widget):
-        widget.set_scroll_adjustments(self.hadjustment, self.vadjustment)
-        widget.connect('scroll_event', self.on_widget_scroll_event)
-        widget.set_size_request(1, 1)
-        self.vbox.pack_start(widget, True, True)
-
-    def add_floating_widget(self, widget):
-        self.vbox.pack_start(widget, True, True)
-        self.vbox.reorder_child(widget, 0)
-
-    def on_hadjustment_changed(self, event):
-        # If the scrollbar is needed, show it, otherwise hide it
-        if (self.hadjustment.page_size == self.hadjustment.upper):
-            self.hscrollbar.hide()
-        else:
-            self.hscrollbar.show()
-
-    def on_vadjustment_changed(self, event):
-        # If the scrollbar is needed, show it, otherwise hide it
-        if (self.vadjustment.page_size == self.vadjustment.upper):
-            self.vscrollbar.hide()
-        else:
-            self.vscrollbar.show()
-
-    def on_widget_scroll_event(self, widget, event):
-        if ((event.direction == gtk.gdk.SCROLL_UP) or (event.direction == gtk.gdk.SCROLL_DOWN)):
-            self.on_hadjustment_changed(event)
-        elif ((event.direction == gtk.gdk.SCROLL_LEFT) or (event.direction == gtk.gdk.SCROLL_RIGHT)):
-            self.on_vadjustment_changed(event)
-
-        return True
 
 class GraphShow(ScrollableGraph):
 
@@ -120,39 +73,16 @@ class GraphShow(ScrollableGraph):
         w *= self.area.zoom
         h *= self.area.zoom
 
+        x = self.hadjustment.value / self.hadjustment.upper
+        y = self.vadjustment.value / self.vadjustment.upper
+
         self.hadjustment.upper = w
         self.vadjustment.upper = h
 
-        self.rescroll()
+        self.hadjustment.value = x * self.hadjustment.upper
+        self.vadjustment.value = y * self.vadjustment.upper
+
         self.area.queue_draw()
-
-    def rescroll(self):
-        pass
-#        w, h = map(lambda s: s * self.area.zoom, self.area.get_size_request())
-
-#        x = self.vscrollbar.get_value()
-#        y = self.hscrollbar.get_value()
-
-#        self.get_vscrollbar().set_range(0, h)
-#        self.get_hscrollbar().set_range(0, w)
-
-#        self.get_vscrollbar().set_value(x * self.area.zoom)
-#        self.get_hscrollbar().set_value(y * self.area.zoom)
-
-#        return w, h
-
-    def centralize(self):
-        # TODO - Dynamic resizing
-        # set_size_request
-        self.vadjustment.set_value(self.vadjustment.upper / 2)
-        self.hadjustment.set_value(self.hadjustment.upper / 2)
-
-#        w, h = self.rescroll()
-
-#        # TODO - Find a way to make this decent
-
-#        self.get_vscrollbar().set_value(h / 2)
-#        self.get_hscrollbar().set_value(w / 2)
 
     def set_changed(self, value):
         self.add_action_list()
@@ -301,7 +231,7 @@ class GraphShow(ScrollableGraph):
         return None
 
     def mouse_press(self, widget, event):
-        self.last_position_clicked = event.get_coords()
+        self.last_position_clicked = map(lambda v: v / self.area.zoom,event.get_coords())
 
         if event.button == 1:
             if self.action != None:
@@ -386,9 +316,11 @@ class GraphShow(ScrollableGraph):
         self.area.queue_draw()
 
     def mouse_motion(self, widget, event):
+        coords = map(lambda v: v / self.area.zoom,event.get_coords())
+
         if self.box_selecting:
             x, y = self.box_selecting
-            w, h = [e - s for e, s in zip(event.get_coords(), self.box_selecting)]
+            w, h = [e - s for e, s in zip(coords, self.box_selecting)]
             self.area.selected_area = (x, y, w, h)
             self.area.queue_draw()
             return
@@ -397,14 +329,14 @@ class GraphShow(ScrollableGraph):
 
         if self.action == "add_edge" and len(selected_vertices) == 1:
             start = selected_vertices[0].position
-            end = event.get_coords()
+            end = coords
             self.area.adding_edge = (start, end)
             self.area.queue_draw()
         else:
             self.area.adding_edge = None
 
         if len(selected_vertices) > 0 and self.last_vertex_clicked:
-            end_position = event.get_coords()
+            end_position = coords
             start_position = self.last_vertex_clicked.position
 
             delta_x = end_position[0] - start_position[0]

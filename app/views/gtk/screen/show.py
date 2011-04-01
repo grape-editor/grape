@@ -125,8 +125,6 @@ class ScreenShow(object):
         tab.close_button = btn
         self.notebook.set_current_page(n)
 
-        tab.centralize()
-
     def tab_changed(self, tab):
         box = tab.box
         label = box.get_children()[0]
