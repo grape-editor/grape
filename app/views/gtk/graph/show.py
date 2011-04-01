@@ -88,6 +88,11 @@ class GraphShow(ScrollableGraph):
         self.area.queue_draw()
 
     def mouse_scroll(self, widget, event):
+        from gtk.gdk import CONTROL_MASK, SHIFT_MASK
+
+        if not (event.state & CONTROL_MASK):
+            return
+
         center = map(lambda v: v / self.area.zoom,event.get_coords())
 
         if event.direction == gtk.gdk.SCROLL_UP:
