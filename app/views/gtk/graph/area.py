@@ -17,6 +17,7 @@ class GraphArea(DrawingArea):
         self.cairo = None
         self.path = None
         self.adding_edge = None
+        self.scale = 1
 
         self.set_double_buffered(True)
 
