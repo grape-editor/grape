@@ -86,4 +86,3 @@ class GraphsController(object):
             if vertex:
                 self.deselect_vertex(graph, selected[0])
                 self.select_vertex(graph, vertex)
-

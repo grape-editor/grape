@@ -6,7 +6,7 @@ from app.views.gtk.graph.area import GraphArea
 #from app.views.gtk.vertex.edit import VertexEdit
 import gtk
 import math
-import pickle
+
 
 class ScrollableGraph(gtk.Table):
 
@@ -94,9 +94,9 @@ class GraphShow(ScrollableGraph):
         self.area = GraphArea(self.graph, self.controller)
         self.event_box.add(self.area)
 
-        self.action_list = []
-        self.action_list_index = 0
-        self.add_action_list()
+        self.states= []
+        self.state_index = None
+        self.add_state()
 
         self.viewport = gtk.Viewport()
         self.viewport.add(self.event_box)
@@ -155,19 +155,20 @@ class GraphShow(ScrollableGraph):
 #        self.get_hscrollbar().set_value(w / 2)
 
     def set_changed(self, value):
-        self.add_action_list()
         if self.changed != value:
             self.changed = value
             self.changed_method(self)
 
     def add_vertex(self):
         self.controller.add_vertex(self.graph, self.last_position_clicked)
+        self.add_state()
         self.action = None
         self.area.queue_draw()
 
     def remove_vertex(self):
         to_be_removed = list(self.graph.selected_vertices())
         map(lambda vertex: self.controller.remove_vertex(self.graph, vertex), to_be_removed)
+        self.add_state()
 
         self.action = None
         self.area.queue_draw()
@@ -179,6 +180,7 @@ class GraphShow(ScrollableGraph):
             if vertex != None and vertex != self.graph.selected_vertices()[0]:
                 self.controller.add_edge(self.graph, self.graph.selected_vertices()[0], vertex)
                 self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
+                self.add_state()
                 self.action = None
                 self.area.queue_draw()
                 return True
@@ -195,6 +197,7 @@ class GraphShow(ScrollableGraph):
                         self.controller.add_edge(self.graph, vertex2, vertex1)
 
             self.controller.clear_selection(self.graph)
+            self.add_state()
             self.action = None
             self.area.queue_draw()
 
@@ -213,6 +216,7 @@ class GraphShow(ScrollableGraph):
                 if len(edge) > 0:
                     self.controller.remove_edge(self.graph, edge[0])
                     self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
+                    self.add_state()
                     self.action = None
                     self.area.queue_draw()
                 return True
@@ -226,6 +230,7 @@ class GraphShow(ScrollableGraph):
                             self.controller.remove_edge(self.graph, edge[0])
 
             self.controller.clear_selection(self.graph)
+            self.add_state()
             self.action = None
             self.area.queue_draw()
             return True
@@ -268,37 +273,61 @@ class GraphShow(ScrollableGraph):
         else:
             self.box_selecting = self.last_position_clicked
 
-    def add_action_list(self):
-        graph = pickle.dumps(self.area.graph)
+    def add_state(self):
+        import pickle
+        state = pickle.dumps(self.graph)
+        
+        if not self.state_index:
+            self.state_index = 0            
 
-        if (self.action_list_index < len(self.action_list) - 1):
-            self.action_list = self.action_list[:self.action_list_index]
+        if (self.state_index < len(self.states) - 1):
+            self.states = self.states[:self.state_index + 1]
 
-        self.action_list.append(graph)
+        self.states.append(state)
 
-        if (len(self.action_list) == 1):
-            self.action_list_index = 0
+        if len(self.states) == 1:
+            self.state_index = 0
         else:
-            self.action_list_index += 1
+            self.state_index += 1
 
-    def prev_action_list(self):
-        if (self.action_list_index > 0 and len(self.action_list) > 0):
-            self.action_list_index -= 1
-            graph = self.action_list[self.action_list_index]
-            graph = pickle.loads(graph)
-
-            return graph
-
+    def prev_state(self):
+        import pickle
+        if (self.state_index > 0 and len(self.states) > 0):
+            self.state_index -= 1
+            graph = self.states[self.state_index]
+            state = pickle.loads(graph)
+            return state
         return None
 
-    def next_action_list(self):
-        if (self.action_list_index < len(self.action_list) - 1):
-            self.action_list_index += 1
-            graph = self.action_list[self.action_list_index]
-            graph = pickle.loads(graph)
-            return graph
-
+    def next_state(self):
+        import pickle
+        if (self.state_index < len(self.states) - 1):
+            self.state_index += 1
+            graph = self.states[self.state_index]
+            state = pickle.loads(graph)
+            return state
         return None
+
+    def undo(self):     
+        graph = self.prev_state()
+        if graph:        
+            graph.path = self.graph.path
+            graph.title = self.graph.title
+            
+            self.area.graph = graph
+            self.graph = graph
+            self.set_changed(True)
+            
+        self.queue_draw()
+
+    def redo(self):
+        graph = self.next_state()
+        if graph:            
+            self.area.graph = graph
+            self.graph = graph
+            self.set_changed(True)
+            
+        self.queue_draw()
 
     def mouse_press(self, widget, event):
         self.last_position_clicked = event.get_coords()
@@ -379,6 +408,14 @@ class GraphShow(ScrollableGraph):
         self.menu.popup(None, None, None, event.button, event.time)
 
     def mouse_release(self, widget, event):
+        selected_vertices = list(self.graph.selected_vertices())
+
+        if len(selected_vertices) > 0 and self.last_vertex_clicked:
+            self.controller.clear_selection(self.graph)
+            self.add_state()
+            for vertex in selected_vertices:
+                self.controller.select_vertex(self.graph, vertex)
+       
         self.last_vertex_clicked = None
         self.box_selecting = None
         self.select_area(event, self.area.selected_area)
