@@ -8,7 +8,7 @@ from app.controllers.graphs_controller import GraphsController
 from app.helpers.graph_helper import *
 from app.views.gtk.graph.area import GraphArea
 from app.views.gtk.graph.scrollable_graph import ScrollableGraph
-#from app.views.gtk.vertex.edit import VertexEdit
+from app.views.gtk.vertex.edit import VertexEdit
 
 class GraphShow(ScrollableGraph):
 
@@ -117,6 +117,9 @@ class GraphShow(ScrollableGraph):
         self.action = None
         self.area.queue_draw()
 
+    def edit_vertex(self):
+        vertex_edit = VertexEdit()      
+
     def add_edge(self):
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.find_by_position(self.last_position_clicked)
@@ -185,6 +188,9 @@ class GraphShow(ScrollableGraph):
             return True
 
         return False
+
+    def edit_edge(self):
+        pass
 
     def select_area(self, event, area):
         if not area: return
@@ -327,7 +333,7 @@ class GraphShow(ScrollableGraph):
             self.menu_remove_edge.connect("activate", execute_action, self.remove_edge)
             self.menu_add_vertex.connect("activate", execute_action, self.add_vertex)
             self.menu_remove_vertex.connect("activate", execute_action, self.remove_vertex)
-#            self.menu_edit_vertex.connect("activate", )
+            self.menu_edit_vertex.connect("activate", execute_action, self.edit_vertex)
 #            self.menu_edit_edge.connect("activate", )
 
             self.menu.append(self.menu_add_vertex)
