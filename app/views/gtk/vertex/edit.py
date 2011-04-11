@@ -45,4 +45,7 @@ class VertexEdit(object):
         gettext.install(domain, locale_path)
 
         return domain
+    
+    def close(self, widget):
+        self.screen.destroy()
 

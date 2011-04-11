@@ -14,8 +14,8 @@ class Graph(object):
         self.title = title
         self.selected_vertices_cache = None
         self.path = None
-        self.directed = False
-        
+        self.directed = True
+
     def find_in_area(self, x, y, w, h):
         vertices = []
 
@@ -117,9 +117,10 @@ class Graph(object):
         self.title = os.path.basename(name)
 
         f = open(name, 'wb')
-               
+
         data = pickle.dumps(self)
         compress = gzip.zlib.compress(data)
         encoded = base64.b64encode(compress)
         f.write(encoded)
         f.close()
+
