@@ -71,10 +71,16 @@ class GraphArea(DrawingArea):
 
         font_size = 12
         cairo.set_font_size(font_size)
-        x -= font_size
-        y += font_size / 3.25
+        
+        x_bearing, y_bearing, width, height = cairo.text_extents(vertex.title)[:4]
+        
+        x = vertex.position[0]
+        y = vertex.position[1]
+        
         cairo.move_to(x, y)
-        cairo.show_text("%3s" % vertex.title)
+        cairo.move_to(x - width / 2 - x_bearing, y - height / 2 - y_bearing)
+        cairo.show_text(vertex.title)
+        
         cairo.stroke()
 
     def draw_arrow(self, cairo, p1, p2):

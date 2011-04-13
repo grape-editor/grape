@@ -14,9 +14,8 @@
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkNotebook" id="notebook1">
+          <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="tab_pos">left</property>
@@ -24,13 +23,11 @@
               <object class="GtkVBox" id="vbox2">
                 <property name="visible">True</property>
                 <property name="border_width">10</property>
-                <property name="orientation">vertical</property>
                 <property name="spacing">10</property>
                 <child>
-                  <object class="GtkFrame" id="Info">
+                  <object class="GtkFrame" id="Information">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
-                    <property name="shadow_type">etched-out</property>
                     <child>
                       <object class="GtkAlignment" id="alignment1">
                         <property name="visible">True</property>
@@ -39,7 +36,6 @@
                           <object class="GtkVBox" id="vbox3">
                             <property name="visible">True</property>
                             <property name="border_width">5</property>
-                            <property name="orientation">vertical</property>
                             <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkHBox" id="hbox1">
@@ -114,10 +110,9 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame" id="frame1">
+                  <object class="GtkFrame" id="graphical">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
-                    <property name="shadow_type">etched-out</property>
                     <child>
                       <object class="GtkAlignment" id="alignment2">
                         <property name="visible">True</property>
@@ -126,7 +121,6 @@
                           <object class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
                             <property name="border_width">5</property>
-                            <property name="orientation">vertical</property>
                             <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkHBox" id="hbox3">
@@ -313,7 +307,7 @@
                       </object>
                     </child>
                     <child type="label">
-                      <object class="GtkLabel" id="label3">
+                      <object class="GtkLabel" id="label4">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">&lt;b&gt;Graphical&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -344,9 +338,9 @@
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="label4">
+              <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">label</property>
+                <property name="label" translatable="yes">Edges</property>
               </object>
               <packing>
                 <property name="position">1</property>
