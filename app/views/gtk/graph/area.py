@@ -23,6 +23,8 @@ class GraphArea(DrawingArea):
         self.set_double_buffered(True)
 
         self.selected_area = None
+        
+        self.area = None
 
         self.zoom = 1
 
@@ -96,7 +98,7 @@ class GraphArea(DrawingArea):
         cairo.line_to(arrow_x2, arrow_y2)
         cairo.stroke()
 
-    def draw_edges(self, cairo, area, vertex1, vertex2):
+    def draw_edges(self, cairo, area, vertex1, vertex2, closer=False):
         edges = []
 
         for edge in vertex1.touching_edges:
@@ -107,38 +109,49 @@ class GraphArea(DrawingArea):
         if len(edges) == 0:
             return
 
-        x1, y1 = edges[0].start.position
-        x2, y2 = edges[0].end.position
-        mx, my = ((x1 + x2) / 2, (y1 + y2) / 2)
-        distance = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-
-        alpha = (math.pi / 4) / (len(edges) / 2) / 1.5
-        step = (math.pi / 4) / (len(edges) / 2)
-
-        stack = list(edges)
-
-        while len(stack) > 1:
-            for i in range(2):
-                edge = stack.pop()
-
-                x1, y1, x2, y2, x3, y3, x4, y4 = get_edge_line(edge, alpha)
-
-                cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
-                cairo.set_line_width(edge.width)
+        if len(edges) > 1:
+            x1, y1 = edges[0].start.position
+            x2, y2 = edges[0].end.position
+            mx, my = ((x1 + x2) / 2, (y1 + y2) / 2)
+            distance = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
+    
+            alpha = (math.pi / 4) / (len(edges) / 2) / 1.5
+            step = (math.pi / 4) / (len(edges) / 2)
+    
+            stack = list(edges)
+            before = None
+    
+            while len(stack) > 1:
+                angle = alpha
                 
-                cairo.set_source_rgb(0, 0, 0)
-                cairo.move_to(x1, y1)
-                cairo.curve_to(x3, y3, x4, y4, x2, y2)
-                cairo.stroke()
+                for i in range(2):
+                    edge = stack.pop()
+                    
+                    if before and edge.start == before.start:
+                        angle *= -1
+                    
+                    x1, y1, x2, y2, x3, y3, x4, y4 = get_edge_line(edge, angle)
+                    
+                    cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
+                    cairo.set_line_width(edge.width)
+                    
+                    cairo.set_source_rgb(0, 0, 0)
+                    cairo.move_to(x1, y1)
+                    
+                    cairo.curve_to(x3, y3, x4, y4, x2, y2)
+                    cairo.stroke()
+                    
+                    if not edge.bidirectional:
+                        self.draw_arrow(cairo, (x4, y4), (x2, y2))
+                        
+                    before = edge
+                alpha += step
 
-                if not edge.bidirectional:
-                    self.draw_arrow(cairo, (x3, y3), (x2, y2))
-            
-            alpha += step
-
-        if len(stack) == 1:
-            edge = stack.pop()
-            self.draw_edge_straight(cairo, edge)
+            if len(stack) == 1:
+                edge = stack.pop()
+                self.draw_edge_straight(cairo, edge)
+        else:
+            self.draw_edge_straight(cairo, edges[0])
 
     def draw_edge_straight(self, cairo, edge):
         x1, y1, x2, y2 = get_edge_line(edge, 0)
@@ -163,8 +176,8 @@ class GraphArea(DrawingArea):
         for vertex in self.graph.vertices:
             for edge in vertex.touching_edges:
                 if not edge.visited:
-                    if euclidean_distance(edge.start.position, edge.end.position) < 5:
-                        edge.visited = True
+                    if euclidean_distance(edge.start.position, edge.end.position) < (edge.start.size / 2 + edge.start.border_size + edge.end.size / 2 + edge.end.border_size):
+                        self.draw_edge_straight(cairo, edge)
                     else:
                         self.draw_edges(cairo, area, edge.start, edge.end)
 

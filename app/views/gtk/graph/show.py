@@ -142,11 +142,12 @@ class GraphShow(ScrollableGraph):
                 for j in range(i, len(self.graph.selected_vertices())):
                     vertex1 = self.graph.selected_vertices()[i]
                     vertex2 = self.graph.selected_vertices()[j]
-
-                    self.controller.add_edge(self.graph, vertex1, vertex2)
-
-                    if self.graph.directed:
-                        self.controller.add_edge(self.graph, vertex2, vertex1)
+                    
+                    if vertex1 != vertex2:
+                        self.controller.add_edge(self.graph, vertex1, vertex2)
+    
+                        if self.graph.directed:
+                            self.controller.add_edge(self.graph, vertex2, vertex1)
 
             selected_vertices = list(self.graph.selected_vertices())
             if len(selected_vertices):
