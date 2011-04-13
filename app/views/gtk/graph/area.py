@@ -112,83 +112,36 @@ class GraphArea(DrawingArea):
         mx, my = ((x1 + x2) / 2, (y1 + y2) / 2)
         distance = math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
 
-        angular_coeficient = x2 - x1
-
-        if y1 != y2:
-            angular_coeficient = (x2 - x1) / (y1 - y2)
-
-        distance_arc = math.atan(angular_coeficient)
-        constant = my - mx * angular_coeficient
-
-        alpha = 0
-        step = 16 * math.pi / (32 + distance)
-        bhaskara_a = angular_coeficient ** 2 + 1
-        bhaskara_b = (2 * angular_coeficient * constant) - (2 * mx)
-        bhaskara_b -= (2 * angular_coeficient * my)
-        bhaskara_c = (mx ** 2) - (2 * constant * my) + (my ** 2)
-        bhaskara_c += (constant ** 2)
+        alpha = (math.pi / 4) / (len(edges) / 2) / 1.5
+        step = (math.pi / 4) / (len(edges) / 2)
 
         stack = list(edges)
 
         while len(stack) > 1:
-            alpha += step
-
-            radius = (distance / 2) / math.sin(alpha)
-            adjacent = math.cos(alpha) * radius
-
-            roots = bhaskara(bhaskara_a, bhaskara_b, bhaskara_c - (adjacent ** 2))
-
-            angle = distance_arc + math.pi
-
             for i in range(2):
                 edge = stack.pop()
-                x = roots[i]
-                y = angular_coeficient * x + constant
 
-                points1 = intersect_circles((x, y), vertex1.position, radius, vertex1.size / 2)
-                points2 = intersect_circles((x, y), vertex2.position, radius, vertex2.size / 2)
-                points = nearest_points(points1, points2)
-
-                opposite = euclidean_distance(points[0], points[1]) / 2
-                beta = math.asin(opposite / radius) * 2
-                offset = beta / 2
+                x1, y1, x2, y2, x3, y3, x4, y4 = get_edge_line(edge, alpha)
 
                 cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
                 cairo.set_line_width(edge.width)
-
-                cairo.arc(x, y, radius, angle - offset, angle + offset)
+                
+                cairo.set_source_rgb(0, 0, 0)
+                cairo.move_to(x1, y1)
+                cairo.curve_to(x3, y3, x4, y4, x2, y2)
                 cairo.stroke()
 
                 if not edge.bidirectional:
-                    point = points[0]
-                    v = vertex1
-
-                    if edge.start == vertex1:
-                        point = points[1]
-                        v = vertex2
-
-                    x1 = point[0] ** 2 / v.position[0]
-                    y1 = point[1] ** 2 / v.position[1]
-                    self.draw_arrow(cairo, (x1, y1), point)
-
-                angle -= math.pi
+                    self.draw_arrow(cairo, (x3, y3), (x2, y2))
+            
+            alpha += step
 
         if len(stack) == 1:
             edge = stack.pop()
             self.draw_edge_straight(cairo, edge)
 
     def draw_edge_straight(self, cairo, edge):
-        x1, y1 = edge.start.position[0], edge.start.position[1]
-        x2, y2 = edge.end.position[0], edge.end.position[1]
-
-        angle = math.atan2(y2 - y1, x2 - x1) + math.pi
-        radius = edge.end.size / 2
-
-        x1 = x1 - radius * math.cos(angle)
-        y1 = y1 - radius * math.sin(angle)
-
-        x2 = x2 + radius * math.cos(angle)
-        y2 = y2 + radius * math.sin(angle)
+        x1, y1, x2, y2 = get_edge_line(edge, 0)
 
         cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
         cairo.set_line_width(edge.width)
@@ -205,15 +158,15 @@ class GraphArea(DrawingArea):
             edge.visited = False
 
         for vertex in self.graph.vertices:
+            self.draw_vertex(cairo, area, vertex)
+
+        for vertex in self.graph.vertices:
             for edge in vertex.touching_edges:
                 if not edge.visited:
                     if euclidean_distance(edge.start.position, edge.end.position) < 5:
                         edge.visited = True
                     else:
                         self.draw_edges(cairo, area, edge.start, edge.end)
-
-        for vertex in self.graph.vertices:
-            self.draw_vertex(cairo, area, vertex)
 
         for edge in self.graph.edges:
             edge.visited = None

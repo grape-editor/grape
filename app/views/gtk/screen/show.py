@@ -26,7 +26,7 @@ class ScreenShow(object):
         self.notebook.set_group_id(0)
 
         if not hook:
-            tab = GraphShow(self.tab_changed)
+            tab = GraphShow(self.builder, self.tab_changed)
             self.add_notebook_tab(tab)
 
         self.name = 0
@@ -141,11 +141,11 @@ class ScreenShow(object):
             menu_file_revert.set_sensitive(False)
 
     def menu_file_new(self, widget):
-        tab = GraphShow(self.tab_changed)
+        tab = GraphShow(self.builder, self.tab_changed)
         self.add_notebook_tab(tab)
 
     def menu_file_open(self, widget):
-        tab = GraphShow(self.tab_changed)
+        tab = GraphShow(self.builder, self.tab_changed)
         file_chooser = FileChooserShow(self.builder, "open")
         file_chooser.run()
 

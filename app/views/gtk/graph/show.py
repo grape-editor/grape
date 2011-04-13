@@ -12,8 +12,10 @@ from app.views.gtk.vertex.edit import VertexEdit
 
 class GraphShow(ScrollableGraph):
 
-    def __init__(self, changed_method):
+    def __init__(self, builder, changed_method):
         ScrollableGraph.__init__(self)
+        
+        self.builder = builder
 
         self.event_box = EventBox()
 
@@ -118,7 +120,10 @@ class GraphShow(ScrollableGraph):
         self.area.queue_draw()
 
     def edit_vertex(self):
-        vertex_edit = VertexEdit()      
+        if len(self.graph.selected_vertices()) == 1:
+            vertex = self.graph.selected_vertices()[0]
+            self.controller.deselect_vertex(self.graph, vertex)
+            vertex_edit = VertexEdit(self.builder, self.area, vertex)
 
     def add_edge(self):
         if len(self.graph.selected_vertices()) == 1:

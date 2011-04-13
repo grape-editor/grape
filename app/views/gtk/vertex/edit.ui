@@ -55,7 +55,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label8">
+                                  <object class="GtkLabel" id="label_id">
                                     <property name="visible">True</property>
                                     <property name="label" translatable="yes">NUMBER</property>
                                   </object>
@@ -82,10 +82,11 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry1">
+                                  <object class="GtkEntry" id="text_title">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">&#x25CF;</property>
+                                    <signal name="changed" handler="title_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -141,10 +142,14 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton" id="spinbutton1">
+                                  <object class="GtkSpinButton" id="spin_posx">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="max_length">4096</property>
                                     <property name="invisible_char">&#x25CF;</property>
+                                    <property name="adjustment">adjustmentX</property>
+                                    <property name="numeric">True</property>
+                                    <signal name="change_value" handler="positionx_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -169,10 +174,14 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton" id="spinbutton2">
+                                  <object class="GtkSpinButton" id="spin_posy">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="max_length">4096</property>
                                     <property name="invisible_char">&#x25CF;</property>
+                                    <property name="adjustment">adjustmentY</property>
+                                    <property name="numeric">True</property>
+                                    <signal name="change_value" handler="positiony_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -197,11 +206,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkColorButton" id="colorbutton2">
+                                  <object class="GtkColorButton" id="color_vertex">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="color">#000000000000</property>
+                                    <signal name="color_set" handler="color_vertex_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -226,11 +236,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkColorButton" id="colorbutton1">
+                                  <object class="GtkColorButton" id="color_border">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="color">#000000000000</property>
+                                    <signal name="color_set" handler="color_border_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -258,6 +269,7 @@
                                   <object class="GtkHScale" id="hscale2">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="adjustment">adjustment_radius</property>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -285,6 +297,7 @@
                                   <object class="GtkHScale" id="hscale1">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
+                                    <property name="adjustment">adjustment_border</property>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -373,5 +386,25 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentX">
+    <property name="upper">4096</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="positionx_changed"/>
+  </object>
+  <object class="GtkAdjustment" id="adjustmentY">
+    <property name="upper">4096</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="positiony_changed"/>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_radius">
+    <property name="upper">1000</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="radius_scale_changed"/>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_border">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="border_scale_changed"/>
   </object>
 </interface>

@@ -1,0 +1,18 @@
+{
+  "commands":[
+    {
+      "name":        "Grape",
+      "command":     "script/grape",
+      "description": "Run grape",
+      "type":        "python"
+    }
+  ],
+  "file_runners":[
+    {
+      "regex":   ".*",
+      "name":    "Run gra[e]",
+      "command": "script/grape",
+      "type":    "python"
+    }
+  ]
+}
