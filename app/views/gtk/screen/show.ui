@@ -195,10 +195,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_add_vertex">
-                        <property name="label">gtk-add</property>
+                        <property name="label">Add vertex</property>
                         <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">add</property>
+                        <property name="use_stock">False</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="v" signal="activate"/>
                         <signal name="activate" handler="menu_edit_add_vertex"/>
@@ -222,10 +222,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_add_edge">
-                        <property name="label">gtk-add</property>
+                        <property name="label">Add edge</property>
                         <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">ad</property>
+                        <property name="use_stock">False</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="e" signal="activate"/>
                         <signal name="activate" handler="menu_edit_add_edge"/>
@@ -458,6 +458,39 @@
                 <property name="homogeneous">True</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="toolbutton_separator_3">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_center_vertical">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Vertical Center</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-justify-center</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_center_horizontal">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Horizontal Center</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-justify-center</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -486,5 +519,13 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="add">
+    <property name="visible">True</property>
+    <property name="stock">gtk-add</property>
+  </object>
+  <object class="GtkImage" id="ad">
+    <property name="visible">True</property>
+    <property name="stock">gtk-add</property>
   </object>
 </interface>

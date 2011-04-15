@@ -330,97 +330,148 @@
               </packing>
             </child>
             <child>
-              <object class="GtkFrame" id="edges">
+              <object class="GtkVBox" id="edge">
                 <property name="visible">True</property>
-                <property name="label_xalign">0</property>
+                <property name="border_width">10</property>
+                <property name="spacing">10</property>
                 <child>
-                  <object class="GtkAlignment" id="alignment3">
+                  <object class="GtkFrame" id="edge_list">
                     <property name="visible">True</property>
-                    <property name="left_padding">12</property>
+                    <property name="label_xalign">0</property>
                     <child>
-                      <object class="GtkVBox" id="vbox2">
+                      <object class="GtkAlignment" id="alignment3">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
-                        <property name="homogeneous">True</property>
+                        <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkTable" id="edge_list">
+                          <object class="GtkVBox" id="vbox2">
                             <property name="visible">True</property>
-                            <property name="n_columns">4</property>
+                            <property name="border_width">5</property>
                             <child>
-                              <object class="GtkLabel" id="label8">
+                              <object class="GtkHBox" id="hbox4">
                                 <property name="visible">True</property>
-                                <property name="xalign">0.47999998927116394</property>
-                                <property name="label" translatable="yes">ID</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="label15">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">Vextex ID start</property>
+                                <child>
+                                  <object class="GtkVBox" id="vbox5">
+                                    <property name="visible">True</property>
+                                    <child>
+                                      <object class="GtkTable" id="edges_table_title">
+                                        <property name="visible">True</property>
+                                        <property name="n_columns">4</property>
+                                        <child>
+                                          <object class="GtkLabel" id="label5">
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">ID</property>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="label8">
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">Vertex ID start</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">1</property>
+                                            <property name="right_attach">2</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="label16">
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">Vertex ID end</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">2</property>
+                                            <property name="right_attach">3</property>
+                                          </packing>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel" id="label17">
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">Actions</property>
+                                          </object>
+                                          <packing>
+                                            <property name="left_attach">3</property>
+                                            <property name="right_attach">4</property>
+                                          </packing>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkTable" id="edges_table_body">
+                                        <property name="visible">True</property>
+                                        <child>
+                                          <object class="GtkLabel" id="label18">
+                                            <property name="visible">True</property>
+                                            <property name="label" translatable="yes">Exemplo de tabela aqui</property>
+                                          </object>
+                                        </child>
+                                      </object>
+                                      <packing>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkVScrollbar" id="vscrollbar">
+                                    <property name="visible">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel" id="label16">
+                              <object class="GtkHButtonBox" id="hbuttonbox2">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">Vertex ID end</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">2</property>
-                                <property name="right_attach">3</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="label17">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">Actions</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">3</property>
-                                <property name="right_attach">4</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkHButtonBox" id="hbuttonbox2">
-                            <property name="visible">True</property>
-                            <child>
-                              <object class="GtkButton" id="add_edge">
-                                <property name="label" translatable="yes">Add Edge</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">True</property>
+                                <child>
+                                  <object class="GtkButton" id="button2">
+                                    <property name="label" translatable="yes">Add Edge</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">False</property>
-                                <property name="position">0</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
-                          <packing>
-                            <property name="position">1</property>
-                          </packing>
                         </child>
                       </object>
                     </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="label15">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Edge List&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                    </child>
                   </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label5">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Edges List&lt;/b&gt;</property>
-                    <property name="use_markup">True</property>
-                  </object>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
                 </child>
               </object>
               <packing>
