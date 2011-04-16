@@ -5,15 +5,21 @@ import locale
 import gettext
 
 class VertexEdit(object):
-    def __init__(self, builder, area, vertex, set_changed):
+    def __init__(self, graph_show, vertex):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "edit.ui")
 
         self.vertex = vertex
-        self.area = area
-        self.set_changed = set_changed
+        self.area = graph_show.area
+        self.set_changed = graph_show.set_changed
+        self.graph = graph_show.graph
+        self.controller = graph_show.controller
+        self.add_state = graph_show.add_state
+        self.builder = graph_show.builder
 
-        self.builder = builder
+        self.menu = None
+
+
         self.builder.add_from_file(path)
 
         self.screen = self.builder.get_object("vertex_edit")
@@ -30,10 +36,15 @@ class VertexEdit(object):
         self.liststore_edges = self.builder.get_object("liststore_edges")
 
         self.init_general_fields()
-        self.init_edges_fields()
-        
+                
         self.builder.connect_signals(self) 
         self.screen.show_all()
+
+    def switch_page(self, notebook, page, page_num):
+        if page_num == 0:
+            self.init_general_fields()
+        elif page_num == 1:
+            self.init_edges_fields()
 
     def init_general_fields(self):
         self.label_id.set_label(str(self.vertex.id))
@@ -49,16 +60,57 @@ class VertexEdit(object):
 
     def init_edges_fields(self):
         number_of_edges = len(self.vertex.adjacencies)
+        self.liststore_edges.clear()
        
         for i in range(number_of_edges):
             t_id = self.vertex.adjacencies[i].id
-            t_start = self.vertex.adjacencies[i].start.id
-            t_end = self.vertex.adjacencies[i].end.id
-            t_test = "teste"
+            t_start = self.vertex.adjacencies[i].start.title
+            t_end = self.vertex.adjacencies[i].end.title
+            self.liststore_edges.append([t_id, t_start, t_end])
 
-            self.liststore_edges.append([t_id, t_start, t_end, t_test])
+    def mouse_press(self, widget, event):
+        if event.button == 3:
+            self.right_click_menu(event)
+    
+    def right_click_menu(self, event):
+        def execute_action(event, action):
+            action()
 
+        if not self.menu:
+            self.menu = gtk.Menu()
+            self.menu_add_edge = gtk.MenuItem(_("_Add edge"))
+            self.menu_remove_edge = gtk.MenuItem(_("_Remove edge"))
+            self.menu_edit_edge = gtk.MenuItem(_("_Edit edge settings"))
 
+            self.menu_add_edge.connect("activate", execute_action, self.add_edge)
+            self.menu_remove_edge.connect("activate", execute_action, self.remove_edge)
+#            self.menu_edit_edge.connect("activate", )
+
+            self.menu.append(self.menu_add_edge)
+            self.menu.append(self.menu_remove_edge)
+            self.menu.append(self.menu_edit_edge)
+
+        self.menu.show_all()
+        self.menu.popup(None, None, None, event.button, event.time)
+
+    def add_edge(self):
+        pass
+
+    def remove_edge(self):
+        selection = self.treeview_edges.get_selection()
+        store, row = selection.get_selected()
+
+        edge_id = store.get_value(row, 0)
+
+        store.remove(row)
+
+        edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
+        if edge:
+            self.controller.remove_edge(self.graph, edge)
+            self.add_state()
+            self.area.queue_draw()
+            return True
+        return False
 
     def cairo_to_spin(self, color):
         return gtk.gdk.Color(color[0] * 65535, color[1] * 65535, color[2] * 65535)

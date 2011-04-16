@@ -80,6 +80,13 @@ class Graph(object):
 
         return edges
 
+    def find_edge_from_vertex(self, vertex, id):
+        for edge in vertex.adjacencies:
+            if int(id) == edge.id:
+                return edge
+
+        return None
+
     def selected_vertices(self):
         if self.selected_vertices_cache:
             return self.selected_vertices_cache
