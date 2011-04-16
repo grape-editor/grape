@@ -16,9 +16,7 @@ class VertexEdit(object):
         self.builder = builder
         self.builder.add_from_file(path)
 
-
         self.screen = self.builder.get_object("vertex_edit")
-        
         self.label_id = self.builder.get_object("label_id")
         self.text_title = self.builder.get_object("text_title")
         self.spin_posx = self.builder.get_object("spin_posx")
@@ -27,7 +25,17 @@ class VertexEdit(object):
         self.color_border = self.builder.get_object("color_border")
         self.adjustment_radius = self.builder.get_object("adjustment_radius")
         self.adjustment_border = self.builder.get_object("adjustment_border")
+
+        self.treeview_edges = self.builder.get_object("treeview_edges")
+        self.liststore_edges = self.builder.get_object("liststore_edges")
+
+        self.init_general_fields()
+        self.init_edges_fields()
         
+        self.builder.connect_signals(self) 
+        self.screen.show_all()
+
+    def init_general_fields(self):
         self.label_id.set_label(str(self.vertex.id))
         self.text_title.set_text(self.vertex.title)
         self.spin_posx.set_value(self.vertex.position[0])
@@ -38,11 +46,20 @@ class VertexEdit(object):
         
         self.adjustment_radius.value = self.vertex.size
         self.adjustment_border.value = self.vertex.border_size
-                
-                
-        self.builder.connect_signals(self) 
-        self.screen.show_all()
-    
+
+    def init_edges_fields(self):
+        number_of_edges = len(self.vertex.adjacencies)
+       
+        for i in range(number_of_edges):
+            t_id = self.vertex.adjacencies[i].id
+            t_start = self.vertex.adjacencies[i].start.id
+            t_end = self.vertex.adjacencies[i].end.id
+            t_test = "teste"
+
+            self.liststore_edges.append([t_id, t_start, t_end, t_test])
+
+
+
     def cairo_to_spin(self, color):
         return gtk.gdk.Color(color[0] * 65535, color[1] * 65535, color[2] * 65535)
         
