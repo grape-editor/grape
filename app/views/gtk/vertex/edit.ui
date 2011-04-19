@@ -2,6 +2,16 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
+  <object class="GtkListStore" id="liststore_edges">
+    <columns>
+      <!-- column-name id -->
+      <column type="gchararray"/>
+      <!-- column-name vertex1 -->
+      <column type="gchararray"/>
+      <!-- column-name vertex2 -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
   <object class="GtkWindow" id="vertex_edit">
     <property name="title" translatable="yes">Vertex Settings</property>
     <property name="resizable">False</property>
@@ -354,14 +364,18 @@
                               <object class="GtkTreeView" id="treeview_edges">
                                 <property name="can_focus">True</property>
                                 <property name="model">liststore_edges</property>
-                                <property name="headers_clickable">False</property>
                                 <property name="reorderable">True</property>
-                                <property name="search_column">0</property>
+                                <property name="rubber_banding">True</property>
+                                <property name="enable_grid_lines">vertical</property>
                                 <signal name="button_press_event" handler="mouse_press"/>
+                                <signal name="key_press_event" handler="keyboard_press"/>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                                     <property name="title">ID</property>
                                     <property name="clickable">True</property>
+                                    <property name="reorderable">True</property>
+                                    <property name="sort_indicator">True</property>
+                                    <property name="sort_column_id">0</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext1"/>
                                       <attributes>
@@ -373,6 +387,10 @@
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn2">
                                     <property name="title">Vertex1</property>
+                                    <property name="clickable">True</property>
+                                    <property name="reorderable">True</property>
+                                    <property name="sort_indicator">True</property>
+                                    <property name="sort_column_id">1</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext2"/>
                                       <attributes>
@@ -384,6 +402,10 @@
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn3">
                                     <property name="title">Vertex2</property>
+                                    <property name="clickable">True</property>
+                                    <property name="reorderable">True</property>
+                                    <property name="sort_indicator">True</property>
+                                    <property name="sort_column_id">2</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext3"/>
                                       <attributes>
@@ -478,15 +500,5 @@
     <property name="upper">100</property>
     <property name="step_increment">1</property>
     <signal name="value_changed" handler="border_scale_changed"/>
-  </object>
-  <object class="GtkListStore" id="liststore_edges">
-    <columns>
-      <!-- column-name id -->
-      <column type="gchararray"/>
-      <!-- column-name vertex1 -->
-      <column type="gchararray"/>
-      <!-- column-name vertex2 -->
-      <column type="gchararray"/>
-    </columns>
   </object>
 </interface>

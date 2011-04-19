@@ -19,7 +19,6 @@ class VertexEdit(object):
 
         self.menu = None
 
-
         self.builder.add_from_file(path)
 
         self.screen = self.builder.get_object("vertex_edit")
@@ -33,11 +32,13 @@ class VertexEdit(object):
         self.adjustment_border = self.builder.get_object("adjustment_border")
 
         self.treeview_edges = self.builder.get_object("treeview_edges")
+        self.treeview_edges.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
+        
         self.liststore_edges = self.builder.get_object("liststore_edges")
 
         self.init_general_fields()
                 
-        self.builder.connect_signals(self) 
+        self.builder.connect_signals(self)
         self.screen.show_all()
 
     def switch_page(self, notebook, page, page_num):
@@ -68,11 +69,35 @@ class VertexEdit(object):
             t_end = self.vertex.adjacencies[i].end.title
             self.liststore_edges.append([t_id, t_start, t_end])
 
+    def keyboard_press(self, widget, event):
+        key = event.keyval
+
+        if key == gtk.keysyms.Delete:
+            self.remove_edge()
+            
+        from gtk.gdk import CONTROL_MASK
+
+        if (event.state & CONTROL_MASK):
+            if key == gtk.keysyms.N or key == gtk.keysyms.n:
+                self.add_edge()
+
     def mouse_press(self, widget, event):
+        path = widget.get_path_at_pos(int(event.x), int(event.y))
+        selection = widget.get_selection()
+        
+        store, row = selection.get_selected_rows()
+        if not path:
+            selection.unselect_all()
+
         if event.button == 3:
+            if path:
+                selection.select_path(path[0])
             self.right_click_menu(event)
+            
     
     def right_click_menu(self, event):
+        selection = self.treeview_edges.get_selection()
+
         def execute_action(event, action):
             action()
 
@@ -84,33 +109,68 @@ class VertexEdit(object):
 
             self.menu_add_edge.connect("activate", execute_action, self.add_edge)
             self.menu_remove_edge.connect("activate", execute_action, self.remove_edge)
-#            self.menu_edit_edge.connect("activate", )
+        #            self.menu_edit_edge.connect("activate", )
 
             self.menu.append(self.menu_add_edge)
             self.menu.append(self.menu_remove_edge)
             self.menu.append(self.menu_edit_edge)
 
+        if len(self.graph.vertices) > 1:
+            self.menu_add_edge.set_sensitive(True)
+        else:
+            self.menu_add_edge.set_sensitive(False)
+            
+        if selection.count_selected_rows() == 1:
+            self.menu_remove_edge.set_sensitive(True)
+            self.menu_edit_edge.set_sensitive(True)
+        elif selection.count_selected_rows() > 1:
+            self.menu_remove_edge.set_sensitive(True)
+            self.menu_edit_edge.set_sensitive(False)
+        else:
+            self.menu_remove_edge.set_sensitive(False)
+            self.menu_edit_edge.set_sensitive(False)
+
         self.menu.show_all()
         self.menu.popup(None, None, None, event.button, event.time)
 
     def add_edge(self):
-        pass
+        idx = 0
+        
+        if self.vertex.id == 0:
+            idx = len(self.graph.vertices) - 1
+            
+        vertex = self.graph.find(idx)
+            
+        if vertex:
+            edge = self.controller.add_edge(self.graph, self.vertex, vertex)
+
+            if edge:
+                t_id = edge.id
+                t_start = edge.start.title
+                t_end = edge.end.title
+                self.liststore_edges.append([t_id, t_start, t_end])
+                
+            self.add_state()
+            self.area.queue_draw()
 
     def remove_edge(self):
         selection = self.treeview_edges.get_selection()
-        store, row = selection.get_selected()
+        store, rows = selection.get_selected_rows()
+        
+        #Scamp way to delete all selecteds rows =D
+        rows_reference = [gtk.TreeRowReference(store, row) for row in rows]
 
-        edge_id = store.get_value(row, 0)
-
-        store.remove(row)
-
-        edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
-        if edge:
-            self.controller.remove_edge(self.graph, edge)
-            self.add_state()
-            self.area.queue_draw()
-            return True
-        return False
+        for row in rows_reference:
+            row_iter = store.get_iter(row.get_path())
+            edge_id = store.get_value(row_iter, 0)
+            store.remove(row_iter)
+            
+            edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
+            if edge:
+                self.controller.remove_edge(self.graph, edge)
+    
+        self.add_state()
+        self.area.queue_draw()
 
     def cairo_to_spin(self, color):
         return gtk.gdk.Color(color[0] * 65535, color[1] * 65535, color[2] * 65535)
