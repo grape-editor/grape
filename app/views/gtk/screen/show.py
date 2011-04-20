@@ -307,6 +307,8 @@ class ScreenShow(object):
         key = event.keyval
         direction = None
 
+        from gtk.gdk import CONTROL_MASK
+
         if key == gtk.keysyms.Right:
             direction = "right"
         elif key == gtk.keysyms.Left:
@@ -320,6 +322,9 @@ class ScreenShow(object):
                 tab.action = None
             else:
                 tab.controller.clear_selection(tab.graph)
+        elif (event.state & CONTROL_MASK):
+            if key == gtk.keysyms.A or key == gtk.keysyms.a:
+                tab.controller.select_all(tab.graph)
 
         if tab and direction:
             tab.controller.move_selection(tab.graph, direction)
