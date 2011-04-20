@@ -141,7 +141,6 @@ class GraphArea(DrawingArea):
                     cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
                     cairo.set_line_width(edge.width)
                     
-                    cairo.set_source_rgb(0, 0, 0)
                     cairo.move_to(x1, y1)
                     
                     cairo.curve_to(x3, y3, x4, y4, x2, y2)

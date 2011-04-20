@@ -4,11 +4,14 @@ import sys
 import locale
 import gettext
 
+from app.views.gtk.edge.edit import EdgeEdit
+
 class VertexEdit(object):
     def __init__(self, graph_show, vertex):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "edit.ui")
 
+        self.graph_show = graph_show
         self.vertex = vertex
         self.area = graph_show.area
         self.set_changed = graph_show.set_changed
@@ -93,7 +96,7 @@ class VertexEdit(object):
             if path:
                 selection.select_path(path[0])
             self.right_click_menu(event)
-            
+           
     
     def right_click_menu(self, event):
         selection = self.treeview_edges.get_selection()
@@ -109,7 +112,7 @@ class VertexEdit(object):
 
             self.menu_add_edge.connect("activate", execute_action, self.add_edge)
             self.menu_remove_edge.connect("activate", execute_action, self.remove_edge)
-        #            self.menu_edit_edge.connect("activate", )
+            self.menu_edit_edge.connect("activate", execute_action, self.edit_edge)
 
             self.menu.append(self.menu_add_edge)
             self.menu.append(self.menu_remove_edge)
@@ -133,6 +136,17 @@ class VertexEdit(object):
         self.menu.show_all()
         self.menu.popup(None, None, None, event.button, event.time)
 
+    def edit_edge(self):
+        selection = self.treeview_edges.get_selection()
+        store, rows = selection.get_selected_rows()
+
+        row_iter = store.get_iter(rows[0])
+        edge_id = store.get_value(row_iter, 0)
+        
+        edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
+        if edge:
+            edit_edge = EdgeEdit(self.graph_show, edge)
+        
     def add_edge(self):
         idx = 0
         
