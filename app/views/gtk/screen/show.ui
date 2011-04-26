@@ -206,10 +206,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_remove_vertex">
-                        <property name="label">gtk-remove</property>
+                        <property name="label">Remove vertex</property>
                         <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image1</property>
+                        <property name="use_stock">False</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="v" signal="activate" modifiers="GDK_SHIFT_MASK"/>
                         <signal name="activate" handler="menu_edit_remove_vertex"/>
@@ -233,10 +233,10 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_remove_edge">
-                        <property name="label">gtk-remove</property>
+                        <property name="label">Remove edge</property>
                         <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image2</property>
+                        <property name="use_stock">False</property>
                         <property name="always_show_image">True</property>
                         <accelerator key="e" signal="activate" modifiers="GDK_SHIFT_MASK"/>
                         <signal name="activate" handler="menu_edit_remove_edge"/>
@@ -249,23 +249,21 @@
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_vertical_align">
-                        <property name="label">Add edge</property>
+                        <property name="label">Vertical align</property>
                         <property name="visible">True</property>
                         <property name="image">ad1</property>
                         <property name="use_stock">False</property>
                         <property name="always_show_image">True</property>
-                        <accelerator key="e" signal="activate"/>
                         <signal name="activate" handler="menu_edit_vertical_align"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkImageMenuItem" id="menu_edit_horizontal_align">
-                        <property name="label">gtk-remove</property>
+                        <property name="label">Horizontal align</property>
                         <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
+                        <property name="image">image3</property>
+                        <property name="use_stock">False</property>
                         <property name="always_show_image">True</property>
-                        <accelerator key="e" signal="activate" modifiers="GDK_SHIFT_MASK"/>
                         <signal name="activate" handler="menu_edit_horizontal_align"/>
                       </object>
                     </child>
@@ -559,6 +557,18 @@
   </object>
   <object class="GtkImage" id="ad1">
     <property name="visible">True</property>
-    <property name="stock">gtk-add</property>
+    <property name="stock">gtk-justify-center</property>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-remove</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-remove</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-justify-center</property>
   </object>
 </interface>
