@@ -52,7 +52,12 @@ class EdgeEdit(object):
         self.adjustment_width.value = self.edge.width
 
     def init_property_fields(self):
-        pass
+        self.liststore_properties.clear()
+        for attr in self.edge.__dict__:
+            if attr.startswith("user_"):
+                t_identifier = attr[5:]
+                t_value = self.edge.__dict__[attr]          
+                self.liststore_properties.append([t_identifier, t_value])
         
     def keyboard_press(self, widget, event):
         key = event.keyval
@@ -106,10 +111,11 @@ class EdgeEdit(object):
         self.menu.popup(None, None, None, event.button, event.time)
 
     def add_property(self):
-        t_identifier = "foo"
+        t_identifier = "user_foo"
         t_value = "bar"
         self.liststore_properties.append([t_identifier, t_value])
-            
+        setattr(self.edge, t_identifier, t_value)
+        
 #        self.add_state()
 #        self.area.queue_draw()
 
@@ -122,12 +128,14 @@ class EdgeEdit(object):
 
         for row in rows_reference:
             row_iter = store.get_iter(row.get_path())
-            edge_id = store.get_value(row_iter, 0)
+            property_identifier = store.get_value(row_iter, 0)
             store.remove(row_iter)
-            
-            edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
-            if edge:
-                self.controller.remove_edge(self.graph, edge)
+
+            for attr in self.edge.__dict__:
+                if attr.startswith("user_"):
+                    t_identifier = attr[5:]
+                    if t_identifier == property_identifier:
+                        delattr(self.edge, attr)
     
         self.add_state()
         self.area.queue_draw()
