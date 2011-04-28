@@ -2,18 +2,16 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkListStore" id="liststore_edges">
+  <object class="GtkListStore" id="liststore_properties">
     <columns>
-      <!-- column-name id -->
+      <!-- column-name identifier -->
       <column type="gchararray"/>
-      <!-- column-name vertex1 -->
-      <column type="gchararray"/>
-      <!-- column-name vertex2 -->
+      <!-- column-name value -->
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkWindow" id="vertex_edit">
-    <property name="title" translatable="yes">Vertex Settings</property>
+  <object class="GtkWindow" id="edge_edit">
+    <property name="title" translatable="yes">Edge Settings</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -104,12 +102,41 @@
                                 <property name="position">1</property>
                               </packing>
                             </child>
+                            <child>
+                              <object class="GtkHBox" id="hbox4">
+                                <property name="visible">True</property>
+                                <property name="homogeneous">True</property>
+                                <child>
+                                  <object class="GtkLabel" id="label4">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">Bidirectional:</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="toggle_bidirectional">
+                                    <property name="label" translatable="yes">Yes</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child type="label">
-                      <object class="GtkLabel" id="label2">
+                      <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">&lt;b&gt;Information&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -140,21 +167,15 @@
                                 <child>
                                   <object class="GtkLabel" id="label9">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Position X:</property>
+                                    <property name="label" translatable="yes">Vertex start:</property>
                                   </object>
                                   <packing>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton" id="spin_posx">
+                                  <object class="GtkComboBox" id="combobox_vertex_start">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="max_length">4096</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                    <property name="adjustment">adjustmentX</property>
-                                    <property name="numeric">True</property>
-                                    <signal name="change_value" handler="positionx_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -172,21 +193,15 @@
                                 <child>
                                   <object class="GtkLabel" id="label10">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Position Y:</property>
+                                    <property name="label" translatable="yes">Vertex end:</property>
                                   </object>
                                   <packing>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton" id="spin_posy">
+                                  <object class="GtkComboBox" id="combobox2">
                                     <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="max_length">4096</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                    <property name="adjustment">adjustmentY</property>
-                                    <property name="numeric">True</property>
-                                    <signal name="change_value" handler="positiony_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -204,19 +219,19 @@
                                 <child>
                                   <object class="GtkLabel" id="label11">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Vertex color:</property>
+                                    <property name="label" translatable="yes">Edge color:</property>
                                   </object>
                                   <packing>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkColorButton" id="color_vertex">
+                                  <object class="GtkColorButton" id="color_edge">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="color">#000000000000</property>
-                                    <signal name="color_set" handler="color_vertex_changed"/>
+                                    <signal name="color_set" handler="color_edge_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -228,25 +243,23 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox8">
+                              <object class="GtkHBox" id="hbox7">
                                 <property name="visible">True</property>
                                 <property name="homogeneous">True</property>
                                 <child>
-                                  <object class="GtkLabel" id="label12">
+                                  <object class="GtkLabel" id="label13">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Border color:</property>
+                                    <property name="label" translatable="yes">Edge width:</property>
                                   </object>
                                   <packing>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkColorButton" id="color_border">
+                                  <object class="GtkHScale" id="edge_width">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="color">#000000000000</property>
-                                    <signal name="color_set" handler="color_border_changed"/>
+                                    <property name="adjustment">adjustment_width</property>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -257,68 +270,12 @@
                                 <property name="position">3</property>
                               </packing>
                             </child>
-                            <child>
-                              <object class="GtkHBox" id="hbox7">
-                                <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label13">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Radius size:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkHScale" id="hscale2">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment_radius</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="position">4</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkHBox" id="hbox9">
-                                <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label14">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Border size:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkHScale" id="hscale1">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment_border</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="position">5</property>
-                              </packing>
-                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
                     <child type="label">
-                      <object class="GtkLabel" id="label4">
+                      <object class="GtkLabel" id="label8">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">&lt;b&gt;Graphical&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -346,7 +303,7 @@
                 <property name="border_width">10</property>
                 <property name="spacing">10</property>
                 <child>
-                  <object class="GtkFrame" id="edge_list">
+                  <object class="GtkFrame" id="property_list">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
                     <signal name="button_press_event" handler="mouse_press"/>
@@ -361,9 +318,9 @@
                             <property name="hscrollbar_policy">never</property>
                             <property name="vscrollbar_policy">automatic</property>
                             <child>
-                              <object class="GtkTreeView" id="treeview_edges">
+                              <object class="GtkTreeView" id="treeview_properties">
                                 <property name="can_focus">True</property>
-                                <property name="model">liststore_edges</property>
+                                <property name="model">liststore_properties</property>
                                 <property name="reorderable">True</property>
                                 <property name="rubber_banding">True</property>
                                 <property name="enable_grid_lines">vertical</property>
@@ -371,7 +328,7 @@
                                 <signal name="key_press_event" handler="keyboard_press"/>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-                                    <property name="title">ID</property>
+                                    <property name="title">Identifier</property>
                                     <property name="clickable">True</property>
                                     <property name="reorderable">True</property>
                                     <property name="sort_indicator">True</property>
@@ -379,6 +336,7 @@
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext1"/>
                                       <attributes>
+                                        <attribute name="editable">1</attribute>
                                         <attribute name="text">0</attribute>
                                       </attributes>
                                     </child>
@@ -386,7 +344,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                                    <property name="title">Vertex1</property>
+                                    <property name="title">Value</property>
                                     <property name="clickable">True</property>
                                     <property name="reorderable">True</property>
                                     <property name="sort_indicator">True</property>
@@ -394,22 +352,8 @@
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext2"/>
                                       <attributes>
+                                        <attribute name="editable">1</attribute>
                                         <attribute name="text">1</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn" id="treeviewcolumn3">
-                                    <property name="title">Vertex2</property>
-                                    <property name="clickable">True</property>
-                                    <property name="reorderable">True</property>
-                                    <property name="sort_indicator">True</property>
-                                    <property name="sort_column_id">2</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext3"/>
-                                      <attributes>
-                                        <attribute name="text">2</attribute>
                                       </attributes>
                                     </child>
                                   </object>
@@ -423,7 +367,7 @@
                     <child type="label">
                       <object class="GtkLabel" id="label15">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Edge List&lt;/b&gt;</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Custom Properties&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
                       </object>
                     </child>
@@ -440,7 +384,7 @@
             <child type="tab">
               <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">Edges</property>
+                <property name="label" translatable="yes">Properties</property>
               </object>
               <packing>
                 <property name="position">1</property>
@@ -481,24 +425,9 @@
       </object>
     </child>
   </object>
-  <object class="GtkAdjustment" id="adjustmentX">
-    <property name="upper">4096</property>
-    <property name="step_increment">1</property>
-    <signal name="value_changed" handler="positionx_changed"/>
-  </object>
-  <object class="GtkAdjustment" id="adjustmentY">
-    <property name="upper">4096</property>
-    <property name="step_increment">1</property>
-    <signal name="value_changed" handler="positiony_changed"/>
-  </object>
-  <object class="GtkAdjustment" id="adjustment_radius">
+  <object class="GtkAdjustment" id="adjustment_width">
     <property name="upper">1000</property>
     <property name="step_increment">1</property>
-    <signal name="value_changed" handler="radius_scale_changed"/>
-  </object>
-  <object class="GtkAdjustment" id="adjustment_border">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <signal name="value_changed" handler="border_scale_changed"/>
+    <signal name="value_changed" handler="width_scale_changed"/>
   </object>
 </interface>

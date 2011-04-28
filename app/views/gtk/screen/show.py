@@ -291,12 +291,36 @@ class ScreenShow(object):
         tab, i = self.current_tab()
         tab.zoom_default()
 
+    def menu_edit_horizontal_align(self, widget):
+        tab, page_number = self.current_tab()
+
+        if tab.graph.selected_vertices() < 2:
+            return False
+       
+        mean = int(sum(map(lambda x: x.position[1], tab.graph.selected_vertices())) / len(tab.graph.selected_vertices()))
+        for vertex in tab.graph.selected_vertices():
+            vertex.position[1] = mean
+
+        tab.queue_draw()                                    
+
+    def menu_edit_vertical_align(self, widget):
+        tab, page_number = self.current_tab()
+
+        if tab.graph.selected_vertices() < 2:
+            return False
+
+        mean = int(sum(map(lambda x: x.position[0], tab.graph.selected_vertices())) / len(tab.graph.selected_vertices()))
+
+        for vertex in tab.graph.selected_vertices():
+            vertex.position[0] = mean
+
+        tab.queue_draw()
+
     def menu_view_fullscreen(self, widget):
         if widget.get_active():
             self.screen.fullscreen()
         else:
             self.screen.unfullscreen()
-
 
     def menu_help_about(self, widget):
         AboutShow(self.builder)
@@ -306,6 +330,8 @@ class ScreenShow(object):
 
         key = event.keyval
         direction = None
+
+        from gtk.gdk import CONTROL_MASK
 
         if key == gtk.keysyms.Right:
             direction = "right"
@@ -320,6 +346,9 @@ class ScreenShow(object):
                 tab.action = None
             else:
                 tab.controller.clear_selection(tab.graph)
+        elif (event.state & CONTROL_MASK):
+            if key == gtk.keysyms.A or key == gtk.keysyms.a:
+                tab.controller.select_all(tab.graph)
 
         if tab and direction:
             tab.controller.move_selection(tab.graph, direction)

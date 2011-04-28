@@ -141,7 +141,6 @@ class GraphArea(DrawingArea):
                     cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
                     cairo.set_line_width(edge.width)
                     
-                    cairo.set_source_rgb(0, 0, 0)
                     cairo.move_to(x1, y1)
                     
                     cairo.curve_to(x3, y3, x4, y4, x2, y2)
@@ -173,22 +172,24 @@ class GraphArea(DrawingArea):
             self.draw_arrow(cairo, (x1, y1), (x2, y2))
 
     def draw_graph(self, cairo, area):
+        #Creating atributte visited for each edge
         for edge in self.graph.edges:
-            edge.visited = False
+            edge.system_visited = False
 
         for vertex in self.graph.vertices:
             self.draw_vertex(cairo, area, vertex)
 
         for vertex in self.graph.vertices:
             for edge in vertex.touching_edges:
-                if not edge.visited:
+                if not edge.system_visited:
                     if euclidean_distance(edge.start.position, edge.end.position) < (edge.start.size / 2 + edge.start.border_size + edge.end.size / 2 + edge.end.border_size):
                         self.draw_edge_straight(cairo, edge)
                     else:
                         self.draw_edges(cairo, area, edge.start, edge.end)
 
+        #Removing atributte visited from each edge
         for edge in self.graph.edges:
-            edge.visited = None
+            del edge.system_visited
 
         if self.adding_edge:
             cairo.set_source_rgb(0.7, 0.7, 0.7)

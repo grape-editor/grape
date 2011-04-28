@@ -43,6 +43,11 @@ class GraphsController(object):
         else:
             vertex.select()
 
+    def select_all(self, graph):
+        graph.selected_vertices_cache = None
+        for vertex in graph.vertices:
+            vertex.select()
+
     def select_vertex(self, graph, vertex):
         graph.selected_vertices_cache = None
         vertex.select()
