@@ -1,4 +1,4 @@
-from app.views.qt4.screen.show_ui import Ui_ScreenShow
+from app.views.qt4.screen.show import ScreenShow
 
 from PyQt4 import QtCore, QtGui
 import os
@@ -19,9 +19,7 @@ class ApplicationLayout(object):
         sys.exit(self.app.exec_())
 
     def screen_create(self):
-        screen = QtGui.QMainWindow()
-        ui = Ui_ScreenShow()
-        ui.setupUi(screen)
+        screen = ScreenShow()
         screen.show()
 
         self.screens.append(screen)
