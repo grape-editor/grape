@@ -1,4 +1,5 @@
 from app.views.qt4.screen.show_ui import Ui_ScreenShow
+from app.views.qt4.graph.show import GraphShow
 from PyQt4 import QtCore, QtGui
 
 class ScreenShow(QtGui.QMainWindow):
@@ -10,10 +11,10 @@ class ScreenShow(QtGui.QMainWindow):
     
     def on_actionNew_activated(self, checked=None):
         if checked == None:
-            scrollarea = QtGui.QScrollArea()     
-            b = QtGui.QPushButton('Close', self)
-            b.setGeometry(0, 0, 1000, 1000)
-            scrollarea.setWidget(b)
-            scrollarea.setAlignment(QtCore.Qt.AlignCenter)
+            graph = GraphShow()
             
-            self.ui.tabWidget.addTab(scrollarea, "xisde")
+            self.ui.tabWidget.addTab(graph, graph.graph.title)
+            
+            
+    def on_tabWidget_tabCloseRequested(self, number):
+        print "Ganhei"
