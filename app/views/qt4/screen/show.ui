@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ScreenShow</class>
+ <widget class="QMainWindow" name="ScreenShow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>536</width>
-    <height>367</height>
+    <width>640</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Grape</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../../resources/grape.qrc">
+    <normaloff>:/icons/icons/grape.ico</normaloff>:/icons/icons/grape.ico</iconset>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -53,19 +57,60 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>536</width>
+     <width>640</width>
      <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="separator"/>
     <addaction name="actionSave"/>
+    <addaction name="actionSave_as"/>
+    <addaction name="actionRever"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_vertex"/>
+    <addaction name="actionRemove_vertex"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_edge"/>
+    <addaction name="actionRemove_edge"/>
+    <addaction name="separator"/>
+    <addaction name="actionAlign_vertically"/>
+    <addaction name="actionAlign_horizontally"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionZoom_in"/>
+    <addaction name="actionZoom_out"/>
+    <addaction name="actionNormal_size"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullscreen"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -84,26 +129,308 @@
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionZoom_in"/>
+   <addaction name="actionZoom_out"/>
+   <addaction name="actionNormal_size"/>
+   <addaction name="separator"/>
+   <addaction name="actionAlign_vertically"/>
+   <addaction name="actionAlign_horizontally"/>
   </widget>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-open.svg</normaloff>:/icons/icons/actions/24/gtk-open.svg</iconset>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionNew">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/icons/actions/24/gtk-new.svg</normalon>
+    </iconset>
+   </property>
    <property name="text">
     <string>New</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionSave">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-save.svg</normaloff>:/icons/icons/actions/24/gtk-save.svg</iconset>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionSave_as">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-save-as.svg</normaloff>:/icons/icons/actions/24/gtk-save-as.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Save as...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRever">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-revert-to-saved-rtl.svg</normaloff>:/icons/icons/actions/24/gtk-revert-to-saved-rtl.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Revert</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-close.svg</normaloff>:/icons/icons/actions/24/gtk-close.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-quit.svg</normaloff>:/icons/icons/actions/24/gtk-quit.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-undo-ltr.svg</normaloff>:/icons/icons/actions/24/gtk-undo-ltr.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-redo-ltr.svg</normaloff>:/icons/icons/actions/24/gtk-redo-ltr.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAdd_vertex">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-add.svg</normaloff>:/icons/icons/actions/24/gtk-add.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Add vertex</string>
+   </property>
+   <property name="shortcut">
+    <string>V</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRemove_vertex">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-remove.svg</normaloff>:/icons/icons/actions/24/gtk-remove.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Remove vertex</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+V</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAdd_edge">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-add.svg</normaloff>:/icons/icons/actions/24/gtk-add.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Add edge</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionRemove_edge">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-remove.svg</normaloff>:/icons/icons/actions/24/gtk-remove.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Remove edge</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+E</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAlign_vertically">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/object-flip-vertical.svg</normaloff>:/icons/icons/actions/24/object-flip-vertical.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Align vertically</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAlign_horizontally">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/object-flip-horizontal.svg</normaloff>:/icons/icons/actions/24/object-flip-horizontal.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Align horizontally</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionZoom_in">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-zoom-in.svg</normaloff>:/icons/icons/actions/24/gtk-zoom-in.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom in</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionZoom_out">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-zoom-out.svg</normaloff>:/icons/icons/actions/24/gtk-zoom-out.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionNormal_size">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-zoom-100.svg</normaloff>:/icons/icons/actions/24/gtk-zoom-100.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Normal size</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fullscreen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../../../../resources/grape.qrc">
+     <normaloff>:/icons/icons/actions/24/gtk-about.svg</normaloff>:/icons/icons/actions/24/gtk-about.svg</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../../resources/grape.qrc"/>
+ </resources>
  <connections/>
 </ui>

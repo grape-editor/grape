@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo -en "Generating resources file...\t"
+pyrcc4 resources/grape.qrc -py2 -o resources/grape_rc.py 2>/dev/null 1>/dev/null
+echo "Done."
+cd app/views/qt4/ 2>/dev/null 1>/dev/null
+
+for file in `find -iname "*.ui*"` ; do
+	f=${file%.*}
+	echo -en "Compiling ${f}.ui to ${f}_ui.py...\t"
+	pyuic4 -o ${f}_ui.py $f.ui 2>/dev/null 1>/dev/null
+	sed -i 's/import grape_rc/import resources.grape_rc/g' ${f}_ui.py 2>/dev/null 1>/dev/null
+	echo "Done."
+done
