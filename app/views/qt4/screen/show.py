@@ -17,3 +17,6 @@ class ScreenShow(QtGui.QMainWindow):
             scrollarea.setAlignment(QtCore.Qt.AlignCenter)
             
             self.ui.tabWidget.addTab(scrollarea, "xisde")
+    
+    def on_tabWidget_tabCloseRequested(self, number):
+        print number
