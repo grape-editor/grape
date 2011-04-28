@@ -14,7 +14,7 @@ class ScreenShow(QtGui.QMainWindow):
             graph = GraphShow()
             
             self.ui.tabWidget.addTab(graph, graph.graph.title)
-            
-            
+    
     def on_tabWidget_tabCloseRequested(self, number):
-        print "Ganhei"
+        print number
+        

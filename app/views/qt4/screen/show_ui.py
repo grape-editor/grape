@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './screen/show.ui'
+# Form implementation generated from reading ui file 'show.ui'
 #
 # Created: Thu Apr 28 19:02:23 2011
 #      by: PyQt4 UI code generator 4.8.3
@@ -24,6 +24,7 @@ class Ui_ScreenShow(object):
         ScreenShow.setDocumentMode(False)
         ScreenShow.setDockNestingEnabled(False)
         ScreenShow.setDockOptions(QtGui.QMainWindow.AllowTabbedDocks|QtGui.QMainWindow.AnimatedDocks)
+        ScreenShow.setUnifiedTitleAndToolBarOnMac(True)
         self.centralwidget = QtGui.QWidget(ScreenShow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -38,9 +39,12 @@ class Ui_ScreenShow(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         ScreenShow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(ScreenShow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 22))
+        self.menubar.setDefaultUp(False)
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
+        self.menuFile.setTearOffEnabled(False)
+        self.menuFile.setSeparatorsCollapsible(False)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
         self.menuEdit = QtGui.QMenu(self.menubar)
         self.menuEdit.setObjectName(_fromUtf8("menuEdit"))
@@ -53,7 +57,6 @@ class Ui_ScreenShow(object):
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         ScreenShow.setStatusBar(self.statusbar)
         self.toolBar = QtGui.QToolBar(ScreenShow)
-        self.toolBar.setFloatable(True)
         self.toolBar.setObjectName(_fromUtf8("toolBar"))
         ScreenShow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
         self.actionOpen = QtGui.QAction(ScreenShow)
@@ -224,7 +227,6 @@ class Ui_ScreenShow(object):
         self.menuEdit.setTitle(QtGui.QApplication.translate("ScreenShow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuView.setTitle(QtGui.QApplication.translate("ScreenShow", "&View", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("ScreenShow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
-        self.toolBar.setWindowTitle(QtGui.QApplication.translate("ScreenShow", "toolBar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setText(QtGui.QApplication.translate("ScreenShow", "Open", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setShortcut(QtGui.QApplication.translate("ScreenShow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew.setText(QtGui.QApplication.translate("ScreenShow", "New", None, QtGui.QApplication.UnicodeUTF8))
