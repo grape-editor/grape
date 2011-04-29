@@ -47,7 +47,7 @@
   <customwidget>
    <class>GraphView</class>
    <extends>QGraphicsView</extends>
-   <header>app.views.qt4.graph.graph_view</header>
+   <header>app.views.qt4.graph.view</header>
   </customwidget>
  </customwidgets>
  <resources/>

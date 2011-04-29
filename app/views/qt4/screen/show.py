@@ -9,12 +9,89 @@ class ScreenShow(QtGui.QMainWindow):
         self.ui = Ui_ScreenShow()
         self.ui.setupUi(self)
     
+    def on_tabWidget_tabCloseRequested(self, number):
+        self.ui.tabWidget.removeTab(number)
+
+    def on_actionOpen_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
     def on_actionNew_triggered(self, checked=None):
         if checked == None:
             graph = GraphShow()
             
             self.ui.tabWidget.addTab(graph, graph.graph.title)
-    
-    def on_tabWidget_tabCloseRequested(self, number):
-        print number
-        
+            self.ui.tabWidget.setCurrentWidget(graph)
+            
+    def on_actionSave_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionSave_as_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionRever_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionClose_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionQuit_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionUndo_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionRedo_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionAdd_vertex_triggered(self, checked=None):
+        if checked == None:
+            self.ui.tabWidget.currentWidget().set_action("add_vertex")
+            
+    def on_actionRemove_vertex_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionAdd_edge_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionRemove_edge_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionAlign_vertically_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionAlign_horizontally_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionZoom_in_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionZoom_out_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionNormal_size_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionFullscreen_triggered(self, checked=None):
+        if checked == None:
+            pass
+            
+    def on_actionAbout_triggered(self, checked=None):
+        if checked == None:
+            pass
+            

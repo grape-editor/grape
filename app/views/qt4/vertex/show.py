@@ -2,8 +2,17 @@ from PyQt4 import QtCore, QtGui
 
 class VertexShow(QtGui.QGraphicsItem):
     
-    def __init__(self):
+    def __init__(self, vertex):
         QtGui.QGraphicsItem.__init__(self)
+        
+        self.vertex = vertex
+        
+        self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
+        self.setFlag(QtGui.QGraphicsItem.ItemSendsGeometryChanges);
+        self.setCacheMode(QtGui.QGraphicsItem.DeviceCoordinateCache);
+        self.setZValue(-1);
+        
+        self.setPos(vertex.position[0], vertex.position[1])
     
     def boundingRect(self):
         adjust = 2
@@ -28,3 +37,11 @@ class VertexShow(QtGui.QGraphicsItem):
         painter.setBrush(gradient)
         painter.setPen(QtGui.QPen(QtCore.Qt.black, 0))
         painter.drawEllipse(-10, -10, 20, 20)
+    
+    def mousePressEvent(self, event):
+        self.update()
+        QtGui.QGraphicsItem.mousePressEvent(self, event)
+
+    def mouseReleaseEvent(self, event):
+        self.update()
+        QtGui.QGraphicsItem.mouseReleaseEvent(self, event)

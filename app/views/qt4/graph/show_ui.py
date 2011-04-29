@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/luan/Code/python/grape/script/../app/views/qt4/graph/show.ui'
 #
-# Created: Fri Apr 29 13:12:59 2011
+# Created: Fri Apr 29 14:53:14 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,4 +36,4 @@ class Ui_GraphShow(object):
     def retranslateUi(self, GraphShow):
         GraphShow.setWindowTitle(QtGui.QApplication.translate("GraphShow", "Form", None, QtGui.QApplication.UnicodeUTF8))
 
-from app.views.qt4.graph.graph_view import GraphView
+from app.views.qt4.graph.view import GraphView

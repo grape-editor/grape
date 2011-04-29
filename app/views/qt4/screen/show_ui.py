@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/luan/Code/python/grape/script/../app/views/qt4/screen/show.ui'
 #
-# Created: Fri Apr 29 13:12:59 2011
+# Created: Fri Apr 29 14:53:14 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -227,6 +227,7 @@ class Ui_ScreenShow(object):
         self.menuEdit.setTitle(QtGui.QApplication.translate("ScreenShow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuView.setTitle(QtGui.QApplication.translate("ScreenShow", "&View", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("ScreenShow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.toolBar.setWindowTitle(QtGui.QApplication.translate("ScreenShow", "Show toolbar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setText(QtGui.QApplication.translate("ScreenShow", "Open", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpen.setShortcut(QtGui.QApplication.translate("ScreenShow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew.setText(QtGui.QApplication.translate("ScreenShow", "New", None, QtGui.QApplication.UnicodeUTF8))

@@ -17,5 +17,8 @@ class GraphShow(QtGui.QWidget):
 
         self.graph = Graph()
         
-        ui = Ui_GraphShow()
-        ui.setupUi(self)
+        self.ui = Ui_GraphShow()
+        self.ui.setupUi(self)
+    
+    def set_action(self, action):
+        self.ui.graphicsView.set_action(action)
