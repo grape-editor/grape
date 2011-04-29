@@ -1,14 +1,44 @@
-#!/bin/bash
+#!/usr/bin/python -B
 
-echo -en "Generating resources file...\t"
-pyrcc4 resources/grape.qrc -py2 -o resources/grape_rc.py 2>/dev/null 1>/dev/null
-echo "Done."
-cd app/views/qt4/ 2>/dev/null 1>/dev/null
+import os
+import sys
+import fileinput
 
-for file in `find -iname "*.ui*"` ; do
-	f=${file%.*}
-	echo -en "Compiling ${f}.ui to ${f}_ui.py...\t"
-	pyuic4 -o ${f}_ui.py $f.ui 2>/dev/null 1>/dev/null
-	sed -i 's/import grape_rc/import resources.grape_rc/g' ${f}_ui.py 2>/dev/null 1>/dev/null
-	echo "Done."
-done
+def replace_all(file, searchExp, replaceExp):
+    for line in fileinput.input(file, inplace=1):
+        if searchExp in line:
+            line = line.replace(searchExp,replaceExp)
+        sys.stdout.write(line)
+
+print "Generating resources file...\t",
+
+path = os.path.abspath(os.path.dirname(sys.argv[0]))
+path = os.path.join(path, '..')
+
+respath = os.path.join(path, 'resources')
+ressrc = os.path.join(respath, 'grape.qrc')
+resdst = os.path.join(respath, 'grape_rc.py')
+
+cmd = 'pyrcc4 ' + ressrc + ' -py2 -o ' + resdst + ''
+os.system(cmd)
+
+print "Done."
+
+path = os.path.join(path, 'app', 'views', 'qt4')
+
+for dir in os.listdir(path):
+    dpath = os.path.join(path, dir)
+    
+    if not os.path.isdir(dpath):
+        continue
+        
+    for file in os.listdir(dpath):
+        fpath = os.path.join(dpath, file)
+        basename, extension = os.path.splitext(fpath)
+
+        if extension == '.ui':
+            print "Compiling " + fpath + " to " + basename + "_ui.py...\t",
+            cmd = 'pyuic4 -o ' + basename + '_ui.py ' + fpath
+            os.system(cmd)
+            replace_all(basename + "_ui.py", "import grape_rc", "import resources.grape_rc")
+            print "Done."

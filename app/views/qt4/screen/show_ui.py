@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'show.ui'
+# Form implementation generated from reading ui file '/home/luan/Code/python/grape/script/../app/views/qt4/screen/show.ui'
 #
-# Created: Thu Apr 28 19:02:23 2011
+# Created: Fri Apr 29 13:12:59 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -39,7 +39,7 @@ class Ui_ScreenShow(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         ScreenShow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(ScreenShow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 25))
         self.menubar.setDefaultUp(False)
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)

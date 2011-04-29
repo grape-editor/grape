@@ -19,4 +19,3 @@ class GraphShow(QtGui.QWidget):
         
         ui = Ui_GraphShow()
         ui.setupUi(self)
-        

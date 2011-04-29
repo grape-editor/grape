@@ -1,4 +1,4 @@
-all: run
+all: qt4 run
 
 run:
 	script/grape

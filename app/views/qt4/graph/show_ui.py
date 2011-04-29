@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './graph/show.ui'
+# Form implementation generated from reading ui file '/home/luan/Code/python/grape/script/../app/views/qt4/graph/show.ui'
 #
-# Created: Thu Apr 28 19:02:23 2011
+# Created: Fri Apr 29 13:12:59 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -22,8 +22,11 @@ class Ui_GraphShow(object):
         self.gridLayout.setMargin(0)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.graphicsView = QtGui.QGraphicsView(GraphShow)
-        self.graphicsView.setSceneRect(QtCore.QRectF(0.0, 0.0, 500.0, 500.0))
+        self.graphicsView = GraphView(GraphShow)
+        self.graphicsView.setAutoFillBackground(True)
+        self.graphicsView.setSceneRect(QtCore.QRectF(-2500.0, -2500.0, 5000.0, 5000.0))
+        self.graphicsView.setRenderHints(QtGui.QPainter.Antialiasing|QtGui.QPainter.TextAntialiasing)
+        self.graphicsView.setResizeAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
         self.graphicsView.setObjectName(_fromUtf8("graphicsView"))
         self.gridLayout.addWidget(self.graphicsView, 0, 0, 1, 1)
 
@@ -33,3 +36,4 @@ class Ui_GraphShow(object):
     def retranslateUi(self, GraphShow):
         GraphShow.setWindowTitle(QtGui.QApplication.translate("GraphShow", "Form", None, QtGui.QApplication.UnicodeUTF8))
 
+from app.views.qt4.graph.graph_view import GraphView

@@ -9,7 +9,7 @@ class ScreenShow(QtGui.QMainWindow):
         self.ui = Ui_ScreenShow()
         self.ui.setupUi(self)
     
-    def on_actionNew_activated(self, checked=None):
+    def on_actionNew_triggered(self, checked=None):
         if checked == None:
             graph = GraphShow()
             
