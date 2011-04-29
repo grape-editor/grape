@@ -8,35 +8,33 @@ class VertexShow(QtGui.QGraphicsItem):
         self.vertex = vertex
         
         self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
-        self.setFlag(QtGui.QGraphicsItem.ItemSendsGeometryChanges);
+#        self.setFlag(QtGui.QGraphicsItem.ItemSendsGeometryChanges);
         self.setCacheMode(QtGui.QGraphicsItem.DeviceCoordinateCache);
         self.setZValue(-1);
         
         self.setPos(vertex.position[0], vertex.position[1])
     
     def boundingRect(self):
+        self.vertex.size = 30
+        radius = self.vertex.size / 2
         adjust = 2
-        return QtCore.QRectF(-10 - adjust, -10 - adjust, 23 + adjust, 23 + adjust)
+        return QtCore.QRectF(-radius - adjust, -radius - adjust, self.vertex.size + adjust, self.vertex.size + adjust)
     
     def paint(self, painter, option, widget):
-        painter.setPen(QtCore.Qt.NoPen)
-        painter.setBrush(QtCore.Qt.darkGray)
-        painter.drawEllipse(-7, -7, 20, 20)
-        
-        gradient = QtGui.QRadialGradient(-3, -3, 10)
-        
+        color = None
         if (option.state & QtGui.QStyle.State_Sunken):
-            gradient.setCenter(3, 3)
-            gradient.setFocalPoint(3, 3)
-            gradient.setColorAt(1, QtGui.QColor(QtCore.Qt.yellow).light(120))
-            gradient.setColorAt(0, QtGui.QColor(QtCore.Qt.darkYellow).light(120))
+            #TODO - Global configuration here
+            color = QtGui.QColor.fromRgbF(0, 1, 0)
         else:
-            gradient.setColorAt(0, QtCore.Qt.yellow)
-            gradient.setColorAt(1, QtCore.Qt.darkYellow)
+            color = QtGui.QColor.fromRgbF(self.vertex.fill_color[0], self.vertex.fill_color[0], self.vertex.fill_color[0])
+        
+        self.border_size = 2
+        self.vertex.size = 30
+        radius = self.vertex.size / 2
 
-        painter.setBrush(gradient)
-        painter.setPen(QtGui.QPen(QtCore.Qt.black, 0))
-        painter.drawEllipse(-10, -10, 20, 20)
+        painter.setBrush(color)
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, self.vertex.border_size))
+        painter.drawEllipse(-radius, -radius, self.vertex.size, self.vertex.size)
     
     def mousePressEvent(self, event):
         self.update()
