@@ -1,8 +1,9 @@
+from app.controllers.action_controller import ActionController
 from app.models.vertex import Vertex
 from app.models.edge import Edge
 
 
-class GraphsController(object):
+class GraphsController(ActionController):
     def add_vertex(self, graph, position):
         vertex = Vertex(graph.vertex_id, position)
         graph.vertices.append(vertex)

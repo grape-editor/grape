@@ -1,55 +1,31 @@
-class Vertex(object):
+from app.models.active_model import ActiveModel
 
-    def __init__(self, id, position):
-        self.id = id
-        self.position = position
-        self.adjacencies = []
+
+class Vertex(ActiveModel):
+
+    def __init__(self, params):
+        self.id = None
+        self.position = [0 ,0]
+        
         # TODO - Configuration file
-        self.title = str(id)
+        self.title = ""
         self.fill_color = [1, 1, 1]
         self.border_color = [0, 0, 0]
         self.border_size = 2
         self.size = 30
-        self.selected = False
+        
+        self.adjacencies = []
         self.touching_edges = []
-
-    def select(self):
-        self.selected = True
-
-    def deselect(self):
+        
         self.selected = False
 
+        ActiveModel.__init__(self, params)        
+        
     def has_edge(self, edge):
         return edge in self.adjacencies
 
     def touches_edge(self, edge):
         return edge in self.touching_edges
-
-    def add_edge(self, edge):
-        if not self.has_edge(edge):
-            self.adjacencies.append(edge)
-
-    def remove_edge(self, edge):
-        if self.has_edge(edge):
-            if edge.start.touches_edge(edge):
-                edge.start.touching_edges.remove(edge)
-
-            if edge.end.touches_edge(edge):
-                edge.end.touching_edges.remove(edge)
-
-            self.adjacencies.remove(edge)
-            del edge
-
-    def clear_adjacencies(self):
-        for e in self.adjacencies:
-            start = e.start
-            end = e.end
-            if start != self:
-                start.remove_edge(e)
-            if end != self:
-                end.remove_edge(e)
-
-        del self.adjacencies[:]
 
     def nearest_vertices(self, neighbor, axis):
         next_vertex = None

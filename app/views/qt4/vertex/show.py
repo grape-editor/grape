@@ -8,9 +8,8 @@ class VertexShow(QtGui.QGraphicsItem):
         self.vertex = vertex
         
         self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
-#        self.setFlag(QtGui.QGraphicsItem.ItemSendsGeometryChanges);
-        self.setCacheMode(QtGui.QGraphicsItem.DeviceCoordinateCache);
-        self.setZValue(-1);
+        self.setCacheMode(QtGui.QGraphicsItem.DeviceCoordinateCache)
+        self.setZValue(-1)
         
         self.setPos(vertex.position[0], vertex.position[1])
     

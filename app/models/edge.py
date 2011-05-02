@@ -1,13 +1,25 @@
-class Edge(object):
-    def __init__(self, id, start, end, bidirectional):
+from app.models.active_model import ActiveModel
+
+
+class Edge(ActiveModel):
+    validate = {
+        'presence' : {'id': True, 'position': True},
+        'length'   : {'title': 25, 'name': 11}
+    }
+
+    def __init__(self, params):
+        self.id = None
+    
         self.title = ""
         self.color = [0, 0, 0]
         self.width = 1
-        self.id = id
-        self.start = start
-        self.end = end
-        self.bidirectional = bidirectional
-
+        
+        self.start = None
+        self.end = None
+        self.bidirectional = None
+        
+        ActiveModel.__init__(self, params)
+        
         start.touching_edges.append(self)
         end.touching_edges.append(self)
 
