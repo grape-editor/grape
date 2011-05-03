@@ -30,7 +30,6 @@ class VertexController(ActionController):
                 edge.end.touching_edges.remove(edge)
 
             vertex.adjacencies.remove(edge)
-            del(edge)
 
     def clear_adjacencies(self, vertex):
         for e in vertex.adjacencies:
