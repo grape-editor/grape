@@ -2,7 +2,7 @@ from app.controllers.action_controller import ActionController
 from app.models.vertex import Vertex
 
 
-class VertexController(ActionController):
+class VerticesController(ActionController):
 
     def create(self, params):
         vertex = Vertex(params)

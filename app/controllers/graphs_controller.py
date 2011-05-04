@@ -1,5 +1,5 @@
 from app.controllers.action_controller import ActionController
-from app.controllers.vertices_controller import VericesController
+from app.controllers.vertices_controller import VerticesController
 from app.controllers.edges_controller import EdgesController
 from app.models.vertex import Vertex
 from app.models.edge import Edge
@@ -8,11 +8,16 @@ from app.models.edge import Edge
 class GraphsController(ActionController):
 
     def __init__(self):
-        self.vertices_cotroller = VericesController()
+        self.vertices_controller = VerticesController()
         self.edges_controller = EdgesController()
         
     def add_vertex(self, graph, position):
-        params = {'id': graph.vertex_id, 'title': str(graph.vertex_id)}
+        params = {
+            'id': graph.vertex_id,
+            'title': str(graph.vertex_id),
+            'position': position
+        }
+        
         vertex = self.vertices_controller.create(params)
         graph.vertices.append(vertex)
         graph.vertex_id += 1

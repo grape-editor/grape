@@ -8,10 +8,17 @@ class VertexShow(QtGui.QGraphicsItem):
         self.vertex = vertex
         
         self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
+        self.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
+        self.setFlag(QtGui.QGraphicsItem.ItemSendsGeometryChanges)
         self.setCacheMode(QtGui.QGraphicsItem.DeviceCoordinateCache)
         self.setZValue(-1)
         
         self.setPos(vertex.position[0], vertex.position[1])
+
+        self.title = QtGui.QGraphicsTextItem(self, self.scene())
+        self.title.setPlainText(self.vertex.title)
+        self.title.adjustSize()
+        self.title.setPos(-(self.title.boundingRect().width() / 2), -(self.title.boundingRect().height() / 2))
     
     def boundingRect(self):
         self.vertex.size = 30
@@ -21,7 +28,7 @@ class VertexShow(QtGui.QGraphicsItem):
     
     def paint(self, painter, option, widget):
         color = None
-        if (option.state & QtGui.QStyle.State_Sunken):
+        if (self.isSelected()):
             #TODO - Global configuration here
             color = QtGui.QColor.fromRgbF(0, 1, 0)
         else:

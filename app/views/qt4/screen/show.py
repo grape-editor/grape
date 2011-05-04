@@ -53,7 +53,9 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionAdd_vertex_triggered(self, checked=None):
         if checked == None:
-            self.ui.tabWidget.currentWidget().set_action("add_vertex")
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("add_vertex")
             
     def on_actionRemove_vertex_triggered(self, checked=None):
         if checked == None:
