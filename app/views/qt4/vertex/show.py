@@ -41,7 +41,15 @@ class VertexShow(QtGui.QGraphicsItem):
         painter.setBrush(color)
         painter.setPen(QtGui.QPen(QtCore.Qt.black, self.vertex.border_size))
         painter.drawEllipse(-radius, -radius, self.vertex.size, self.vertex.size)
-    
+
+    def itemChange(self, change, value):
+        if change == QtGui.QGraphicsItem.ItemPositionHasChanged:
+            pos = value.toPointF()
+            self.vertex.position[0] = pos.x()
+            self.vertex.position[1] = pos.y()
+            
+        return QtGui.QGraphicsItem.itemChange(self, change, value)
+
     def mousePressEvent(self, event):
         self.update()
         QtGui.QGraphicsItem.mousePressEvent(self, event)

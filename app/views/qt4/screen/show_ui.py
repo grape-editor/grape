@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/luan/Code/python/grape/script/../app/views/qt4/screen/show.ui'
 #
-# Created: Tue May  3 18:01:06 2011
+# Created: Mon May  9 20:17:50 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -39,7 +39,7 @@ class Ui_ScreenShow(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         ScreenShow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(ScreenShow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 640, 29))
         self.menubar.setDefaultUp(False)
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)

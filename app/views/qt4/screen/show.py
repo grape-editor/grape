@@ -3,9 +3,10 @@ from app.views.qt4.graph.show import GraphShow
 from PyQt4 import QtCore, QtGui
 
 class ScreenShow(QtGui.QMainWindow):
-    def __init__(self):
+    def __init__(self, parent):
         QtGui.QMainWindow.__init__(self)
         
+        self.parent = parent
         self.ui = Ui_ScreenShow()
         self.ui.setupUi(self)
     
@@ -37,11 +38,11 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionClose_triggered(self, checked=None):
         if checked == None:
-            pass
+            self.close()
             
     def on_actionQuit_triggered(self, checked=None):
         if checked == None:
-            pass
+            self.parent.app.closeAllWindows()
             
     def on_actionUndo_triggered(self, checked=None):
         if checked == None:
@@ -59,7 +60,9 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionRemove_vertex_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("remove_vertex")
             
     def on_actionAdd_edge_triggered(self, checked=None):
         if checked == None:
