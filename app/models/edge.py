@@ -1,5 +1,5 @@
 from app.models.active_model import ActiveModel
-
+from PyQt4 import QtCore, QtGui
 
 class Edge(ActiveModel):
     validate = {

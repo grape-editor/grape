@@ -13,7 +13,7 @@ class GraphScene(QtGui.QGraphicsScene):
         self.graph = Graph()
         self.graphs_controller = GraphsController()
         
-        self.rubberband = QtGui.QRubberBand(QtGui.QRubberBand.Rectangle)
+        self.rubberband = QtGui.QRubberBand(QtGui.QRubberBand.Line, self.parent())
         self.rubberband.pen = QtGui.QPen()
         self.rubberband.pen.setWidth(1)
 
@@ -24,12 +24,12 @@ class GraphScene(QtGui.QGraphicsScene):
         if self.itemAt(event.scenePos()):
             QtGui.QGraphicsScene.mousePressEvent(self, event)
         elif event.button() == QtCore.Qt.LeftButton:
-            self.rubberband.setGeometry(QtCore.QRect(event.screenPos(), QtCore.QSize()))
+            self.rubberband.setGeometry(QtCore.QRect(event.scenePos(), QtCore.QSize()))
             self.rubberband.show()
   
     def mouseMoveEvent(self, event):
         if self.rubberband.isVisible() and bool(event.buttons() & QtCore.Qt.LeftButton):
-            rect = QtCore.QRect(event.buttonDownScreenPos(QtCore.Qt.LeftButton), event.screenPos()).normalized()
+            rect = QtCore.QRect(event.buttonDownScenePos(QtCore.Qt.LeftButton), event.scenePos()).normalized()
             rectf = QtCore.QRectF(event.buttonDownScenePos(QtCore.Qt.LeftButton), event.scenePos()).normalized()
 
             self.rubberband.setGeometry(rect)
