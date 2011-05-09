@@ -3,24 +3,7 @@ from PyQt4 import QtCore, QtGui
 from app.controllers.graphs_controller import GraphsController
 from app.models.graph import Graph
 from app.views.qt4.vertex.show import VertexShow
-
-class MyRubberBand(QtGui.QRubberBand):
-    def __init__(self, s, p=0):
-        QtGui.QRubberBand.__init__(self, s, p)
- 
-    def paintEvent(self, event):
-        pen = QtGui.QPen(QtGui.QColor(0, 83, 235))
-        pen.setWidth(2)
-         
-        brush = QtGui.QBrush(QtGui.QColor(51, 122, 255))
-        
-        painter = QtGui.QPainter()
-        painter.begin(self)
-        painter.setPen(pen)
-        painter.setBrush(brush)
-        painter.setOpacity(0.5)
-        painter.drawRect(event.rect())
-        painter.end()
+from app.views.qt4.graph.selection_box import SelectionBox
 
 class GraphScene(QtGui.QGraphicsScene):
     
@@ -31,7 +14,7 @@ class GraphScene(QtGui.QGraphicsScene):
         self.graph = Graph()
         self.graphs_controller = GraphsController()
         
-        self.rubberband = MyRubberBand(QtGui.QRubberBand.Line, self.parent())
+        self.rubberband = SelectionBox(QtGui.QRubberBand.Line, self.parent())
 
     def set_action(self, action):
         self.action = action
