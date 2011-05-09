@@ -17,7 +17,14 @@ class GraphScene(QtGui.QGraphicsScene):
         self.rubberband = SelectionBox(QtGui.QRubberBand.Line, self.parent())
 
     def set_action(self, action):
+        if action == "remove_vertex" and len(self.selectedItems()) > 0:
+            map(self.remove_vertex, self.selectedItems())
+
         self.action = action
+        
+    def remove_vertex(self, v):
+        self.graphs_controller.remove_vertex(self.graph, v.vertex)
+        self.removeItem(v)
         
     def mousePressEvent(self, event):
         if self.itemAt(event.scenePos()):
@@ -59,6 +66,9 @@ class GraphScene(QtGui.QGraphicsScene):
                 vertex_show = VertexShow(vertex)
                 self.addItem(vertex_show)
                 self.set_action(None)
+            elif self.action == "remove_vertex":
+                QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
+                map(self.remove_vertex, self.selectedItems())
             elif self.action == None:
                 QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
         

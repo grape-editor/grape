@@ -19,13 +19,13 @@ class ApplicationLayout(object):
         sys.exit(self.app.exec_())
 
     def screen_create(self):
-        screen = ScreenShow()
+        screen = ScreenShow(self)
         screen.show()
 
         self.screens.append(screen)
 
         return screen
-
+    
     def translate(self):
         domain = "grape"
         current_path = os.path.dirname(__file__)
