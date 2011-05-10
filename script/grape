@@ -2,6 +2,7 @@
 
 import os
 import sys
+import getopt
 
 path = os.path.abspath(os.path.dirname(sys.argv[0]))
 path = os.path.join(path, '..')
@@ -9,8 +10,13 @@ path = os.path.join(path, '..')
 if not path in sys.path:
     sys.path.insert(0, path)
 
-from app.views.qt4.layout.application import ApplicationLayout
-
 if __name__ == "__main__":
-    grape = ApplicationLayout()
+   
+    if len(sys.argv) == 1:
+        from app.views.qt4.layout.application import ApplicationLayout
+    elif sys.argv[1] == "--gtk":
+        from app.views.gtk.layout.application import ApplicationLayout
+    elif sys.argv[1] == "--qt4":
+        from app.views.qt4.layout.application import ApplicationLayout
 
+    grape = ApplicationLayout()
