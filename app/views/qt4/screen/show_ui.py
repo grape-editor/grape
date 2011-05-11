@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/luan/Code/python/grape/script/../app/views/qt4/screen/show.ui'
 #
-# Created: Mon May  9 20:17:50 2011
+# Created: Tue May 10 21:11:04 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!

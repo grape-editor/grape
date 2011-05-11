@@ -31,7 +31,14 @@ class GraphsController(ActionController):
             graph.vertices.remove(vertex)
 
     def add_edge(self, graph, start, end):
-        edge = Edge(graph.edge_id, start, end, not graph.directed)
+        params = {
+            'id': graph.edge_id,
+            'start': start,
+            'end': end,
+            'bidirectional': False
+        }
+        
+        edge = self.edges_controller.create(params)
         graph.edges.append(edge)
         graph.edge_id += 1
 

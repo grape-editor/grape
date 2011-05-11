@@ -3,6 +3,7 @@ from PyQt4 import QtCore, QtGui
 from app.controllers.graphs_controller import GraphsController
 from app.models.graph import Graph
 from app.views.qt4.vertex.show import VertexShow
+from app.views.qt4.edge.show import EdgeShow
 from app.views.qt4.graph.selection_box import SelectionBox
 
 class GraphScene(QtGui.QGraphicsScene):
@@ -19,8 +20,19 @@ class GraphScene(QtGui.QGraphicsScene):
     def set_action(self, action):
         if action == "remove_vertex" and len(self.selectedItems()) > 0:
             map(self.remove_vertex, self.selectedItems())
-
-        self.action = action
+        elif action == "add_edge" and len(self.selectedItems()) > 1:
+            self.add_edges(self.selectedItems())
+        else:
+            self.action = action
+    
+    def add_edges(self, vertices):
+        for i in range(len(vertices)):
+            for j in range(i + 1, len(vertices)):
+                v1 = vertices[i].vertex
+                v2 = vertices[j].vertex
+                edge = self.graphs_controller.add_edge(self.graph, v1, v2)
+                edge_show = EdgeShow(vertices[i], vertices[j])
+                self.addItem(edge_show)
         
     def remove_vertex(self, v):
         self.graphs_controller.remove_vertex(self.graph, v.vertex)

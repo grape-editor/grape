@@ -66,7 +66,9 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionAdd_edge_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("add_edge")
             
     def on_actionRemove_edge_triggered(self, checked=None):
         if checked == None:

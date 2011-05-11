@@ -1,4 +1,5 @@
 from app.models.active_model import ActiveModel
+from app.controllers.vertices_controller import VerticesController
 from PyQt4 import QtCore, QtGui
 
 class Edge(ActiveModel):
@@ -18,15 +19,17 @@ class Edge(ActiveModel):
         self.end = None
         self.bidirectional = None
         
+        self.vertices_controller = VerticesController()
+        
         ActiveModel.__init__(self, params)
         
-        start.touching_edges.append(self)
-        end.touching_edges.append(self)
+        self.start.touching_edges.append(self)
+        self.end.touching_edges.append(self)
 
-        start.add_edge(self)
+        self.vertices_controller.add_edge(self.start, self)
 
         if self.bidirectional:
-            end.add_edge(self)
+            self.vertices_controller.add_edge(self.end, self)
 
     def touches(self, vertex):
         return vertex == self.start or vertex == self.end

@@ -36,8 +36,17 @@
      <property name="renderHints">
       <set>QPainter::Antialiasing|QPainter::TextAntialiasing</set>
      </property>
+     <property name="cacheMode">
+      <set>QGraphicsView::CacheBackground</set>
+     </property>
      <property name="resizeAnchor">
       <enum>QGraphicsView::AnchorUnderMouse</enum>
+     </property>
+     <property name="viewportUpdateMode">
+      <enum>QGraphicsView::SmartViewportUpdate</enum>
+     </property>
+     <property name="optimizationFlags">
+      <set>QGraphicsView::DontAdjustForAntialiasing|QGraphicsView::DontClipPainter|QGraphicsView::DontSavePainterState</set>
      </property>
     </widget>
    </item>

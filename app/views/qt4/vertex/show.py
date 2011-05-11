@@ -5,6 +5,8 @@ class VertexShow(QtGui.QGraphicsItem):
     def __init__(self, vertex):
         QtGui.QGraphicsItem.__init__(self)
         
+        self.edge_list = []
+        
         self.vertex = vertex
         
         self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
@@ -19,9 +21,12 @@ class VertexShow(QtGui.QGraphicsItem):
         self.title.setPlainText(self.vertex.title)
         self.title.adjustSize()
         self.title.setPos(-(self.title.boundingRect().width() / 2), -(self.title.boundingRect().height() / 2))
+        
+    def add_edge(self, edge):
+        self.edge_list.append(edge)
+        edge.adjust()
     
     def boundingRect(self):
-        self.vertex.size = 30
         radius = self.vertex.size / 2
         adjust = 2
         return QtCore.QRectF(-radius - adjust, -radius - adjust, self.vertex.size + adjust, self.vertex.size + adjust)
@@ -34,8 +39,6 @@ class VertexShow(QtGui.QGraphicsItem):
         else:
             color = QtGui.QColor.fromRgbF(self.vertex.fill_color[0], self.vertex.fill_color[0], self.vertex.fill_color[0])
         
-        self.border_size = 2
-        self.vertex.size = 30
         radius = self.vertex.size / 2
 
         painter.setBrush(color)
@@ -47,6 +50,9 @@ class VertexShow(QtGui.QGraphicsItem):
             pos = value.toPointF()
             self.vertex.position[0] = pos.x()
             self.vertex.position[1] = pos.y()
+            
+            for edge in self.edge_list:
+                edge.adjust()
             
         return QtGui.QGraphicsItem.itemChange(self, change, value)
 

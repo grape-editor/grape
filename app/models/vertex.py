@@ -12,7 +12,8 @@ class Vertex(ActiveModel):
         self.fill_color = [1, 1, 1]
         self.border_color = [0, 0, 0]
         self.border_size = 2
-        self.size = 30
+        import random
+        self.size = random.randint(20, 80)
         
         self.adjacencies = []
         self.touching_edges = []
