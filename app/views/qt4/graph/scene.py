@@ -16,7 +16,7 @@ class GraphScene(QtGui.QGraphicsScene):
         self.graphs_controller = GraphsController()
         
         self.rubberband = SelectionBox(QtGui.QRubberBand.Line, self.parent())
-
+ 
     def set_action(self, action):
         if action == "remove_vertex" and len(self.selectedItems()) > 0:
             map(self.remove_vertex, self.selectedItems())
@@ -24,7 +24,7 @@ class GraphScene(QtGui.QGraphicsScene):
             self.add_edges(self.selectedItems())
         else:
             self.action = action
-    
+
     def add_edges(self, vertices):
         for i in range(len(vertices)):
             for j in range(i + 1, len(vertices)):

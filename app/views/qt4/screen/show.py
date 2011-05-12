@@ -84,15 +84,22 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionZoom_in_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("zoom_in")
             
     def on_actionZoom_out_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("zoom_out")
             
     def on_actionNormal_size_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("normal_size")
+
             
     def on_actionFullscreen_triggered(self, checked=None):
         if checked == None:
