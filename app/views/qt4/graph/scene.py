@@ -31,7 +31,7 @@ class GraphScene(QtGui.QGraphicsScene):
                 v1 = vertices[i].vertex
                 v2 = vertices[j].vertex
                 edge = self.graphs_controller.add_edge(self.graph, v1, v2)
-                edge_show = EdgeShow(vertices[i], vertices[j])
+                edge_show = EdgeShow(edge, vertices[i], vertices[j])
                 self.addItem(edge_show)
         
     def remove_vertex(self, v):
@@ -39,7 +39,7 @@ class GraphScene(QtGui.QGraphicsScene):
         self.removeItem(v)
         
     def mousePressEvent(self, event):
-        if self.itemAt(event.scenePos()):
+        if self.itemAt(event.scenePos()) and self.itemAt(event.scenePos()).acceptedMouseButtons() != QtCore.Qt.NoButton:
             QtGui.QGraphicsScene.mousePressEvent(self, event)
         elif event.button() == QtCore.Qt.LeftButton:
             pos = self.parent().mapFromScene(event.scenePos())
@@ -83,4 +83,8 @@ class GraphScene(QtGui.QGraphicsScene):
                 map(self.remove_vertex, self.selectedItems())
             elif self.action == None:
                 QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
+                
+    def paint(self):
+      print 'oi'
+                  
         
