@@ -39,7 +39,12 @@ class GraphScene(QtGui.QGraphicsScene):
         self.removeItem(v)
         
     def mousePressEvent(self, event):
-        if self.itemAt(event.scenePos()) and self.itemAt(event.scenePos()).acceptedMouseButtons() != QtCore.Qt.NoButton:
+        items = self.items(event.scenePos())
+        
+        def check_clickable(item):
+            return item.acceptedMouseButtons() != QtCore.Qt.NoButton
+            
+        if len(items) and reduce(lambda a, b: a or b, map(check_clickable, items)):
             QtGui.QGraphicsScene.mousePressEvent(self, event)
         elif event.button() == QtCore.Qt.LeftButton:
             pos = self.parent().mapFromScene(event.scenePos())
