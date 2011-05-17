@@ -39,7 +39,7 @@ class NodeShow(QtGui.QGraphicsItem):
             #TODO - Global configuration here
             color = QtGui.QColor.fromRgbF(0, 1, 0)
         else:
-            color = QtGui.QColor.fromRgbF(self.node['fill_color'][0], self.node['fill_color'][0], self.node['fill_color'][0])
+            color = QtGui.QColor.fromRgbF(*self.node['fill_color'])
         
         radius = self.node['size'] / 2
 

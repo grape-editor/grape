@@ -57,7 +57,8 @@ class EdgeShow(QtGui.QGraphicsItem):
         if line.length() == 0.0:
             return
   
-        painter.setPen(QtGui.QPen(QtCore.Qt.black, 1, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.RoundJoin))
+        color = QtGui.QColor.fromRgbF(*self.edge['color'])
+        painter.setPen(QtGui.QPen(color, self.edge['width']))
         painter.strokePath(self.path, painter.pen())
         
         if self.edge['directed']:

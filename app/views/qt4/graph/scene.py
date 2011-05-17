@@ -1,8 +1,6 @@
 from PyQt4 import QtCore, QtGui
 
-from app.models import MultiGraph
-from app.controllers import GraphsController
-
+from app.models import *
 from app.views.qt4.node.show import NodeShow
 from app.views.qt4.edge.show import EdgeShow
 from app.views.qt4.graph.selection_box import SelectionBox
@@ -11,9 +9,7 @@ class GraphScene(QtGui.QGraphicsScene):
     
     def __init__(self, parent):
         QtGui.QGraphicsScene.__init__(self, parent)
-        
         self.action = None
-        
         self.rubberband = SelectionBox(QtGui.QRubberBand.Line, self.parent())
  
     def set_action(self, action):
@@ -23,7 +19,32 @@ class GraphScene(QtGui.QGraphicsScene):
             self.add_edges(self.selectedItems())
         else:
             self.action = action
-
+    
+    def refresh_graph(self):
+        nodes = {}
+        
+        for i in self.graph.node:
+            node = self.graph.node[i]
+            nodes[i] = self.add_node(node)
+            
+        for i in self.graph.edge:
+            for j in self.graph.edge[i]:
+                if isinstance(self.graph, MultiGraph) or isinstance(self.graph, MultiDiGraph):
+                    for k in self.graph.edge[i][j]:
+                        self.add_edge(self.graph.edge[i][j][k], nodes[i], nodes[j])
+                else:
+                    self.add_edge(self.graph.edge[i][j], nodes[i], nodes[j])
+    
+    def add_edge(self, edge, n1, n2):
+        edge_show = EdgeShow(edge, n1, n2)
+        self.addItem(edge_show)
+    
+    def add_node(self, node):
+        node_show = NodeShow(node)
+        self.addItem(node_show)
+        
+        return node_show
+        
     def add_edges(self, nodes):
         for i in range(len(nodes)):
             for j in range(i + 1, len(nodes)):
@@ -31,15 +52,14 @@ class GraphScene(QtGui.QGraphicsScene):
                 n2 = nodes[j].node['id']
                 edge = self.controller.add_edge(self.graph, n1, n2)
                 if edge != None:
-                    edge_show = EdgeShow(edge, nodes[i], nodes[j])
-                    self.addItem(edge_show)
+                    self.add_edge(edge, nodes[i], nodes[j])
         
     def remove_node(self, node):
         self.controller.remove_node(self.graph, node.node)
         for edge in node.edge_list:
             self.removeItem(edge)
         self.removeItem(node)
-        
+    
     def mousePressEvent(self, event):
         items = self.items(event.scenePos())
         
@@ -82,8 +102,7 @@ class GraphScene(QtGui.QGraphicsScene):
                 position = event.scenePos()
                 position = [position.x(), position.y()]
                 node = self.controller.add_node(self.graph, position)
-                node_show = NodeShow(node)
-                self.addItem(node_show)
+                self.add_node(node)
                 self.set_action(None)
             elif self.action == "remove_node":
                 QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
@@ -91,7 +110,3 @@ class GraphScene(QtGui.QGraphicsScene):
             elif self.action == None:
                 QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
                 
-    def paint(self):
-      print 'oi'
-                  
-        

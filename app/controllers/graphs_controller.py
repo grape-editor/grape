@@ -1,4 +1,7 @@
+import networkx as nx
+
 from app.models import *
+
 
 class GraphsController(object):
 
@@ -35,7 +38,7 @@ class GraphsController(object):
             'directed': False,
             'title': '',
             'color': (0, 0, 0),
-            'width': 2
+            'width': 1
         }
         
         if isinstance(graph, DiGraph) or isinstance(graph, MultiDiGraph):
@@ -63,6 +66,14 @@ class GraphsController(object):
     def remove_edge(self, graph, edge):
         if graph.has_edge(*edge):
             graph.remove_edge(*edge)
+         
+    def open(self, path):
+        return nx.read_yaml(path)
+            
+    def save(self, graph, path):
+        graph.graph['path'] = path
+        nx.write_yaml(graph, path)
+        
 
     # NEVER REMOVE THIS CODE
     # 

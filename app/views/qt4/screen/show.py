@@ -2,9 +2,13 @@ from app.views.qt4.screen.show_ui import Ui_ScreenShow
 from app.views.qt4.graph.show import GraphShow
 from PyQt4 import QtCore, QtGui
 
+from app.controllers import GraphsController
+
 class ScreenShow(QtGui.QMainWindow):
     def __init__(self, parent):
         QtGui.QMainWindow.__init__(self)
+        
+        self.controller = GraphsController()
         
         self.parent = parent
         self.ui = Ui_ScreenShow()
@@ -15,7 +19,12 @@ class ScreenShow(QtGui.QMainWindow):
 
     def on_actionOpen_triggered(self, checked=None):
         if checked == None:
-            path = QtGui.QFileDialog.getOpenFileNames(self, 'Open file', '', "Compressed Grape Format (*.cgf)")
+            paths = QtGui.QFileDialog.getOpenFileNames(self, 'Open file', '', "YAML (*.yml)")
+            for path in paths:
+                g = self.controller.open(str(path))
+                graph = GraphShow(g)
+                self.ui.tabWidget.addTab(graph, graph.graph.graph['title'])
+                self.ui.tabWidget.setCurrentWidget(graph)
             
     def on_actionNew_triggered(self, checked=None):
         if checked == None:
@@ -30,7 +39,12 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionSave_as_triggered(self, checked=None):
         if checked == None:
-            path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', "Compressed Grape Format (*.cgf)")
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', "YAML (*.yml)")
+                if path:
+                    self.controller.save(tab.graph, str(path))
+            
             
     def on_actionRever_triggered(self, checked=None):
         if checked == None:
