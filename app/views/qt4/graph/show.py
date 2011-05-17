@@ -4,9 +4,8 @@ import math
 import pickle
 from PyQt4 import QtCore, QtGui
 
-from app.models.graph import Graph
-from app.controllers.graphs_controller import GraphsController
-from app.helpers.graph_helper import *
+from app.models import *
+from app.controllers import GraphsController
 
 class GraphShow(QtGui.QWidget):
 
@@ -15,10 +14,13 @@ class GraphShow(QtGui.QWidget):
         
         self.controller = GraphsController()
 
-        self.graph = Graph()
+        self.graph = MultiDiGraph()
+        self.graph.graph['title'] = 'Untitled'
         
         self.ui = Ui_GraphShow()
         self.ui.setupUi(self)
+        self.ui.graphicsView.scene.graph = self.graph
+        self.ui.graphicsView.scene.controller = self.controller
 
     def set_action(self, action):
         self.ui.graphicsView.set_action(action)

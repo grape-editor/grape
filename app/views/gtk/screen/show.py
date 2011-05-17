@@ -254,17 +254,17 @@ class ScreenShow(object):
         tab, i = self.current_tab()
         tab.redo()
 
-    def menu_edit_add_vertex(self, widget):
+    def menu_edit_add_node(self, widget):
         tab, i = self.current_tab()
 
         if tab:
-            tab.action = "add_vertex"
+            tab.action = "add_node"
 
-    def menu_edit_remove_vertex(self, widget):
+    def menu_edit_remove_node(self, widget):
         tab, i = self.current_tab()
 
         if tab:
-            tab.action = "remove_vertex"
+            tab.action = "remove_node"
 
     def menu_edit_add_edge(self, widget):
         tab, i = self.current_tab()
@@ -294,25 +294,25 @@ class ScreenShow(object):
     def menu_edit_horizontal_align(self, widget):
         tab, page_number = self.current_tab()
 
-        if tab.graph.selected_vertices() < 2:
+        if tab.graph.selected_nodes() < 2:
             return False
        
-        mean = int(sum(map(lambda x: x.position[1], tab.graph.selected_vertices())) / len(tab.graph.selected_vertices()))
-        for vertex in tab.graph.selected_vertices():
-            vertex.position[1] = mean
+        mean = int(sum(map(lambda x: x.position[1], tab.graph.selected_nodes())) / len(tab.graph.selected_nodes()))
+        for node in tab.graph.selected_nodes():
+            node.position[1] = mean
 
         tab.queue_draw()
 
     def menu_edit_vertical_align(self, widget):
         tab, page_number = self.current_tab()
 
-        if tab.graph.selected_vertices() < 2:
+        if tab.graph.selected_nodes() < 2:
             return False
 
-        mean = int(sum(map(lambda x: x.position[0], tab.graph.selected_vertices())) / len(tab.graph.selected_vertices()))
+        mean = int(sum(map(lambda x: x.position[0], tab.graph.selected_nodes())) / len(tab.graph.selected_nodes()))
 
-        for vertex in tab.graph.selected_vertices():
-            vertex.position[0] = mean
+        for node in tab.graph.selected_nodes():
+            node.position[0] = mean
 
         tab.queue_draw()
 

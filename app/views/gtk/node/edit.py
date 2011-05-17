@@ -6,13 +6,13 @@ import gettext
 
 from app.views.gtk.edge.edit import EdgeEdit
 
-class VertexEdit(object):
-    def __init__(self, graph_show, vertex):
+class NodeEdit(object):
+    def __init__(self, graph_show, node):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "edit.ui")
 
         self.graph_show = graph_show
-        self.vertex = vertex
+        self.node = node
         self.area = graph_show.area
         self.set_changed = graph_show.set_changed
         self.graph = graph_show.graph
@@ -24,12 +24,12 @@ class VertexEdit(object):
 
         self.builder.add_from_file(path)
 
-        self.screen = self.builder.get_object("vertex_edit")
+        self.screen = self.builder.get_object("node_edit")
         self.label_id = self.builder.get_object("label_id")
         self.text_title = self.builder.get_object("text_title")
         self.spin_posx = self.builder.get_object("spin_posx")
         self.spin_posy = self.builder.get_object("spin_posy")
-        self.color_vertex = self.builder.get_object("color_vertex")
+        self.color_node = self.builder.get_object("color_node")
         self.color_border = self.builder.get_object("color_border")
         self.adjustment_radius = self.builder.get_object("adjustment_radius")
         self.adjustment_border = self.builder.get_object("adjustment_border")
@@ -51,25 +51,25 @@ class VertexEdit(object):
             self.init_edges_fields()
 
     def init_general_fields(self):
-        self.label_id.set_label(str(self.vertex.id))
-        self.text_title.set_text(self.vertex.title)
-        self.spin_posx.set_value(self.vertex.position[0])
-        self.spin_posy.set_value(self.vertex.position[1])
+        self.label_id.set_label(str(self.node.id))
+        self.text_title.set_text(self.node.title)
+        self.spin_posx.set_value(self.node.position[0])
+        self.spin_posy.set_value(self.node.position[1])
         
-        self.color_vertex.set_color(self.cairo_to_spin(self.vertex.fill_color))
-        self.color_border.set_color(self.cairo_to_spin(self.vertex.border_color))       
+        self.color_node.set_color(self.cairo_to_spin(self.node.fill_color))
+        self.color_border.set_color(self.cairo_to_spin(self.node.border_color))       
         
-        self.adjustment_radius.value = self.vertex.size
-        self.adjustment_border.value = self.vertex.border_size
+        self.adjustment_radius.value = self.node.size
+        self.adjustment_border.value = self.node.border_size
 
     def init_edges_fields(self):
-        number_of_edges = len(self.vertex.adjacencies)
+        number_of_edges = len(self.node.adjacencies)
         self.liststore_edges.clear()
        
         for i in range(number_of_edges):
-            t_id = self.vertex.adjacencies[i].id
-            t_start = self.vertex.adjacencies[i].start.title
-            t_end = self.vertex.adjacencies[i].end.title
+            t_id = self.node.adjacencies[i].id
+            t_start = self.node.adjacencies[i].start.title
+            t_end = self.node.adjacencies[i].end.title
             self.liststore_edges.append([t_id, t_start, t_end])
 
     def keyboard_press(self, widget, event):
@@ -118,7 +118,7 @@ class VertexEdit(object):
             self.menu.append(self.menu_remove_edge)
             self.menu.append(self.menu_edit_edge)
 
-        if len(self.graph.vertices) > 1:
+        if len(self.graph.nodes) > 1:
             self.menu_add_edge.set_sensitive(True)
         else:
             self.menu_add_edge.set_sensitive(False)
@@ -143,20 +143,20 @@ class VertexEdit(object):
         row_iter = store.get_iter(rows[0])
         edge_id = store.get_value(row_iter, 0)
         
-        edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
+        edge = self.graph.find_edge_from_node(self.node, edge_id)
         if edge:
             edit_edge = EdgeEdit(self.graph_show, edge)
         
     def add_edge(self):
         idx = 0
         
-        if self.vertex.id == 0:
-            idx = len(self.graph.vertices) - 1
+        if self.node.id == 0:
+            idx = len(self.graph.nodes) - 1
             
-        vertex = self.graph.find(idx)
+        node = self.graph.find(idx)
             
-        if vertex:
-            edge = self.controller.add_edge(self.graph, self.vertex, vertex)
+        if node:
+            edge = self.controller.add_edge(self.graph, self.node, node)
 
             if edge:
                 t_id = edge.id
@@ -179,7 +179,7 @@ class VertexEdit(object):
             edge_id = store.get_value(row_iter, 0)
             store.remove(row_iter)
             
-            edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
+            edge = self.graph.find_edge_from_node(self.node, edge_id)
             if edge:
                 self.controller.remove_edge(self.graph, edge)
     
@@ -193,37 +193,37 @@ class VertexEdit(object):
         return [color.red / 65535.0, color.green / 65535.0, color.blue / 65535.0]
 
     def title_changed(self, widget):
-        self.vertex.title = self.text_title.get_text()
+        self.node.title = self.text_title.get_text()
         self.area.queue_draw()
         self.set_changed(True)
         
     def positionx_changed(self, widget):
-        self.vertex.position[0] = self.spin_posx.get_value()
+        self.node.position[0] = self.spin_posx.get_value()
         self.area.queue_draw()
         self.set_changed(True)
     
     def positiony_changed(self, widget):
-        self.vertex.position[1] = self.spin_posy.get_value()
+        self.node.position[1] = self.spin_posy.get_value()
         self.area.queue_draw()
         self.set_changed(True)
     
-    def color_vertex_changed(self, widget):
-        self.vertex.fill_color = self.spin_to_cairo(widget.get_color())
+    def color_node_changed(self, widget):
+        self.node.fill_color = self.spin_to_cairo(widget.get_color())
         self.area.queue_draw()
         self.set_changed(True)
         
     def color_border_changed(self, widget):
-        self.vertex.border_color = self.spin_to_cairo(widget.get_color())
+        self.node.border_color = self.spin_to_cairo(widget.get_color())
         self.area.queue_draw()
         self.set_changed(True)
     
     def radius_scale_changed(self, widget):
-        self.vertex.size = widget.value
+        self.node.size = widget.value
         self.area.queue_draw()
         self.set_changed(True)
     
     def border_scale_changed(self, widget):
-        self.vertex.border_size = widget.value
+        self.node.border_size = widget.value
         self.area.queue_draw()
         self.set_changed(True)
     

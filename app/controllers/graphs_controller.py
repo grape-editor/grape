@@ -1,108 +1,96 @@
-from app.controllers.action_controller import ActionController
-from app.controllers.vertices_controller import VerticesController
-from app.controllers.edges_controller import EdgesController
-from app.models.vertex import Vertex
-from app.models.edge import Edge
+from app.models import *
 
+class GraphsController(object):
 
-class GraphsController(ActionController):
-
-    def __init__(self):
-        self.vertices_controller = VerticesController()
-        self.edges_controller = EdgesController()
-        
-    def add_vertex(self, graph, position):
+    def add_node(self, graph, position):
+        if 'node_id' not in graph.graph:
+            graph.graph['node_id'] = 0
+            
         params = {
-            'id': graph.vertex_id,
-            'title': str(graph.vertex_id),
-            'position': position
+            'id': graph.graph['node_id'],
+            'title': str(graph.graph['node_id']),
+            'position': position,
+            # TODO: configuration file
+            'size': 30,
+            'border_size': 2,
+            'fill_color': (1, 1, 1),
+            'border_color': (0, 0, 0)
         }
+            
+        graph.add_node(graph.graph['node_id'], params)
+        node = graph.node[graph.graph['node_id']]
+        graph.graph['node_id'] += 1
         
-        vertex = self.vertices_controller.create(params)
-        graph.vertices.append(vertex)
-        graph.vertex_id += 1
+        return node
 
-        return vertex
+    def remove_node(self, graph, node):
+        if graph.has_node(node):
+            graph.remove_node(node)
 
-    def remove_vertex(self, graph, vertex):
-        if vertex:
-            to_be_removed = list(vertex.touching_edges)
-            map(lambda e: self.remove_edge(graph, e), to_be_removed)
-            graph.vertices.remove(vertex)
-
-    def add_edge(self, graph, start, end):
-        params = {
-            'id': graph.edge_id,
-            'start': start,
-            'end': end,
-            'bidirectional': False
-        }
-        
-        edge = self.edges_controller.create(params)
-        graph.edges.append(edge)
-        graph.edge_id += 1
-
-        return edge
-
-    def remove_edge(self, graph, edge):
-        if not graph.has_edge(edge):
+    def add_edge(self, graph, n1, n2):
+        if n1 not in graph.nodes() or n2 not in graph.nodes():
             return
-
-        self.edges_controller.destroy(edge)
-
-        graph.edges.remove(edge)
-
-    def toggle_vertex_selection(self, graph, vertex):
-        graph.selected_vertices_cache = None
-
-        self.vertices_controller.toggle_selection(vertex)
-
-    def select_all(self, graph):
-        graph.selected_vertices_cache = None
         
-        for vertex in graph.vertices:
-            self.vertices_controller.select(vertex)
+        params = {
+            'directed': False,
+            'title': '',
+            'color': (0, 0, 0),
+            'width': 2
+        }
+        
+        if isinstance(graph, DiGraph) or isinstance(graph, MultiDiGraph):
+            params['directed'] = True
+        
+        if isinstance(graph, MultiGraph) or isinstance(graph, MultiDiGraph):
+            params['id'] = 0
 
-    def select_vertex(self, graph, vertex):
-        graph.selected_vertices_cache = None
-        self.vertices_controller.select(vertex)
+            if graph.has_edge(n1, n2):
+                params['id'] = len(graph.edge[n1][n2])
 
-    def deselect_vertex(self, graph, vertex):
-        graph.selected_vertices_cache = None
-        self.vertices_controller.deselect(vertex)
-
-    def clear_selection(self, graph):
-        if len(graph.selected_vertices()) > 0:
-            selected_vertices = graph.selected_vertices()
-
-            for vertex in selected_vertices:
-                self.vertices_controller.deselect(vertex)
-
-    def move_selection(self, graph, direction):
-        selected = graph.selected_vertices()
-
-        if len(selected) == 1:
-            if direction == 'up':
-                sort_index = 1
-                slice = lambda arr, index: arr[:index - 1]
-            elif direction == 'down':
-                sort_index = 1
-                slice = lambda arr, index: arr[index + 1:]
-            elif direction == 'left':
-                sort_index = 0
-                slice = lambda arr, index: arr[:index - 1]
-            elif direction == 'right':
-                sort_index = 0
-                slice = lambda arr, index: arr[index + 1:]
-            else:
+            graph.add_edge(n1, n2, attr_dict=params)
+            edge = graph.edge[n1][n2][params['id']]
+            
+            return edge
+        else:
+            if graph.has_edge(n1, n2):
                 return None
+            
+            graph.add_edge(n1, n2, attr_dict=params)
+            edge = graph.edge[n1][n2]
+            
+            return edge
+        
+    def remove_edge(self, graph, edge):
+        if graph.has_edge(*edge):
+            graph.remove_edge(*edge)
 
-            ordered = sorted(graph.vertices, key=lambda vertex: vertex.position[sort_index])
-            index = ordered.index(selected[0])
-            ordered = slice(ordered, index)
-
-            vertex = selected[0].nearest_vertices(ordered, int(not sort_index))
-
-            if vertex:
-                self.vertices_controller.deselect(selected[0])
-                self.vertices_controller.select(vertex)
+    # NEVER REMOVE THIS CODE
+    # 
+    # def move_selection(self, graph, direction):
+    #     selected = graph.selected_nodes()
+    # 
+    #     if len(selected) == 1:
+    #         if direction == 'up':
+    #             sort_index = 1
+    #             slice = lambda arr, index: arr[:index - 1]
+    #         elif direction == 'down':
+    #             sort_index = 1
+    #             slice = lambda arr, index: arr[index + 1:]
+    #         elif direction == 'left':
+    #             sort_index = 0
+    #             slice = lambda arr, index: arr[:index - 1]
+    #         elif direction == 'right':
+    #             sort_index = 0
+    #             slice = lambda arr, index: arr[index + 1:]
+    #         else:
+    #             return None
+    # 
+    #         ordered = sorted(graph.nodes, key=lambda node: node.position[sort_index])
+    #         index = ordered.index(selected[0])
+    #         ordered = slice(ordered, index)
+    # 
+    #         node = selected[0].nearest_nodes(ordered, int(not sort_index))
+    # 
+    #         if node:
+    #             self.nodes_controller.deselect(selected[0])
+    #             self.nodes_controller.select(node)

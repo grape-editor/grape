@@ -1,13 +1,13 @@
 from PyQt4 import QtCore, QtGui
 
-class VertexShow(QtGui.QGraphicsItem):
+class NodeShow(QtGui.QGraphicsItem):
     
-    def __init__(self, vertex):
+    def __init__(self, node):
         QtGui.QGraphicsItem.__init__(self)
         
         self.edge_list = []
         
-        self.vertex = vertex
+        self.node = node
         
         self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
         self.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
@@ -15,10 +15,10 @@ class VertexShow(QtGui.QGraphicsItem):
         self.setCacheMode(QtGui.QGraphicsItem.DeviceCoordinateCache)
         self.setZValue(-1)
         
-        self.setPos(vertex.position[0], vertex.position[1])
+        self.setPos(node['position'][0], node['position'][1])
 
         self.title = QtGui.QGraphicsTextItem(self, self.scene())
-        self.title.setPlainText(self.vertex.title)
+        self.title.setPlainText(self.node['title'])
         self.title.adjustSize()
         self.title.setPos(-(self.title.boundingRect().width() / 2), -(self.title.boundingRect().height() / 2))
         
@@ -27,9 +27,9 @@ class VertexShow(QtGui.QGraphicsItem):
         self.calculate_edges_trajectory()
     
     def boundingRect(self):
-        radius = self.vertex.size / 2
+        radius = self.node['size'] / 2
         adjust = 2
-        return QtCore.QRectF(-radius - adjust, -radius - adjust, self.vertex.size + adjust, self.vertex.size + adjust)
+        return QtCore.QRectF(-radius - adjust, -radius - adjust, self.node['size'] + adjust, self.node['size'] + adjust)
     
     def paint(self, painter, option, widget):
         painter.setClipRect(option.exposedRect)
@@ -39,40 +39,39 @@ class VertexShow(QtGui.QGraphicsItem):
             #TODO - Global configuration here
             color = QtGui.QColor.fromRgbF(0, 1, 0)
         else:
-            color = QtGui.QColor.fromRgbF(self.vertex.fill_color[0], self.vertex.fill_color[0], self.vertex.fill_color[0])
+            color = QtGui.QColor.fromRgbF(self.node['fill_color'][0], self.node['fill_color'][0], self.node['fill_color'][0])
         
-        radius = self.vertex.size / 2
+        radius = self.node['size'] / 2
 
         painter.setBrush(color)
-        painter.setPen(QtGui.QPen(QtCore.Qt.black, self.vertex.border_size))
-        painter.drawEllipse(-radius, -radius, self.vertex.size, self.vertex.size)
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, self.node['border_size']))
+        painter.drawEllipse(-radius, -radius, self.node['size'], self.node['size'])
 
     def itemChange(self, change, value):
         if change == QtGui.QGraphicsItem.ItemPositionHasChanged:
             pos = value.toPointF()
-            self.vertex.position[0] = pos.x()
-            self.vertex.position[1] = pos.y()
+            self.node['position'] = (pos.x(), pos.y())
             
             self.calculate_edges_trajectory()
             
         return QtGui.QGraphicsItem.itemChange(self, change, value)
     
     def calculate_edges_trajectory(self):
-        vertex_set = []
+        node_set = []
         
         for edge in self.edge_list:
-            if edge.start != self and not edge.start in vertex_set:
-                vertex_set.append(edge.start)
-            elif edge.end != self and not edge.end in vertex_set:
-                vertex_set.append(edge.end)
+            if edge.start != self and not edge.start in node_set:
+                node_set.append(edge.start)
+            elif edge.end != self and not edge.end in node_set:
+                node_set.append(edge.end)
         
         edge_sets = []
         
-        for vertex in vertex_set:
+        for node in node_set:
             edge_sets.append([])
 
             for edge in self.edge_list:
-                if edge.start == vertex or edge.end == vertex:
+                if edge.start == node or edge.end == node:
                     edge_sets[-1].append(edge)
         
         for set in edge_sets:
@@ -92,6 +91,7 @@ class VertexShow(QtGui.QGraphicsItem):
                     edge.path = QtGui.QPainterPath()
                     edge.path.moveTo(edge.start_point)
                     edge.path.quadTo(line.p2(), edge.end_point)
+                    edge.anchor_point = line.p2()
                     
                     mult = -mult
                     
@@ -104,6 +104,7 @@ class VertexShow(QtGui.QGraphicsItem):
                 edge.path = QtGui.QPainterPath()
                 edge.path.moveTo(edge.start_point)
                 edge.path.lineTo(edge.end_point)
+                edge.anchor_point = edge.end_point
                 edge.adjust()
 
     def mousePressEvent(self, event):

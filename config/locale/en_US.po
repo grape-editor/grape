@@ -130,8 +130,8 @@ msgid "_Add edge"
 msgstr "_Add edge"
 
 #: ../gui/Window.ui.h:4
-msgid "_Add vertex"
-msgstr "_Add vertex"
+msgid "_Add node"
+msgstr "_Add node"
 
 #: ../gui/Window.ui.h:5
 msgid "_Close"
@@ -166,8 +166,8 @@ msgid "_Remove edge"
 msgstr "_Remove edge"
 
 #: ../gui/Window.ui.h:13
-msgid "_Remove vertex"
-msgstr "_Remove vertex"
+msgid "_Remove node"
+msgstr "_Remove node"
 
 #: ../gui/Window.ui.h:14
 msgid "_Revert"

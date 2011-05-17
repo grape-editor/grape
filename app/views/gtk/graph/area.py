@@ -44,42 +44,42 @@ class GraphArea(DrawingArea):
         cairo.set_source_rgba(0.3, 0.3, 0.7, 0.8)
         cairo.stroke()
 
-    def draw_vertex(self, cairo, area, vertex):
+    def draw_node(self, cairo, area, node):
         import math
 
-        x = vertex.position[0]
-        y = vertex.position[1]
+        x = node.position[0]
+        y = node.position[1]
 
-        radius = vertex.size / 2
+        radius = node.size / 2
 
         # TODO - Custom colors
 
-        if vertex.selected:
+        if node.selected:
             cairo.set_source_rgb(0.4, 0.8, 0.2)
         else:
-            r, g, b = vertex.fill_color[0], vertex.fill_color[1], vertex.fill_color[2]
+            r, g, b = node.fill_color[0], node.fill_color[1], node.fill_color[2]
             cairo.set_source_rgb(r, g, b)
 
         cairo.arc(x, y, radius, 0, 2 * math.pi)
         cairo.fill_preserve()
 
-        r, g, b = vertex.border_color[0], vertex.border_color[1], vertex.border_color[2]
+        r, g, b = node.border_color[0], node.border_color[1], node.border_color[2]
         cairo.set_source_rgb(r, g, b)
-        cairo.set_line_width(vertex.border_size)
+        cairo.set_line_width(node.border_size)
         cairo.arc(x, y, radius, 0, 2 * math.pi)
         cairo.stroke()
 
         font_size = 12
         cairo.set_font_size(font_size)
         
-        x_bearing, y_bearing, width, height = cairo.text_extents(vertex.title)[:4]
+        x_bearing, y_bearing, width, height = cairo.text_extents(node.title)[:4]
         
-        x = vertex.position[0]
-        y = vertex.position[1]
+        x = node.position[0]
+        y = node.position[1]
         
         cairo.move_to(x, y)
         cairo.move_to(x - width / 2 - x_bearing, y - height / 2 - y_bearing)
-        cairo.show_text(vertex.title)
+        cairo.show_text(node.title)
         
         cairo.stroke()
 
@@ -104,11 +104,11 @@ class GraphArea(DrawingArea):
         cairo.line_to(arrow_x2, arrow_y2)
         cairo.stroke()
 
-    def draw_edges(self, cairo, area, vertex1, vertex2, closer=False):
+    def draw_edges(self, cairo, area, node1, node2, closer=False):
         edges = []
 
-        for edge in vertex1.touching_edges:
-            if edge.touches(vertex2):
+        for edge in node1.touching_edges:
+            if edge.touches(node2):
                 edges.append(edge)
                 edge.visited = True
 
@@ -176,11 +176,11 @@ class GraphArea(DrawingArea):
         for edge in self.graph.edges:
             edge.system_visited = False
 
-        for vertex in self.graph.vertices:
-            self.draw_vertex(cairo, area, vertex)
+        for node in self.graph.nodes:
+            self.draw_node(cairo, area, node)
 
-        for vertex in self.graph.vertices:
-            for edge in vertex.touching_edges:
+        for node in self.graph.nodes:
+            for edge in node.touching_edges:
                 if not edge.system_visited:
                     if euclidean_distance(edge.start.position, edge.end.position) < (edge.start.size / 2 + edge.start.border_size + edge.end.size / 2 + edge.end.border_size):
                         self.draw_edge_straight(cairo, edge)

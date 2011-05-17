@@ -94,8 +94,8 @@
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
     <addaction name="separator"/>
-    <addaction name="actionAdd_vertex"/>
-    <addaction name="actionRemove_vertex"/>
+    <addaction name="actionAdd_node"/>
+    <addaction name="actionRemove_node"/>
     <addaction name="separator"/>
     <addaction name="actionAdd_edge"/>
     <addaction name="actionRemove_edge"/>
@@ -282,13 +282,13 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionAdd_vertex">
+  <action name="actionAdd_node">
    <property name="icon">
     <iconset resource="../../../../resources/grape.qrc">
      <normaloff>:/icons/icons/actions/24/gtk-add.svg</normaloff>:/icons/icons/actions/24/gtk-add.svg</iconset>
    </property>
    <property name="text">
-    <string>Add vertex</string>
+    <string>Add node</string>
    </property>
    <property name="shortcut">
     <string>V</string>
@@ -297,13 +297,13 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionRemove_vertex">
+  <action name="actionRemove_node">
    <property name="icon">
     <iconset resource="../../../../resources/grape.qrc">
      <normaloff>:/icons/icons/actions/24/gtk-remove.svg</normaloff>:/icons/icons/actions/24/gtk-remove.svg</iconset>
    </property>
    <property name="text">
-    <string>Remove vertex</string>
+    <string>Remove node</string>
    </property>
    <property name="shortcut">
     <string>Shift+V</string>

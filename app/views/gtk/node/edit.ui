@@ -6,14 +6,14 @@
     <columns>
       <!-- column-name id -->
       <column type="gchararray"/>
-      <!-- column-name vertex1 -->
+      <!-- column-name node1 -->
       <column type="gchararray"/>
-      <!-- column-name vertex2 -->
+      <!-- column-name node2 -->
       <column type="gchararray"/>
     </columns>
   </object>
-  <object class="GtkWindow" id="vertex_edit">
-    <property name="title" translatable="yes">Vertex Settings</property>
+  <object class="GtkWindow" id="node_edit">
+    <property name="title" translatable="yes">Node Settings</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -204,19 +204,19 @@
                                 <child>
                                   <object class="GtkLabel" id="label11">
                                     <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Vertex color:</property>
+                                    <property name="label" translatable="yes">Node color:</property>
                                   </object>
                                   <packing>
                                     <property name="position">0</property>
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkColorButton" id="color_vertex">
+                                  <object class="GtkColorButton" id="color_node">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">True</property>
                                     <property name="color">#000000000000</property>
-                                    <signal name="color_set" handler="color_vertex_changed"/>
+                                    <signal name="color_set" handler="color_node_changed"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -386,7 +386,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                                    <property name="title">Vertex1</property>
+                                    <property name="title">Node1</property>
                                     <property name="clickable">True</property>
                                     <property name="reorderable">True</property>
                                     <property name="sort_indicator">True</property>
@@ -401,7 +401,7 @@
                                 </child>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn3">
-                                    <property name="title">Vertex2</property>
+                                    <property name="title">Node2</property>
                                     <property name="clickable">True</property>
                                     <property name="reorderable">True</property>
                                     <property name="sort_indicator">True</property>

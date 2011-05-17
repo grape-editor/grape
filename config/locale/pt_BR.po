@@ -118,7 +118,7 @@ msgid "_Add edge"
 msgstr ""
 
 #: ../gui/Window.ui.h:4
-msgid "_Add vertex"
+msgid "_Add node"
 msgstr ""
 
 #: ../gui/Window.ui.h:5
@@ -154,7 +154,7 @@ msgid "_Remove edge"
 msgstr ""
 
 #: ../gui/Window.ui.h:13
-msgid "_Remove vertex"
+msgid "_Remove node"
 msgstr ""
 
 #: ../gui/Window.ui.h:14

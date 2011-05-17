@@ -15,13 +15,13 @@ class ScreenShow(QtGui.QMainWindow):
 
     def on_actionOpen_triggered(self, checked=None):
         if checked == None:
-            pass
+            path = QtGui.QFileDialog.getOpenFileNames(self, 'Open file', '', "Compressed Grape Format (*.cgf)")
             
     def on_actionNew_triggered(self, checked=None):
         if checked == None:
             graph = GraphShow()
             
-            self.ui.tabWidget.addTab(graph, graph.graph.title)
+            self.ui.tabWidget.addTab(graph, graph.graph.graph['title'])
             self.ui.tabWidget.setCurrentWidget(graph)
             
     def on_actionSave_triggered(self, checked=None):
@@ -30,7 +30,7 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionSave_as_triggered(self, checked=None):
         if checked == None:
-            pass
+            path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', "Compressed Grape Format (*.cgf)")
             
     def on_actionRever_triggered(self, checked=None):
         if checked == None:
@@ -52,17 +52,17 @@ class ScreenShow(QtGui.QMainWindow):
         if checked == None:
             pass
             
-    def on_actionAdd_vertex_triggered(self, checked=None):
+    def on_actionAdd_node_triggered(self, checked=None):
         if checked == None:
             tab = self.ui.tabWidget.currentWidget()
             if tab:
-                tab.set_action("add_vertex")
+                tab.set_action("add_node")
             
-    def on_actionRemove_vertex_triggered(self, checked=None):
+    def on_actionRemove_node_triggered(self, checked=None):
         if checked == None:
             tab = self.ui.tabWidget.currentWidget()
             if tab:
-                tab.set_action("remove_vertex")
+                tab.set_action("remove_node")
             
     def on_actionAdd_edge_triggered(self, checked=None):
         if checked == None:
