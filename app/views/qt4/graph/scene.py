@@ -45,6 +45,9 @@ class GraphScene(QtGui.QGraphicsScene):
         
         return node_show
         
+        # Fui embora! Abraço!
+        # Derik
+        
     def add_edges(self, nodes):
         for i in range(len(nodes)):
             for j in range(i + 1, len(nodes)):
