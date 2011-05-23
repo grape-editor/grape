@@ -56,8 +56,13 @@ class GraphScene(QtGui.QGraphicsScene):
         
     def remove_node(self, node):
         self.controller.remove_node(self.graph, node.node)
-        for edge in node.edge_list:
+        to_be_removed = []
+        
+        for edge in list(node.edge_list):
             self.removeItem(edge)
+            edge.start.edge_list.remove(edge)
+            edge.end.edge_list.remove(edge)
+            
         self.removeItem(node)
     
     def mousePressEvent(self, event):
