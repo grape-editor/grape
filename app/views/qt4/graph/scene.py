@@ -58,9 +58,9 @@ class GraphScene(QtGui.QGraphicsScene):
         to_be_removed = []
         
         for edge in list(node.edge_list):
-            self.removeItem(edge)
             edge.start.edge_list.remove(edge)
             edge.end.edge_list.remove(edge)
+            self.removeItem(edge)
             
         self.removeItem(node)
     
@@ -80,7 +80,7 @@ class GraphScene(QtGui.QGraphicsScene):
             
             source = self.selectedItems()[0]
             
-            if node and node != source:
+            if node and node != source and isinstance(node, NodeShow):
                 self.add_edge(source, node)
                 
             self.set_action(None)
