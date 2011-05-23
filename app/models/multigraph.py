@@ -1,4 +1,4 @@
-import networkx as nx
+import lib.networkx as nx
 
 class MultiGraph(nx.MultiGraph):
     

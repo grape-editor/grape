@@ -1,4 +1,4 @@
-import networkx as nx
+import lib.networkx as nx
 
 from app.models import *
 
@@ -72,6 +72,15 @@ class GraphsController(object):
             
     def save(self, graph, path):
         graph.graph['path'] = path
+        
+        try:
+            import gtk
+        except:
+            print "deu errado"
+        else:
+            print "deu certo"
+
+        
         nx.write_yaml(graph, path)
         
 
