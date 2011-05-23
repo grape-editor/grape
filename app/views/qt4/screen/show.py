@@ -46,7 +46,7 @@ class ScreenShow(QtGui.QMainWindow):
                     self.controller.save(tab.graph, str(path))
             
             
-    def on_actionRever_triggered(self, checked=None):
+    def on_actionRevert_triggered(self, checked=None):
         if checked == None:
             pass
             

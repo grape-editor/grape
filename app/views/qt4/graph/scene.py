@@ -35,7 +35,10 @@ class GraphScene(QtGui.QGraphicsScene):
                 else:
                     self.add_edge(self.graph.edge[i][j], nodes[i], nodes[j])
     
-    def add_edge(self, edge, n1, n2):
+    def add_edge(self, n1, n2):
+        n1id = n1.node['id']
+        n2id = n2.node['id']
+        edge = self.controller.add_edge(self.graph, n1id, n2id)
         edge_show = EdgeShow(edge, n1, n2)
         self.addItem(edge_show)
     
@@ -48,11 +51,7 @@ class GraphScene(QtGui.QGraphicsScene):
     def add_edges(self, nodes):
         for i in range(len(nodes)):
             for j in range(i + 1, len(nodes)):
-                n1 = nodes[i].node['id']
-                n2 = nodes[j].node['id']
-                edge = self.controller.add_edge(self.graph, n1, n2)
-                if edge != None:
-                    self.add_edge(edge, nodes[i], nodes[j])
+                self.add_edge(nodes[i], nodes[j])
         
     def remove_node(self, node):
         self.controller.remove_node(self.graph, node.node)
@@ -71,7 +70,21 @@ class GraphScene(QtGui.QGraphicsScene):
         def check_clickable(item):
             return item.acceptedMouseButtons() != QtCore.Qt.NoButton
             
-        if len(items) and reduce(lambda a, b: a or b, map(check_clickable, items)):
+        if self.action == "add_edge":
+            position = event.scenePos()
+            nodes = self.items(position)
+            node = None
+            
+            while not isinstance(node, NodeShow) and len(nodes) > 0:
+                node = nodes.pop()
+            
+            source = self.selectedItems()[0]
+            
+            if node and node != source:
+                self.add_edge(source, node)
+                
+            self.set_action(None)
+        elif len(items) and reduce(lambda a, b: a or b, map(check_clickable, items)):
             QtGui.QGraphicsScene.mousePressEvent(self, event)
         elif event.button() == QtCore.Qt.LeftButton:
             pos = self.parent().mapFromScene(event.scenePos())

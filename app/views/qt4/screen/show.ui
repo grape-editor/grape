@@ -61,7 +61,7 @@
      <x>0</x>
      <y>0</y>
      <width>640</width>
-     <height>29</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="defaultUp">
@@ -82,7 +82,7 @@
     <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_as"/>
-    <addaction name="actionRever"/>
+    <addaction name="actionRevert"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
     <addaction name="actionQuit"/>
@@ -210,7 +210,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionRever">
+  <action name="actionRevert">
    <property name="icon">
     <iconset resource="../../../../resources/grape.qrc">
      <normaloff>:/icons/icons/actions/24/gtk-revert-to-saved-rtl.svg</normaloff>:/icons/icons/actions/24/gtk-revert-to-saved-rtl.svg</iconset>
