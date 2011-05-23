@@ -19,7 +19,28 @@ class ScreenShow(QtGui.QMainWindow):
 
     def on_actionOpen_triggered(self, checked=None):
         if checked == None:
-            paths = QtGui.QFileDialog.getOpenFileNames(self, 'Open file', '', "YAML (*.yml)")
+            formats = []
+            formats.append("Adjacence List (*.al)")
+            formats.append("Multiline Adjacence List (*.mal)")
+            formats.append("Edge List (*.el)")
+            formats.append("Graph Exchange XML Format (*.gexf)")
+            formats.append("Graph Modelling Language (*.gml)")
+            formats.append("Pickle (*.pickle)")
+            formats.append("GraphML (*.graphml)")
+            formats.append("LEDA (*.leda)")
+            formats.append("YAML (*.yml)")
+            formats.append("Sparse6 (*.sparse6)")
+            formats.append("Graph6 (*.graph6)")
+            formats.append("Pajek (*.pajek)")
+            formats.append("GIS Shapefile (*.shp)")
+            
+            files_types = ""
+            for format in formats:
+                files_types += format + ";;"
+            files_types += "All files (*.*)"
+
+            paths = QtGui.QFileDialog.getOpenFileNames(self, 'Open file', '', files_types)
+            
             for path in paths:
                 g = self.controller.open(str(path))
                 graph = GraphShow(g)
@@ -41,7 +62,24 @@ class ScreenShow(QtGui.QMainWindow):
         if checked == None:
             tab = self.ui.tabWidget.currentWidget()
             if tab:
-                path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', "YAML (*.yml)")
+                formats = []
+                formats.append("Adjacence List (*.al)")
+                formats.append("Multiline Adjacence List (*.mal)")
+                formats.append("Edge List (*.el)")
+                formats.append("Graph Exchange XML Format (*.gexf)")
+                formats.append("Graph Modelling Language (*.gml)")
+                formats.append("Pickle (*.pickle)")
+                formats.append("GraphML (*.graphml)")
+                formats.append("YAML (*.yml)")
+                formats.append("Pajek (*.pajek)")
+                
+                files_types = ""
+                for format in formats:
+                    files_types += format + ";;"
+                files_types += "All files (*.*)"
+                
+                path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', files_types)
+                print path
                 if path:
                     self.controller.save(tab.graph, str(path))
             
