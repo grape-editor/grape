@@ -44,6 +44,7 @@ class GraphScene(QtGui.QGraphicsScene):
     
     def add_node(self, node):
         node_show = NodeShow(node)
+
         self.addItem(node_show)
         
         return node_show
@@ -52,17 +53,34 @@ class GraphScene(QtGui.QGraphicsScene):
         for i in range(len(nodes)):
             for j in range(i + 1, len(nodes)):
                 self.add_edge(nodes[i], nodes[j])
+    
+    def debug_trace(self):
+        from PyQt4.QtCore import pyqtRemoveInputHook
+        from pdb import set_trace
+        pyqtRemoveInputHook()
+        set_trace()
+
         
     def remove_node(self, node):
+#        print "----------------"
+#        print "removendo o no do modelo"
         self.controller.remove_node(self.graph, node.node)
-        to_be_removed = []
         
+#        print "removendo o arestas da GUI"
         for edge in list(node.edge_list):
+#            self.debug_trace()
             edge.start.edge_list.remove(edge)
             edge.end.edge_list.remove(edge)
+
+            edge.setVisible(False)
+#            print edge
+
             self.removeItem(edge)
-            
+        
+#        print "removendo o no da GUI"
         self.removeItem(node)
+        
+#        print "----------------"
     
     def mousePressEvent(self, event):
         items = self.items(event.scenePos())

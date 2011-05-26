@@ -8,6 +8,8 @@ class GraphView(QtGui.QGraphicsView):
         QtGui.QGraphicsView.__init__(self, parent)
         self.scene = GraphScene(self)
         self.setScene(self.scene)
+        self.setCacheMode(QtGui.QGraphicsView.CacheBackground)
+        self.setViewportUpdateMode(QtGui.QGraphicsView.BoundingRectViewportUpdate)
     
     def set_action(self, action):
         if action == "zoom_in":
