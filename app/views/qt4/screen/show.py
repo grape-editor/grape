@@ -128,11 +128,16 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionAlign_vertically_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("align_vertical")
+            
             
     def on_actionAlign_horizontally_triggered(self, checked=None):
         if checked == None:
-            pass
+            tab = self.ui.tabWidget.currentWidget()
+            if tab:
+                tab.set_action("align_horizontal")
             
     def on_actionZoom_in_triggered(self, checked=None):
         if checked == None:
@@ -155,7 +160,10 @@ class ScreenShow(QtGui.QMainWindow):
             
     def on_actionFullscreen_triggered(self, checked=None):
         if checked == None:
-            pass
+            if self.isFullScreen():
+                self.showNormal()
+            else:
+                self.showFullScreen()
             
     def on_actionAbout_triggered(self, checked=None):
         if checked == None:

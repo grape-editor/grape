@@ -17,8 +17,25 @@ class GraphScene(QtGui.QGraphicsScene):
             map(self.remove_node, self.selectedItems())
         elif action == "add_edge" and len(self.selectedItems()) > 1:
             self.add_edges(self.selectedItems())
+        elif action == "align_horizontal" and len(self.selectedItems()) > 1:
+            self.align_vertical(self.selectedItems())
+        elif action == "align_vertical" and len(self.selectedItems()) > 1:
+            self.align_horizontal(self.selectedItems())
         else:
             self.action = action
+    
+    
+    def align_horizontal(self, nodes):
+        mean = int(sum(map(lambda n: n.node['position'][1], nodes)) / len(nodes))
+        for node in nodes:
+            node.node['position'] = (node.node['position'][0], mean)
+            node.setPos(node.node['position'][0], node.node['position'][1])
+
+    def align_vertical(self, nodes):
+        mean = int(sum(map(lambda n: n.node['position'][0], nodes)) / len(nodes))
+        for node in nodes:
+            node.node['position'] = (mean, node.node['position'][1])
+            node.setPos(node.node['position'][0], node.node['position'][1])
     
     def refresh_graph(self):
         nodes = {}
@@ -54,34 +71,18 @@ class GraphScene(QtGui.QGraphicsScene):
             for j in range(i + 1, len(nodes)):
                 self.add_edge(nodes[i], nodes[j])
     
-    def debug_trace(self):
-        from PyQt4.QtCore import pyqtRemoveInputHook
-        from pdb import set_trace
-        pyqtRemoveInputHook()
-        set_trace()
-
-        
     def remove_node(self, node):
-#        print "----------------"
-#        print "removendo o no do modelo"
         self.controller.remove_node(self.graph, node.node)
         
-#        print "removendo o arestas da GUI"
         for edge in list(node.edge_list):
-#            self.debug_trace()
             edge.start.edge_list.remove(edge)
             edge.end.edge_list.remove(edge)
 
             edge.setVisible(False)
-#            print edge
-
-            self.removeItem(edge)
+#            self.removeItem(edge)
         
-#        print "removendo o no da GUI"
         self.removeItem(node)
         
-#        print "----------------"
-    
     def mousePressEvent(self, event):
         items = self.items(event.scenePos())
         
