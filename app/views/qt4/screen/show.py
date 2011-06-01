@@ -20,19 +20,7 @@ class ScreenShow(QtGui.QMainWindow):
     def on_actionOpen_triggered(self, checked=None):
         if checked == None:
             formats = []
-            formats.append("Adjacence List (*.al)")
-            formats.append("Multiline Adjacence List (*.mal)")
-            formats.append("Edge List (*.el)")
-            formats.append("Graph Exchange XML Format (*.gexf)")
-            formats.append("Graph Modelling Language (*.gml)")
-            formats.append("Pickle (*.pickle)")
-            formats.append("GraphML (*.graphml)")
-            formats.append("LEDA (*.leda)")
-            formats.append("YAML (*.yml)")
-            formats.append("Sparse6 (*.sparse6)")
-            formats.append("Graph6 (*.graph6)")
-            formats.append("Pajek (*.pajek)")
-            formats.append("GIS Shapefile (*.shp)")
+
             
             files_types = ""
             for format in formats:
@@ -57,26 +45,81 @@ class ScreenShow(QtGui.QMainWindow):
     def on_actionSave_triggered(self, checked=None):
         if checked == None:
             pass
+
+    def solve_imports(self, possible_formats):
+        for format in possible_formats:
+            imported = False
             
+            if 'dependencies' in format:
+                for dep in format['dependencies']:
+                    try:
+                        __import__(dep)
+                    except:
+                        continue
+                    else:
+                        imported = True    
+                        break
+
+            if imported:
+                formats.append(format['name'])
+
+        return formats
+
+    def formats_to_save(self):
+        possible_formats = [
+            {'name': "Adjacence List (*.al)"},
+            {'name': "Multiline Adjacence List (*.mal)"},
+            {'name': "Edge List (*.el)"},
+            {'name': "Graph Exchange XML Format (*.gexf)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "Graph Modelling Language (*.gml)",
+                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
+            {'name': "Pickle (*.pickle)",
+                'dependencies': ['cPickle', 'pickle']},
+            {'name': "GraphML (*.graphml)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "YAML (*.yml)",
+                'dependencies': ['yaml']},
+            {'name': "Pajek (*.pajek)"}
+        ]
+        
+        return solve_formats(possible_formats)        
+
+    def formats_to_open(self):
+        possible_formats = [
+            {'name': "Adjacence List (*.al)"},
+            {'name': "Multiline Adjacence List (*.mal)"},
+            {'name': "Edge List (*.el)"},
+            {'name': "Graph Exchange XML Format (*.gexf)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "Graph Modelling Language (*.gml)",
+                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
+            {'name': "Pickle (*.pickle)",
+                'dependencies': ['cPickle', 'pickle']},
+            {'name': "GraphML (*.graphml)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "YAML (*.yml)",
+                'dependencies': ['yaml']},
+            {'name': "Pajek (*.pajek)"},
+            {'name': "LEDA (*.leda)"},
+            {'name': "Sparse6 (*.sparse6)"},
+            {'name': "GIS Shapefile (*.shp)",
+                'dependencies': ['osgeo']}
+        ]
+        
+        return solve_formats(possible_formats)        
+                    
     def on_actionSave_as_triggered(self, checked=None):
         if checked == None:
             tab = self.ui.tabWidget.currentWidget()
             if tab:
-                formats = []
-                formats.append("Adjacence List (*.al)")
-                formats.append("Multiline Adjacence List (*.mal)")
-                formats.append("Edge List (*.el)")
-                formats.append("Graph Exchange XML Format (*.gexf)")
-                formats.append("Graph Modelling Language (*.gml)")
-                formats.append("Pickle (*.pickle)")
-                formats.append("GraphML (*.graphml)")
-                formats.append("YAML (*.yml)")
-                formats.append("Pajek (*.pajek)")
+                formats = self.formats_to_save()
                 
                 files_types = ""
                 for format in formats:
                     files_types += format + ";;"
-                files_types += "All files (*.*)"
+
+#                files_types += "All files (*.*)"
                 
                 path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', files_types)
                 print path
