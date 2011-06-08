@@ -13,20 +13,20 @@ class ScreenShow(QtGui.QMainWindow):
         self.parent = parent
         self.ui = Ui_ScreenShow()
         self.ui.setupUi(self)
-    
+
     def on_tabWidget_tabCloseRequested(self, number):
         self.ui.tabWidget.removeTab(number)
 
     def on_actionOpen_triggered(self, checked=None):
         if checked == None:
-            formats = []
-
+            formats = self.controller.formats_to_open()
             
             files_types = ""
             for format in formats:
-                files_types += format + ";;"
-            files_types += "All files (*.*)"
-
+                files_types += format
+                if format != formats[-1]:
+                    files_types += ";;"
+                
             paths = QtGui.QFileDialog.getOpenFileNames(self, 'Open file', '', files_types)
             
             for path in paths:
@@ -46,81 +46,18 @@ class ScreenShow(QtGui.QMainWindow):
         if checked == None:
             pass
 
-    def solve_imports(self, possible_formats):
-        for format in possible_formats:
-            imported = False
-            
-            if 'dependencies' in format:
-                for dep in format['dependencies']:
-                    try:
-                        __import__(dep)
-                    except:
-                        continue
-                    else:
-                        imported = True    
-                        break
-
-            if imported:
-                formats.append(format['name'])
-
-        return formats
-
-    def formats_to_save(self):
-        possible_formats = [
-            {'name': "Adjacence List (*.al)"},
-            {'name': "Multiline Adjacence List (*.mal)"},
-            {'name': "Edge List (*.el)"},
-            {'name': "Graph Exchange XML Format (*.gexf)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "Graph Modelling Language (*.gml)",
-                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
-            {'name': "Pickle (*.pickle)",
-                'dependencies': ['cPickle', 'pickle']},
-            {'name': "GraphML (*.graphml)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "YAML (*.yml)",
-                'dependencies': ['yaml']},
-            {'name': "Pajek (*.pajek)"}
-        ]
-        
-        return solve_formats(possible_formats)        
-
-    def formats_to_open(self):
-        possible_formats = [
-            {'name': "Adjacence List (*.al)"},
-            {'name': "Multiline Adjacence List (*.mal)"},
-            {'name': "Edge List (*.el)"},
-            {'name': "Graph Exchange XML Format (*.gexf)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "Graph Modelling Language (*.gml)",
-                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
-            {'name': "Pickle (*.pickle)",
-                'dependencies': ['cPickle', 'pickle']},
-            {'name': "GraphML (*.graphml)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "YAML (*.yml)",
-                'dependencies': ['yaml']},
-            {'name': "Pajek (*.pajek)"},
-            {'name': "LEDA (*.leda)"},
-            {'name': "Sparse6 (*.sparse6)"},
-            {'name': "GIS Shapefile (*.shp)",
-                'dependencies': ['osgeo']}
-        ]
-        
-        return solve_formats(possible_formats)        
-                    
     def on_actionSave_as_triggered(self, checked=None):
         if checked == None:
             tab = self.ui.tabWidget.currentWidget()
             if tab:
-                formats = self.formats_to_save()
+                formats = self.controller.formats_to_save()
                 
                 files_types = ""
                 for format in formats:
-                    files_types += format + ";;"
+                    files_types += format
+                    if format != formats[-1]:
+                        files_types += ";;"
 
-#                files_types += "All files (*.*)"
-                
                 path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', files_types)
                 print path
                 if path:

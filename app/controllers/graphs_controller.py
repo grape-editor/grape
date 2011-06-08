@@ -62,7 +62,7 @@ class GraphsController(object):
             edge = graph.edge[n1][n2]
             
             return edge
-        
+
     def remove_edge(self, graph, edge):
         if graph.has_edge(*edge):
             graph.remove_edge(*edge)
@@ -73,15 +73,71 @@ class GraphsController(object):
     def save(self, graph, path):
         graph.graph['path'] = path
         
-        try:
-            import gtk
-        except:
-            print "deu errado"
-        else:
-            print "deu certo"
-
-        
         nx.write_yaml(graph, path)
+
+    def solve_imports(self, possible_formats):
+        formats = []
+        for format in possible_formats:
+            imported = False
+            
+            if 'dependencies' in format:
+                for dep in format['dependencies']:
+                    try:
+                        __import__(dep)
+                    except:
+                        continue
+                    else:
+                        imported = True    
+                        break
+
+            if imported:
+                formats.append(format['name'])
+
+        return formats
+
+    def formats_to_save(self):
+        possible_formats = [
+            {'name': "Adjacence List (*.al)"},
+            {'name': "Multiline Adjacence List (*.mal)"},
+            {'name': "Edge List (*.el)"},
+            {'name': "Graph Exchange XML Format (*.gexf)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "Graph Modelling Language (*.gml)",
+                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
+            {'name': "Pickle (*.pickle)",
+                'dependencies': ['cPickle', 'pickle']},
+            {'name': "GraphML (*.graphml)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "YAML (*.yml)",
+                'dependencies': ['yaml']},
+            {'name': "Pajek (*.pajek)"}
+        ]
+        
+        return self.solve_imports(possible_formats)        
+
+    def formats_to_open(self):
+        possible_formats = [
+            {'name': "Adjacence List (*.al)"},
+            {'name': "Multiline Adjacence List (*.mal)"},
+            {'name': "Edge List (*.el)"},
+            {'name': "Graph Exchange XML Format (*.gexf)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "Graph Modelling Language (*.gml)",
+                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
+            {'name': "Pickle (*.pickle)",
+                'dependencies': ['cPickle', 'pickle']},
+            {'name': "GraphML (*.graphml)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
+            {'name': "YAML (*.yml)",
+                'dependencies': ['yaml']},
+            {'name': "Pajek (*.pajek)"},
+            {'name': "LEDA (*.leda)"},
+            {'name': "Sparse6 (*.sparse6)"},
+            {'name': "GIS Shapefile (*.shp)",
+                'dependencies': ['osgeo']}
+        ]
+        
+        return self.solve_imports(possible_formats)    
         
 
     # NEVER REMOVE THIS CODE
