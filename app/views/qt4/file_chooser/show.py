@@ -7,6 +7,9 @@ class FileChooserShow(object):
     def __init__(self, builder, type):
         self.builder = builder
         current_path = os.path.dirname(__file__)
+        
+        print cuurent_path
+        
         path = os.path.join(current_path, "show.ui")
         self.builder.add_from_file(path)
         self.builder.connect_signals(self)

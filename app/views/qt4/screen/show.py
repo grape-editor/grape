@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from app.views.qt4.screen.show_ui import Ui_ScreenShow
 from app.views.qt4.graph.show import GraphShow
 from PyQt4 import QtCore, QtGui
@@ -31,6 +33,7 @@ class ScreenShow(QtGui.QMainWindow):
             
             for path in paths:
                 g = self.controller.open(str(path))
+                print g
                 graph = GraphShow(g)
                 self.ui.tabWidget.addTab(graph, graph.graph.graph['title'])
                 self.ui.tabWidget.setCurrentWidget(graph)
@@ -59,7 +62,7 @@ class ScreenShow(QtGui.QMainWindow):
                         files_types += ";;"
 
                 path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', files_types)
-                print path
+                
                 if path:
                     self.controller.save(tab.graph, str(path))
             

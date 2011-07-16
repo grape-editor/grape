@@ -68,12 +68,49 @@ class GraphsController(object):
             graph.remove_edge(*edge)
          
     def open(self, path):
-        return nx.read_yaml(path)
+        format = path.split(".")[-1]
+
+        if format == "al":
+            return nx.read_adjlist(path)
+        elif format == "el":
+            return nx.read_edgelist(path)
+        elif format == "gexf":
+            return nx.read_gexf(path)
+        elif format == "gml":
+            return nx.read_gml(path)
+        elif format == "pickle":
+            return nx.read_gpickle(path)
+        elif format == "graphml":
+            return nx.read_graphml(path)
+        elif format == "yml":
+            return nx.read_yaml(path)
+        elif format == "pajek":
+            return nx.read_pajek(path)
+
             
     def save(self, graph, path):
         graph.graph['path'] = path
-        
-        nx.write_yaml(graph, path)
+
+        format = path.split(".")[-1]
+
+        if format == "al":
+            nx.write_adjlist(graph, path)
+        elif format == "el":
+            nx.write_edgelist(graph, path)
+        elif format == "gexf":
+            nx.write_gexf(graph, path)
+        elif format == "gml":
+            nx.write_gml(graph, path)
+        elif format == "pickle":
+            nx.write_gpickle(graph, path)
+        elif format == "graphml":
+            nx.write_graphml(graph, path)
+        elif format == "yml":
+            nx.write_yaml(graph, path)
+        elif format == "pajek":
+            nx.write_pajek(graph, path)
+
+
 
     def solve_imports(self, possible_formats):
         formats = []
@@ -89,54 +126,54 @@ class GraphsController(object):
                     else:
                         imported = True    
                         break
+            else:
+                imported = True
 
             if imported:
                 formats.append(format['name'])
 
         return formats
 
-    def formats_to_save(self):
-        possible_formats = [
-            {'name': "Adjacence List (*.al)"},
-            {'name': "Multiline Adjacence List (*.mal)"},
-            {'name': "Edge List (*.el)"},
-            {'name': "Graph Exchange XML Format (*.gexf)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "Graph Modelling Language (*.gml)",
-                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
-            {'name': "Pickle (*.pickle)",
-                'dependencies': ['cPickle', 'pickle']},
-            {'name': "GraphML (*.graphml)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "YAML (*.yml)",
-                'dependencies': ['yaml']},
-            {'name': "Pajek (*.pajek)"}
+
+    def formats_default(self):
+        return [
+            {
+                'name': "Adjacence List (*.al)"
+            },
+            {
+                'name': "Edge List (*.el)"
+            },
+            {
+                'name': "Graph Exchange XML Format (*.gexf)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']
+            },
+            {
+                'name': "Graph Modelling Language (*.gml)",
+                'dependencies': ['pyparsing', 'matplotlib.pyparsing']
+            },
+            {
+                'name': "Pickle (*.pickle)",
+                'dependencies': ['cPickle', 'pickle']
+            },
+            {
+                'name': "GraphML (*.graphml)", 
+                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']
+            },
+            {
+                'name': "YAML (*.yml)",
+                'dependencies': ['yaml']
+            },
+            {
+                'name': "Pajek (*.pajek)"
+            }
         ]
-        
-        return self.solve_imports(possible_formats)        
+
+    def formats_to_save(self):
+        possible_formats = self.formats_default()
+        return self.solve_imports(possible_formats)
 
     def formats_to_open(self):
-        possible_formats = [
-            {'name': "Adjacence List (*.al)"},
-            {'name': "Multiline Adjacence List (*.mal)"},
-            {'name': "Edge List (*.el)"},
-            {'name': "Graph Exchange XML Format (*.gexf)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "Graph Modelling Language (*.gml)",
-                'dependencies': ['pyparsing', 'matplotlib.pyparsing']},
-            {'name': "Pickle (*.pickle)",
-                'dependencies': ['cPickle', 'pickle']},
-            {'name': "GraphML (*.graphml)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']},
-            {'name': "YAML (*.yml)",
-                'dependencies': ['yaml']},
-            {'name': "Pajek (*.pajek)"},
-            {'name': "LEDA (*.leda)"},
-            {'name': "Sparse6 (*.sparse6)"},
-            {'name': "GIS Shapefile (*.shp)",
-                'dependencies': ['osgeo']}
-        ]
-        
+        possible_formats = self.formats_default()
         return self.solve_imports(possible_formats)    
         
 
