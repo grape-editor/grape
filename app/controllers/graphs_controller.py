@@ -82,7 +82,7 @@ class GraphsController(object):
 
         format = path.split(".")[-1]
         
-       if format == "pickle":
+        if format == "pickle":
             nx.write_gpickle(graph, path)
         elif format == "yml":
             nx.write_yaml(graph, path)
