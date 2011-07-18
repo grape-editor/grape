@@ -70,46 +70,26 @@ class GraphsController(object):
     def open(self, path):
         format = path.split(".")[-1]
 
-        if format == "al":
-            return nx.read_adjlist(path)
-        elif format == "el":
-            return nx.read_edgelist(path)
-        elif format == "gexf":
-            return nx.read_gexf(path)
-        elif format == "gml":
-            return nx.read_gml(path)
-        elif format == "pickle":
+        if format == "pickle":
             return nx.read_gpickle(path)
-        elif format == "graphml":
-            return nx.read_graphml(path)
         elif format == "yml":
             return nx.read_yaml(path)
-        elif format == "pajek":
-            return nx.read_pajek(path)
-
+        else:
+            return nx.read_yaml(path)
             
     def save(self, graph, path):
         graph.graph['path'] = path
 
         format = path.split(".")[-1]
-
-        if format == "al":
-            nx.write_adjlist(graph, path)
-        elif format == "el":
-            nx.write_edgelist(graph, path)
-        elif format == "gexf":
-            nx.write_gexf(graph, path)
-        elif format == "gml":
-            nx.write_gml(graph, path)
-        elif format == "pickle":
+        
+       if format == "pickle":
             nx.write_gpickle(graph, path)
-        elif format == "graphml":
-            nx.write_graphml(graph, path)
         elif format == "yml":
             nx.write_yaml(graph, path)
-        elif format == "pajek":
-            nx.write_pajek(graph, path)
-
+        else:
+            path += ".yml"
+            graph.graph['path'] = path
+            nx.write_yaml(graph, path)
 
 
     def solve_imports(self, possible_formats):
@@ -138,33 +118,12 @@ class GraphsController(object):
     def formats_default(self):
         return [
             {
-                'name': "Adjacence List (*.al)"
-            },
-            {
-                'name': "Edge List (*.el)"
-            },
-            {
-                'name': "Graph Exchange XML Format (*.gexf)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']
-            },
-            {
-                'name': "Graph Modelling Language (*.gml)",
-                'dependencies': ['pyparsing', 'matplotlib.pyparsing']
-            },
-            {
-                'name': "Pickle (*.pickle)",
-                'dependencies': ['cPickle', 'pickle']
-            },
-            {
-                'name': "GraphML (*.graphml)", 
-                'dependencies': ['xml.etree.cElementTree', 'xml.etree.ElementTree']
-            },
-            {
                 'name': "YAML (*.yml)",
                 'dependencies': ['yaml']
             },
             {
-                'name': "Pajek (*.pajek)"
+                'name': "Pickle (*.pickle)",
+                'dependencies': ['cPickle', 'pickle']
             }
         ]
 

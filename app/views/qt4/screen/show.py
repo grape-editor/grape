@@ -55,13 +55,7 @@ class ScreenShow(QtGui.QMainWindow):
             if tab:
                 formats = self.controller.formats_to_save()
                 
-                files_types = ""
-                for format in formats:
-                    files_types += format
-                    if format != formats[-1]:
-                        files_types += ";;"
-
-                path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '', files_types)
+                path = QtGui.QFileDialog.getSaveFileName(self, 'Save file', '')
                 
                 if path:
                     self.controller.save(tab.graph, str(path))

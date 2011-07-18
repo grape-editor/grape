@@ -48,14 +48,17 @@ class GraphScene(QtGui.QGraphicsScene):
             for j in self.graph.edge[i]:
                 if isinstance(self.graph, MultiGraph) or isinstance(self.graph, MultiDiGraph):
                     for k in self.graph.edge[i][j]:
-                        self.add_edge(self.graph.edge[i][j][k], nodes[i], nodes[j])
+                        self.add_edge(nodes[i], nodes[j], self.graph.edge[i][j][k])
                 else:
-                    self.add_edge(self.graph.edge[i][j], nodes[i], nodes[j])
+                    self.add_edge(nodes[i], nodes[j], self.graph.edge[i][j])
     
-    def add_edge(self, n1, n2):
+    def add_edge(self, n1, n2, edge=None):
         n1id = n1.node['id']
         n2id = n2.node['id']
-        edge = self.controller.add_edge(self.graph, n1id, n2id)
+        
+        if not edge:
+          edge = self.controller.add_edge(self.graph, n1id, n2id)
+          
         edge_show = EdgeShow(edge, n1, n2)
         self.addItem(edge_show)
     
