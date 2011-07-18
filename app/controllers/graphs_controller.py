@@ -27,8 +27,8 @@ class GraphsController(object):
         return node
 
     def remove_node(self, graph, node):
-        if graph.has_node(node):
-            graph.remove_node(node)
+        if graph.has_node(node['id']):
+            graph.remove_node(node['id'])
 
     def add_edge(self, graph, n1, n2):
         if n1 not in graph.nodes() or n2 not in graph.nodes():
@@ -64,7 +64,9 @@ class GraphsController(object):
             return edge
 
     def remove_edge(self, graph, edge):
+        print edge
         if graph.has_edge(*edge):
+            print 'haz edge'
             graph.remove_edge(*edge)
          
     def open(self, path):
