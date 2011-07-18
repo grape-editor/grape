@@ -110,11 +110,17 @@ class NodeShow(QtGui.QGraphicsItem):
     def mousePressEvent(self, event):
         self.update()
         QtGui.QGraphicsItem.mousePressEvent(self, event)
-        
-        print event.button() 
-        
-        
+        if event.button() == QtCore.Qt.RightButton:
 
+            menu = QtGui.QMenu()
+            
+            for _ in range(2):
+                self.quitAction = menu.addAction("&Abacate")
+                self.openAction = menu.addAction("&Bigorna...")
+                self.quitAction = menu.addAction("&Cebola")
+
+            menu.exec_(event.screenPos())
+            
     def mouseReleaseEvent(self, event):
         self.update()
         QtGui.QGraphicsItem.mouseReleaseEvent(self, event)
