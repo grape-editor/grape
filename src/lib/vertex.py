@@ -1,0 +1,73 @@
+class Vertex(object):
+
+    def __init__(self, id, position):
+        self.id = id
+        self.position = position
+        self.adjacencies = []
+        # TODO - Configuration file
+        self.title = str(id)
+        self.fill_color = [1, 1, 1]
+        self.border_color = [0, 0, 0]
+        self.border_size = 2
+        self.size = 30
+        self.selected = False
+        self.touching_edges = []
+
+    def select(self):
+        self.selected = True
+
+    def deselect(self):
+        self.selected = False
+
+    def has_edge(self, edge):
+        return edge in self.adjacencies
+
+    def touches_edge(self, edge):
+        return edge in self.touching_edges
+
+    def add_edge(self, edge):
+        if not self.has_edge(edge):
+            self.adjacencies.append(edge)
+
+    def remove_edge(self, edge):
+        if self.has_edge(edge):
+            if edge.start.touches_edge(edge):
+                edge.start.touching_edges.remove(edge)
+
+            if edge.end.touches_edge(edge):
+                edge.end.touching_edges.remove(edge)
+
+            self.adjacencies.remove(edge)
+            del edge
+
+    def clear_adjacencies(self):
+        for e in self.adjacencies:
+            start = e.start
+            end = e.end
+            if start != self:
+                start.remove_edge(e)
+            if end != self:
+                end.remove_edge(e)
+
+        del self.adjacencies[:]
+
+    def nearest_vertices(self, neighbor, axis):
+        next_vertex = None
+
+        if len(neighbor) > 0:
+            point_max = self.position[axis]
+            point_min = self.position[axis]
+
+            while not next_vertex:
+                for current in neighbor:
+                    if current.position[axis] == point_max:
+                        next_vertex = current
+                        break
+                    elif current.position[axis] == point_min:
+                        next_vertex = current
+                        break
+
+                point_max = point_max + 1
+                point_min = point_min - 1
+        return next_vertex
+
