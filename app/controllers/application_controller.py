@@ -1,3 +1,0 @@
-class ApplicationController(object):
-    pass
-
