@@ -3,14 +3,14 @@ import math
 import pickle
 from gtk import DrawingArea, EventBox, ScrolledWindow
 
-from lib.graph import Graph
+from lib.graph import Graph as GraphModel
 from lib.graphs_controller import GraphsController
 from lib.mathemathical import *
 from gui.area import GraphArea
 from gui.scrollable_graph import ScrollableGraph
-from gui.vertex import VertexEdit
+from gui.vertex import Vertex
 
-class GraphShow(ScrollableGraph):
+class Graph(ScrollableGraph):
 
     def __init__(self, builder, changed_method):
         ScrollableGraph.__init__(self)
@@ -46,7 +46,7 @@ class GraphShow(ScrollableGraph):
 
         self.controller = GraphsController()
 
-        self.graph = Graph()
+        self.graph = GraphModel()
         self.area = GraphArea(self.graph, self.controller)
         self.event_box.add(self.area)
 

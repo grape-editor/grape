@@ -4,9 +4,9 @@ import sys
 import locale
 import gettext
 
-from gui.edge import EdgeEdit
+from gui.edge import Edge
 
-class VertexEdit(object):
+class Vertex(object):
     def __init__(self, graph_show, vertex):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "vertex.ui")

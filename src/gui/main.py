@@ -1,11 +1,11 @@
-from gui.screen import ScreenShow
+from gui.screen import Screen
 import gtk
 import os
 import sys
 import locale
 import gettext
 
-class ApplicationLayout(object):
+class Main(object):
 
     def __init__(self):
         self.screens = []
@@ -18,7 +18,7 @@ class ApplicationLayout(object):
         gtk.main()
 
     def screen_create(self, source=None, page=None, x=None, y=None, user_data=None):
-        screen = ScreenShow(self.builder, page != None)
+        screen = Screen(self.builder, page != None)
         if x and y:
             screen.move_screen(x, y)
 

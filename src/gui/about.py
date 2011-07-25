@@ -2,7 +2,7 @@ import gtk.gdk
 import os
 
 
-class AboutShow(object):
+class About(object):
 
     def __init__(self, builder):
         current_path = os.path.dirname(__file__)

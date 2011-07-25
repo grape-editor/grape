@@ -4,7 +4,7 @@ import sys
 import locale
 import gettext
 
-class EdgeEdit(object):
+class Edge(object):
     def __init__(self, graph_show, edge):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "edit.ui")

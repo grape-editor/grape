@@ -2,7 +2,7 @@ import os
 import gtk
 
 
-class FileChooserShow(object):
+class FileChooser(object):
 
     def __init__(self, builder, type):
         self.builder = builder

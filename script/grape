@@ -19,8 +19,8 @@ if not path in sys.path:
         if not path in sys.path:
             sys.path.insert(0, path)
 
-from gui.main import ApplicationLayout
+from gui.main import Main
 
 if __name__ == "__main__":
-    grape = ApplicationLayout()
+    grape = Main()
 
