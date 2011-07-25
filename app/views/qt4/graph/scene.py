@@ -64,7 +64,7 @@ class GraphScene(QtGui.QGraphicsScene):
         self.addItem(edge_show)
     
     def add_node(self, node):
-        node_show = NodeShow(node)
+        node_show = NodeShow(self, node)
 
         self.addItem(node_show)
         
@@ -153,6 +153,21 @@ class GraphScene(QtGui.QGraphicsScene):
                 QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
                 
         if event.button() == QtCore.Qt.RightButton:
-            print "BTN direito em um nodo"
+            menu = QtGui.QMenu()
+
+            # Sorcery is used here. But don't care, it really works
+            ui = self.parent().parent().parent().parent().parent().parent().ui
+
+            menu.addAction(ui.actionAdd_node)
+            menu.addAction(ui.actionRemove_node)
+            menu.addSeparator()
+            menu.addAction(ui.actionAdd_edge)
+            menu.addAction(ui.actionRemove_edge)
+            menu.addSeparator()
+            menu.addAction(ui.actionAlign_vertically)
+            menu.addAction(ui.actionAlign_horizontally)
+           
+            menu.exec_(event.screenPos())
+            
                 
                 

@@ -2,12 +2,13 @@ from PyQt4 import QtCore, QtGui
 
 class NodeShow(QtGui.QGraphicsItem):
     
-    def __init__(self, node):
+    def __init__(self, parent, node):
         QtGui.QGraphicsItem.__init__(self)
         
         self.edge_list = []
         
         self.node = node
+        self.parent = parent
         
         self.setFlag(QtGui.QGraphicsItem.ItemIsMovable)
         self.setFlag(QtGui.QGraphicsItem.ItemIsSelectable)
@@ -21,7 +22,7 @@ class NodeShow(QtGui.QGraphicsItem):
         self.title.setPlainText(self.node['title'])
         self.title.adjustSize()
         self.title.setPos(-(self.title.boundingRect().width() / 2), -(self.title.boundingRect().height() / 2))
-        
+
     def add_edge(self, edge):
         self.edge_list.append(edge)
         self.calculate_edges_trajectory()
@@ -113,12 +114,19 @@ class NodeShow(QtGui.QGraphicsItem):
 
         if event.button() == QtCore.Qt.RightButton:
             menu = QtGui.QMenu()
-            
-            for _ in range(2):
-                self.quitAction = menu.addAction("&Abacate")
-                self.openAction = menu.addAction("&Bigorna...")
-                self.quitAction = menu.addAction("&Cebola")
 
+            # Sorcery is used here. But don't care, it really works
+            ui = self.parent.parent().parent().parent().parent().parent().parent().ui
+
+            menu.addAction(ui.actionAdd_node)
+            menu.addAction(ui.actionRemove_node)
+            menu.addSeparator()
+            menu.addAction(ui.actionAdd_edge)
+            menu.addAction(ui.actionRemove_edge)
+            menu.addSeparator()
+            menu.addAction(ui.actionAlign_vertically)
+            menu.addAction(ui.actionAlign_horizontally)
+           
             menu.exec_(event.screenPos())
             
     def mouseReleaseEvent(self, event):
