@@ -112,8 +112,6 @@ class NodeShow(QtGui.QGraphicsItem):
         QtGui.QGraphicsItem.mousePressEvent(self, event)
         
         print event.button() 
-        
-        
 
     def mouseReleaseEvent(self, event):
         self.update()

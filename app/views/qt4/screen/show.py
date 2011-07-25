@@ -86,6 +86,7 @@ class ScreenShow(QtGui.QMainWindow):
             tab = self.ui.tabWidget.currentWidget()
             if tab:
                 tab.set_action("add_node")
+                tab.ui.graphicsView.update()
             
     def on_actionRemove_node_triggered(self, checked=None):
         if checked == None:

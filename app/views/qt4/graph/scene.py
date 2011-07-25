@@ -24,19 +24,20 @@ class GraphScene(QtGui.QGraphicsScene):
         else:
             self.action = action
     
-    
     def align_horizontal(self, nodes):
         mean = int(sum(map(lambda n: n.node['position'][1], nodes)) / len(nodes))
         for node in nodes:
             node.node['position'] = (node.node['position'][0], mean)
             node.setPos(node.node['position'][0], node.node['position'][1])
+            node.calculate_edges_trajectory()
 
     def align_vertical(self, nodes):
         mean = int(sum(map(lambda n: n.node['position'][0], nodes)) / len(nodes))
         for node in nodes:
             node.node['position'] = (mean, node.node['position'][1])
             node.setPos(node.node['position'][0], node.node['position'][1])
-    
+            node.calculate_edges_trajectory()
+
     def refresh_graph(self):
         nodes = {}
         
