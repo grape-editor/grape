@@ -109,12 +109,13 @@ class GraphScene(QtGui.QGraphicsScene):
             self.set_action(None)
         elif len(items) and reduce(lambda a, b: a or b, map(check_clickable, items)):
             QtGui.QGraphicsScene.mousePressEvent(self, event)
-        elif event.button() == QtCore.Qt.LeftButton:
+        elif event.button() in [QtCore.Qt.LeftButton, QtCore.Qt.RightButton]:
             pos = self.parent().mapFromScene(event.scenePos())
             self.rubberband.setGeometry(QtCore.QRect(pos, QtCore.QSize()))
             self.rubberband.show()
   
     def mouseMoveEvent(self, event):
+    
         if self.rubberband.isVisible() and bool(event.buttons() & QtCore.Qt.LeftButton):
             start_pos = self.parent().mapFromScene(event.buttonDownScenePos(QtCore.Qt.LeftButton))
             final_pos = self.parent().mapFromScene(event.scenePos())
@@ -150,4 +151,8 @@ class GraphScene(QtGui.QGraphicsScene):
                 map(self.remove_node, self.selectedItems())
             elif self.action == None:
                 QtGui.QGraphicsScene.mouseReleaseEvent(self, event)
+                
+        if event.button() == QtCore.Qt.RightButton:
+            print "BTN direito em um nodo"
+                
                 
