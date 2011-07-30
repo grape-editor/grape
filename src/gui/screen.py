@@ -146,7 +146,7 @@ class Screen(object):
 
     def menu_file_open(self, widget):
         tab = Graph(self.builder, self.tab_changed)
-        file_chooser = FileChooserShow(self.builder, "open")
+        file_chooser = FileChooser(self.builder, "open")
         file_chooser.run()
 
         if file_chooser.path:
@@ -177,7 +177,7 @@ class Screen(object):
         tab, i = self.current_tab()
 
         if tab and self.notebook.get_n_pages() > 0:
-            file_chooser = FileChooserShow(self.builder, "save")
+            file_chooser = FileChooser(self.builder, "save")
             file_chooser.run()
 
             if file_chooser.path:

@@ -7,7 +7,7 @@ import gettext
 class Edge(object):
     def __init__(self, graph_show, edge):
         path = os.path.dirname(__file__)
-        path = os.path.join(path, "edit.ui")
+        path = os.path.join(path, "edge.ui")
 
         self.edge = edge
         self.area = graph_show.area
@@ -29,21 +29,51 @@ class Edge(object):
 
         self.treeview_properties = self.builder.get_object("treeview_properties")
         self.treeview_properties.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
-        
-        self.liststore_properties = self.builder.get_object("liststore_properties")
 
         self.init_general_fields()
                 
         self.builder.connect_signals(self)
         self.screen.show_all()
 
+        self.liststore_properties = gtk.ListStore(str, str)
+        self.treeview_properties.set_model(self.liststore_properties)
+		
     def switch_page(self, notebook, page, page_num):
         if page_num == 0:
             self.init_general_fields()
         elif page_num == 1:
             self.init_property_fields()
 
+    def update_property(self, cell, path, new_text, column):
+        row_iter = self.liststore_properties.get_iter(path)
+    
+        identifier, value = self.liststore_properties.get(row_iter, 0, 1)
+
+        if column == 0:
+            # change attribue name
+            t_value = getattr(self.edge, "user_" + identifier)
+            delattr(self.edge, "user_" + identifier)
+            setattr(self.edge, "user_" + new_text, t_value)
+
+        elif column == 1:
+            # change attribute value
+            setattr(self.edge, "user_" + identifier, value)
+
+        self.liststore_properties.set_value(row_iter, column, new_text)
+
+        return
+
     def init_general_fields(self):
+        renderer = gtk.CellRendererText()
+        renderer.connect('edited', self.update_property, 0)
+        renderer.set_property('editable', True)
+        self.treeview_properties.insert_column_with_attributes(-1, 'Identifier', renderer, text=0)
+
+        renderer = gtk.CellRendererText()
+        renderer.connect('edited', self.update_property, 1)
+        renderer.set_property('editable', True)
+        self.treeview_properties.insert_column_with_attributes(-1, 'Value', renderer, text=1)
+
         self.label_id.set_label(str(self.edge.id))
         self.text_title.set_text(self.edge.title)
         
@@ -56,7 +86,7 @@ class Edge(object):
         for attr in self.edge.__dict__:
             if attr.startswith("user_"):
                 t_identifier = attr[5:]
-                t_value = self.edge.__dict__[attr]          
+                t_value = getattr(self.edge, attr)
                 self.liststore_properties.append([t_identifier, t_value])
         
     def keyboard_press(self, widget, event):
@@ -111,10 +141,11 @@ class Edge(object):
         self.menu.popup(None, None, None, event.button, event.time)
 
     def add_property(self):
-        t_identifier = "user_foo"
+        t_identifier = "foo"
         t_value = "bar"
         self.liststore_properties.append([t_identifier, t_value])
-        setattr(self.edge, t_identifier, t_value)
+
+        setattr(self.edge, "user_" + t_identifier, t_value)
         
 #        self.add_state()
 #        self.area.queue_draw()
@@ -137,8 +168,8 @@ class Edge(object):
                     if t_identifier == property_identifier:
                         delattr(self.edge, attr)
     
-        self.add_state()
-        self.area.queue_draw()
+#        self.add_state()
+#        self.area.queue_draw()
 
     def cairo_to_spin(self, color):
         return gtk.gdk.Color(color[0] * 65535, color[1] * 65535, color[2] * 65535)

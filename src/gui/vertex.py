@@ -145,7 +145,7 @@ class Vertex(object):
         
         edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
         if edge:
-            edit_edge = EdgeEdit(self.graph_show, edge)
+            edit_edge = Edge(self.graph_show, edge)
         
     def add_edge(self):
         idx = 0

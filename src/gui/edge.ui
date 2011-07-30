@@ -2,14 +2,6 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkListStore" id="liststore_properties">
-    <columns>
-      <!-- column-name identifier -->
-      <column type="gchararray"/>
-      <!-- column-name value -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkWindow" id="edge_edit">
     <property name="title" translatable="yes">Edge Settings</property>
     <property name="resizable">False</property>
@@ -320,44 +312,11 @@
                             <child>
                               <object class="GtkTreeView" id="treeview_properties">
                                 <property name="can_focus">True</property>
-                                <property name="model">liststore_properties</property>
                                 <property name="reorderable">True</property>
                                 <property name="rubber_banding">True</property>
                                 <property name="enable_grid_lines">vertical</property>
                                 <signal name="button_press_event" handler="mouse_press"/>
                                 <signal name="key_press_event" handler="keyboard_press"/>
-                                <child>
-                                  <object class="GtkTreeViewColumn" id="treeviewcolumn1">
-                                    <property name="title">Identifier</property>
-                                    <property name="clickable">True</property>
-                                    <property name="reorderable">True</property>
-                                    <property name="sort_indicator">True</property>
-                                    <property name="sort_column_id">0</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                                      <attributes>
-                                        <attribute name="editable">1</attribute>
-                                        <attribute name="text">0</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkTreeViewColumn" id="treeviewcolumn2">
-                                    <property name="title">Value</property>
-                                    <property name="clickable">True</property>
-                                    <property name="reorderable">True</property>
-                                    <property name="sort_indicator">True</property>
-                                    <property name="sort_column_id">1</property>
-                                    <child>
-                                      <object class="GtkCellRendererText" id="cellrenderertext2"/>
-                                      <attributes>
-                                        <attribute name="editable">1</attribute>
-                                        <attribute name="text">1</attribute>
-                                      </attributes>
-                                    </child>
-                                  </object>
-                                </child>
                               </object>
                             </child>
                           </object>
