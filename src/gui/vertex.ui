@@ -2,16 +2,6 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkListStore" id="liststore_edges">
-    <columns>
-      <!-- column-name id -->
-      <column type="gchararray"/>
-      <!-- column-name vertex1 -->
-      <column type="gchararray"/>
-      <!-- column-name vertex2 -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkWindow" id="vertex_edit">
     <property name="title" translatable="yes">Vertex Settings</property>
     <property name="resizable">False</property>
@@ -34,6 +24,7 @@
               <object class="GtkVBox" id="general">
                 <property name="visible">True</property>
                 <property name="border_width">10</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">10</property>
                 <child>
                   <object class="GtkFrame" id="Information">
@@ -47,6 +38,7 @@
                           <object class="GtkVBox" id="vbox3">
                             <property name="visible">True</property>
                             <property name="border_width">5</property>
+                            <property name="orientation">vertical</property>
                             <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkHBox" id="hbox1">
@@ -109,7 +101,7 @@
                       </object>
                     </child>
                     <child type="label">
-                      <object class="GtkLabel" id="label2">
+                      <object class="GtkLabel" id="label4">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">&lt;b&gt;Information&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -132,6 +124,7 @@
                           <object class="GtkVBox" id="vbox4">
                             <property name="visible">True</property>
                             <property name="border_width">5</property>
+                            <property name="orientation">vertical</property>
                             <property name="homogeneous">True</property>
                             <child>
                               <object class="GtkHBox" id="hbox3">
@@ -318,7 +311,7 @@
                       </object>
                     </child>
                     <child type="label">
-                      <object class="GtkLabel" id="label4">
+                      <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="label" translatable="yes">&lt;b&gt;Graphical&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
@@ -344,6 +337,7 @@
               <object class="GtkVBox" id="edge">
                 <property name="visible">True</property>
                 <property name="border_width">10</property>
+                <property name="orientation">vertical</property>
                 <property name="spacing">10</property>
                 <child>
                   <object class="GtkFrame" id="edge_list">
@@ -363,8 +357,8 @@
                             <child>
                               <object class="GtkTreeView" id="treeview_edges">
                                 <property name="can_focus">True</property>
-                                <property name="model">liststore_edges</property>
                                 <property name="reorderable">True</property>
+                                <property name="search_column">0</property>
                                 <property name="rubber_banding">True</property>
                                 <property name="enable_grid_lines">vertical</property>
                                 <signal name="button_press_event" handler="mouse_press"/>
@@ -438,12 +432,73 @@
               </packing>
             </child>
             <child type="tab">
-              <object class="GtkLabel" id="label3">
+              <object class="GtkLabel" id="label2">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Edges</property>
               </object>
               <packing>
                 <property name="position">1</property>
+                <property name="tab_fill">False</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkVBox" id="properties">
+                <property name="visible">True</property>
+                <property name="border_width">10</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">10</property>
+                <child>
+                  <object class="GtkFrame" id="property_list">
+                    <property name="visible">True</property>
+                    <property name="label_xalign">0</property>
+                    <child>
+                      <object class="GtkAlignment" id="alignment4">
+                        <property name="visible">True</property>
+                        <property name="left_padding">12</property>
+                        <child>
+                          <object class="GtkScrolledWindow" id="scrolledwindow1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="hscrollbar_policy">never</property>
+                            <property name="vscrollbar_policy">automatic</property>
+                            <child>
+                              <object class="GtkTreeView" id="treeview_properties">
+                                <property name="can_focus">True</property>
+                                <property name="reorderable">True</property>
+                                <property name="rubber_banding">True</property>
+                                <property name="enable_grid_lines">vertical</property>
+                                <signal name="button_press_event" handler="mouse_press"/>
+                                <signal name="key_press_event" handler="keyboard_press"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="label8">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Custom Properties&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child type="tab">
+              <object class="GtkLabel" id="label3">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Properties</property>
+              </object>
+              <packing>
+                <property name="position">2</property>
                 <property name="tab_fill">False</property>
               </packing>
             </child>
