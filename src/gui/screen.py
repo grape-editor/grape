@@ -1,6 +1,7 @@
 from gui.graph import Graph
 from gui.about import About
 from gui.file_chooser import FileChooser
+from gui.preferences import Preferences
 
 import gtk
 import os
@@ -278,6 +279,9 @@ class Screen(object):
 
         if tab:
             tab.action = "remove_edge"
+
+    def menu_edit_preferences(self, widget):
+        preferences = Preferences(self.builder)
 
     def menu_view_zoom_in(self, widget):
         tab, i = self.current_tab()

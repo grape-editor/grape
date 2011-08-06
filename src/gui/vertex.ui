@@ -14,6 +14,7 @@
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkNotebook" id="notebook">
             <property name="visible">True</property>
@@ -35,66 +36,49 @@
                         <property name="visible">True</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox3">
+                          <object class="GtkTable" id="table1">
                             <property name="visible">True</property>
-                            <property name="border_width">5</property>
-                            <property name="orientation">vertical</property>
-                            <property name="homogeneous">True</property>
+                            <property name="n_rows">2</property>
+                            <property name="n_columns">2</property>
                             <child>
-                              <object class="GtkHBox" id="hbox1">
+                              <object class="GtkLabel" id="label7">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label6">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Id:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="label_id">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">NUMBER</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="label" translatable="yes">Title:</property>
                               </object>
                               <packing>
-                                <property name="position">0</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox2">
+                              <object class="GtkEntry" id="text_title">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label7">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Title:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkEntry" id="text_title">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                    <signal name="changed" handler="title_changed"/>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <signal name="changed" handler="title_changed"/>
                               </object>
                               <packing>
-                                <property name="position">1</property>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
                               </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label_id">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">NUMBER</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label6">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Id:</property>
+                              </object>
                             </child>
                           </object>
                         </child>
@@ -121,190 +105,153 @@
                         <property name="visible">True</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox4">
+                          <object class="GtkTable" id="table2">
                             <property name="visible">True</property>
-                            <property name="border_width">5</property>
-                            <property name="orientation">vertical</property>
-                            <property name="homogeneous">True</property>
+                            <property name="n_rows">6</property>
+                            <property name="n_columns">2</property>
                             <child>
-                              <object class="GtkHBox" id="hbox3">
+                              <object class="GtkLabel" id="label10">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label9">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Position X:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkSpinButton" id="spin_posx">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="max_length">4096</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                    <property name="adjustment">adjustmentX</property>
-                                    <property name="numeric">True</property>
-                                    <signal name="change_value" handler="positionx_changed"/>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="label" translatable="yes">Position Y:</property>
                               </object>
                               <packing>
-                                <property name="position">0</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox5">
+                              <object class="GtkSpinButton" id="spin_posy">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label10">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Position Y:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkSpinButton" id="spin_posy">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="max_length">4096</property>
-                                    <property name="invisible_char">&#x25CF;</property>
-                                    <property name="adjustment">adjustmentY</property>
-                                    <property name="numeric">True</property>
-                                    <signal name="change_value" handler="positiony_changed"/>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="can_focus">True</property>
+                                <property name="max_length">4096</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="adjustment">adjustmentY</property>
+                                <property name="numeric">True</property>
+                                <signal name="change_value" handler="positiony_changed"/>
                               </object>
                               <packing>
-                                <property name="position">1</property>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">1</property>
+                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox6">
+                              <object class="GtkLabel" id="label11">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label11">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Vertex color:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkColorButton" id="color_vertex">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="color">#000000000000</property>
-                                    <signal name="color_set" handler="color_vertex_changed"/>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="label" translatable="yes">Vertex color:</property>
                               </object>
                               <packing>
-                                <property name="position">2</property>
+                                <property name="top_attach">2</property>
+                                <property name="bottom_attach">3</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox8">
+                              <object class="GtkColorButton" id="color_vertex">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label12">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Border color:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkColorButton" id="color_border">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">True</property>
-                                    <property name="color">#000000000000</property>
-                                    <signal name="color_set" handler="color_border_changed"/>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="color">#000000000000</property>
+                                <signal name="color_set" handler="color_vertex_changed"/>
                               </object>
                               <packing>
-                                <property name="position">3</property>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">2</property>
+                                <property name="bottom_attach">3</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox7">
+                              <object class="GtkLabel" id="label12">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label13">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Radius size:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkHScale" id="hscale2">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment_radius</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="label" translatable="yes">Border color:</property>
                               </object>
                               <packing>
-                                <property name="position">4</property>
+                                <property name="top_attach">3</property>
+                                <property name="bottom_attach">4</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox9">
+                              <object class="GtkColorButton" id="color_border">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">True</property>
-                                <child>
-                                  <object class="GtkLabel" id="label14">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">Border size:</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkHScale" id="hscale1">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="adjustment">adjustment_border</property>
-                                  </object>
-                                  <packing>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
+                                <property name="can_focus">True</property>
+                                <property name="receives_default">True</property>
+                                <property name="color">#000000000000</property>
+                                <signal name="color_set" handler="color_border_changed"/>
                               </object>
                               <packing>
-                                <property name="position">5</property>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">3</property>
+                                <property name="bottom_attach">4</property>
                               </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label13">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Radius size:</property>
+                              </object>
+                              <packing>
+                                <property name="top_attach">4</property>
+                                <property name="bottom_attach">5</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label14">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Border size:</property>
+                              </object>
+                              <packing>
+                                <property name="top_attach">5</property>
+                                <property name="bottom_attach">6</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkHScale" id="hscale2">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="adjustment">adjustment_radius</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">4</property>
+                                <property name="bottom_attach">5</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkHScale" id="hscale1">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="adjustment">adjustment_border</property>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                                <property name="top_attach">5</property>
+                                <property name="bottom_attach">6</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="spin_posx">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="max_length">4096</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="adjustment">adjustmentX</property>
+                                <property name="numeric">True</property>
+                                <signal name="change_value" handler="positionx_changed"/>
+                              </object>
+                              <packing>
+                                <property name="left_attach">1</property>
+                                <property name="right_attach">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label9">
+                                <property name="visible">True</property>
+                                <property name="label" translatable="yes">Position X:</property>
+                              </object>
                             </child>
                           </object>
                         </child>
