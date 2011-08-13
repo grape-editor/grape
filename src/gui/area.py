@@ -8,13 +8,12 @@ import cairo as cairolib
 
 class GraphArea(DrawingArea):
 
-    def __init__(self, graph, controller):
+    def __init__(self, graph):
         DrawingArea.__init__(self)
 
         self.connect('expose-event', self.expose)
 
         self.graph = graph
-        self.controller = controller
         self.cairo = None
         self.path = None
         self.adding_edge = None

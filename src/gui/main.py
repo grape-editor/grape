@@ -5,17 +5,29 @@ import sys
 import locale
 import gettext
 
-class Main(object):
 
-    def __init__(self):
+class Main(object):
+    """Grape GUI main class"""
+    def __init__(self, logger, config):
+        """Initializes the interface"""
+        # logger
+        self.logger = logger
+        # config
+        self.config = config
+
         self.screens = []
         self.builder = gtk.Builder()
         self.domain = self.translate()
         self.builder.set_translation_domain(self.domain)
-
         gtk.notebook_set_window_creation_hook(self.screen_create, None)
         self.screen_create()
+
+        # Refresh interface list
+        gtk.gdk.threads_init()
+        gtk.gdk.threads_enter()
+      
         gtk.main()
+        gtk.gdk.threads_leave()
 
     def screen_create(self, source=None, page=None, x=None, y=None, user_data=None):
         screen = Screen(self.builder, page != None)

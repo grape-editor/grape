@@ -3,12 +3,61 @@ import math
 import pickle
 from gtk import DrawingArea, EventBox, ScrolledWindow
 
-from lib.graph import Graph as GraphModel
-from lib.graphs_controller import GraphsController
+from lib.graph import Graph as GraphController
 from lib.mathemathical import *
 from gui.area import GraphArea
-from gui.scrollable_graph import ScrollableGraph
 from gui.vertex import Vertex
+
+# TODO - Make it works in only one class
+
+class ScrollableGraph(gtk.Table):
+
+    def __init__(self):
+        gtk.Table.__init__(self)
+
+        self.hadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
+        self.vadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
+
+        self.vbox = gtk.VBox(False, 0)
+        self.hadjustment.connect('changed', self.on_hadjustment_changed)
+        self.vadjustment.connect('changed', self.on_vadjustment_changed)
+        self.hscrollbar = gtk.HScrollbar(self.hadjustment)
+        self.vscrollbar = gtk.VScrollbar(self.vadjustment)
+        self.attach(self.vbox, 0, 1, 0, 1, gtk.EXPAND|gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
+        self.attach(self.hscrollbar, 0, 1, 1, 2, gtk.EXPAND|gtk.FILL, gtk.FILL, 0, 0)
+        self.attach(self.vscrollbar, 1, 2, 0, 1, gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
+
+    def add_scrollable_widget(self, widget):
+        widget.set_scroll_adjustments(self.hadjustment, self.vadjustment)
+        widget.connect('scroll_event', self.on_widget_scroll_event)
+        widget.set_size_request(1, 1)
+        self.vbox.pack_start(widget, True, True)
+
+    def add_floating_widget(self, widget):
+        self.vbox.pack_start(widget, True, True)
+        self.vbox.reorder_child(widget, 0)
+
+    def on_hadjustment_changed(self, event):
+        # If the scrollbar is needed, show it, otherwise hide it
+        if (self.hadjustment.page_size == self.hadjustment.upper):
+            self.hscrollbar.hide()
+        else:
+            self.hscrollbar.show()
+
+    def on_vadjustment_changed(self, event):
+        # If the scrollbar is needed, show it, otherwise hide it
+        if (self.vadjustment.page_size == self.vadjustment.upper):
+            self.vscrollbar.hide()
+        else:
+            self.vscrollbar.show()
+
+    def on_widget_scroll_event(self, widget, event):
+        if ((event.direction == gtk.gdk.SCROLL_UP) or (event.direction == gtk.gdk.SCROLL_DOWN)):
+            self.hadjustment.changed()
+        elif ((event.direction == gtk.gdk.SCROLL_LEFT) or (event.direction == gtk.gdk.SCROLL_RIGHT)):
+            self.vadjustment.changed()
+
+        return True
 
 class Graph(ScrollableGraph):
 
@@ -44,10 +93,8 @@ class Graph(ScrollableGraph):
         self.changed = False
         self.changed_method = changed_method
 
-        self.controller = GraphsController()
-
-        self.graph = GraphModel()
-        self.area = GraphArea(self.graph, self.controller)
+        self.graph = GraphController()
+        self.area = GraphArea(self.graph)
         self.event_box.add(self.area)
 
         self.states= []
@@ -106,14 +153,14 @@ class Graph(ScrollableGraph):
             self.changed_method(self)
 
     def add_vertex(self):
-        self.controller.add_vertex(self.graph, self.last_position_clicked)
+        self.graph.add_vertex(self.last_position_clicked)
         self.add_state()
         self.action = None
         self.area.queue_draw()
 
     def remove_vertex(self):
         to_be_removed = list(self.graph.selected_vertices())
-        map(lambda vertex: self.controller.remove_vertex(self.graph, vertex), to_be_removed)
+        map(lambda vertex: self.graph.remove_vertex(vertex), to_be_removed)
         self.add_state()
 
         self.action = None
@@ -122,7 +169,7 @@ class Graph(ScrollableGraph):
     def edit_vertex(self):
         if len(self.graph.selected_vertices()) == 1:
             vertex = self.graph.selected_vertices()[0]
-            self.controller.deselect_vertex(self.graph, vertex)
+            self.graph.deselect_vertex(vertex)
             vertex_edit = Vertex(self, vertex)
 
     def add_edge(self):
@@ -130,8 +177,8 @@ class Graph(ScrollableGraph):
             vertex = self.graph.find_by_position(self.last_position_clicked)
 
             if vertex != None and vertex != self.graph.selected_vertices()[0]:
-                self.controller.add_edge(self.graph, self.graph.selected_vertices()[0], vertex)
-                self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
+                self.graph.add_edge(self.graph.selected_vertices()[0], vertex)
+                self.graph.deselect_vertex(self.graph.selected_vertices()[0])
                 self.add_state()
                 self.action = None
                 self.area.queue_draw()
@@ -144,17 +191,17 @@ class Graph(ScrollableGraph):
                     vertex2 = self.graph.selected_vertices()[j]
                     
                     if vertex1 != vertex2:
-                        self.controller.add_edge(self.graph, vertex1, vertex2)
+                        self.graph.add_edge(vertex1, vertex2)
     
                         if self.graph.directed:
-                            self.controller.add_edge(self.graph, vertex2, vertex1)
+                            self.graph.add_edge(vertex2, vertex1)
 
             selected_vertices = list(self.graph.selected_vertices())
             if len(selected_vertices):
-                self.controller.clear_selection(self.graph)
+                self.graph.clear_selection()
                 self.add_state()
                 for vertex in selected_vertices:
-                    self.controller.select_vertex(self.graph, vertex)
+                    self.graph.select_vertex(vertex)
 
             self.action = None
             self.area.queue_draw()
@@ -172,8 +219,8 @@ class Graph(ScrollableGraph):
             if vertex != None:
                 edge = self.graph.find_edge(self.graph.selected_vertices()[0], vertex)
                 if len(edge) > 0:
-                    self.controller.remove_edge(self.graph, edge[0])
-                    self.controller.deselect_vertex(self.graph, self.graph.selected_vertices()[0])
+                    self.graph.remove_edge(edge[0])
+                    self.graph.deselect_vertex(self.graph.selected_vertices()[0])
                     self.add_state()
                     self.action = None
                     self.area.queue_draw()
@@ -185,9 +232,9 @@ class Graph(ScrollableGraph):
                     if vertex1 != vertex2:
                         edge = self.graph.find_edge(vertex1, vertex2)
                         if len(edge) > 0:
-                            self.controller.remove_edge(self.graph, edge[0])
+                            self.graph.remove_edge(edge[0])
 
-            self.controller.clear_selection(self.graph)
+            self.graph.clear_selection(self.graph)
             self.add_state()
             self.action = None
             self.area.queue_draw()
@@ -207,14 +254,14 @@ class Graph(ScrollableGraph):
         from gtk.gdk import CONTROL_MASK, SHIFT_MASK
 
         if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
-            self.controller.clear_selection(self.graph)
+            self.graph.clear_selection()
 
-        method = self.controller.select_vertex
+        method = self.graph.select_vertex
 
         if (event.state & CONTROL_MASK):
-            method = self.controller.toggle_vertex_selection
+            method = self.graph.toggle_vertex_selection
 
-        map(lambda vertex: method(self.graph, vertex), vertices)
+        map(lambda vertex: method(vertex), vertices)
 
     def select_vertex(self, event):
         vertex = self.graph.find_by_position(self.last_position_clicked)
@@ -223,13 +270,13 @@ class Graph(ScrollableGraph):
 
         if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK) and (len(self.graph.selected_vertices()) > 0):
             if not vertex or not vertex.selected:
-                self.controller.clear_selection(self.graph)
+                self.graph.clear_selection()
 
         if vertex:
             if vertex.selected and (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
-                self.controller.deselect_vertex(self.graph, vertex)
+                self.graph.deselect_vertex(vertex)
             else:
-                self.controller.select_vertex(self.graph, vertex)
+                self.graph.select_vertex(vertex)
             self.last_vertex_clicked = vertex
         else:
             self.box_selecting = self.last_position_clicked
@@ -321,7 +368,7 @@ class Graph(ScrollableGraph):
         vertex = self.graph.find_by_position(self.last_position_clicked)
 
         if len(self.graph.selected_vertices()) == 0 and vertex:
-            self.controller.select_vertex(self.graph, vertex)
+            self.graph.select_vertex(vertex)
 
         def execute_action(event, action):
             action()
@@ -373,10 +420,10 @@ class Graph(ScrollableGraph):
         selected_vertices = list(self.graph.selected_vertices())
 
         if len(selected_vertices) > 0 and self.last_vertex_clicked:
-            self.controller.clear_selection(self.graph)
+            self.graph.clear_selection()
             self.add_state()
             for vertex in selected_vertices:
-                self.controller.select_vertex(self.graph, vertex)
+                self.graph.select_vertex(vertex)
        
         self.last_vertex_clicked = None
         self.box_selecting = None

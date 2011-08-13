@@ -5,22 +5,33 @@ import sys
 
 path = os.path.abspath(os.path.dirname(sys.argv[0]))
 path = os.path.join(path, '..', 'src')
-
-
-print path
 lib_folders = ['lib']
-
 if not path in sys.path:
     sys.path.insert(0, path)
-    
     for lib in lib_folders:
         path = os.path.join(path, lib)
-    
         if not path in sys.path:
             sys.path.insert(0, path)
 
 from gui.main import Main
+from lib import config, system
+
+
+# variables
+CONFIGFILE = system.get_full_path(system.get_local_storage(), ".grape.conf")
+SYSTEM_CONFIGFILE = system.get_full_path(system.get_system_storage(), "grape.conf")
 
 if __name__ == "__main__":
-    grape = Main()
 
+    # configure logging
+    logger = system.setup_logger("grape")
+    # configuration file
+    config = config.Config(logger, CONFIGFILE, SYSTEM_CONFIGFILE)
+    config.load()
+
+    logger.info("Starting GUI..")
+
+    grape = Main(logger=logger, config=config)
+
+    # saving config changes and reference values
+    config.save()
