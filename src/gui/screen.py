@@ -9,16 +9,19 @@ import sys
 
 class Screen(object):
 
-    def __init__(self, builder, hook=False):
+    def __init__(self, logger, config, hook=False):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "screen.ui")
 
-        self.builder = builder
+        self.logger = logger
+        self.config = config
+
+        self.builder = gtk.Builder()
         self.builder.add_from_file(path)
         self.builder.connect_signals(self)
 
-        self.screen = builder.get_object("screen_show")
-        self.notebook = builder.get_object("notebook")
+        self.screen = self.builder.get_object("screen_show")
+        self.notebook = self.builder.get_object("notebook")
 
         self.screen.connect('key_press_event', self.keyboard_press)
         self.screen.parent_screen = self
@@ -34,6 +37,7 @@ class Screen(object):
         self.screen.show_all()
 
     def close_tab(self, tab):
+        self.logger.info("Closing screen")
         page_number = tab.get_parent().page_num(tab)
 
         if tab.changed:
@@ -81,6 +85,7 @@ class Screen(object):
         self.close_tab(widget)
 
     def tab_switched(self, widget, tab, page_number):
+        self.logger.info("Switch tab")
         menu_file_revert = self.builder.get_object("menu_file_revert")
         tab, page_number = self.current_tab()
 
@@ -142,6 +147,7 @@ class Screen(object):
             menu_file_revert.set_sensitive(False)
 
     def menu_file_new(self, widget):
+        self.logger.info("New file")
         tab = Graph(self.builder, self.tab_changed)
         self.add_notebook_tab(tab)
 
@@ -164,6 +170,7 @@ class Screen(object):
         del file_chooser
 
     def menu_file_save(self, widget):
+        self.logger.info("Saving file")
         tab, i = self.current_tab()
 
         if tab:
@@ -175,6 +182,7 @@ class Screen(object):
                 self.tab_changed(tab)
 
     def menu_file_save_as(self, widget):
+        self.logger.info("Saving file as...")
         tab, i = self.current_tab()
 
         if tab and self.notebook.get_n_pages() > 0:
@@ -190,6 +198,7 @@ class Screen(object):
             del file_chooser
 
     def menu_file_revert(self, widget):
+        self.logger.info("Reverting file")
         tab, page_number = self.current_tab()
 
         if tab.changed:
@@ -222,12 +231,14 @@ class Screen(object):
 
 
     def menu_file_close(self, widget):
+        self.logger.info("Closing file")
         tab, i = self.current_tab()
 
         if tab and self.notebook.get_n_pages() > 0:
             self.close_tab(tab)
 
     def menu_file_quit(self, widget):
+        self.logger.info("Menu quit")
         self.screen.event(gtk.gdk.Event(gtk.gdk.DELETE))
         self.main_quit(widget)
 
@@ -248,26 +259,31 @@ class Screen(object):
         pass
 
     def menu_edit_undo(self, widget):
+        self.logger.info("Undo")
         tab, i = self.current_tab()
         tab.undo()
         
     def menu_edit_redo(self, widget):
+        self.logger.info("Redo")
         tab, i = self.current_tab()
         tab.redo()
 
     def menu_edit_add_vertex(self, widget):
+        self.logger.info("Adding vertex")
         tab, i = self.current_tab()
 
         if tab:
             tab.action = "add_vertex"
 
     def menu_edit_remove_vertex(self, widget):
+        self.logger.info("Removing vertex")
         tab, i = self.current_tab()
 
         if tab:
             tab.action = "remove_vertex"
 
     def menu_edit_add_edge(self, widget):
+        self.logger.info("Adding edge")
         tab, i = self.current_tab()
 
         if tab:
@@ -275,27 +291,33 @@ class Screen(object):
             tab.add_edge()
 
     def menu_edit_remove_edge(self, widget):
+        self.logger.info("Removing edge")
         tab, i = self.current_tab()
 
         if tab:
             tab.action = "remove_edge"
 
     def menu_edit_preferences(self, widget):
+        self.logger.info("Edditing preferences")
         preferences = Preferences(self.builder)
 
     def menu_view_zoom_in(self, widget):
+        self.logger.info("Zoom in")
         tab, i = self.current_tab()
         tab.zoom_in()
 
     def menu_view_zoom_out(self, widget):
+        self.logger.info("Zoom out")
         tab, i = self.current_tab()
         tab.zoom_out()
 
     def menu_view_zoom_default(self, widget):
+        self.logger.info("Zoom default")
         tab, i = self.current_tab()
         tab.zoom_default()
 
     def menu_edit_horizontal_align(self, widget):
+        self.logger.info("Horizontal aligned")
         tab, page_number = self.current_tab()
 
         if tab.graph.selected_vertices() < 2:
@@ -308,6 +330,7 @@ class Screen(object):
         tab.queue_draw()                                    
 
     def menu_edit_vertical_align(self, widget):
+        self.logger.info("Vertical aligned")
         tab, page_number = self.current_tab()
 
         if tab.graph.selected_vertices() < 2:
@@ -323,13 +346,17 @@ class Screen(object):
     def menu_view_fullscreen(self, widget):
         if widget.get_active():
             self.screen.fullscreen()
+            self.logger.info("Fullscreen mode ON")
         else:
             self.screen.unfullscreen()
+            self.logger.info("Fullscreen mode OFF")
 
     def menu_help_about(self, widget):
+        self.logger.info("About")
         AboutShow(self.builder)
 
     def keyboard_press(self, widget, event):
+        self.logger.info("Key press %s" % event.keyval)
         tab, i = self.current_tab()
 
         key = event.keyval
@@ -350,12 +377,15 @@ class Screen(object):
                 tab.action = None
             else:
                 tab.controller.clear_selection(tab.graph)
+                self.logger.info("Clean UP selection")
         elif (event.state & CONTROL_MASK):
             if key == gtk.keysyms.A or key == gtk.keysyms.a:
+                self.logger.info("Selection all")
                 tab.controller.select_all(tab.graph)
 
         if tab and direction:
             tab.controller.move_selection(tab.graph, direction)
+            self.logger.info("Moving selection")
 
         if tab:
             tab.queue_draw()

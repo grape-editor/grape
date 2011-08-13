@@ -15,22 +15,23 @@ class Main(object):
         # config
         self.config = config
 
+        # Refresh interface list
+        gtk.gdk.threads_init()
+        gtk.gdk.threads_enter()
+
         self.screens = []
         self.builder = gtk.Builder()
         self.domain = self.translate()
         self.builder.set_translation_domain(self.domain)
         gtk.notebook_set_window_creation_hook(self.screen_create, None)
         self.screen_create()
-
-        # Refresh interface list
-        gtk.gdk.threads_init()
-        gtk.gdk.threads_enter()
       
         gtk.main()
         gtk.gdk.threads_leave()
 
     def screen_create(self, source=None, page=None, x=None, y=None, user_data=None):
-        screen = Screen(self.builder, page != None)
+        self.logger.info("Criating screen")
+        screen = Screen(self.logger, self.config, page != None)
         if x and y:
             screen.move_screen(x, y)
 
@@ -40,6 +41,7 @@ class Main(object):
         return screen.notebook
 
     def screen_deleted(self, widget, event):
+        self.logger.info("Deleting screen")
         screen = widget.parent_screen
 
         for i in range(screen.notebook.get_n_pages()):
