@@ -8,7 +8,7 @@ from lib.edge import Edge
 
 
 class Graph(object):
-    def __init__(self, title="Untitled"):
+    def __init__(self, config, title="Untitled"):
         self.vertex_id = 0
         self.edge_id = 0
         self.vertices = []

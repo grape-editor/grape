@@ -8,10 +8,10 @@ import gettext
 
 class Main(object):
     """Grape GUI main class"""
-    def __init__(self, logger, config):
+    def __init__(self, config):
         """Initializes the interface"""
         # logger
-        self.logger = logger
+        self.logger = config.logger
         # config
         self.config = config
 
@@ -31,7 +31,7 @@ class Main(object):
 
     def screen_create(self, source=None, page=None, x=None, y=None, user_data=None):
         self.logger.info("Criating screen")
-        screen = Screen(self.logger, self.config, page != None)
+        screen = Screen(self.config, page != None)
         if x and y:
             screen.move_screen(x, y)
 

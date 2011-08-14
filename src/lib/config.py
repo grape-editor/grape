@@ -42,3 +42,4 @@ class Config(object):
             self.config.set(section, variable, default)
         value = self.config.get(section, variable)
         return value
+

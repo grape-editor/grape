@@ -8,16 +8,13 @@ from lib.mathemathical import *
 from gui.area import GraphArea
 from gui.vertex import Vertex
 
-# TODO - Make it works in only one class
+class Graph(gtk.Table):
 
-class ScrollableGraph(gtk.Table):
-
-    def __init__(self):
+    def __init__(self, config, changed_method):
         gtk.Table.__init__(self)
 
         self.hadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
         self.vadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
-
         self.vbox = gtk.VBox(False, 0)
         self.hadjustment.connect('changed', self.on_hadjustment_changed)
         self.vadjustment.connect('changed', self.on_vadjustment_changed)
@@ -26,6 +23,47 @@ class ScrollableGraph(gtk.Table):
         self.attach(self.vbox, 0, 1, 0, 1, gtk.EXPAND|gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
         self.attach(self.hscrollbar, 0, 1, 1, 2, gtk.EXPAND|gtk.FILL, gtk.FILL, 0, 0)
         self.attach(self.vscrollbar, 1, 2, 0, 1, gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
+        
+        self.logger = config.logger
+        self.config = config
+
+        self.builder = gtk.Builder()
+        self.event_box = EventBox()
+
+        self.event_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.event_box.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
+        self.event_box.add_events(gtk.gdk.MOTION_NOTIFY)
+        self.event_box.add_events(gtk.gdk.BUTTON1_MOTION_MASK)
+        self.event_box.add_events(gtk.gdk.KEY_PRESS_MASK)
+        self.event_box.set_events(gtk.gdk.POINTER_MOTION_MASK | gtk.gdk.POINTER_MOTION_HINT_MASK)
+
+        self.event_box.connect('button-press-event', self.mouse_press)
+        self.event_box.connect('button-release-event', self.mouse_release)
+        self.event_box.connect('motion-notify-event', self.mouse_motion)
+        self.event_box.connect('scroll-event', self.mouse_scroll)
+
+        self.action = None
+        self.menu = None
+        self.box = None
+        self.last_vertex_clicked = None
+        self.last_position_clicked = None
+        self.box_selecting = None
+        self.changed = False
+
+        self.changed_method = changed_method
+
+        self.graph = GraphController(self.config)
+        self.area = GraphArea(self.graph)
+        self.event_box.add(self.area)
+
+        # To UNDO and REDO actions
+        self.states= []
+        self.state_index = None
+        self.add_state()
+
+        self.viewport = gtk.Viewport()
+        self.viewport.add(self.event_box)
+        self.add_scrollable_widget(self.viewport)
 
     def add_scrollable_widget(self, widget):
         widget.set_scroll_adjustments(self.hadjustment, self.vadjustment)
@@ -58,53 +96,6 @@ class ScrollableGraph(gtk.Table):
             self.vadjustment.changed()
 
         return True
-
-class Graph(ScrollableGraph):
-
-    def __init__(self, builder, changed_method):
-        ScrollableGraph.__init__(self)
-        
-        self.builder = builder
-
-        self.event_box = EventBox()
-
-        self.event_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-        self.event_box.add_events(gtk.gdk.BUTTON_RELEASE_MASK)
-        self.event_box.add_events(gtk.gdk.MOTION_NOTIFY)
-        self.event_box.add_events(gtk.gdk.BUTTON1_MOTION_MASK)
-        self.event_box.add_events(gtk.gdk.KEY_PRESS_MASK)
-        self.event_box.set_events(gtk.gdk.POINTER_MOTION_MASK | gtk.gdk.POINTER_MOTION_HINT_MASK)
-
-        self.event_box.connect('button-press-event', self.mouse_press)
-        self.event_box.connect('button-release-event', self.mouse_release)
-        self.event_box.connect('motion-notify-event', self.mouse_motion)
-        self.event_box.connect('scroll-event', self.mouse_scroll)
-
-        self.action = None
-        self.menu = None
-
-        self.box = None
-
-        self.last_vertex_clicked = None
-        self.last_position_clicked = None
-
-        self.box_selecting = None
-
-        self.changed = False
-        self.changed_method = changed_method
-
-        self.graph = GraphController()
-        self.area = GraphArea(self.graph)
-        self.event_box.add(self.area)
-
-        self.states= []
-        self.state_index = None
-        self.add_state()
-
-        self.viewport = gtk.Viewport()
-        self.viewport.add(self.event_box)
-
-        self.add_scrollable_widget(self.viewport)
 
     def zoom_in(self, center=None):
         if self.area.zoom < 20:
@@ -247,31 +238,24 @@ class Graph(ScrollableGraph):
 
     def select_area(self, event, area):
         if not area: return
-
         x, y, w, h = area
         vertices = self.graph.find_in_area(x, y, w, h)
 
         from gtk.gdk import CONTROL_MASK, SHIFT_MASK
-
         if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
             self.graph.clear_selection()
-
         method = self.graph.select_vertex
-
         if (event.state & CONTROL_MASK):
             method = self.graph.toggle_vertex_selection
-
         map(lambda vertex: method(vertex), vertices)
 
     def select_vertex(self, event):
         vertex = self.graph.find_by_position(self.last_position_clicked)
 
         from gtk.gdk import CONTROL_MASK, SHIFT_MASK
-
         if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK) and (len(self.graph.selected_vertices()) > 0):
             if not vertex or not vertex.selected:
                 self.graph.clear_selection()
-
         if vertex:
             if vertex.selected and (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
                 self.graph.deselect_vertex(vertex)

@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     logger.info("Starting GUI..")
 
-    grape = Main(logger=logger, config=config)
+    grape = Main(config=config)
 
     # saving config changes and reference values
     config.save()

@@ -16,9 +16,9 @@ class Vertex(object):
         self.area = graph_show.area
         self.set_changed = graph_show.set_changed
         self.graph = graph_show.graph
-        self.controller = graph_show.controller
         self.add_state = graph_show.add_state
-        self.builder = graph_show.builder
+
+        self.builder = gtk.Builder()
 
         self.menu_edges = None
         self.menu_properties = None
@@ -227,7 +227,7 @@ class Vertex(object):
         vertex = self.graph.find(idx)
             
         if vertex:
-            edge = self.controller.add_edge(self.graph, self.vertex, vertex)
+            edge = self.graph.add_edge(self.vertex, vertex)
 
             if edge:
                 t_id = edge.id
@@ -252,7 +252,7 @@ class Vertex(object):
             
             edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
             if edge:
-                self.controller.remove_edge(self.graph, edge)
+                self.graph.remove_edge(edge)
     
         self.add_state()
         self.area.queue_draw()

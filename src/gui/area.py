@@ -10,7 +10,6 @@ class GraphArea(DrawingArea):
 
     def __init__(self, graph):
         DrawingArea.__init__(self)
-
         self.connect('expose-event', self.expose)
 
         self.graph = graph
@@ -20,13 +19,9 @@ class GraphArea(DrawingArea):
         self.scale = 1
 
         self.set_double_buffered(True)
-
         self.selected_area = None
-        
         self.area = None
-
         self.zoom = 1
-
         self.set_size_request(8096, 8096)
 
     def draw_selection_box(self, cairo):

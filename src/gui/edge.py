@@ -13,7 +13,6 @@ class Edge(object):
         self.area = graph_show.area
         self.set_changed = graph_show.set_changed
         self.graph = graph_show.graph
-        self.controller = graph_show.controller
         self.add_state = graph_show.add_state
         self.builder = graph_show.builder
 

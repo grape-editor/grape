@@ -9,11 +9,11 @@ import sys
 
 class Screen(object):
 
-    def __init__(self, logger, config, hook=False):
+    def __init__(self, config, hook=False):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "screen.ui")
 
-        self.logger = logger
+        self.logger = config.logger
         self.config = config
 
         self.builder = gtk.Builder()
@@ -30,7 +30,7 @@ class Screen(object):
         self.notebook.set_group_id(0)
 
         if not hook:
-            tab = Graph(self.builder, self.tab_changed)
+            tab = Graph(self.config, self.tab_changed)
             self.add_notebook_tab(tab)
 
         self.name = 0
