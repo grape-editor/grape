@@ -41,6 +41,7 @@
                         <child>
                           <object class="GtkComboBox" id="graph_type">
                             <property name="visible">True</property>
+                            <signal name="changed" handler="graph_type_changed"/>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -63,6 +64,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="color">#ffffffffffff</property>
+                            <signal name="color_set" handler="graph_color_changed"/>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -86,6 +88,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
+                            <signal name="changed" handler="graph_title_changed"/>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -146,11 +149,12 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkColorButton" id="color_vertex">
+                          <object class="GtkColorButton" id="vertex_color">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="color">#000000000000</property>
+                            <signal name="color_set" handler="vertex_color_changed"/>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -158,11 +162,12 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkColorButton" id="color_border">
+                          <object class="GtkColorButton" id="vertex_border_color">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="color">#000000000000</property>
+                            <signal name="color_set" handler="vertex_border_color_changed"/>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -192,9 +197,11 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHScale" id="hscale2">
+                          <object class="GtkHScale" id="vertex_radious_size">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">adjustment_vertex_radious</property>
+                            <property name="digits">0</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -204,9 +211,10 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHScale" id="hscale1">
+                          <object class="GtkHScale" id="vertex_border_size">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">adjustment_vertex_border</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -261,11 +269,12 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkColorButton" id="color_edge">
+                          <object class="GtkColorButton" id="edge_color">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="color">#000000000000</property>
+                            <signal name="color_set" handler="edge_color_changed"/>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -286,6 +295,7 @@
                           <object class="GtkHScale" id="edge_width">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
+                            <property name="adjustment">adjustment_edge_width</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -410,6 +420,10 @@
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Properties</property>
               </object>
+              <packing>
+                <property name="position">3</property>
+                <property name="tab_fill">False</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -428,6 +442,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="confirm"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -444,5 +459,20 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_edge_width">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="edge_width_changed"/>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_vertex_radious">
+    <property name="upper">1000</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="vertex_radious_changed"/>
+  </object>
+  <object class="GtkAdjustment" id="adjustment_vertex_border">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <signal name="value_changed" handler="vertex_border_changed"/>
   </object>
 </interface>

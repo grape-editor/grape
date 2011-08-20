@@ -299,7 +299,7 @@ class Screen(object):
 
     def menu_edit_preferences(self, widget):
         self.logger.info("Edditing preferences")
-        preferences = Preferences(self.builder)
+        preferences = Preferences(self.config)
 
     def menu_view_zoom_in(self, widget):
         self.logger.info("Zoom in")

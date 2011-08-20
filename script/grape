@@ -16,22 +16,17 @@ if not path in sys.path:
 from gui.main import Main
 from lib import config, system
 
-
-# variables
-CONFIGFILE = system.get_full_path(system.get_local_storage(), ".grape.conf")
-SYSTEM_CONFIGFILE = system.get_full_path(system.get_system_storage(), "grape.conf")
-
 if __name__ == "__main__":
 
     # configure logging
     logger = system.setup_logger("grape")
     # configuration file
-    config = config.Config(logger, CONFIGFILE, SYSTEM_CONFIGFILE)
+    config = config.Config(logger)
     config.load()
 
     logger.info("Starting GUI..")
 
-    grape = Main(config=config)
+    grape = Main()
 
     # saving config changes and reference values
     config.save()

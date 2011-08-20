@@ -5,15 +5,17 @@ import sys
 import locale
 import gettext
 
+from lib import config
 
 class Main(object):
     """Grape GUI main class"""
-    def __init__(self, config):
+    def __init__(self):
         """Initializes the interface"""
-        # logger
-        self.logger = config.logger
         # config
-        self.config = config
+        self.config = config.Config()
+        # logger
+        self.logger = self.config.logger
+
 
         # Refresh interface list
         gtk.gdk.threads_init()

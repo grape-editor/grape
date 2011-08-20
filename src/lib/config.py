@@ -2,15 +2,30 @@
 
 import os
 import ConfigParser
-from lib import system
+from lib.system import  *
 
+# variables
+CONFIGFILE = get_full_path(get_local_storage(), ".grape.conf")
+SYSTEM_CONFIGFILE = get_full_path(get_system_storage(), "grape.conf")
+
+# @singleton
 class Config(object):
     """Configuration parsing class"""
-    def __init__(self, logger, configfile, master_configfile=None, defaults={}):
+    __instance = None
+
+    def __new__(cls, *args, **kwargs):
+        """Singleton implementation"""
+        if not cls.__instance:
+            cls.__instance = super(Config, cls).__new__(cls, *args, **kwargs)
+        return cls.__instance
+
+    def __init__(self, logger = None, defaults = {}):
         """Initializes configuration"""
-        self.logger = logger
-        self.configfile = configfile
-        self.master_configfile = master_configfile
+
+        if logger:
+            self.logger = logger
+        self.configfile = CONFIGFILE
+        self.master_configfile = SYSTEM_CONFIGFILE
         self.defaults = defaults
 
     def load(self):
@@ -42,4 +57,11 @@ class Config(object):
             self.config.set(section, variable, default)
         value = self.config.get(section, variable)
         return value
+
+    def set(self, section, variable, default):
+        """Sets a variable from a section of config"""
+        if not self.config.has_section(section):
+            self.config.add_section(section)
+        self.config.set(section, variable, default)
+
 
