@@ -32,6 +32,7 @@ class GraphArea(DrawingArea):
         cairo.set_line_width(1.5)
         cairo.rectangle(x, y, w, h)
 
+        # TODO - Config file
         cairo.set_source_rgba(0.7, 0.7, 1.0, 0.5)
         cairo.fill_preserve()
 

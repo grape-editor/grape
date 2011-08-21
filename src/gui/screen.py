@@ -30,13 +30,19 @@ class Screen(object):
         self.notebook.set_scrollable(True)
         self.notebook.set_group_id(0)
 
+        tab = None
         if not hook:
             tab = Graph(self.tab_changed)
             self.add_notebook_tab(tab)
 
-        self.name = 0
+        self.name = 0            
         self.screen.show_all()
 
+        # HACK
+        # For some reason the size of scroll only existe after show_all above
+        if tab:
+            tab.centralize_scroll()
+ 
     def close_tab(self, tab):
         self.logger.info("Closing screen")
         page_number = tab.get_parent().page_num(tab)

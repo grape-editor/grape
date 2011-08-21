@@ -8,22 +8,11 @@ from lib.mathemathical import *
 from gui.area import GraphArea
 from gui.vertex import Vertex
 
-class Graph(gtk.Table):
+class Graph(gtk.ScrolledWindow):
 
     def __init__(self, changed_method):
-        gtk.Table.__init__(self)
+        gtk.ScrolledWindow.__init__(self)
 
-        self.hadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
-        self.vadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
-        self.vbox = gtk.VBox(False, 0)
-        self.hadjustment.connect('changed', self.on_hadjustment_changed)
-        self.vadjustment.connect('changed', self.on_vadjustment_changed)
-        self.hscrollbar = gtk.HScrollbar(self.hadjustment)
-        self.vscrollbar = gtk.VScrollbar(self.vadjustment)
-        self.attach(self.vbox, 0, 1, 0, 1, gtk.EXPAND|gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
-        self.attach(self.hscrollbar, 0, 1, 1, 2, gtk.EXPAND|gtk.FILL, gtk.FILL, 0, 0)
-        self.attach(self.vscrollbar, 1, 2, 0, 1, gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
-        
         self.builder = gtk.Builder()
         self.event_box = EventBox()
 
@@ -52,47 +41,23 @@ class Graph(gtk.Table):
         self.graph = GraphController()
         self.area = GraphArea(self.graph)
         self.event_box.add(self.area)
+        self.add_with_viewport(self.event_box)
+        
+        self.area.show()
+        self.event_box.show()
+        self.show()
 
         # To UNDO and REDO actions
         self.states= []
         self.state_index = None
         self.add_state()
 
-        self.viewport = gtk.Viewport()
-        self.viewport.add(self.event_box)
-        self.add_scrollable_widget(self.viewport)
+    def centralize_scroll(self):
+        vadj = self.get_vadjustment()
+        hadj = self.get_hadjustment()
 
-    def add_scrollable_widget(self, widget):
-        widget.set_scroll_adjustments(self.hadjustment, self.vadjustment)
-        widget.connect('scroll_event', self.on_widget_scroll_event)
-        widget.set_size_request(1, 1)
-        self.vbox.pack_start(widget, True, True)
-
-    def add_floating_widget(self, widget):
-        self.vbox.pack_start(widget, True, True)
-        self.vbox.reorder_child(widget, 0)
-
-    def on_hadjustment_changed(self, event):
-        # If the scrollbar is needed, show it, otherwise hide it
-        if (self.hadjustment.page_size == self.hadjustment.upper):
-            self.hscrollbar.hide()
-        else:
-            self.hscrollbar.show()
-
-    def on_vadjustment_changed(self, event):
-        # If the scrollbar is needed, show it, otherwise hide it
-        if (self.vadjustment.page_size == self.vadjustment.upper):
-            self.vscrollbar.hide()
-        else:
-            self.vscrollbar.show()
-
-    def on_widget_scroll_event(self, widget, event):
-        if ((event.direction == gtk.gdk.SCROLL_UP) or (event.direction == gtk.gdk.SCROLL_DOWN)):
-            self.hadjustment.changed()
-        elif ((event.direction == gtk.gdk.SCROLL_LEFT) or (event.direction == gtk.gdk.SCROLL_RIGHT)):
-            self.vadjustment.changed()
-
-        return True
+        vadj.set_value((vadj.upper / 2) - (vadj.page_size / 2) )
+        hadj.set_value((hadj.upper / 2) - (hadj.page_size / 2) )
 
     def zoom_in(self, center=None):
         if self.area.zoom < 20:
@@ -320,6 +285,8 @@ class Graph(gtk.Table):
         self.queue_draw()
 
     def mouse_press(self, widget, event):
+        self.centralize_scroll()
+
         self.last_position_clicked = map(lambda v: v / self.area.zoom,event.get_coords())
 
         if event.button == 1:
