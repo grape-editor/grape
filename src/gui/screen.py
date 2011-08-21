@@ -3,18 +3,19 @@ from gui.about import About
 from gui.file_chooser import FileChooser
 from gui.preferences import Preferences
 
+from lib.logger import Logger
+
 import gtk
 import os
 import sys
 
 class Screen(object):
 
-    def __init__(self, config, hook=False):
+    def __init__(self, hook=False):
         path = os.path.dirname(__file__)
         path = os.path.join(path, "screen.ui")
 
-        self.logger = config.logger
-        self.config = config
+        self.logger = Logger()
 
         self.builder = gtk.Builder()
         self.builder.add_from_file(path)
@@ -30,7 +31,7 @@ class Screen(object):
         self.notebook.set_group_id(0)
 
         if not hook:
-            tab = Graph(self.config, self.tab_changed)
+            tab = Graph(self.tab_changed)
             self.add_notebook_tab(tab)
 
         self.name = 0
@@ -148,7 +149,7 @@ class Screen(object):
 
     def menu_file_new(self, widget):
         self.logger.info("New file")
-        tab = Graph(self.builder, self.tab_changed)
+        tab = Graph(self.tab_changed)
         self.add_notebook_tab(tab)
 
     def menu_file_open(self, widget):
@@ -299,7 +300,7 @@ class Screen(object):
 
     def menu_edit_preferences(self, widget):
         self.logger.info("Edditing preferences")
-        preferences = Preferences(self.config)
+        preferences = Preferences()
 
     def menu_view_zoom_in(self, widget):
         self.logger.info("Zoom in")

@@ -46,25 +46,21 @@ class GraphArea(DrawingArea):
 
         radius = vertex.size / 2
 
-        # TODO - Custom colors
-
         if vertex.selected:
+            # TODO - Config file
             cairo.set_source_rgb(0.4, 0.8, 0.2)
         else:
-            r, g, b = vertex.fill_color[0], vertex.fill_color[1], vertex.fill_color[2]
-            cairo.set_source_rgb(r, g, b)
+            cairo.set_source_color(gtk.gdk.Color(vertex.fill_color))
 
         cairo.arc(x, y, radius, 0, 2 * math.pi)
         cairo.fill_preserve()
 
-        r, g, b = vertex.border_color[0], vertex.border_color[1], vertex.border_color[2]
-        cairo.set_source_rgb(r, g, b)
+        cairo.set_source_color(gtk.gdk.Color(vertex.border_color))
         cairo.set_line_width(vertex.border_size)
         cairo.arc(x, y, radius, 0, 2 * math.pi)
         cairo.stroke()
 
-        font_size = 12
-        cairo.set_font_size(font_size)
+        cairo.set_font_size(vertex.font_size)
         
         x_bearing, y_bearing, width, height = cairo.text_extents(vertex.title)[:4]
         
@@ -132,7 +128,7 @@ class GraphArea(DrawingArea):
                     
                     x1, y1, x2, y2, x3, y3, x4, y4 = get_edge_line(edge, angle)
                     
-                    cairo.set_source_rgb(edge.color[0], edge.color[1], edge.color[2])
+                    cairo.set_source_color(gtk.gdk.Color(edge.color))
                     cairo.set_line_width(edge.width)
                     
                     cairo.move_to(x1, y1)
@@ -212,7 +208,8 @@ class GraphArea(DrawingArea):
         m = cairolib.Matrix(self.zoom, 0, 0, self.zoom, 0, 0)
         self.cairo.transform(m)
         self.cairo.rectangle(0, 0, self.area.width, self.area.height)
-        self.cairo.set_source_rgb(0.98, 1, 0.98)
+
+        self.cairo.set_source_color(gtk.gdk.Color(self.graph.background_color))
         self.cairo.fill()
 
         self.draw_graph(self.cairo, self.area)

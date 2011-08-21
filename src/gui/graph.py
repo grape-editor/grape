@@ -10,7 +10,7 @@ from gui.vertex import Vertex
 
 class Graph(gtk.Table):
 
-    def __init__(self, config, changed_method):
+    def __init__(self, changed_method):
         gtk.Table.__init__(self)
 
         self.hadjustment = gtk.Adjustment(0, 0, 0, 0, 0, 0)
@@ -24,9 +24,6 @@ class Graph(gtk.Table):
         self.attach(self.hscrollbar, 0, 1, 1, 2, gtk.EXPAND|gtk.FILL, gtk.FILL, 0, 0)
         self.attach(self.vscrollbar, 1, 2, 0, 1, gtk.FILL, gtk.EXPAND|gtk.FILL, 0, 0)
         
-        self.logger = config.logger
-        self.config = config
-
         self.builder = gtk.Builder()
         self.event_box = EventBox()
 
@@ -52,7 +49,7 @@ class Graph(gtk.Table):
 
         self.changed_method = changed_method
 
-        self.graph = GraphController(self.config)
+        self.graph = GraphController()
         self.area = GraphArea(self.graph)
         self.event_box.add(self.area)
 

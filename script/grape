@@ -14,19 +14,16 @@ if not path in sys.path:
             sys.path.insert(0, path)
 
 from gui.main import Main
-from lib import config, system
+from lib import config, system, logger
 
 if __name__ == "__main__":
-
     # configure logging
-    logger = system.setup_logger("grape")
+    logger = logger.Logger()
+
     # configuration file
-    config = config.Config(logger)
-    config.load()
-
+    config = config.Config()
     logger.info("Starting GUI..")
-
     grape = Main()
 
     # saving config changes and reference values
-    config.save()
+    # config.save()

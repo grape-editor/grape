@@ -5,16 +5,15 @@ import sys
 import locale
 import gettext
 
-from lib import config
+from lib.logger import Logger
+
 
 class Main(object):
     """Grape GUI main class"""
     def __init__(self):
         """Initializes the interface"""
-        # config
-        self.config = config.Config()
         # logger
-        self.logger = self.config.logger
+        self.logger = Logger()
 
 
         # Refresh interface list
@@ -33,7 +32,7 @@ class Main(object):
 
     def screen_create(self, source=None, page=None, x=None, y=None, user_data=None):
         self.logger.info("Criating screen")
-        screen = Screen(self.config, page != None)
+        screen = Screen(page != None)
         if x and y:
             screen.move_screen(x, y)
 

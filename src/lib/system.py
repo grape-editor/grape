@@ -6,7 +6,6 @@ import struct
 import time
 import random
 import tempfile
-import logging
 
 def get_user_name():
     """Returns current user name"""
@@ -65,20 +64,3 @@ def create_local_file(directory, filename):
 def get_full_path(directory, filename):
     """Gets the full path to a filename"""
     return "%s%s%s" % (directory, os.sep, filename)
-
-def setup_logger(log_name):
-    """Configures the logger"""
-    log_file="%s%s%s.log" % (get_home(), os.sep, log_name)
-    logger = logging.getLogger("openclass_teacher")
-    h1 = logging.FileHandler(log_file)
-    f = logging.Formatter("%(levelname)s %(asctime)s: %(funcName)s+%(lineno)d: %(message)s")
-    h1.setFormatter(f)
-    h1.setLevel(logging.DEBUG)
-    h2 = logging.StreamHandler(sys.stdout)
-    h2.setFormatter(f)
-    h2.setLevel(logging.DEBUG)
-    logger.addHandler(h1)
-    logger.addHandler(h2)
-    logger.setLevel(logging.DEBUG)
-    return logger
-

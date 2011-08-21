@@ -3,12 +3,15 @@ import base64
 import pickle
 import os
 
+from lib.config import Config
 from lib.vertex import Vertex
 from lib.edge import Edge
 
-
 class Graph(object):
-    def __init__(self, config, title="Untitled"):
+    def __init__(self, title=""):
+#       Cant stay here, cause splode stack in pickle dump
+#        self.config = Config()
+
         self.vertex_id = 0
         self.edge_id = 0
         self.vertices = []
@@ -17,6 +20,13 @@ class Graph(object):
         self.selected_vertices_cache = None
         self.path = None
         self.directed = True
+
+        config = Config()
+        if not title:
+            self.title = config.get("graph", "title")
+        self.type = config.get("graph", "type")
+        self.background_color = config.get("graph", "background-color")
+
 
     def find_in_area(self, x, y, w, h):
         vertices = []

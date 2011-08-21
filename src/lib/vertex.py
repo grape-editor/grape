@@ -1,15 +1,21 @@
+from lib.config import Config
+
 class Vertex(object):
 
     def __init__(self, id, position):
         self.id = id
         self.position = position
         self.adjacencies = []
-        # TODO - Configuration file
+
+        config = Config()
+
         self.title = str(id)
-        self.fill_color = [1, 1, 1]
-        self.border_color = [0, 0, 0]
-        self.border_size = 2
-        self.size = 30
+        self.fill_color = config.get("vertex", "fill-color")
+        self.border_color = config.get("vertex", "border-color")
+        self.border_size = float(config.get("vertex", "border-size"))
+        self.size = float(config.get("vertex", "size"))
+        self.font_size = float(config.get("vertex", "font-size"))
+
         self.selected = False
         self.touching_edges = []
 
