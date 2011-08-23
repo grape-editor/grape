@@ -19,14 +19,16 @@ class Graph(object):
         self.title = title
         self.selected_vertices_cache = None
         self.path = None
-        self.directed = True
 
         config = Config()
         if not title:
             self.title = config.get("graph", "title")
         self.type = config.get("graph", "type")
-        self.background_color = config.get("graph", "background-color")
 
+        self.directed = self.type in ['DiGraph', 'MultiDiGraph' ]
+        self.multiple = self.type in ['MultiGraph', 'MultiDiGraph']
+
+        self.background_color = config.get("graph", "background-color")
 
     def find_in_area(self, x, y, w, h):
         vertices = []
@@ -81,7 +83,7 @@ class Graph(object):
         return edges
 
     def find_edge_from_vertex(self, vertex, id):
-        for edge in vertex.adjacencies:
+        for edge in vertex.edge_list:
             if int(id) == edge.id:
                 return edge
         return None
@@ -136,22 +138,21 @@ class Graph(object):
             self.vertices.remove(vertex)
 
     def add_edge(self, start, end):
-        edge = Edge(self.edge_id, start, end, not self.directed)
-        self.edges.append(edge)
-        self.edge_id += 1
-
-        return edge
+        digraph = self.directed and not end in start.adjacencies
+        graph = not self.directed and not end in start.adjacencies and not start in end.adjacencies
+        if (self.multiple) or digraph or graph:
+            edge = Edge(self.edge_id, start, end, not self.directed)
+            self.edges.append(edge)
+            self.edge_id += 1
+            return edge
 
     def remove_edge(self, edge):
         if not self.has_edge(edge):
             return
-
         # TODO - Figure out how to handle multiple edges
         edge.start.remove_edge(edge)
-
         if edge.bidirectional:
             edge.end.remove_edge(edge)
-
         self.edges.remove(edge)
 
     def toggle_vertex_selection(self, vertex):

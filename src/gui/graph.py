@@ -9,7 +9,6 @@ from gui.area import GraphArea
 from gui.vertex import Vertex
 
 class Graph(gtk.ScrolledWindow):
-
     def __init__(self, changed_method):
         gtk.ScrolledWindow.__init__(self)
 
@@ -53,6 +52,7 @@ class Graph(gtk.ScrolledWindow):
         self.add_state()
 
     def centralize_scroll(self):
+        """Put both scrolls in center"""
         vadj = self.get_vadjustment()
         hadj = self.get_hadjustment()
 
@@ -187,7 +187,7 @@ class Graph(gtk.ScrolledWindow):
                         if len(edge) > 0:
                             self.graph.remove_edge(edge[0])
 
-            self.graph.clear_selection(self.graph)
+            self.graph.clear_selection()
             self.add_state()
             self.action = None
             self.area.queue_draw()

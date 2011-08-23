@@ -78,8 +78,8 @@ class Vertex(object):
         self.spin_posx.set_value(self.vertex.position[0])
         self.spin_posy.set_value(self.vertex.position[1])
         
-        self.color_vertex.set_color(self.cairo_to_spin(self.vertex.fill_color))
-        self.color_border.set_color(self.cairo_to_spin(self.vertex.border_color))       
+        self.color_vertex.set_color(gtk.gdk.Color(self.vertex.fill_color))
+        self.color_border.set_color(gtk.gdk.Color(self.vertex.border_color))
         
         self.adjustment_radius.value = self.vertex.size
         self.adjustment_border.value = self.vertex.border_size
@@ -306,13 +306,7 @@ class Vertex(object):
 
 #        self.add_state()
 #        self.area.queue_draw()
-
-    def cairo_to_spin(self, color):
-        return gtk.gdk.Color(color[0] * 65535, color[1] * 65535, color[2] * 65535)
-        
-    def spin_to_cairo(self, color):
-        return [color.red / 65535.0, color.green / 65535.0, color.blue / 65535.0]
-
+    
     def title_changed(self, widget):
         self.vertex.title = self.text_title.get_text()
         self.area.queue_draw()
@@ -329,12 +323,12 @@ class Vertex(object):
         self.set_changed(True)
     
     def color_vertex_changed(self, widget):
-        self.vertex.fill_color = self.spin_to_cairo(widget.get_color())
+        self.vertex.fill_color = str(widget.get_color())
         self.area.queue_draw()
         self.set_changed(True)
         
     def color_border_changed(self, widget):
-        self.vertex.border_color = self.spin_to_cairo(widget.get_color())
+        self.vertex.border_color = str(widget.get_color())
         self.area.queue_draw()
         self.set_changed(True)
     
