@@ -58,7 +58,7 @@ class Edge(object):
     def init_general_fields(self):
         self.label_id.set_label(str(self.edge.id))
         self.text_title.set_text(self.edge.title)
-        self.color_edge.set_color(self.cairo_to_spin(self.edge.color))
+        self.color_edge.set_color(gtk.gdk.Color(self.edge.color))
         self.adjustment_width.value = self.edge.width
 
     def init_properties_fields(self):

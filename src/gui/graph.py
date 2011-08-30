@@ -12,6 +12,10 @@ class Graph(gtk.ScrolledWindow):
     def __init__(self, changed_method):
         gtk.ScrolledWindow.__init__(self)
 
+#        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+
+
+
         self.builder = gtk.Builder()
         self.event_box = EventBox()
 
@@ -22,9 +26,9 @@ class Graph(gtk.ScrolledWindow):
         self.event_box.add_events(gtk.gdk.KEY_PRESS_MASK)
         self.event_box.set_events(gtk.gdk.POINTER_MOTION_MASK | gtk.gdk.POINTER_MOTION_HINT_MASK)
 
+        self.event_box.connect('motion-notify-event', self.mouse_motion)
         self.event_box.connect('button-press-event', self.mouse_press)
         self.event_box.connect('button-release-event', self.mouse_release)
-        self.event_box.connect('motion-notify-event', self.mouse_motion)
         self.event_box.connect('scroll-event', self.mouse_scroll)
 
         self.action = None
@@ -39,6 +43,7 @@ class Graph(gtk.ScrolledWindow):
 
         self.graph = GraphController()
         self.area = GraphArea(self.graph)
+
         self.event_box.add(self.area)
         self.add_with_viewport(self.event_box)
         
@@ -51,13 +56,17 @@ class Graph(gtk.ScrolledWindow):
         self.state_index = None
         self.add_state()
 
-    def centralize_scroll(self):
+    def centralize_scroll(self, position=None):
         """Put both scrolls in center"""
         vadj = self.get_vadjustment()
         hadj = self.get_hadjustment()
 
-        vadj.set_value((vadj.upper / 2) - (vadj.page_size / 2) )
-        hadj.set_value((hadj.upper / 2) - (hadj.page_size / 2) )
+        if not position:
+            position = [(vadj.upper / 2), (hadj.upper / 2)]
+
+        print map(lambda x: int(x), position)
+        hadj.set_value(position[0] - (hadj.page_size / 2))
+        vadj.set_value(position[1] - (vadj.page_size / 2))
 
     def zoom_in(self, center=None):
         if self.area.zoom < 20:
@@ -74,31 +83,54 @@ class Graph(gtk.ScrolledWindow):
         self.do_zoom()
 
     def do_zoom(self, center=None):
-        w, h = self.area.get_size_request()
-        w *= self.area.zoom
-        h *= self.area.zoom
+        width, height = self.area.get_size_request()
+        vadj = self.get_vadjustment()
+        hadj = self.get_hadjustment()
 
-        x = w * self.hadjustment.value / self.hadjustment.upper
-        y = h * self.vadjustment.value / self.vadjustment.upper
+        width *= self.area.zoom
+        height *= self.area.zoom
 
-        self.hadjustment.upper = w
-        self.vadjustment.upper = h
 
-        self.hadjustment.value = x
-        self.vadjustment.value = y
+        if not center:
+            x = (hadj.get_value() + hadj.get_page_size() / 2) / self.area.zoom
+            y = (vadj.get_value() + vadj.get_page_size() / 2) / self.area.zoom
+            center = [x, y]
+
+        hadj.set_upper(width)
+        vadj.set_upper(height)
+
+
+        self.centralize_scroll(center)
+#        vadj.set_value(self.area.zoom * hadj.value)
+#        hadj.set_value(self.area.zoom * vadj.value)
 
         self.area.queue_draw()
 
     def mouse_scroll(self, widget, event):
+        width, height = self.area.get_size_request()
+        vadj = self.get_vadjustment()
+        hadj = self.get_hadjustment()
+
+        print int(vadj.value), int(vadj.upper), int(vadj.page_size)
+        print int(hadj.value), int(hadj.upper), int(hadj.page_size)
+        print int(width), int(height)
+
         if not (event.state & gtk.gdk.CONTROL_MASK):
             return
 
-        center = map(lambda v: v / self.area.zoom,event.get_coords())
+        center = map(lambda v: v / self.area.zoom, event.get_coords())
 
         if event.direction == gtk.gdk.SCROLL_UP:
             self.zoom_in(center)
-        else:
+        elif event.direction == gtk.gdk.SCROLL_DOWN:
             self.zoom_out(center)
+
+        width, height = self.area.get_size_request()
+        vadj = self.get_vadjustment()
+        hadj = self.get_hadjustment()
+
+        print int(vadj.value), int(vadj.upper), int(vadj.page_size)
+        print int(hadj.value), int(hadj.upper), int(hadj.page_size)
 
     def set_changed(self, value):
         if self.changed != value:
@@ -285,9 +317,8 @@ class Graph(gtk.ScrolledWindow):
         self.queue_draw()
 
     def mouse_press(self, widget, event):
-        self.centralize_scroll()
-
-        self.last_position_clicked = map(lambda v: v / self.area.zoom,event.get_coords())
+        print event.get_coords()
+        self.last_position_clicked = map(lambda v: v / self.area.zoom, event.get_coords())
 
         if event.button == 1:
             if self.action != None:
@@ -380,7 +411,7 @@ class Graph(gtk.ScrolledWindow):
         self.area.queue_draw()
 
     def mouse_motion(self, widget, event):
-        coords = map(lambda v: v / self.area.zoom,event.get_coords())
+        coords = map(lambda v: v / self.area.zoom, event.get_coords())
 
         if self.box_selecting:
             x, y = self.box_selecting

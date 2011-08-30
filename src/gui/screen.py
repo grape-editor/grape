@@ -35,14 +35,15 @@ class Screen(object):
             tab = Graph(self.tab_changed)
             self.add_notebook_tab(tab)
 
-        self.name = 0            
         self.screen.show_all()
 
         # HACK
-        # For some reason the size of scroll only existe after show_all above
+        # For some reason the size of scroll only exist after show_all above
         if tab:
             tab.centralize_scroll()
- 
+
+
+
     def close_tab(self, tab):
         self.logger.info("Closing screen")
         page_number = tab.get_parent().page_num(tab)
@@ -132,11 +133,11 @@ class Screen(object):
 
         btn.connect_object('clicked', self.close_tab_clicked, tab)
 
-        hbox.show_all()
-        self.notebook.show_all()
-
         tab.close_button = btn
         self.notebook.set_current_page(n)
+
+        hbox.show_all()
+        self.notebook.show_all()
 
     def tab_changed(self, tab):
         box = tab.box
@@ -159,21 +160,17 @@ class Screen(object):
         self.add_notebook_tab(tab)
 
     def menu_file_open(self, widget):
-        tab = Graph(self.builder, self.tab_changed)
-        file_chooser = FileChooser(self.builder, "open")
+        self.logger.info("Opening file")
+        file_chooser = FileChooser("open")
         file_chooser.run()
 
         if file_chooser.path:
+            tab = Graph(self.tab_changed)
             tab.graph = tab.graph.open(file_chooser.path)
             tab.area.graph = tab.graph
             tab.changed = False
-
             self.add_notebook_tab(tab)
-
             self.tab_changed(tab)
-        else:
-            del tab
-
         del file_chooser
 
     def menu_file_save(self, widget):
@@ -193,7 +190,7 @@ class Screen(object):
         tab, i = self.current_tab()
 
         if tab and self.notebook.get_n_pages() > 0:
-            file_chooser = FileChooser(self.builder, "save")
+            file_chooser = FileChooser("save")
             file_chooser.run()
 
             if file_chooser.path:

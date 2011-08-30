@@ -4,8 +4,8 @@ import gtk
 
 class FileChooser(object):
 
-    def __init__(self, builder, type):
-        self.builder = builder
+    def __init__(self, type):
+        self.builder = gtk.Builder()
         current_path = os.path.dirname(__file__)
         path = os.path.join(current_path, "file_chooser.ui")
         self.builder.add_from_file(path)

@@ -85,13 +85,11 @@ class Vertex(object):
         self.adjustment_border.value = self.vertex.border_size
 
     def init_edges_fields(self):
-        number_of_edges = len(self.vertex.adjacencies)
         self.liststore_edges.clear()
-
-        for i in range(number_of_edges):
-            t_id = self.vertex.adjacencies[i].id
-            t_start = self.vertex.adjacencies[i].start.title
-            t_end = self.vertex.adjacencies[i].end.title
+        for edge in self.vertex.edge_list:
+            t_id = edge.id
+            t_start = edge.start.title
+            t_end = edge.end.title
             self.liststore_edges.append([t_id, t_start, t_end])
 
     def init_properties_fields(self):
