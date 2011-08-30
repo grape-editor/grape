@@ -170,19 +170,13 @@ class Edge(object):
 
         return
 
-    def cairo_to_spin(self, color):
-        return gtk.gdk.Color(color[0] * 65535, color[1] * 65535, color[2] * 65535)
-        
-    def spin_to_cairo(self, color):
-        return [color.red / 65535.0, color.green / 65535.0, color.blue / 65535.0]
-
     def title_changed(self, widget):
         self.edge.title = self.text_title.get_text()
         self.area.queue_draw()
         self.set_changed(True)
     
     def color_edge_changed(self, widget):
-        self.edge.color = self.spin_to_cairo(widget.get_color())
+        self.edge.color = str(widget.get_color())
         self.area.queue_draw()
         self.set_changed(True)
         
