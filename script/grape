@@ -3,15 +3,38 @@
 import os
 import sys
 
+def solve_imports(path, folders):
+    if not path in sys.path:
+        sys.path.insert(0, path)
+        for folder in folders:
+            path = os.path.join(path, folder)
+            if not path in sys.path:
+                sys.path.insert(0, path)
+
+
 path = os.path.abspath(os.path.dirname(sys.argv[0]))
-path = os.path.join(path, '..', 'src')
-lib_folders = ['lib']
+
+path = os.path.join(path, '..')
+folders = ['algorithms']
+solve_imports(path, folders)
+
+path = os.path.join(path, 'src')
+folders = ['lib']
+solve_imports(path, folders)
+
+
+
 if not path in sys.path:
     sys.path.insert(0, path)
-    for lib in lib_folders:
-        path = os.path.join(path, lib)
+    for folder in folders:
+        path = os.path.join(path, folder)
         if not path in sys.path:
             sys.path.insert(0, path)
+
+
+
+
+
 
 from gui.main import Main
 from lib import config, system, logger

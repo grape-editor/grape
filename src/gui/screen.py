@@ -4,6 +4,7 @@ from gui.file_chooser import FileChooser
 from gui.preferences import Preferences
 
 from lib.logger import Logger
+from lib.system import *
 
 import gtk
 import os
@@ -23,6 +24,10 @@ class Screen(object):
 
         self.screen = self.builder.get_object("screen_show")
         self.notebook = self.builder.get_object("notebook")
+        self.statusbar = self.builder.get_object("statusbar")
+
+        self.algorithm = None
+        self.create_algorithms_menu()       
 
         self.screen.connect('key_press_event', self.keyboard_press)
         self.screen.parent_screen = self
@@ -42,7 +47,19 @@ class Screen(object):
         if tab:
             tab.centralize_scroll()
 
+    def create_algorithms_menu(self):
+        menu_algorithms = self.builder.get_object("menu_algorithms")
+        classes_algorithms = get_algorithms()
 
+        group = None
+        for clss in classes_algorithms:
+            alg = clss()
+            item = gtk.RadioMenuItem(group, alg.name)
+            item.connect("toggled", self.menu_algorithms, alg)
+            menu_algorithms.append(item)
+            group = item
+
+        group.set_active(True)
 
     def close_tab(self, tab):
         self.logger.info("Closing screen")
@@ -233,7 +250,6 @@ class Screen(object):
 
                 return True
 
-
     def menu_file_close(self, widget):
         self.logger.info("Closing file")
         tab, i = self.current_tab()
@@ -245,22 +261,6 @@ class Screen(object):
         self.logger.info("Menu quit")
         self.screen.event(gtk.gdk.Event(gtk.gdk.DELETE))
         self.main_quit(widget)
-
-    def menu_edit_cut(self, widget):
-        # TODO - Cut
-        pass
-
-    def menu_edit_copy(self, widget):
-        # TODO - Copy
-        pass
-
-    def menu_edit_paste(self, widget):
-        # TODO - Paste
-        pass
-
-    def menu_edit_delete(self, widget):
-        # TODO - Handle delete keypress
-        pass
 
     def menu_edit_undo(self, widget):
         self.logger.info("Undo")
@@ -348,12 +348,42 @@ class Screen(object):
         tab.queue_draw()
 
     def menu_view_fullscreen(self, widget):
+
         if widget.get_active():
             self.screen.fullscreen()
             self.logger.info("Fullscreen mode ON")
         else:
             self.screen.unfullscreen()
             self.logger.info("Fullscreen mode OFF")
+
+    def menu_view_statusbar(self, widget):
+        """Menu view status bar, alternate beetween show and hide statusbar"""
+        if widget.active:
+            self.statusbar.show()
+            self.logger.info("Statusbar show")
+        else:
+            self.statusbar.hide()
+            self.logger.info("Statusbar hide")
+
+    def menu_algorithms(self, widget, algorithm):
+        """ When the algorithm is changed"""
+        self.algorithm = algorithm
+
+    def menu_algorithms_previous(self, widget):
+        """Action of algorithm execution previous"""
+        print 1
+
+    def menu_algorithms_stop(self, widget):
+        """Action of algorithm execution stop"""
+        print 2
+
+    def menu_algorithms_play(self, widget):
+        """Action of algorithm execution play"""
+        print 3
+
+    def menu_algorithms_next(self, widget):
+        """Action of algorithm execution next"""
+        print 4
 
     def menu_help_about(self, widget):
         self.logger.info("About")

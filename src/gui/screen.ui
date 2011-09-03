@@ -123,51 +123,6 @@
                   <object class="GtkMenu" id="menu_edit">
                     <property name="visible">True</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_cut">
-                        <property name="label">gtk-cut</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <property name="always_show_image">True</property>
-                        <signal name="activate" handler="menu_edit_cut"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_copy">
-                        <property name="label">gtk-copy</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <property name="always_show_image">True</property>
-                        <signal name="activate" handler="menu_edit_copy"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_paste">
-                        <property name="label">gtk-paste</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <property name="always_show_image">True</property>
-                        <signal name="activate" handler="menu_edit_paste"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkImageMenuItem" id="menu_edit_delete">
-                        <property name="label">gtk-delete</property>
-                        <property name="visible">True</property>
-                        <property name="use_underline">True</property>
-                        <property name="use_stock">True</property>
-                        <property name="always_show_image">True</property>
-                        <signal name="activate" handler="menu_edit_delete"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_1">
-                        <property name="visible">True</property>
-                      </object>
-                    </child>
-                    <child>
                       <object class="GtkImageMenuItem" id="menu_edit_undo">
                         <property name="label">gtk-undo</property>
                         <property name="visible">True</property>
@@ -190,7 +145,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_2">
+                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_1">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -217,7 +172,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_3">
+                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_2">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -244,7 +199,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_4">
+                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_3">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -269,7 +224,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_5">
+                      <object class="GtkSeparatorMenuItem" id="menu_edit_separator_4">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -339,6 +294,71 @@
                         <property name="use_underline">True</property>
                         <accelerator key="F11" signal="activate"/>
                         <signal name="toggled" handler="menu_view_fullscreen"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkCheckMenuItem" id="menu_view_statusbar">
+                        <property name="visible">True</property>
+                        <property name="label">Statusbar</property>
+                        <property name="use_underline">True</property>
+                        <property name="active">True</property>
+                        <signal name="toggled" handler="menu_view_statusbar"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem" id="algorithms">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">_Algorithms</property>
+                <property name="use_underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu" id="menu_algorithms">
+                    <property name="visible">True</property>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_algorithms_previous">
+                        <property name="label">gtk-media-previous</property>
+                        <property name="visible">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <signal name="activate" handler="menu_algorithms_previous"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_algorithms_stop">
+                        <property name="label">gtk-media-stop</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <signal name="activate" handler="menu_algorithms_stop"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_algorithms_play">
+                        <property name="label">gtk-media-play</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <signal name="activate" handler="menu_algorithms_play"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menu_algorithms_next">
+                        <property name="label">gtk-media-next</property>
+                        <property name="visible">True</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <signal name="activate" handler="menu_algorithms_next"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="menu_algorithms_separator">
+                        <property name="visible">True</property>
                       </object>
                     </child>
                   </object>
@@ -528,6 +548,67 @@
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-justify-center</property>
                 <signal name="clicked" handler="menu_edit_horizontal_align"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="toolbutton_separator_4">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_previous">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Previous</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-media-previous</property>
+                <signal name="clicked" handler="menu_algorithms_previous"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_stop">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Stop</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-media-stop</property>
+                <signal name="clicked" handler="menu_algorithms_stop"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_play">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Play</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-media-play</property>
+                <signal name="clicked" handler="menu_algorithms_play"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_next">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Next</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-media-next</property>
+                <signal name="clicked" handler="menu_algorithms_next"/>
               </object>
               <packing>
                 <property name="expand">False</property>

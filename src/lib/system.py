@@ -64,3 +64,37 @@ def create_local_file(directory, filename):
 def get_full_path(directory, filename):
     """Gets the full path to a filename"""
     return "%s%s%s" % (directory, os.sep, filename)
+
+def get_algorithms():
+    """Gets all algorithms inside a directory"""
+    path = sys.argv[0]
+    path = os.path.split(path)[0]
+    path = os.path.abspath(path)
+    path = os.path.join(path, '..', 'algorithms')
+    
+    algorithms = []
+
+    for file in os.listdir(path):
+        if os.path.isdir(file):
+            continue
+        if file == "__init__.py" or not ".py" in file:
+            continue
+        
+        file_name, file_ext = file.split('.')
+        tmp_from = file_name
+        tmp_import = underscore_to_classname(file_name)
+        module = __import__(tmp_from, globals(), locals(), [tmp_import], -1)
+        algorithms.append(getattr(module, tmp_import))
+    
+    return algorithms
+
+def underscore_to_classname(value):
+    """Convert a undercore name to classname (CamelCase)"""
+    def camelcase(): 
+        while True:
+            yield str.capitalize
+
+    c = camelcase()
+    return "".join(c.next()(x) if x else '_' for x in value.split("_"))
+
+

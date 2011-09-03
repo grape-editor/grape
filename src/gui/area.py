@@ -152,7 +152,6 @@ class GraphArea(DrawingArea):
     def draw_edge_straight(self, cairo, edge):
         x1, y1, x2, y2 = get_edge_line(edge, 0)
 
-        print edge.color
         cairo.set_source_color(gtk.gdk.Color(edge.color))
         
         cairo.set_line_width(edge.width)
