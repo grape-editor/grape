@@ -384,8 +384,7 @@ class Screen(object):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
         
-        runner = self.algorithm()
-        runner.__set_graph__(tab.graph)
+        runner = self.algorithm(tab.graph)
         runner.start()
 
     def menu_algorithms_next(self, widget):

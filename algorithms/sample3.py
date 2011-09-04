@@ -1,8 +1,7 @@
 from lib.algorithm import Algorithm
 
 class Sample3(Algorithm):
-    def __init__(self):
-        Algorithm.__init__(self)
+    def __init__(self, graph):
+        Algorithm.__init__(self, graph)
 
-        self.name = "Sample3"
         self.category = "Examples"

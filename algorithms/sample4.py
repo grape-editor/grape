@@ -1,10 +1,9 @@
 from lib.algorithm import Algorithm
 
 class Sample4(Algorithm):
-    def __init__(self):
-        Algorithm.__init__(self)
+    def __init__(self, graph):
+        Algorithm.__init__(self, graph)
 
-        self.name = "Sample4"
         self.category = "Examples"
 
     def run(self):

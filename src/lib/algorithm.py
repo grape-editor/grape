@@ -5,13 +5,11 @@ from time import sleep
 
 class Algorithm(Thread):
 
-    def __init__(self):
+    def __init__(self, graph):
         Thread.__init__(self)
-        self.name = "Algorithm"
         self.category = "Blah"
 
-    def __set_graph__(self, graph):
-        self.__graph__ = graph
+        self.graph = graph
         self.vertex_list = graph.vertices
 
     def uncheck_vertex(self, vertex):
