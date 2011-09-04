@@ -30,6 +30,16 @@ class Graph(object):
 
         self.background_color = config.get("graph", "background-color")
 
+    def __str__(self):
+        """Prints all verticies and your adjacncies lists"""
+        value = ""
+        for v in self.vertices:
+            value += str(v) + ": "
+            for n in v.adjacencies:
+                value += str(n) + " "
+            value += "\n"
+        return value
+
     def find_in_area(self, x, y, w, h):
         vertices = []
         for v in self.vertices:
@@ -138,13 +148,12 @@ class Graph(object):
             self.vertices.remove(vertex)
 
     def add_edge(self, start, end):
-        digraph = self.directed and not end in start.adjacencies
-        graph = not self.directed and not end in start.adjacencies and not start in end.adjacencies
-        if (self.multiple) or digraph or graph:
-            edge = Edge(self.edge_id, start, end, not self.directed)
+        edge = Edge(self.edge_id, start, end)
+        if edge:
             self.edges.append(edge)
             self.edge_id += 1
-            return edge
+
+        return edge
 
     def remove_edge(self, edge):
         if not self.has_edge(edge):

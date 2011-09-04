@@ -47,8 +47,8 @@ class GraphArea(DrawingArea):
 
         radius = vertex.size / 2
 
+        # TODO - Config file
         if vertex.selected:
-            # TODO - Config file
             cairo.set_source_rgb(0.4, 0.8, 0.2)
         else:
             cairo.set_source_color(gtk.gdk.Color(vertex.fill_color))
@@ -160,7 +160,7 @@ class GraphArea(DrawingArea):
         cairo.line_to(x2, y2)
         cairo.stroke()
 
-        if not edge.bidirectional:
+        if edge.directed:
             self.draw_arrow(cairo, (x1, y1), (x2, y2))
 
     def draw_graph(self, cairo, area):

@@ -14,8 +14,6 @@ class Graph(gtk.ScrolledWindow):
 
 #        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
-
-
         self.builder = gtk.Builder()
         self.event_box = EventBox()
 

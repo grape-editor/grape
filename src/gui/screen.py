@@ -53,9 +53,9 @@ class Screen(object):
 
         group = None
         for clss in classes_algorithms:
-            alg = clss()
-            item = gtk.RadioMenuItem(group, alg.name)
-            item.connect("toggled", self.menu_algorithms, alg)
+            name = camelcase_to_text(clss.__name__)
+            item = gtk.RadioMenuItem(group, name)
+            item.connect("toggled", self.menu_algorithms, clss)
             menu_algorithms.append(item)
             group = item
 
@@ -189,6 +189,9 @@ class Screen(object):
             self.add_notebook_tab(tab)
             self.tab_changed(tab)
         del file_chooser
+        current_page_number = self.notebook.get_current_page()
+        tab = self.notebook.get_nth_page(current_page_number)
+        return tab, current_page_number
 
     def menu_file_save(self, widget):
         self.logger.info("Saving file")
@@ -379,7 +382,11 @@ class Screen(object):
 
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""
-        print 3
+        tab, number = self.current_tab()
+        
+        runner = self.algorithm()
+        runner.__set_graph__(tab.graph)
+        runner.start()
 
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""

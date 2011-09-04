@@ -6,6 +6,7 @@ import struct
 import time
 import random
 import tempfile
+import re
 
 def get_user_name():
     """Returns current user name"""
@@ -96,5 +97,24 @@ def underscore_to_classname(value):
 
     c = camelcase()
     return "".join(c.next()(x) if x else '_' for x in value.split("_"))
+
+def underscore_to_camelcase(value):
+    """Convert a undercore name to CamelCase"""
+    def camelcase(): 
+        str.lower
+        while True:
+            yield str.capitalize
+
+    c = camelcase()
+    return "".join(c.next()(x) if x else '_' for x in value.split("_"))
+
+def camelcase_to_underscore(value):
+    """Convert a CamelCase to underscore"""
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', value)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+
+def camelcase_to_text(value):
+    """Convert a CamelCase to text"""
+    return camelcase_to_underscore(value).replace('_', ' ').capitalize()
 
 

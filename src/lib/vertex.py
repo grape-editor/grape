@@ -21,6 +21,9 @@ class Vertex(object):
         self.selected = False
         self.touching_edges = []
 
+    def __str__(self):
+        return self.title
+
     def select(self):
         self.selected = True
 

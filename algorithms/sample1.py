@@ -6,3 +6,19 @@ class Sample1(Algorithm):
 
         self.name = "Sample1"
         self.category = "Examples"
+
+    def run(self):
+#        super(Sample1, self).run(graph)
+
+        if not len(self.vertex_list) > 0:
+            return
+        
+        from time import sleep
+        from random import choice
+        
+        for vertex in range(50):
+            v = choice(self.vertex_list)
+
+            self.check_vertex(v)
+            self.show()
+            self.uncheck_vertex(v)
