@@ -17,6 +17,9 @@ class Vertex(object):
         self.set_changed = graph_show.set_changed
         self.graph = graph_show.graph
         self.add_state = graph_show.add_state
+        self.last_edge_selected = None
+
+        self.vertex.select()
 
         self.builder = gtk.Builder()
 
@@ -120,6 +123,23 @@ class Vertex(object):
             if key == gtk.keysyms.N or key == gtk.keysyms.n:
                 add()
 
+    def treeview_edges_cursor_changed(self, widget):
+        selection = self.treeview_edges.get_selection()
+        store, row = selection.get_selected_rows()
+
+        if self.last_edge_selected:
+            self.last_edge_selected.deselect()
+            self.last_edge_selected = None
+
+        if len(row) > 0:
+            row_iter = store.get_iter(row[0])
+            edge_id = store.get_value(row_iter, 0)
+            edge = self.graph.find_edge_from_vertex(self.vertex, edge_id)
+            edge.select()
+            self.last_edge_selected = edge
+
+        self.area.queue_draw()
+
     def mouse_press(self, widget, event):
         current_page_number = self.notebook.get_current_page()
 
@@ -130,16 +150,7 @@ class Vertex(object):
         elif current_page_number == 2:
             right_click_menu = self.right_click_menu_properties
 
-        path = widget.get_path_at_pos(int(event.x), int(event.y))
-        selection = widget.get_selection()
-        
-        store, row = selection.get_selected_rows()
-        if not path:
-            selection.unselect_all()
-
         if event.button == 3:
-            if path:
-                selection.select_path(path[0])
             right_click_menu(event)
     
     def right_click_menu_edges(self, event):
@@ -274,8 +285,8 @@ class Vertex(object):
         return
 
     def add_properties(self):
-        t_identifier = "foo"
-        t_value = "bar"
+        t_identifier = "identifier"
+        t_value = "value"
         self.liststore_properties.append([t_identifier, t_value])
 
         setattr(self.vertex, "user_" + t_identifier, t_value)
@@ -341,5 +352,10 @@ class Vertex(object):
         self.set_changed(True)
     
     def close(self, widget):
+        self.vertex.deselect()
+        if self.last_edge_selected:
+            self.last_edge_selected.deselect()
+
+        self.area.queue_draw()
         self.screen.destroy()
 

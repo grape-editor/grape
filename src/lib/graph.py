@@ -160,7 +160,7 @@ class Graph(object):
             return
         # TODO - Figure out how to handle multiple edges
         edge.start.remove_edge(edge)
-        if edge.bidirectional:
+        if not edge.directed:
             edge.end.remove_edge(edge)
         self.edges.remove(edge)
 
@@ -220,3 +220,48 @@ class Graph(object):
             if vertex:
                 self.deselect_vertex(selected[0])
                 self.select_vertex(vertex)
+
+    def graph_to_networkx(self):
+        import networkx as nx
+
+        g = None
+
+        print self.type
+        if self.type == 'Graph':
+            print "AQUI"
+            g = nx.Graph(title=self.title)
+        elif self.type == 'DiGraph':
+            g = nx.DiGraph(title=self.title)
+        elif self.type == 'MultiGraph':
+            g = nx.MultiGraph(title=self.title)
+        elif self.type == 'MultiDiGraph':
+            g = nx.MultiDiGraph(title=self.title)
+
+        if g == None:
+            return
+
+        for v in self.vertices:
+            g.add_node(v.id, id=v.id)
+
+            for attr in v.__dict__:
+                if attr.startswith("user_"):
+                    t_identifier = attr[5:]
+                    t_value = getattr(self.vertex, attr)
+                    self.liststore_properties.append([t_identifier, t_value])
+                    g.node[v.id][t_identifier] = t_value
+
+        for e in self.edges:
+            g.add_edge(e.start.id, e.end.id, id=e.id)
+            for attr in e.__dict__:
+                if attr.startswith("user_"):
+                    t_identifier = attr[5:]
+                    t_value = getattr(self.vertex, attr)
+                    self.liststore_properties.append([t_identifier, t_value])
+                    for s in g[e.start.id][e.end.id]:
+                        if g[e.start.id][e.end.id][s]['id'] == e.id:
+                            g[e.start.id][e.end.id][s][t_identifier] = t_value
+
+        print g.nodes(data=True)
+        print g.edges(data=True)
+        return g
+

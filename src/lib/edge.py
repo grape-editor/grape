@@ -35,6 +35,7 @@ class Edge(object):
         start.touching_edges.append(self)
         end.touching_edges.append(self)
 
+        self.selected = False
         start.add_edge(self)
 
         if not self.directed:
@@ -49,6 +50,12 @@ class Edge(object):
             value += " -- "
         value += str(end)
         return value
+
+    def select(self):
+        self.selected = True
+
+    def deselect(self):
+        self.selected = False
 
     def touches(self, vertex):
         return vertex == self.start or vertex == self.end

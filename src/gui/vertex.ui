@@ -310,6 +310,7 @@
                                 <property name="enable_grid_lines">vertical</property>
                                 <signal name="button_press_event" handler="mouse_press"/>
                                 <signal name="key_press_event" handler="keyboard_press"/>
+                                <signal name="cursor_changed" handler="treeview_edges_cursor_changed"/>
                                 <child>
                                   <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                                     <property name="title">ID</property>
