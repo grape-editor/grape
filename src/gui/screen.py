@@ -384,13 +384,22 @@ class Screen(object):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
         
-        runner = self.algorithm(tab.graph)
-        runner.start()
+        self.menu_algorithm_runner = self.algorithm(tab.graph)
+        self.menu_algorithm_runner.start()
 
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""
         print 4
+        
+        tab, page_number = self.current_tab()
+        tab.queue_draw()
 
+        self.menu_algorithm_runner.__signal__()
+        
+        
+        
+        
+        
     def menu_help_about(self, widget):
         self.logger.info("About")
         AboutShow(self.builder)
