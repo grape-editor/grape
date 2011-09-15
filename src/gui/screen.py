@@ -374,31 +374,23 @@ class Screen(object):
 
     def menu_algorithms_previous(self, widget):
         """Action of algorithm execution previous"""
-        print 1
+        tab, number = self.current_tab()
+        tab.algorithm_prev()
 
     def menu_algorithms_stop(self, widget):
         """Action of algorithm execution stop"""
-        print 2
+        tab, number = self.current_tab()
+        tab.algorithm_stop()
 
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
+        tab.algorithm_start(self.algorithm)
         
-        self.menu_algorithm_runner = self.algorithm(tab.graph)
-        self.menu_algorithm_runner.start()
-
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""
-        print 4
-        
-        tab, page_number = self.current_tab()
-        tab.queue_draw()
-
-        self.menu_algorithm_runner.__signal__()
-        
-        
-        
-        
+        tab, number = self.current_tab()
+        tab.algorithm_next()
         
     def menu_help_about(self, widget):
         self.logger.info("About")
