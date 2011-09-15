@@ -137,7 +137,7 @@ class GraphArea(DrawingArea):
                     cairo.curve_to(x3, y3, x4, y4, x2, y2)
                     cairo.stroke()
                     
-                    if not edge.bidirectional:
+                    if  edge.directed:
                         self.draw_arrow(cairo, (x4, y4), (x2, y2))
                         
                     before = edge
