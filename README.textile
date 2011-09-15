@@ -4,7 +4,7 @@ h2. Graph Editor
 
 p. Grape is a graph editor intented to ease the graph external representation and algorithms simulation, be it for regular learning or for applying A.I..
 
-p. Written in Python it is released under the "GNU General Public License":http://www.gnu.org/licenses/gpl.html and uses the MVC pattern, based on the "Ruby on Rails":http://rubyonrails.org/ web application framework it ports the great concepts of it to a standard, general desktop application.
+p. Written in Python it is released under the "GNU General Public License":http://www.gnu.org/licenses/gpl.html.
 
 h2. How to use Grape
 
