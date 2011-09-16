@@ -417,15 +417,15 @@ class Screen(object):
             if tab.action:
                 tab.action = None
             else:
-                tab.controller.clear_selection(tab.graph)
+                tab.graph.clear_selection()
                 self.logger.info("Clean UP selection")
         elif (event.state & CONTROL_MASK):
             if key == gtk.keysyms.A or key == gtk.keysyms.a:
                 self.logger.info("Selection all")
-                tab.controller.select_all(tab.graph)
+                tab.graph.select_all()
 
         if tab and direction:
-            tab.controller.move_selection(tab.graph, direction)
+            tab.graph.move_selection(direction)
             self.logger.info("Moving selection")
 
         if tab:
