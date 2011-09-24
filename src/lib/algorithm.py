@@ -10,65 +10,102 @@ class Algorithm(Thread):
     def __init__(self, graph):
         Thread.__init__(self)
 
-        self.__states = []
+        self.__semaphore = Semaphore()
+        self.__graph = graph
         self.__checks = {}
 
-        self.__semaphore = Semaphore()
-
-        self.__graph = graph
-        self.__history = History()
+        # To UNDO and REDO actions
+        self.__states= []
+        self.__state_index = 0
+        self.__add_state()
         
         self.graph = graph.graph_to_networkx()
         self.vertex_list = graph.vertices
         self.edge_list = graph.edges
 
-    def check(self, what):
+    def __add_state(self):
+        """Adds a new state in the list states (HISTORY)"""
+        self.__clean_checks()
+        if self.__state_index != len(self.__states):
+            self.__states = self.__states[:self.__state_index]
+        self.__states.append(self.__checks.copy())
+        self.__state_index += 1
+        self.__make_checks()
+
+    def __undo(self):
+        """Undo a state (HISTORY)"""
+        if self.__state_index > 0:
+            self.__clean_checks()
+            self.__state_index -= 1
+            self.__checks = self.__states[self.__state_index]
+            self.__make_checks()
+            return self.__checks
+        return None
+
+    def __redo(self):
+        """Redo a state (HISTORY)"""
+        if self.__state_index < len(self.__states):
+            self.__clean_checks()
+            self.__state_index += 1
+            self.__checks = self.__states[self.__state_index]
+            self.__make_checks()
+            return self.__checks
+        return None
+
+    def __clean_checks(self):
+        """ Make inverse action for all action stacks"""
+        for param, function in self.__checks.items():
+            function[1](param)
+
+    def __make_checks(self):
+        """ Make current action for all action stacks"""
+        for param, function in self.__checks.items():
+            function[0](param)
+
+    def __check(self, what):
         """Checks vertex or checks a edge"""
-        self.checks[what] = what
+        what.check()
+
+    def __uncheck(self, what):
+        """Unchecks vertex or unchecks a edge"""
+        what.uncheck()
+
+    def check(self, what):
+        """Writes action in the stack"""
+        self.__checks[what] = [self.__check, self.__uncheck]
             
     def uncheck(self, what):
-        """Unchecks vertex or unchecks a edge"""
-        self.checks.pop(what)
-        
+        """Writes action in the stack"""
+        self.__checks[what] = [self.__uncheck, self.__check]
+
     def next(self):
-        if not self.redo():
+        """Jump to the next state"""
+        if not self.__redo():
             self.__signal()
         
     def prev(self):
-        self.undo()
+        """Jump to the previous state"""
+        self.__undo()
         
     def play(self):
-        pass
+        """Start alorithm execution"""
+        self.start()
 
     def stop(self):
+        """Kill thread that execute algorithm"""
         pass
-
-    def save_state(self):
-        self.states.append(())        
 
     def __wait(self):
         """Stop thread until receive release signal"""
-        self.save_state()
         self.__semaphore.acquire()
 
     def __signal(self):
         """Sets free the thread to continue"""
         self.__semaphore.release()
 
-    def __operation(method):
-        def decorated(self):
-            saved = [self.__vertex_copy, self.__edge_copy]
-            perform = (method, (self,))
-            revert = (self.__set_value, (saved,))
-            self.__history.add(perform, revert)
-        return decorated
-
-    def __set_value(self, n):
-        self.__vertex_copy = n[0]
-        self.__edge_copy = n[1]
-
     def show(self):
         self.__wait()
+        self.__add_state()
 
     def run(self):
         print self.name

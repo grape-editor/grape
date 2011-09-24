@@ -57,7 +57,6 @@ class Graph(gtk.ScrolledWindow):
         # Algorithm stuff
         self.algorithm_runner = None
         self.algorithm_states = []
-        
 
     def centralize_scroll(self, position=None):
         """Put both scrolls in center"""
@@ -263,10 +262,9 @@ class Graph(gtk.ScrolledWindow):
             self.box_selecting = self.last_position_clicked
             self.action = None
 
-    def algorithm_start(self, Algorithm):
+    def algorithm_play(self, Algorithm):
         self.algorithm_runner = Algorithm(self.graph)
-        self.algorithm_runner.start()
-        print "ra"
+        self.algorithm_runner.play()
         
     def algorithm_next(self):
         self.algorithm_runner.next()

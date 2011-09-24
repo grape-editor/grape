@@ -385,7 +385,7 @@ class Screen(object):
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
-        tab.algorithm_start(self.algorithm)
+        tab.algorithm_play(self.algorithm)
         
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""
