@@ -9,67 +9,66 @@ class Algorithm(Thread):
 
     def __init__(self, graph):
         Thread.__init__(self)
-        self.category = "Blah"
 
+        self.__states = []
+        self.__checks = {}
+
+        self.__semaphore = Semaphore()
+
+        self.__graph = graph
+        self.__history = History()
+        
+        self.graph = graph.graph_to_networkx()
         self.vertex_list = graph.vertices
         self.edge_list = graph.edges
 
-        self.__edge_copy__ = {}
-        self.__vertex_copy__ = {}
-        self.__semaphore = Semaphore()
-
-        self.__graph__ = graph
-        self.graph = graph.graph_to_networkx()
-
     def check(self, what):
         """Checks vertex or checks a edge"""
-        if isinstance(what, Vertex):
-            vertex = what
-            self.__vertex_copy__[vertex] = [vertex.fill_color, vertex.border_color,
-                                            vertex.border_size, vertex.size,
-                                            vertex.font_size]
-            # TODO - Config file
-            vertex.fill_color = "#FF0000"
-            vertex.border_color = "#FF0000"
-            vertex.border_size = float(10)
-            # vertex.size = ??
-            # vertex.font_size = ??
-        
-        elif isinstance(what, Edge):
-            edge = what
-            self.__edge_copy__[edge] = [edge.color, edge.width]
-            # TODO - Config file
-            edge.color = "#FF0000"
-            edge.width = float(10)
-
+        self.checks[what] = what
+            
     def uncheck(self, what):
         """Unchecks vertex or unchecks a edge"""
-        if isinstance(what, Vertex):
-            vertex = what
-            config = self.__vertex_copy__[vertex]
+        self.checks.pop(what)
+        
+    def next(self):
+        if not self.redo():
+            self.__signal()
+        
+    def prev(self):
+        self.undo()
+        
+    def play(self):
+        pass
 
-            vertex.fill_color = config[0]
-            vertex.border_color = config[1]
-            vertex.border_size = config[2]
-            vertex.size = config[3]
-            vertex.font_size  = config[4]
-        elif isinstance(what, Edge):
-            edge = what
-            config = self.__edge_copy__[edge]
+    def stop(self):
+        pass
 
-            edge.color = config[0]
-            edge.width  = config[1]
+    def save_state(self):
+        self.states.append(())        
 
-    def __wait__(self):
+    def __wait(self):
         """Stop thread until receive release signal"""
+        self.save_state()
         self.__semaphore.acquire()
 
-    def __signal__(self):
+    def __signal(self):
         """Sets free the thread to continue"""
         self.__semaphore.release()
 
+    def __operation(method):
+        def decorated(self):
+            saved = [self.__vertex_copy, self.__edge_copy]
+            perform = (method, (self,))
+            revert = (self.__set_value, (saved,))
+            self.__history.add(perform, revert)
+        return decorated
+
+    def __set_value(self, n):
+        self.__vertex_copy = n[0]
+        self.__edge_copy = n[1]
+
     def show(self):
-        self.__wait__()
+        self.__wait()
 
     def run(self):
         print self.name

@@ -50,6 +50,8 @@ class GraphArea(DrawingArea):
         # TODO - Config file
         if vertex.selected:
             cairo.set_source_rgb(0.4, 0.8, 0.2)
+        elif vertex.checked:
+            cairo.set_source_rgb(0.9, 0.2, 0.2)
         else:
             cairo.set_source_color(gtk.gdk.Color(vertex.fill_color))
 
@@ -128,9 +130,14 @@ class GraphArea(DrawingArea):
                         angle *= -1
                     
                     x1, y1, x2, y2, x3, y3, x4, y4 = get_edge_line(edge, angle)
-                    
-                    cairo.set_source_color(gtk.gdk.Color(edge.color))
-                    cairo.set_line_width(edge.width)
+                
+                    # TODO - Config file    
+                    if edge.checked:
+                        cairo.set_source_rgb(0.9, 0.2, 0.2)
+                        cairo.set_line_width(edge.width + 4)
+                    else:
+                        cairo.set_source_color(gtk.gdk.Color(edge.color))
+                        cairo.set_line_width(edge.width)
                     
                     cairo.move_to(x1, y1)
                     

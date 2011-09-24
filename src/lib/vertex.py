@@ -19,6 +19,7 @@ class Vertex(object):
         self.font_size = float(config.get("vertex", "font-size"))
 
         self.selected = False
+        self.checked = False
         self.touching_edges = []
 
     def __str__(self):
@@ -30,6 +31,12 @@ class Vertex(object):
     def deselect(self):
         self.selected = False
 
+    def check(self):
+        self.checked = True
+
+    def uncheck(self):
+        self.checked = False
+        
     def has_edge(self, edge):
         return edge in self.edge_list
 

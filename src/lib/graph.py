@@ -68,19 +68,28 @@ class Graph(object):
                     return v
         return None
 
-    def find(self, id):
+    def find(self, id, what="vertex"):
+        array = None
+        
+        if what == "vertex":
+            array = self.vertices
+        elif what == "edge":
+            array = self.edges
+        else:
+            return None
+
         lo = 0
-        hi = len(self.vertices)
+        hi = len(self.array)
         while lo < hi:
             mid = (lo + hi) // 2
-            midval = self.vertices[mid].id
+            midval = self.array[mid].id
 
             if midval < id:
                 lo = mid + 1
             elif midval > id:
                 hi = mid
             else:
-                return self.vertices[mid]
+                return self.array[mid]
         return None
 
     def find_edge(self, start, end):

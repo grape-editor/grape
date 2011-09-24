@@ -55,6 +55,9 @@ class Graph(gtk.ScrolledWindow):
         self.add_state()
 
         # Algorithm stuff
+        self.algorithm_runner = None
+        self.algorithm_states = []
+        
 
     def centralize_scroll(self, position=None):
         """Put both scrolls in center"""
@@ -266,11 +269,11 @@ class Graph(gtk.ScrolledWindow):
         print "ra"
         
     def algorithm_next(self):
-        self.algorithm_runner.__signal__()                
+        self.algorithm_runner.next()
         self.queue_draw()
 
     def algorithm_prev(self):
-        self.algorithm_runner.__signal__()                
+        self.algorithm_runner.prev()
         self.queue_draw()
 
     def algorithm_stop(self):
