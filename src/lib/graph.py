@@ -88,7 +88,7 @@ class Graph(object):
         for e in self.edges:
             if e.start == start and e.end == end:
                 edges.append(e)
-            elif e.bidirectional and e.start == end and e.end == start:
+            elif not e.directed and e.start == end and e.end == start:
                 edges.append(e)
         return edges
 

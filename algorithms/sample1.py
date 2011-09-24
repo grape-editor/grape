@@ -18,6 +18,6 @@ class Sample1(Algorithm):
         for vertex in range(50):
             v = choice(self.vertex_list)
 
-            self.check_vertex(v)
+            self.check(v)
             self.show()
-            self.uncheck_vertex(v)
+            self.uncheck(v)

@@ -374,23 +374,24 @@ class Screen(object):
 
     def menu_algorithms_previous(self, widget):
         """Action of algorithm execution previous"""
-        print 1
+        tab, number = self.current_tab()
+        tab.algorithm_prev()
 
     def menu_algorithms_stop(self, widget):
         """Action of algorithm execution stop"""
-        print 2
+        tab, number = self.current_tab()
+        tab.algorithm_stop()
 
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
+        tab.algorithm_start(self.algorithm)
         
-        runner = self.algorithm(tab.graph)
-        runner.start()
-
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""
-        print 4
-
+        tab, number = self.current_tab()
+        tab.algorithm_next()
+        
     def menu_help_about(self, widget):
         self.logger.info("About")
         AboutShow(self.builder)
@@ -416,15 +417,15 @@ class Screen(object):
             if tab.action:
                 tab.action = None
             else:
-                tab.controller.clear_selection(tab.graph)
+                tab.graph.clear_selection()
                 self.logger.info("Clean UP selection")
         elif (event.state & CONTROL_MASK):
             if key == gtk.keysyms.A or key == gtk.keysyms.a:
                 self.logger.info("Selection all")
-                tab.controller.select_all(tab.graph)
+                tab.graph.select_all()
 
         if tab and direction:
-            tab.controller.move_selection(tab.graph, direction)
+            tab.graph.move_selection(direction)
             self.logger.info("Moving selection")
 
         if tab:

@@ -54,6 +54,8 @@ class Graph(gtk.ScrolledWindow):
         self.state_index = None
         self.add_state()
 
+        # Algorithm stuff
+
     def centralize_scroll(self, position=None):
         """Put both scrolls in center"""
         vadj = self.get_vadjustment()
@@ -257,6 +259,23 @@ class Graph(gtk.ScrolledWindow):
         else:
             self.box_selecting = self.last_position_clicked
             self.action = None
+
+    def algorithm_start(self, Algorithm):
+        self.algorithm_runner = Algorithm(self.graph)
+        self.algorithm_runner.start()
+        print "ra"
+        
+    def algorithm_next(self):
+        self.algorithm_runner.__signal__()                
+        self.queue_draw()
+
+    def algorithm_prev(self):
+        self.algorithm_runner.__signal__()                
+        self.queue_draw()
+
+    def algorithm_stop(self):
+        self.algorithm_runner.kill()
+        self.queue_draw()
 
     def add_state(self):
         import pickle
