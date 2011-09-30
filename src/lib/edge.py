@@ -44,12 +44,12 @@ class Edge(object):
 
     def __str__(self):
         """Print a formated edge"""
-        value = self.title + " " + str(start)
+        value = self.title + " " + str(self.start)
         if self.directed:
             value += " -> "
         else:
             value += " -- "
-        value += str(end)
+        value += str(self.end)
         return value
 
     def select(self):

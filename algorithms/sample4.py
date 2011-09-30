@@ -14,6 +14,8 @@ class Sample4(Algorithm):
             self.show()
             self.uncheck(v)
 
+        self.show()
+        
         for e in self.edge_list:
             self.check(e)
             self.check(e.start)
@@ -24,4 +26,3 @@ class Sample4(Algorithm):
             self.uncheck(e)
             self.uncheck(e.start)
             self.uncheck(e.end)
-

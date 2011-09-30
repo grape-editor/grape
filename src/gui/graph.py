@@ -263,23 +263,29 @@ class Graph(gtk.ScrolledWindow):
             self.action = None
 
     def algorithm_play(self, Algorithm):
+        if self.algorithm_runner:
+                self.algorithm_runner.stop()
         self.algorithm_runner = Algorithm(self.graph)
         self.algorithm_runner.play()
+        self.queue_draw()
         
     def algorithm_next(self):
-        self.algorithm_runner.next()
-        self.queue_draw()
+        if self.algorithm_runner:
+            self.algorithm_runner.next()
+            self.queue_draw()
 
     def algorithm_prev(self):
-        self.algorithm_runner.prev()
-        self.queue_draw()
+        if self.algorithm_runner:
+            self.algorithm_runner.prev()
+            self.queue_draw()
 
     def algorithm_stop(self):
-        self.algorithm_runner.kill()
-        self.queue_draw()
+        if self.algorithm_runner:
+            self.algorithm_runner.stop()
+            self.algorithm_runner = None
+            self.queue_draw()
 
     def add_state(self):
-        import pickle
         state = pickle.dumps(self.graph)
         
         if not self.state_index:
@@ -296,7 +302,6 @@ class Graph(gtk.ScrolledWindow):
             self.state_index += 1
 
     def prev_state(self):
-        import pickle
         if (self.state_index > 0 and len(self.states) > 0):
             self.state_index -= 1
             graph = self.states[self.state_index]
@@ -305,7 +310,6 @@ class Graph(gtk.ScrolledWindow):
         return None
 
     def next_state(self):
-        import pickle
         if (self.state_index < len(self.states) - 1):
             self.state_index += 1
             graph = self.states[self.state_index]

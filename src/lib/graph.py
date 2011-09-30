@@ -7,6 +7,8 @@ from lib.config import Config
 from lib.vertex import Vertex
 from lib.edge import Edge
 
+# import networkx as nx
+
 class Graph(object):
     def __init__(self, title=""):
 #       Cant stay here, cause splode stack in pickle dump
@@ -231,13 +233,10 @@ class Graph(object):
                 self.select_vertex(vertex)
 
     def graph_to_networkx(self):
-        import networkx as nx
-
         g = None
 
         print self.type
         if self.type == 'Graph':
-            print "AQUI"
             g = nx.Graph(title=self.title)
         elif self.type == 'DiGraph':
             g = nx.DiGraph(title=self.title)
