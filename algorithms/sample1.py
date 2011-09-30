@@ -8,9 +8,6 @@ class Sample1(Algorithm):
 
     def run(self):
         
-        from random import choice
-        
-        
         first = self.vertex_list[0]
         goal = 30
         
@@ -43,6 +40,9 @@ class Sample1(Algorithm):
             self.uncheck(node[0])
             self.uncheck(node[1])
         
+        self.show()
+        self.uncheck(rtn)
         print rtn
+
 
 
