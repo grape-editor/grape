@@ -351,7 +351,6 @@ class Screen(object):
         tab.queue_draw()
 
     def menu_view_fullscreen(self, widget):
-
         if widget.get_active():
             self.screen.fullscreen()
             self.logger.info("Fullscreen mode ON")
@@ -375,21 +374,25 @@ class Screen(object):
     def menu_algorithms_previous(self, widget):
         """Action of algorithm execution previous"""
         tab, number = self.current_tab()
+        self.logger.info("Previous state algorithm")
         tab.algorithm_prev()
 
     def menu_algorithms_stop(self, widget):
         """Action of algorithm execution stop"""
         tab, number = self.current_tab()
+        self.logger.info("Stop algorithm")
         tab.algorithm_stop()
 
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
+        self.logger.info("Start algorithm")
         tab.algorithm_play(self.algorithm)
         
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""
         tab, number = self.current_tab()
+        self.logger.info("Next state algorithm")
         tab.algorithm_next()
         
     def menu_help_about(self, widget):

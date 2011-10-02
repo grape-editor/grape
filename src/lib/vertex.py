@@ -7,7 +7,7 @@ class Vertex(object):
         self.position = position
 
         self.edge_list = set()
-        self.adjacencies = set()
+        self.vertex_list = set()
 
         config = Config()
 
@@ -46,9 +46,9 @@ class Vertex(object):
     def add_edge(self, edge):
         self.edge_list.add(edge)
         if edge.start == self:
-            self.adjacencies.add(edge.end)
+            self.vertex_list.add(edge.end)
         else:
-            self.adjacencies.add(edge.start)
+            self.vertex_list.add(edge.start)
 
     def remove_edge(self, edge):
         if self.has_edge(edge):
@@ -56,15 +56,15 @@ class Vertex(object):
                 edge.start.touching_edges.remove(edge)
             if edge.end.touches_edge(edge):
                 edge.end.touching_edges.remove(edge)
-            if edge.start in self.adjacencies:
-                self.adjacencies.remove(edge.start)
-            if edge.end in self.adjacencies:
-                self.adjacencies.remove(edge.end)
+            if edge.start in self.vertex_list:
+                self.vertex_list.remove(edge.start)
+            if edge.end in self.vertex_list:
+                self.vertex_list.remove(edge.end)
 
             self.edge_list.remove(edge)
             del edge
 
-    def clear_adjacencies(self):
+    def clear_edge_list(self):
         for e in self.edge_list:
             start = e.start
             end = e.end

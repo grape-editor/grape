@@ -22,24 +22,17 @@ class Algorithm(Thread):
         
         # To kill thread
         self.__stopped = False
-        self.__killed = False
         
 #        self.graph = graph.graph_to_networkx()
 
         self.vertex_list = graph.vertices
         self.edge_list = graph.edges
 
-    def start(self):
-       """Start the thread."""
-       self.__run_backup = self.run
-       self.run = self.__run # Force the Thread to install our trace.
-       Thread.start(self)
-
     def __run(self):
-       """Hacked run function, which installs the trace."""
-       settrace(self.__globaltrace)
-       self.__run_backup()
-       self.run = self.__run_backup
+        """Hacked run function, which installs the trace."""
+        settrace(self.__globaltrace)
+        self.__run_backup()
+        self.run = self.__run_backup
 
     def __globaltrace(self, frame, why, arg):
         if why == 'call':
@@ -48,7 +41,7 @@ class Algorithm(Thread):
             return None
 
     def __localtrace(self, frame, why, arg):
-        if self.__killed:
+        if self.__stopped:
             if why == 'line':
                 raise SystemExit()
                 return self.__localtrace
@@ -119,12 +112,14 @@ class Algorithm(Thread):
         
     def play(self):
         """Start alorithm execution"""
-        self.start()
+        self.__run_backup = self.run
+        self.run = self.__run # Force the Thread to install our trace.
+        Thread.start(self)
 
     def stop(self):
         """Kill thread that execute algorithm"""
         self.__semaphore.release()
-        self.__killed = True
+        self.__stopped = True
         for param in self.__checks:
             self.__uncheck(param)
 

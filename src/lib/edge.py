@@ -2,24 +2,6 @@ from lib.config import Config
 
 class Edge(object):
     """ Edge class"""
-    def __new__(self, *args, **kwargs):
-        """Check if is possible adde edge"""
-        config = Config()
-        graph_type = config.get("graph", "type")
-        self.directed = graph_type in ['DiGraph', 'MultiDiGraph']
-        self.multiple = graph_type in ['MultiGraph', 'MultiDiGraph']
-
-        id, start, end = args
-
-        digraph = self.directed and not end in start.adjacencies
-        graph = not self.directed and not end in start.adjacencies and not start in end.adjacencies
-
-        if (self.multiple) or digraph or graph:
-            instance = super(Edge, self).__new__(self, *args, **kwargs)
-            return instance
-        else:
-            return None
-
     def __init__(self, id, start, end):
         self.id = id
         self.start = start

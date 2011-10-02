@@ -37,7 +37,7 @@ class Graph(object):
         value = ""
         for v in self.vertices:
             value += str(v) + ": "
-            for n in v.adjacencies:
+            for n in v.vertex_list:
                 value += str(n) + " "
             value += "\n"
         return value
@@ -159,8 +159,12 @@ class Graph(object):
             self.vertices.remove(vertex)
 
     def add_edge(self, start, end):
-        edge = Edge(self.edge_id, start, end)
-        if edge:
+        digraph = self.directed and not end in start.vertex_list
+        graph = not self.directed and not end in start.vertex_list and not start in end.vertex_list
+
+        edge = None
+        if (self.multiple) or digraph or graph:
+            edge = Edge(self.edge_id, start, end)
             self.edges.append(edge)
             self.edge_id += 1
 
