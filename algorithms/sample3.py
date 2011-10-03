@@ -9,25 +9,25 @@ class Sample3(Algorithm):
     def run(self):
 
 
+        """    
+        PROCEDIMENTO busca(inicial);
+            vars corrente, historico, nao_tentados, item_de_estado, novo;
+            corrente = inicial;
+            historico = [];
+            nao_tentados = [];
 
-    PROCEDIMENTO busca(inicial);
-        vars corrente, historico, não_tentados, item_de_estado, novo;
-        corrente = inicial;
-        histórico = [ ];
-        nao_tentados = [ ];
-
-        Até_que é_meta(corrente) faça
-            Para_cada item_de_estado em adjacente(corrente) faça
-                a_menos_que pertença(item_de_estado, histórico) fazer
-                    novo = [^^historico ^corrente ^item_de_estado];
-                    não_tentados = insere(novo, nao_tentados);
-                FIM-a_menos_que;
-            FIM-Para_cada;
-            não_tentados UNIFICADA_COM [ [ ??histórico ?corrente ] ??não_tentados ];
-        FIM-Até_que;
-        pr('O caminho completo é: ' ); pr( [^^historico ^corrente] );
-    FIM-PROCEDIMENTO;
-
+            Ate_que e_meta(corrente) faca
+                Para_cada item_de_estado em adjacente(corrente) faca
+                    a_menos_que pertenca(item_de_estado, historico) fazer
+                        novo = [^^historico ^corrente ^item_de_estado];
+                        nao_tentados = insere(novo, nao_tentados);
+                    FIM-a_menos_que;
+                FIM-Para_cada;
+                nao_tentados UNIFICADA_COM [ [ ??historico ?corrente ] ??nao_tentados ];
+            FIM-Ate_que;
+            pr('O caminho completo e: ' ); pr( [^^historico ^corrente] );
+        FIM-PROCEDIMENTO;
+        """
 
     def search(first, goal):
         current = first
@@ -41,6 +41,7 @@ class Sample3(Algorithm):
                     not_tried.append(new)
             
 
+"""
                                     a
                     b                               c
             d               e               f               g
@@ -52,7 +53,7 @@ current = a     |
 history = []    | 
 not_tried = []  | [[a,b], [a,c]] | [[a], [a,b], [a,c]]
 
-
+"""
 
 
 
