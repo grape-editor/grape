@@ -12,7 +12,7 @@ class Graph(gtk.ScrolledWindow):
     def __init__(self, changed_method):
         gtk.ScrolledWindow.__init__(self)
 
-#        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        # self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         self.builder = gtk.Builder()
         self.event_box = EventBox()
@@ -50,7 +50,7 @@ class Graph(gtk.ScrolledWindow):
         self.show()
 
         # To UNDO and REDO actions
-        self.states= []
+        self.states = []
         self.state_index = None
         self.add_state()
 
@@ -71,20 +71,21 @@ class Graph(gtk.ScrolledWindow):
         vadj.set_value(position[1] - (vadj.page_size / 2))
 
     def zoom_in(self, center=None):
-        if self.area.zoom < 20:
+        if self.area.zoom < 1.7:
             self.area.zoom *= 1.1
-        self.do_zoom(center)
+            self.do_zoom(lambda v: v * 1.1, center)
 
     def zoom_out(self, center=None):
-        if self.area.zoom > 0.1:
+        if self.area.zoom > 0.2:
             self.area.zoom /= 1.1
-        self.do_zoom(center)
+            self.do_zoom(lambda v: v / 1.1, center)
 
     def zoom_default(self):
+        old = self.area.zoom
         self.area.zoom = 1
-        self.do_zoom()
+        self.do_zoom(lambda v: v / old)
 
-    def do_zoom(self, center=None):
+    def do_zoom(self, op, center=None):
         width, height = self.area.get_size_request()
         vadj = self.get_vadjustment()
         hadj = self.get_hadjustment()
@@ -92,19 +93,18 @@ class Graph(gtk.ScrolledWindow):
         width *= self.area.zoom
         height *= self.area.zoom
 
-
         if not center:
-            x = (hadj.get_value() + hadj.get_page_size() / 2) / self.area.zoom
-            y = (vadj.get_value() + vadj.get_page_size() / 2) / self.area.zoom
+            offsetx, offsety = self.event_box.get_size_request()
+            x = (hadj.get_value() + offsetx / 2) * self.area.zoom
+            y = (vadj.get_value() + offsety / 2) * self.area.zoom
             center = [x, y]
 
         hadj.set_upper(width)
         vadj.set_upper(height)
 
-
-        self.centralize_scroll(center)
-#        vadj.set_value(self.area.zoom * hadj.value)
-#        hadj.set_value(self.area.zoom * vadj.value)
+        # self.centralize_scroll(center)
+        hadj.set_value(op(hadj.get_value()))
+        vadj.set_value(op(vadj.get_value()))
 
         self.area.queue_draw()
 
@@ -112,10 +112,6 @@ class Graph(gtk.ScrolledWindow):
         width, height = self.area.get_size_request()
         vadj = self.get_vadjustment()
         hadj = self.get_hadjustment()
-
-        print int(vadj.value), int(vadj.upper), int(vadj.page_size)
-        print int(hadj.value), int(hadj.upper), int(hadj.page_size)
-        print int(width), int(height)
 
         if not (event.state & gtk.gdk.CONTROL_MASK):
             return
@@ -130,9 +126,6 @@ class Graph(gtk.ScrolledWindow):
         width, height = self.area.get_size_request()
         vadj = self.get_vadjustment()
         hadj = self.get_hadjustment()
-
-        print int(vadj.value), int(vadj.upper), int(vadj.page_size)
-        print int(hadj.value), int(hadj.upper), int(hadj.page_size)
 
     def set_changed(self, value):
         if self.changed != value:

@@ -13,6 +13,10 @@ class Vertex(object):
 
         self.graph_show = graph_show
         self.vertex = vertex
+
+        self.vertex_list = vertex.vertex_list
+        self.edge_list = vertex.edge_list
+        
         self.area = graph_show.area
         self.set_changed = graph_show.set_changed
         self.graph = graph_show.graph

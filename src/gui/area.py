@@ -3,7 +3,6 @@ from lib.mathemathical import *
 from lib.edge import Edge
 import gtk
 import math
-import cairo as cairolib
 
 
 class GraphArea(DrawingArea):
@@ -222,8 +221,7 @@ class GraphArea(DrawingArea):
 
     def expose(self, widget, event):
         self.create_area(widget, event)
-        m = cairolib.Matrix(self.zoom, 0, 0, self.zoom, 0, 0)
-        self.cairo.transform(m)
+        self.cairo.scale(self.zoom, self.zoom)
         self.cairo.rectangle(0, 0, self.area.width, self.area.height)
 
         self.cairo.set_source_color(gtk.gdk.Color(self.graph.background_color))

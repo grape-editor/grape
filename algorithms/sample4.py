@@ -9,20 +9,25 @@ class Sample4(Algorithm):
     def run(self):
         from random import choice
         
-        for v in self.vertex_list:
-            self.check(v)
+        first = self.vertex_list[0]
+        goal = self.vertex_list[-1]
+
+        current = first
+                
+        fringe = []
+        not_visited = []
+
+        while current != goal:
+            self.check(current)
             self.show()
-            self.uncheck(v)
+            fringe.append(current)
+
+            if len(current.vertex_list) > 0:
+                for v in current.vertex_list:
+                    not_visited.append(v)
+            else:
+                fringe.remove(current)
+                self.uncheck(current)
+            current = not_visited.pop()
 
         self.show()
-        
-        for e in self.edge_list:
-            self.check(e)
-            self.check(e.start)
-            self.check(e.end)
-
-            self.show()
-
-            self.uncheck(e)
-            self.uncheck(e.start)
-            self.uncheck(e.end)
