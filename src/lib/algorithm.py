@@ -13,6 +13,7 @@ class Algorithm(Thread):
         
         self.__semaphore = Semaphore()
         self.__graph = graph
+        self.__graphui = None
         self.__checks = {}
 
         # To UNDO and REDO actions
@@ -27,6 +28,9 @@ class Algorithm(Thread):
 
         self.vertex_list = graph.vertices
         self.edge_list = graph.edges
+
+    def set_ui(self, ui):
+        self.__graphui = ui
 
     def __run(self):
         """Hacked run function, which installs the trace."""
@@ -103,15 +107,18 @@ class Algorithm(Thread):
 
     def next(self):
         """Jump to the next state"""
+        self.__playing = False
         if not self.__redo():
             self.__signal()
         
     def prev(self):
         """Jump to the previous state"""
+        self.__playing = False
         self.__undo()
         
     def play(self):
         """Start alorithm execution"""
+        self.__playing = True
         self.__run_backup = self.run
         self.run = self.__run # Force the Thread to install our trace.
         Thread.start(self)
@@ -124,7 +131,11 @@ class Algorithm(Thread):
             self.__uncheck(param)
 
     def show(self):
-        self.__wait()
+        if self.__playing:
+            sleep(0.5)
+            if self.__graphui: self.__graphui.queue_draw()
+        else:
+            self.__wait()
         self.__add_state()
 
     def __wait(self):
@@ -135,6 +146,3 @@ class Algorithm(Thread):
         """Sets free the thread to continue"""
         self.__semaphore.release()
         
-
-
-
