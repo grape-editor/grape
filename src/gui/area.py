@@ -50,7 +50,7 @@ class GraphArea(DrawingArea):
         if vertex.selected:
             cairo.set_source_rgb(0.4, 0.8, 0.2)
         elif vertex.checked:
-            cairo.set_source_rgb(0.9, 0.2, 0.2)
+            cairo.set_source_rgb(0.4, 0.7, 0.7)
         else:
             cairo.set_source_color(gtk.gdk.Color(vertex.fill_color))
 
@@ -132,7 +132,7 @@ class GraphArea(DrawingArea):
                 
                     # TODO - Config file    
                     if edge.checked:
-                        cairo.set_source_rgb(0.9, 0.2, 0.2)
+                        cairo.set_source_rgb(0.4, 0.7, 0.7)
                         cairo.set_line_width(edge.width + 4)
                     else:
                         cairo.set_source_color(gtk.gdk.Color(edge.color))
@@ -163,7 +163,7 @@ class GraphArea(DrawingArea):
             cairo.set_source_rgb(0.4, 0.8, 0.2)
             cairo.set_line_width(edge.width + 4)
         elif edge.checked:
-            cairo.set_source_rgb(0.9, 0.2, 0.2)
+            cairo.set_source_rgb(0.4, 0.7, 0.7)
             cairo.set_line_width(edge.width + 4)
         else:
             cairo.set_source_color(gtk.gdk.Color(edge.color))
