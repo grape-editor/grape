@@ -8,12 +8,12 @@ from lib.edge import Edge
 
 class Algorithm(Thread):
 
-    def __init__(self, graph):
+    def __init__(self, graph_ui):
         Thread.__init__(self)
         
         self.__semaphore = Semaphore()
-        self.__graph = graph
-        self.__graphui = None
+        self.__graph_ui = graph_ui
+        self.__graph = graph_ui.graph
         self.__checks = {}
 
         # To UNDO and REDO actions
@@ -26,11 +26,8 @@ class Algorithm(Thread):
         
 #        self.graph = graph.graph_to_networkx()
 
-        self.vertex_list = graph.vertices
-        self.edge_list = graph.edges
-
-    def set_ui(self, ui):
-        self.__graphui = ui
+        self.vertex_list = self.__graph.vertices
+        self.edge_list = self.__graph.edges
 
     def __run(self):
         """Hacked run function, which installs the trace."""
@@ -107,15 +104,20 @@ class Algorithm(Thread):
 
     def next(self):
         """Jump to the next state"""
-        self.__playing = False
-        if not self.__redo():
+        print "next"
+        if self.__playing:
+            self.__playing = False
+        elif not self.__redo():
             self.__signal()
         
     def prev(self):
         """Jump to the previous state"""
-        self.__playing = False
-        self.__undo()
-        
+        print "prev"
+        if self.__playing:
+            self.__playing = False
+        else:
+            self.__undo()
+
     def play(self):
         """Start alorithm execution"""
         self.__playing = True
@@ -131,11 +133,13 @@ class Algorithm(Thread):
             self.__uncheck(param)
 
     def show(self):
+        """Used to show current algorithm state"""
+        self.__wait()
         if self.__playing:
+            self.__graph_ui.queue_draw()
             sleep(0.5)
-            if self.__graphui: self.__graphui.queue_draw()
-        else:
-            self.__wait()
+            if self.__playing:
+                self.__signal()
         self.__add_state()
 
     def __wait(self):

@@ -271,8 +271,7 @@ class Graph(gtk.ScrolledWindow):
     def algorithm_play(self, Algorithm):
         if self.algorithm_runner:
             self.algorithm_runner.stop()
-        self.algorithm_runner = Algorithm(self.graph)
-        self.algorithm_runner.set_ui(self)
+        self.algorithm_runner = Algorithm(self)
         self.algorithm_runner.play()
         self.queue_draw()
         self.__block_event_box()
