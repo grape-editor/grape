@@ -12,7 +12,7 @@ class Graph(gtk.ScrolledWindow):
     def __init__(self, changed_method):
         gtk.ScrolledWindow.__init__(self)
 
-        # self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
         self.builder = gtk.Builder()
         self.event_box = EventBox()
@@ -255,13 +255,27 @@ class Graph(gtk.ScrolledWindow):
             self.box_selecting = self.last_position_clicked
             self.action = None
 
+    def __block_event_box(self):
+        if self.algorithm_runner:
+            self.event_box.handler_block_by_func(self.mouse_motion)
+            self.event_box.handler_block_by_func(self.mouse_press)
+            self.event_box.handler_block_by_func(self.mouse_release)
+            self.event_box.handler_block_by_func(self.mouse_scroll)
+        else:
+            self.event_box.handler_unblock_by_func(self.mouse_motion)
+            self.event_box.handler_unblock_by_func(self.mouse_press)
+            self.event_box.handler_unblock_by_func(self.mouse_release)
+            self.event_box.handler_unblock_by_func(self.mouse_scroll)
+
+
     def algorithm_play(self, Algorithm):
         if self.algorithm_runner:
             self.algorithm_runner.stop()
         self.algorithm_runner = Algorithm(self.graph)
         self.algorithm_runner.play()
         self.queue_draw()
-        
+        self.__block_event_box()
+
     def algorithm_next(self):
         if self.algorithm_runner:
             self.algorithm_runner.next()
@@ -277,6 +291,7 @@ class Graph(gtk.ScrolledWindow):
             self.algorithm_runner.stop()
             self.algorithm_runner = None
             self.queue_draw()
+            self.__block_event_box()
 
     def add_state(self):
         state = pickle.dumps(self.graph)

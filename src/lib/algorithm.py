@@ -19,7 +19,7 @@ class Algorithm(Thread):
         self.__states= []
         self.__state_index = 0
         self.__add_state()
-        
+
         # To kill thread
         self.__stopped = False
         
