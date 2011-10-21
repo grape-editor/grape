@@ -11,7 +11,6 @@
     <child>
       <object class="GtkVBox" id="vbox">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
         <child>
           <object class="GtkMenuBar" id="menubar">
             <property name="visible">True</property>
@@ -321,6 +320,7 @@
                       <object class="GtkImageMenuItem" id="menu_algorithms_previous">
                         <property name="label">gtk-media-previous</property>
                         <property name="visible">True</property>
+                        <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
                         <signal name="activate" handler="menu_algorithms_previous"/>
@@ -566,6 +566,7 @@
             <child>
               <object class="GtkToolButton" id="toolbutton_previous">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="label" translatable="yes">Previous</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-media-previous</property>
@@ -579,6 +580,7 @@
             <child>
               <object class="GtkToolButton" id="toolbutton_stop">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="label" translatable="yes">Stop</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-media-stop</property>
@@ -590,8 +592,22 @@
               </packing>
             </child>
             <child>
+              <object class="GtkToolButton" id="toolbutton_load">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Load</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-ok</property>
+                <signal name="clicked" handler="menu_algorithms_load"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkToolButton" id="toolbutton_play">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="label" translatable="yes">Play</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-media-play</property>
@@ -605,6 +621,7 @@
             <child>
               <object class="GtkToolButton" id="toolbutton_next">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="label" translatable="yes">Next</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-media-next</property>

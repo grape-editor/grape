@@ -1,6 +1,7 @@
 import gtk
 import math
 import pickle
+import gobject 
 from gtk import DrawingArea, EventBox, ScrolledWindow
 
 from lib.graph import Graph as GraphController
@@ -56,6 +57,7 @@ class Graph(gtk.ScrolledWindow):
 
         # Algorithm stuff
         self.algorithm_runner = None
+        self.algorithm_playing = None
         self.algorithm_states = []
 
     def centralize_scroll(self, position=None):
@@ -267,24 +269,39 @@ class Graph(gtk.ScrolledWindow):
             self.event_box.handler_unblock_by_func(self.mouse_release)
             self.event_box.handler_unblock_by_func(self.mouse_scroll)
 
-
-    def algorithm_play(self, Algorithm):
+    def algorithm_play(self):
+        if self.algorithm_runner:
+            self.algorithm_playing = True
+            self.algorithm_runner.play()
+            self.queue_draw()
+            self.__block_event_box()
+            gobject.timeout_add(500, self.algorithm_next, True)
+   
+    def algorithm_load(self, Algorithm):
         if self.algorithm_runner:
             self.algorithm_runner.stop()
         self.algorithm_runner = Algorithm(self)
-        self.algorithm_runner.play()
-        self.queue_draw()
-        self.__block_event_box()
 
-    def algorithm_next(self):
+    def algorithm_next(self, auto=False):
         if self.algorithm_runner:
-            self.algorithm_runner.next()
-            self.queue_draw()
-
+            if auto:
+                self.algorithm_runner.next()
+                self.queue_draw()
+                if self.algorithm_playing and self.algorithm_runner.is_alive():
+                    gobject.timeout_add(500, self.algorithm_next, auto)
+            else:
+                if not self.algorithm_playing or not self.algorithm_runner.is_alive():
+                    self.algorithm_runner.next()
+                    self.queue_draw()            
+                self.algorithm_playing = False
+        
     def algorithm_prev(self):
         if self.algorithm_runner:
             self.algorithm_runner.prev()
             self.queue_draw()
+            if self.algorithm_playing:
+                self.algorithm_playing = False
+                self.algorithm_prev()
 
     def algorithm_stop(self):
         if self.algorithm_runner:

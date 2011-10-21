@@ -27,7 +27,7 @@ class Screen(object):
         self.statusbar = self.builder.get_object("statusbar")
 
         self.algorithm = None
-        self.create_algorithms_menu()       
+        self.create_algorithms_menu()
 
         self.screen.connect('key_press_event', self.keyboard_press)
         self.screen.parent_screen = self
@@ -382,12 +382,27 @@ class Screen(object):
         tab, number = self.current_tab()
         self.logger.info("Stop algorithm")
         tab.algorithm_stop()
+        self.builder.get_object("toolbutton_previous").set_sensitive(False)
+        self.builder.get_object("toolbutton_stop").set_sensitive(False)
+        self.builder.get_object("toolbutton_load").set_sensitive(True)
+        self.builder.get_object("toolbutton_play").set_sensitive(False)
+        self.builder.get_object("toolbutton_next").set_sensitive(False)
 
+    def menu_algorithms_load(self, widget):
+        tab, number = self.current_tab()
+        self.logger.info("Load an algorithm")
+        tab.algorithm_load(self.algorithm)
+        self.builder.get_object("toolbutton_previous").set_sensitive(True)
+        self.builder.get_object("toolbutton_stop").set_sensitive(True)
+        self.builder.get_object("toolbutton_load").set_sensitive(False)
+        self.builder.get_object("toolbutton_play").set_sensitive(True)
+        self.builder.get_object("toolbutton_next").set_sensitive(True)
+        
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""
         tab, number = self.current_tab()
         self.logger.info("Start algorithm")
-        tab.algorithm_play(self.algorithm)
+        tab.algorithm_play()
         
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""

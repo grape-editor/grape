@@ -88,7 +88,8 @@ class Algorithm(Thread):
 
     def __check(self, what):
         """Checks vertex or checks a edge"""
-        if what is not None: what.check()
+        if what is not None:
+            what.check()
 
     def __uncheck(self, what):
         """Unchecks vertex or unchecks a edge"""
@@ -105,22 +106,16 @@ class Algorithm(Thread):
     def next(self):
         """Jump to the next state"""
         print "next"
-        if self.__playing:
-            self.__playing = False
-        elif not self.__redo():
+        if not self.__redo():
             self.__signal()
         
     def prev(self):
         """Jump to the previous state"""
         print "prev"
-        if self.__playing:
-            self.__playing = False
-        else:
-            self.__undo()
+        self.__undo()
 
     def play(self):
         """Start alorithm execution"""
-        self.__playing = True
         self.__run_backup = self.run
         self.run = self.__run # Force the Thread to install our trace.
         Thread.start(self)
@@ -135,11 +130,6 @@ class Algorithm(Thread):
     def show(self):
         """Used to show current algorithm state"""
         self.__wait()
-        if self.__playing:
-            self.__graph_ui.queue_draw()
-            sleep(0.5)
-            if self.__playing:
-                self.__signal()
         self.__add_state()
 
     def __wait(self):
