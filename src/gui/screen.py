@@ -37,7 +37,7 @@ class Screen(object):
 
         tab = None
         if not hook:
-            tab = Graph(self.tab_changed)
+            tab = Graph(self.builder, self.tab_changed)
             self.add_notebook_tab(tab)
 
         self.screen.show_all()
@@ -173,7 +173,7 @@ class Screen(object):
 
     def menu_file_new(self, widget):
         self.logger.info("New file")
-        tab = Graph(self.tab_changed)
+        tab = Graph(self.builder, self.tab_changed)
         self.add_notebook_tab(tab)
 
     def menu_file_open(self, widget):
@@ -182,7 +182,7 @@ class Screen(object):
         file_chooser.run()
 
         if file_chooser.path:
-            tab = Graph(self.tab_changed)
+            tab = Graph(self.builder, self.tab_changed)
             tab.graph = tab.graph.open(file_chooser.path)
             tab.area.graph = tab.graph
             tab.changed = False
@@ -382,21 +382,19 @@ class Screen(object):
         tab, number = self.current_tab()
         self.logger.info("Stop algorithm")
         tab.algorithm_stop()
-        self.builder.get_object("toolbutton_previous").set_sensitive(False)
-        self.builder.get_object("toolbutton_stop").set_sensitive(False)
-        self.builder.get_object("toolbutton_load").set_sensitive(True)
-        self.builder.get_object("toolbutton_play").set_sensitive(False)
-        self.builder.get_object("toolbutton_next").set_sensitive(False)
+        for place in ["menu_algorithms_", "toolbutton_"]:
+            for btn in ["previous", "stop", "play", "next"]:
+                self.builder.get_object(place + btn).set_sensitive(False)
+            self.builder.get_object(place + "load").set_sensitive(True)
 
     def menu_algorithms_load(self, widget):
         tab, number = self.current_tab()
         self.logger.info("Load an algorithm")
         tab.algorithm_load(self.algorithm)
-        self.builder.get_object("toolbutton_previous").set_sensitive(True)
-        self.builder.get_object("toolbutton_stop").set_sensitive(True)
-        self.builder.get_object("toolbutton_load").set_sensitive(False)
-        self.builder.get_object("toolbutton_play").set_sensitive(True)
-        self.builder.get_object("toolbutton_next").set_sensitive(True)
+        for place in ["menu_algorithms_", "toolbutton_"]:
+            for btn in ["previous", "stop", "play", "next"]:
+                self.builder.get_object(place + btn).set_sensitive(True)
+            self.builder.get_object(place + "load").set_sensitive(False)
         
     def menu_algorithms_play(self, widget):
         """Action of algorithm execution play"""

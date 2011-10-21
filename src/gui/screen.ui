@@ -125,6 +125,7 @@
                       <object class="GtkImageMenuItem" id="menu_edit_undo">
                         <property name="label">gtk-undo</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
@@ -136,6 +137,7 @@
                       <object class="GtkImageMenuItem" id="menu_edit_redo">
                         <property name="label">gtk-redo</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
@@ -320,6 +322,7 @@
                       <object class="GtkImageMenuItem" id="menu_algorithms_previous">
                         <property name="label">gtk-media-previous</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
@@ -330,6 +333,7 @@
                       <object class="GtkImageMenuItem" id="menu_algorithms_stop">
                         <property name="label">gtk-media-stop</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
@@ -337,9 +341,19 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkImageMenuItem" id="menu_algorithms_load">
+                        <property name="label">Load</property>
+                        <property name="visible">True</property>
+                        <property name="image">image5</property>
+                        <property name="use_stock">False</property>
+                        <property name="always_show_image">True</property>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkImageMenuItem" id="menu_algorithms_play">
                         <property name="label">gtk-media-play</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
@@ -350,6 +364,7 @@
                       <object class="GtkImageMenuItem" id="menu_algorithms_next">
                         <property name="label">gtk-media-next</property>
                         <property name="visible">True</property>
+                        <property name="sensitive">False</property>
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <property name="always_show_image">True</property>
@@ -357,7 +372,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkSeparatorMenuItem" id="menu_algorithms_separator">
+                      <object class="GtkSeparatorMenuItem" id="menu_algorithms_separator_1">
                         <property name="visible">True</property>
                       </object>
                     </child>
@@ -448,6 +463,7 @@
             <child>
               <object class="GtkToolButton" id="toolbutton_undo">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="label" translatable="yes">Undo</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-undo</property>
@@ -461,6 +477,7 @@
             <child>
               <object class="GtkToolButton" id="toolbutton_redo">
                 <property name="visible">True</property>
+                <property name="sensitive">False</property>
                 <property name="label" translatable="yes">Redo</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-redo</property>
@@ -688,5 +705,9 @@
   <object class="GtkImage" id="image4">
     <property name="visible">True</property>
     <property name="stock">gtk-preferences</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="stock">gtk-yes</property>
   </object>
 </interface>

@@ -10,12 +10,12 @@ from gui.area import GraphArea
 from gui.vertex import Vertex
 
 class Graph(gtk.ScrolledWindow):
-    def __init__(self, changed_method):
+    def __init__(self, builder, changed_method):
         gtk.ScrolledWindow.__init__(self)
 
         self.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
-        self.builder = gtk.Builder()
+        self.builder = builder
         self.event_box = EventBox()
 
         self.event_box.add_events(gtk.gdk.BUTTON_PRESS_MASK)
@@ -314,10 +314,13 @@ class Graph(gtk.ScrolledWindow):
         state = pickle.dumps(self.graph)
         
         if not self.state_index:
-            self.state_index = 0            
-
+            self.state_index = 0 
+            for place in ["menu_edit_", "toolbutton_"]:
+                self.builder.get_object(place + "undo").set_sensitive(True)
         if (self.state_index < len(self.states) - 1):
             self.states = self.states[:self.state_index + 1]
+            for place in ["menu_edit_", "toolbutton_"]:
+                self.builder.get_object(place + "redo").set_sensitive(False)
 
         self.states.append(state)
 
@@ -331,14 +334,32 @@ class Graph(gtk.ScrolledWindow):
             self.state_index -= 1
             graph = self.states[self.state_index]
             state = pickle.loads(graph)
+            if self.state_index == 0:
+               for place in ["menu_edit_", "toolbutton_"]:
+                    self.builder.get_object(place + "undo").set_sensitive(False)
+            if len(self.states) > 1:
+               for place in ["menu_edit_", "toolbutton_"]:
+                    self.builder.get_object(place + "redo").set_sensitive(True)
+
+
             return state
         return None
+
 
     def next_state(self):
         if (self.state_index < len(self.states) - 1):
             self.state_index += 1
             graph = self.states[self.state_index]
             state = pickle.loads(graph)
+            if self.state_index == len(self.states) - 1:
+               for place in ["menu_edit_", "toolbutton_"]:
+                    self.builder.get_object(place + "redo").set_sensitive(False)
+            if len(self.states) > 1:
+               for place in ["menu_edit_", "toolbutton_"]:
+                    self.builder.get_object(place + "undo").set_sensitive(True)
+
+
+
             return state
         return None
 
