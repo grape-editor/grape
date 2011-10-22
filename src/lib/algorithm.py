@@ -6,8 +6,9 @@ from sys import settrace
 from lib.vertex import Vertex
 from lib.edge import Edge
 
-class Algorithm(Thread):
+import gtk
 
+class Algorithm(Thread):
     def __init__(self, graph_ui):
         Thread.__init__(self)
         
@@ -95,6 +96,14 @@ class Algorithm(Thread):
         """Unchecks vertex or unchecks a edge"""
         if what is not None: what.uncheck()
 
+    def __wait(self):
+        """Stop thread until receive release signal"""
+        self.__semaphore.acquire()
+
+    def __signal(self):
+        """Sets free the thread to continue"""
+        self.__semaphore.release()
+
     def check(self, what):
         """Writes action in the stack"""
         self.__checks[what] = [self.__check, self.__uncheck]
@@ -132,11 +141,29 @@ class Algorithm(Thread):
         self.__wait()
         self.__add_state()
 
-    def __wait(self):
-        """Stop thread until receive release signal"""
-        self.__semaphore.acquire()
+    def input_box(self, markup="", prompt="", secondary_markup=""):
+	    dialog = gtk.MessageDialog(
+		    None,
+		    gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+		    gtk.MESSAGE_QUESTION,
+		    gtk.BUTTONS_OK,
+		    None)
+	    dialog.set_markup(markup)
+	    entry = gtk.Entry()
+	    entry.connect("activate", lambda _: dialog.response(gtk.RESPONSE_OK))
 
-    def __signal(self):
-        """Sets free the thread to continue"""
-        self.__semaphore.release()
+	    hbox = gtk.HBox()
+	    hbox.pack_start(gtk.Label(prompt + ":"), False, 5, 5)
+	    hbox.pack_end(entry)
+
+	    dialog.format_secondary_markup(secondary_markup)
+
+	    dialog.vbox.pack_end(hbox, True, True, 0)
+	    dialog.show_all()
+
+	    dialog.run()
+	    text = entry.get_text()
+	    dialog.destroy()
+	    return text
+
         
