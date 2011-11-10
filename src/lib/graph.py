@@ -81,17 +81,17 @@ class Graph(object):
             return None
 
         lo = 0
-        hi = len(self.array)
+        hi = len(array)
         while lo < hi:
             mid = (lo + hi) // 2
-            midval = self.array[mid].id
+            midval = array[mid].id
 
             if midval < id:
                 lo = mid + 1
             elif midval > id:
                 hi = mid
             else:
-                return self.array[mid]
+                return array[mid]
         return None
 
     def find_edge(self, start, end):

@@ -29,7 +29,7 @@ class Algorithm(Thread):
 
         self.vertex_list = self.__graph.vertices
         self.edge_list = self.__graph.edges
-
+        
     def __run(self):
         """Hacked run function, which installs the trace."""
         settrace(self.__globaltrace)
@@ -103,7 +103,11 @@ class Algorithm(Thread):
     def __signal(self):
         """Sets free the thread to continue"""
         self.__semaphore.release()
-
+    
+    def uncheck_all(self):
+        for w in (self.vertex_list + self.edge_list):
+            self.uncheck(w)
+        
     def check(self, what):
         """Writes action in the stack"""
         self.__checks[what] = [self.__check, self.__uncheck]
@@ -140,6 +144,9 @@ class Algorithm(Thread):
         """Used to show current algorithm state"""
         self.__wait()
         self.__add_state()
+        
+    def find(self, id):
+        return self.__graph.find(id)
 
     def input_box(self, markup="", prompt="", secondary_markup=""):
 	    dialog = gtk.MessageDialog(
