@@ -6,6 +6,9 @@ import math
 
 
 class GraphArea(DrawingArea):
+    """
+    Graph
+    """
 
     def __init__(self, graph):
         DrawingArea.__init__(self)
