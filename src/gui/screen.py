@@ -410,7 +410,7 @@ class Screen(object):
         
     def menu_help_about(self, widget):
         self.logger.info("About")
-        AboutShow(self.builder)
+        About()
 
     def keyboard_press(self, widget, event):
         self.logger.info("Key press %s" % event.keyval)
