@@ -289,14 +289,10 @@ class Vertex(object):
         return
 
     def add_properties(self):
-        t_identifier = "identifier"
-        t_value = "value"
+	t_identifier = "identifier"
+	t_value = "value"
         self.liststore_properties.append([t_identifier, t_value])
-
         setattr(self.vertex, "user_" + t_identifier, t_value)
-        
-#        self.add_state()
-#        self.area.queue_draw()
 
     def remove_properties(self):
         selection = self.treeview_properties.get_selection()

@@ -4,13 +4,11 @@ import math
 class Cicle(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
-
-        self.category = "Examples"
     
     def run(self):
 
         dest = [0,2,7,16,5,0]
-        
+
         for i in range(len(dest)):
             v = self.find(dest[i])
             for e in v.edge_list:

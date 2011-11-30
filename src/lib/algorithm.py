@@ -173,4 +173,12 @@ class Algorithm(Thread):
 	    dialog.destroy()
 	    return text
 
-        
+    def set_attribute(self, what, identifier, value):
+        setattr(what, "user_" + str(identifier), str(value))
+
+    def get_attribute(self, what, identifier):
+        return getattr(what, "user_" + str(identifier))
+
+    def remove_attribute(self, what, identifier):
+        delattr(what, "user_" + str(identifier))
+

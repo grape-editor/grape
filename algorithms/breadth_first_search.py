@@ -4,8 +4,6 @@ class BreadthFirstSearch(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
 
-        self.category = "Examples"
-
     def run(self):
         
         first = self.vertex_list[0]

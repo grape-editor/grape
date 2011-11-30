@@ -4,7 +4,6 @@ class Dijkstra(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
 
-        self.category = "Examples"
         self.first = int(self.input_box("", "Origem"))
         self.goal = int(self.input_box("", "Destino"))
 

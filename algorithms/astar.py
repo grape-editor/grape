@@ -5,7 +5,6 @@ class Astar(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
 
-        self.category = "Examples"
         self.first = self.find(int(self.input_box("", "Origem")))
         self.goal = self.find(int(self.input_box("", "Destino")))
     
