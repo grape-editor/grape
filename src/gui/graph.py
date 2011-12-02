@@ -58,6 +58,7 @@ class Graph(gtk.ScrolledWindow):
         # Algorithm stuff
         self.algorithm_runner = None
         self.algorithm_playing = None
+        self.algorithm_paused = None
         self.algorithm_states = []
 
     def centralize_scroll(self, position=None):
@@ -273,10 +274,20 @@ class Graph(gtk.ScrolledWindow):
         if self.algorithm_runner:
             self.graph.deselect_all()
             self.algorithm_playing = True
-            self.algorithm_runner.play()
-            self.queue_draw()
-            self.__block_event_box()
+            if self.algorithm_paused:
+                self.algorithm_paused = False
+            else:
+                self.algorithm_runner.play()
+                self.queue_draw()
+                self.__block_event_box()
             gobject.timeout_add(500, self.algorithm_next, True)
+
+    def algorithm_pause(self):
+        if self.algorithm_runner:
+            if self.algorithm_playing:
+                self.algorithm_runner.pause()
+                self.algorithm_playing = False
+                self.algorithm_paused = True
    
     def algorithm_load(self, Algorithm):
         if self.algorithm_runner:
@@ -285,16 +296,17 @@ class Graph(gtk.ScrolledWindow):
 
     def algorithm_next(self, auto=False):
         if self.algorithm_runner:
-            if auto:
+            if auto and not self.algorithm_paused:
                 self.algorithm_runner.next()
                 self.queue_draw()
                 if self.algorithm_playing and self.algorithm_runner.is_alive():
-                    gobject.timeout_add(500, self.algorithm_next, auto)
+                    return True
             else:
                 if not self.algorithm_playing or not self.algorithm_runner.is_alive():
                     self.algorithm_runner.next()
                     self.queue_draw()            
                 self.algorithm_playing = False
+        return False
         
     def algorithm_prev(self):
         if self.algorithm_runner:

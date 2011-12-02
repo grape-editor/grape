@@ -383,7 +383,7 @@ class Screen(object):
         self.logger.info("Stop algorithm")
         tab.algorithm_stop()
         for place in ["menu_algorithms_", "toolbutton_"]:
-            for btn in ["previous", "stop", "play", "next"]:
+            for btn in ["previous", "stop", "pause", "play", "next"]:
                 self.builder.get_object(place + btn).set_sensitive(False)
             self.builder.get_object(place + "load").set_sensitive(True)
 
@@ -392,7 +392,7 @@ class Screen(object):
         self.logger.info("Load an algorithm")
         tab.algorithm_load(self.algorithm)
         for place in ["menu_algorithms_", "toolbutton_"]:
-            for btn in ["previous", "stop", "play", "next"]:
+            for btn in ["previous", "stop", "pause", "play", "next"]:
                 self.builder.get_object(place + btn).set_sensitive(True)
             self.builder.get_object(place + "load").set_sensitive(False)
         
@@ -401,6 +401,20 @@ class Screen(object):
         tab, number = self.current_tab()
         self.logger.info("Start algorithm")
         tab.algorithm_play()
+        for place in ["menu_algorithms_", "toolbutton_"]:
+            for btn in ["previous", "play", "next"]:
+                self.builder.get_object(place + btn).set_sensitive(False)
+            self.builder.get_object(place + "pause").set_sensitive(True)
+
+    def menu_algorithms_pause(self, widget):
+        """Action of algorithm execution next"""
+        tab, number = self.current_tab()
+        self.logger.info("Pause algorithm")
+        tab.algorithm_pause()
+        for place in ["menu_algorithms_", "toolbutton_"]:
+            for btn in ["previous", "play", "next"]:
+                self.builder.get_object(place + btn).set_sensitive(True)
+            self.builder.get_object(place + "pause").set_sensitive(False)
         
     def menu_algorithms_next(self, widget):
         """Action of algorithm execution next"""

@@ -206,8 +206,6 @@ class Graph(object):
         self.selected_vertices_cache = None
         vertex.deselect()
 
-
-
     def move_selection(self, direction):
         selected = self.selected_vertices()
 

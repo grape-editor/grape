@@ -53,6 +53,7 @@ class Algorithm(Thread):
         """Adds a new state in the list states (HISTORY)"""
         if self.__state_index != len(self.__states):
             self.__states = self.__states[:self.__state_index]
+        self.__clean_checks()
         self.__states.append(self.__checks.copy())
         self.__state_index += 1
         self.__make_checks()
@@ -100,33 +101,29 @@ class Algorithm(Thread):
     def uncheck_all(self):
         """Unchecks all the vertex and edges a edge"""
         for what, boolean in self.__checks.items():
+            self.uncheck(what)
             what.uncheck()
+
+#    def check_all(self):
+#        """Unchecks all the vertex and edges a edge"""
+#        for what, boolean in self.__checks.items():
+#            self.uncheck(what)
 
     def check(self, what):
         """Writes action in the stack"""
-#        if what in self.__unchecks:
-#            self.__unchecks.remove(what)
-#        if what not in self.__checks:
-#            self.__checks.append(what)
         self.__checks[what] = True
 
     def uncheck(self, what):
         """Writes action in the stack"""
-#        if what in self.__checks:
-#            self.__checks.remove(what)
-#        if what not in self.__unchecks:
-#            self.__unchecks.append(what)
         self.__checks[what] = False
 
     def next(self):
         """Jump to the next state"""
-        print "next"
         if not self.__redo():
             self.__signal()
         
     def prev(self):
         """Jump to the previous state"""
-        print "prev"
         self.__undo()
 
     def play(self):
@@ -139,14 +136,18 @@ class Algorithm(Thread):
         """Kill thread that execute algorithm"""
         self.__semaphore.release()
         self.__stopped = True
-        for param in self.__checks:
-            self.__uncheck(param)
+        self.uncheck_all()
 
     def show(self):
         """Used to show current algorithm state"""
         self.__wait()
         self.__add_state()
         
+    def pause(self):
+        """Used to pause current algorithm state"""
+#        self.__add_state()
+        pass
+
     def find(self, id):
         return self.__graph.find(id)
 

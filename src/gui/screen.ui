@@ -351,6 +351,17 @@
                       </object>
                     </child>
                     <child>
+                      <object class="GtkImageMenuItem" id="menu_algorithms_pause">
+                        <property name="label">gtk-media-pause</property>
+                        <property name="visible">True</property>
+                        <property name="sensitive">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="use_stock">True</property>
+                        <property name="always_show_image">True</property>
+                        <signal name="activate" handler="menu_algorithms_pause"/>
+                      </object>
+                    </child>
+                    <child>
                       <object class="GtkImageMenuItem" id="menu_algorithms_play">
                         <property name="label">gtk-media-play</property>
                         <property name="visible">True</property>
@@ -616,6 +627,20 @@
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-ok</property>
                 <signal name="clicked" handler="menu_algorithms_load"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="toolbutton_pause">
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="label" translatable="yes">Pause</property>
+                <property name="use_underline">True</property>
+                <property name="stock_id">gtk-media-pause</property>
+                <signal name="clicked" handler="menu_algorithms_pause"/>
               </object>
               <packing>
                 <property name="expand">False</property>
