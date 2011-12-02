@@ -180,7 +180,7 @@ class Graph(gtk.ScrolledWindow):
 
             selected_vertices = list(self.graph.selected_vertices())
             if len(selected_vertices):
-                self.graph.clear_selection()
+                self.graph.deselect_all()
                 self.add_state()
                 for vertex in selected_vertices:
                     self.graph.select_vertex(vertex)
@@ -216,7 +216,7 @@ class Graph(gtk.ScrolledWindow):
                         if len(edge) > 0:
                             self.graph.remove_edge(edge[0])
 
-            self.graph.clear_selection()
+            self.graph.deselect_all()
             self.add_state()
             self.action = None
             self.area.queue_draw()
@@ -234,7 +234,7 @@ class Graph(gtk.ScrolledWindow):
 
         from gtk.gdk import CONTROL_MASK, SHIFT_MASK
         if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
-            self.graph.clear_selection()
+            self.graph.deselect_all()
         method = self.graph.select_vertex
         if (event.state & CONTROL_MASK):
             method = self.graph.toggle_vertex_selection
@@ -246,7 +246,7 @@ class Graph(gtk.ScrolledWindow):
         from gtk.gdk import CONTROL_MASK, SHIFT_MASK
         if not (event.state & CONTROL_MASK or event.state & SHIFT_MASK) and (len(self.graph.selected_vertices()) > 0):
             if not vertex or not vertex.selected:
-                self.graph.clear_selection()
+                self.graph.deselect_all()
         if vertex:
             if vertex.selected and (event.state & CONTROL_MASK or event.state & SHIFT_MASK):
                 self.graph.deselect_vertex(vertex)
@@ -271,6 +271,7 @@ class Graph(gtk.ScrolledWindow):
 
     def algorithm_play(self):
         if self.algorithm_runner:
+            self.graph.deselect_all()
             self.algorithm_playing = True
             self.algorithm_runner.play()
             self.queue_draw()
@@ -321,9 +322,7 @@ class Graph(gtk.ScrolledWindow):
             self.states = self.states[:self.state_index + 1]
             for place in ["menu_edit_", "toolbutton_"]:
                 self.builder.get_object(place + "redo").set_sensitive(False)
-
         self.states.append(state)
-
         if len(self.states) == 1:
             self.state_index = 0
         else:
@@ -340,8 +339,6 @@ class Graph(gtk.ScrolledWindow):
             if len(self.states) > 1:
                for place in ["menu_edit_", "toolbutton_"]:
                     self.builder.get_object(place + "redo").set_sensitive(True)
-
-
             return state
         return None
 
@@ -357,9 +354,6 @@ class Graph(gtk.ScrolledWindow):
             if len(self.states) > 1:
                for place in ["menu_edit_", "toolbutton_"]:
                     self.builder.get_object(place + "undo").set_sensitive(True)
-
-
-
             return state
         return None
 
@@ -467,7 +461,7 @@ class Graph(gtk.ScrolledWindow):
         selected_vertices = list(self.graph.selected_vertices())
 
         if len(selected_vertices) > 0 and self.last_vertex_clicked:
-            self.graph.clear_selection()
+            self.graph.deselect_all()
             self.add_state()
             for vertex in selected_vertices:
                 self.graph.select_vertex(vertex)

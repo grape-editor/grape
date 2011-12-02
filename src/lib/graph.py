@@ -192,6 +192,12 @@ class Graph(object):
         for vertex in self.vertices:
             vertex.select()
 
+    def deselect_all(self):
+        if len(self.selected_vertices()) > 0:
+            selected_vertices = self.selected_vertices()
+            for vertex in selected_vertices:
+                self.deselect_vertex(vertex)
+
     def select_vertex(self, vertex):
         self.selected_vertices_cache = None
         vertex.select()
@@ -200,12 +206,7 @@ class Graph(object):
         self.selected_vertices_cache = None
         vertex.deselect()
 
-    def clear_selection(self):
-        if len(self.selected_vertices()) > 0:
-            selected_vertices = self.selected_vertices()
 
-            for vertex in selected_vertices:
-                self.deselect_vertex(vertex)
 
     def move_selection(self, direction):
         selected = self.selected_vertices()

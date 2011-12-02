@@ -16,6 +16,7 @@ class Algorithm(Thread):
         self.__graph_ui = graph_ui
         self.__graph = graph_ui.graph
         self.__checks = {}
+        self.__unchecks = self.__graph.vertices + self.__graph.edges
 
         # To UNDO and REDO actions
         self.__states= []
@@ -50,7 +51,6 @@ class Algorithm(Thread):
 
     def __add_state(self):
         """Adds a new state in the list states (HISTORY)"""
-        self.__clean_checks()
         if self.__state_index != len(self.__states):
             self.__states = self.__states[:self.__state_index]
         self.__states.append(self.__checks.copy())
@@ -69,32 +69,25 @@ class Algorithm(Thread):
 
     def __redo(self):
         """Redo a state (HISTORY)"""
-        if self.__state_index < len(self.__states):
+        if self.__state_index < len(self.__states) - 1:
             self.__clean_checks()
-            self.__checks = self.__states[self.__state_index]
             self.__state_index += 1
+            self.__checks = self.__states[self.__state_index]
             self.__make_checks()
             return self.__checks
         return None
 
     def __clean_checks(self):
-        """ Make inverse action for all action stacks"""
-        for param, function in self.__checks.items():
-            function[1](param)
+        """ Make current action for all action stacks"""
+        for what, check in self.__checks.items():
+            if not check: what.check()
+            else: what.uncheck()
 
     def __make_checks(self):
         """ Make current action for all action stacks"""
-        for param, function in self.__checks.items():
-            function[0](param)
-
-    def __check(self, what):
-        """Checks vertex or checks a edge"""
-        if what is not None:
-            what.check()
-
-    def __uncheck(self, what):
-        """Unchecks vertex or unchecks a edge"""
-        if what is not None: what.uncheck()
+        for what, check in self.__checks.items():
+            if check: what.check()
+            else: what.uncheck()
 
     def __wait(self):
         """Stop thread until receive release signal"""
@@ -105,16 +98,25 @@ class Algorithm(Thread):
         self.__semaphore.release()
     
     def uncheck_all(self):
-        for w in (self.vertex_list + self.edge_list):
-            self.uncheck(w)
-        
+        """Unchecks all the vertex and edges a edge"""
+        for what, boolean in self.__checks.items():
+            what.uncheck()
+
     def check(self, what):
         """Writes action in the stack"""
-        self.__checks[what] = [self.__check, self.__uncheck]
-            
+#        if what in self.__unchecks:
+#            self.__unchecks.remove(what)
+#        if what not in self.__checks:
+#            self.__checks.append(what)
+        self.__checks[what] = True
+
     def uncheck(self, what):
         """Writes action in the stack"""
-        self.__checks[what] = [self.__uncheck, self.__check]
+#        if what in self.__checks:
+#            self.__checks.remove(what)
+#        if what not in self.__unchecks:
+#            self.__unchecks.append(what)
+        self.__checks[what] = False
 
     def next(self):
         """Jump to the next state"""
