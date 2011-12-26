@@ -82,7 +82,7 @@ class Algorithm(Thread):
         """ Make current action for all action stacks"""
         for what, check in self.__checks.items():
             if not check: what.check()
-            else: what.uncheck()
+            elif what: what.uncheck()
 
     def __make_checks(self):
         """ Make current action for all action stacks"""
