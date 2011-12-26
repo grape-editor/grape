@@ -23,7 +23,8 @@ class DepthFirstSearch(Algorithm):
             pop = True
             
             node = stack[-1]
-            self.set_attribute(node[1], 'visited', True)
+            if node[1]:
+                self.set_attribute(node[1], 'visited', True)
             self.check(node[0])
             self.check(node[1])
             self.show()
