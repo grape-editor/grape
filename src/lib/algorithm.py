@@ -81,12 +81,14 @@ class Algorithm(Thread):
     def __clean_checks(self):
         """ Make current action for all action stacks"""
         for what, check in self.__checks.items():
+            if not what: continue
             if not check: what.check()
-            elif what: what.uncheck()
+            elif: what.uncheck()
 
     def __make_checks(self):
         """ Make current action for all action stacks"""
         for what, check in self.__checks.items():
+            if not what: continue
             if check: what.check()
             else: what.uncheck()
 
