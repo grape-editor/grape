@@ -5,7 +5,6 @@ class BreadthFirstSearch(Algorithm):
         Algorithm.__init__(self, graph)
 
     def run(self):
-        
         first = self.vertex_list[0]
         goal = 30
         
