@@ -1,5 +1,7 @@
 # coding=utf-8
 
+from lib.algorithm import Algorithm
+
 class DepthFirstSearch(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
