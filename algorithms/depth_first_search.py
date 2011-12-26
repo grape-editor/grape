@@ -5,7 +5,7 @@ from lib.algorithm import Algorithm
 class DepthFirstSearch(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
-	
+
     def run(self):
         first = self.vertex_list[0] # consideremos o primeiro vértice criado como origem, por enquanto
         goal = self.vertex_list[-1]  # consideremos o último vértice criado como origem, por enquanto
@@ -21,29 +21,36 @@ class DepthFirstSearch(Algorithm):
 
         while len(stack) > 0:
             pop = True
-            
+            print stack
+
             node = stack[-1]
             if node[1]:
                 self.set_attribute(node[1], 'visited', True)
             self.check(node[0])
             self.check(node[1])
             self.show()
-            
+
             if node[0].id == goal.id:
                 rtn = node[0]
                 break
             else:
+                pop_it = True
                 for edge in node[0].edge_list:
-                    if not self.get_attribute(edge, 'visited'):
+                    if self.get_attribute(edge, 'visited') == 'False':
+                        pop_it = False
                         break
-                
-                self.uncheck(node[0])
-                self.uncheck(node[1])
-                stack.pop()
-                
+
+                if pop_it:
+                    self.uncheck(node[0])
+                    self.uncheck(node[1])
+                    stack.pop()
+
             for edge in node[0].edge_list:
-                if not self.get_attribute(edge, 'visited'):
+                if self.get_attribute(edge, 'visited') == 'False':
                     if edge.start == node[0]:
+                        print "app1"
                         stack.append((edge.end, edge))
                     else:
+                        print "app2"
                         stack.append((edge.start,edge))
+
