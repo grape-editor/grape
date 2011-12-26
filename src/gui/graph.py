@@ -279,7 +279,6 @@ class Graph(gtk.ScrolledWindow):
             else:
                 self.algorithm_runner.play()
                 self.queue_draw()
-                self.__block_event_box()
             gobject.timeout_add(500, self.algorithm_next, True)
 
     def algorithm_pause(self):
@@ -293,6 +292,7 @@ class Graph(gtk.ScrolledWindow):
         if self.algorithm_runner:
             self.algorithm_runner.stop()
         self.algorithm_runner = Algorithm(self)
+        self.__block_event_box()
 
     def algorithm_next(self, auto=False):
         if self.algorithm_runner:
