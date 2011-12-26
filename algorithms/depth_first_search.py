@@ -34,7 +34,7 @@ class DepthFirstSearch(Algorithm):
                 break
             else:
                 for edge in node[0].edge_list:
-                    if not self.get_attribute(v, 'visited'):
+                    if not self.get_attribute(edge, 'visited'):
                         break
                 
                 self.uncheck(node[0])
@@ -42,7 +42,7 @@ class DepthFirstSearch(Algorithm):
                 stack.pop()
                 
             for edge in node[0].edge_list:
-                if not edge.__visited:
+                if not self.get_attribute(edge, 'visited'):
                     if edge.start == node[0]:
                         stack.append((edge.end, edge))
                     else:
