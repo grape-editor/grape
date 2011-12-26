@@ -102,7 +102,7 @@ class Algorithm(Thread):
         """Unchecks all the vertex and edges a edge"""
         for what, boolean in self.__checks.items():
             self.uncheck(what)
-            what.uncheck()
+            if what: what.uncheck()
 
 #    def check_all(self):
 #        """Unchecks all the vertex and edges a edge"""
