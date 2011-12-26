@@ -17,13 +17,13 @@ class DepthFirstSearch(Algorithm):
 
 		# marcamos todos os vértices como não visitados
         for e in self.edge_list:
-            set_attribute(e, 'visited', False)
+            self.set_attribute(e, 'visited', False)
 
         while len(stack) > 0:
             pop = True
             
             node = stack[-1]
-            set_attribute(node[1], 'visited', True)
+            self.set_attribute(node[1], 'visited', True)
             self.check(node[0])
             self.check(node[1])
             self.show()
@@ -33,7 +33,7 @@ class DepthFirstSearch(Algorithm):
                 break
             else:
                 for edge in node[0].edge_list:
-                    if not get_attribute(v, 'visited'):
+                    if not self.get_attribute(v, 'visited'):
                         break
                 
                 self.uncheck(node[0])
