@@ -1,3 +1,5 @@
+# coding=utf-8
+
 class DepthFirstSearch(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
