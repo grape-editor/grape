@@ -5,17 +5,21 @@ from lib.algorithm import Algorithm
 class DepthFirstSearch(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
-	
+        # input box para capturarmos o vértice origem
+        self.first_id = self.input_box('Escreva o número do vértice origem', 'Origem')
+        # input box para capturarmos o vértice destino
+        self.goal_id = self.input_box('Escreva o número do vértice destino', 'Destino')
+    
     def run(self):
-        first = self.vertex_list[0] # consideremos o primeiro vértice criado como origem, por enquanto
-        goal = self.vertex_list[-1]  # consideremos o último vértice criado como origem, por enquanto
+        first = self.find(self.first_id)
+        goal = self.find(self.goal_id)
 
         stack = [] # utlizaremos uma pilha para nossa busca em profundidade
 
         # adicionamos nosso inicio na pilha
         stack.append((first, None)) # uma tupla (vertice, aresta). Como este é o inicio não utilizamos nenhuma aresta para alcançá-lo
 
-		# marcamos todos os vértices como não visitados
+        # marcamos todos os vértices como não visitados
         for e in self.edge_list:
             self.set_attribute(e, 'visited', False)
 
@@ -33,13 +37,16 @@ class DepthFirstSearch(Algorithm):
                 rtn = node[0]
                 break
             else:
+                pop_it = True
                 for edge in node[0].edge_list:
                     if not self.get_attribute(edge, 'visited'):
+                        pop_it = False
                         break
                 
-                self.uncheck(node[0])
-                self.uncheck(node[1])
-                stack.pop()
+                if pop_it:
+                    self.uncheck(node[0])
+                    self.uncheck(node[1])
+                    stack.pop()
                 
             for edge in node[0].edge_list:
                 if not self.get_attribute(edge, 'visited'):
