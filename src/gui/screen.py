@@ -64,7 +64,8 @@ class Screen(object):
     def close_tab(self, tab):
         self.logger.info("Closing screen")
         page_number = tab.get_parent().page_num(tab)
-
+        tab.algorithm_stop()
+        
         if tab.changed:
             self.notebook.set_current_page(page_number)
             title = _("Save changes?")
