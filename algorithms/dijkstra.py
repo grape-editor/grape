@@ -10,6 +10,7 @@ class Dijkstra(Algorithm):
             self.show()
             self.uncheck(v)
 
+
         for e in self.edge_list:
             self.check(e)
             self.show()

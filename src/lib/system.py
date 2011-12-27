@@ -89,6 +89,17 @@ def get_algorithms():
     
     return algorithms
 
+def reload_algorithm(algorithm):
+    """
+        DONT WORK YET
+    """
+    tmp_import = algorithm
+    tmp_from = camelcase_to_underscore(tmp_import)
+    for mod in sys.modules.values():
+        if mod and mod.__name__ == tmp_from:
+            print "reloading " + mod.__name__
+            mod = reload(mod)
+
 def underscore_to_classname(value):
     """Convert a undercore name to classname (CamelCase)"""
     def camelcase(): 

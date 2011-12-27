@@ -59,12 +59,13 @@ class Screen(object):
             menu_algorithms.append(item)
             group = item
 
-        group.set_active(True)
+#        group.set_active(True)
 
     def close_tab(self, tab):
         self.logger.info("Closing screen")
         page_number = tab.get_parent().page_num(tab)
-
+        tab.algorithm_stop()
+        
         if tab.changed:
             self.notebook.set_current_page(page_number)
             title = _("Save changes?")
@@ -390,6 +391,9 @@ class Screen(object):
     def menu_algorithms_load(self, widget):
         tab, number = self.current_tab()
         self.logger.info("Load an algorithm")
+        if not self.algorithm:
+            return
+        reload_algorithm(self.algorithm.__name__)
         tab.algorithm_load(self.algorithm)
         for place in ["menu_algorithms_", "toolbutton_"]:
             for btn in ["previous", "stop", "pause", "play", "next"]:

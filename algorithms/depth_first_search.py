@@ -25,31 +25,32 @@ class DepthFirstSearch(Algorithm):
 
         while len(stack) > 0:
             pop = True
-            
+            print stack
+
             node = stack[-1]
             if node[1]:
                 self.set_attribute(node[1], 'visited', True)
             self.check(node[0])
             self.check(node[1])
             self.show()
-            
+
             if node[0].id == goal.id:
                 rtn = node[0]
                 break
             else:
                 pop_it = True
                 for edge in node[0].edge_list:
-                    if not self.get_attribute(edge, 'visited'):
+                    if self.get_attribute(edge, 'visited') == 'False':
                         pop_it = False
                         break
-                
+
                 if pop_it:
                     self.uncheck(node[0])
                     self.uncheck(node[1])
                     stack.pop()
-                
+
             for edge in node[0].edge_list:
-                if not self.get_attribute(edge, 'visited'):
+                if self.get_attribute(edge, 'visited') == 'False':
                     if edge.start == node[0]:
                         stack.append((edge.end, edge))
                     else:
