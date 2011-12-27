@@ -6,9 +6,9 @@ class DepthFirstSearch(Algorithm):
     def __init__(self, graph):
         Algorithm.__init__(self, graph)
         # input box para capturarmos o vértice origem
-        self.first_id = self.input_box('Escreva o número do vértice origem', 'Origem')
+        self.first_id = int(self.input_box('Escreva o número do vértice origem', 'Origem'))
         # input box para capturarmos o vértice destino
-        self.goal_id = self.input_box('Escreva o número do vértice destino', 'Destino')
+        self.goal_id = int(self.input_box('Escreva o número do vértice destino', 'Destino'))
     
     def run(self):
         first = self.find(self.first_id)
