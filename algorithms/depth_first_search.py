@@ -19,17 +19,14 @@ class DepthFirstSearch(Algorithm):
         # adicionamos nosso inicio na pilha
         stack.append((first, None)) # uma tupla (vertice, aresta). Como este é o inicio não utilizamos nenhuma aresta para alcançá-lo
 
-        # marcamos todos os vértices como não visitados
+        # marcamos todas as arestas como não visitados
         for e in self.edge_list:
-            self.set_attribute(e, 'visited', False)
+            self.set_attribute(e, 'visited', 'no')
 
         while len(stack) > 0:
-            pop = True
-            print stack
-
             node = stack[-1]
             if node[1]:
-                self.set_attribute(node[1], 'visited', True)
+                self.set_attribute(node[1], 'visited', 'yes')
             self.check(node[0])
             self.check(node[1])
             self.show()
@@ -38,19 +35,20 @@ class DepthFirstSearch(Algorithm):
                 rtn = node[0]
                 break
             else:
-                pop_it = True
+                pop = True
                 for edge in node[0].edge_list:
-                    if self.get_attribute(edge, 'visited') == 'False':
-                        pop_it = False
+                    if self.get_attribute(edge, 'visited') == 'no':
+                        pop = False
                         break
 
-                if pop_it:
+                if pop:
                     self.uncheck(node[0])
                     self.uncheck(node[1])
                     stack.pop()
+                    continue
 
             for edge in node[0].edge_list:
-                if self.get_attribute(edge, 'visited') == 'False':
+                if self.get_attribute(edge, 'visited') == 'yes':
                     if edge.start == node[0]:
                         stack.append((edge.end, edge))
                     else:
