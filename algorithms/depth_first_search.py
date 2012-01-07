@@ -48,7 +48,7 @@ class DepthFirstSearch(Algorithm):
                     continue
 
             for edge in node[0].edge_list:
-                if self.get_attribute(edge, 'visited') == 'yes':
+                if self.get_attribute(edge, 'visited') == 'no':
                     if edge.start == node[0]:
                         stack.append((edge.end, edge))
                     else:
