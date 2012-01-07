@@ -11,18 +11,26 @@ class Astar(Algorithm):
     def distance(self, v1, v2):
         return math.sqrt((v1.position[0] - v2.position[0]) ** 2 + (v1.position[1] - v2.position[1]) ** 2)
         
-    def draw_path(self, came_from, x, start):
-        self.uncheck_all()
+    def draw_path(self, came_from, x, start):       
+        for e in self.my_checked:
+            self.uncheck(e)
+        
+        old = self.my_checked
+        self.my_checked = []
         self.check(x)
+        self.my_checked.append(x)
         
         while x.id != start.id:
+            map(self.my_checked.append, came_from[x])
             map(self.check, came_from[x])
             x = came_from[x][0]
         
-        self.show()
+        if old != self.my_checked:
+            self.show()
     
     def run(self):
         closedset = []
+        self.my_checked = []
         openset = [self.first]
         came_from = {}
         g_score = {}
