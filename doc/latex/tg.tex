@@ -103,7 +103,7 @@ Além dos grafos comuns, podemos ter \texbf{grafos dirigidos} ou \texbf{digrafos
 
 Um caminho é uma sequência de arestas consecutivas em um grafo e o tamanho do caminho é o número de arestas atravessadas. A figura \ref{img_path} demonstra um caminho em um grafo com início no vértice 0 e fim no vértice 14.
 
-Um circuito ou \textbf{ciclo} é um caminho que tem inicio e fim no mesmo vértice, a ilustração na figura \ref{img_cilce} representa um ciclo em um grafo, um laço é um ciclo de tamanho um, ou seja, uma aresta que conecta um vértice a ele mesmo, grafos que possuem \texbf{laços} são chamados e \texbf{pseudografos}.
+Um circuito ou \textbf{ciclo} é um caminho que tem início e fim no mesmo vértice, a ilustração na figura \ref{img_cilce} representa um ciclo em um grafo, um laço é um ciclo de tamanho um, ou seja, uma aresta que conecta um vértice a ele mesmo, grafos que possuem \texbf{laços} são chamados e \texbf{pseudografos}.
 
 \begin{figure}[htb]
     \centering
@@ -146,7 +146,7 @@ Este jogo tem como objetivo passar por todas as cidades uma única vez sendo que
 \end{figure}
 
 Chamamos um grafo de bipartido quando seus vértices podem ser divididos em dois subconjuntos U e V.  Cada aresta conecta um vértice de U a um vértice de V, nunca um vértice de V a outro de V ou de um vértice de U a outro de U.\\Grafo bipartido completo é um grafo bipartido onde todos os vértices do subconjunto U são adjacentes a todos os vértices do conjunto V (figura \ref{img_k33}).
-O número cromático de um grafo é o menor número de cores que são necessárias para colorir todos os vértices de modo que nenhum vértice adjacente tenha a mesma cor. Todo grafo planar pode ser colorido com no máximo quatro cores, essa propriedade chamasse Teorema das quatro cores, e podemos ver um exemplo disso na figura \ref{img_graph_color}.
+O número cromático de um grafo é o menor número de cores que são necessárias para colorir todos os vértices de modo que nenhum vértice adjacente tenha a mesma cor. Todo grafo planar pode ser colorido com no máximo quatro cores, essa propriedade chama-se Teorema das quatro cores, e podemos ver um exemplo disso na figura \ref{img_graph_color}.
 
 \begin{figure}[htb]
     \centering
@@ -241,12 +241,12 @@ A barra de menu é responsável por gerenciar entradas e saídas, configuração
 	\label{img_grape_menu_file}
 \end{figure}
 
-No menu do arquivo existem opções de entra e saída do Grape, ou seja, possibilidade abrir, salvar, fechar, reverter para ultima versão salva, sair; ver figura \ref{img_grape_menu_file}
+No menu do arquivo existem opções de entrada e saída do Grape, ou seja, possibilidade abrir, salvar, fechar, reverter para ultima versão salva, sair; ver figura \ref{img_grape_menu_file}
 \begin{itemize}
     \item \textbf{New (Novo)}: Fornece a possibilidade de criar um novo grafo, inicialmente vazio.
-    \item \textbf{Open (Abrir)}: Esta opção permite que um grafo criado no Grape seja aberto novamente, permitindo re-edições.
+    \item \textbf{Open (Abrir)}: Esta opção permite que um grafo criado no Grape seja aberto novamente, permitindo reedições.
     \item \textbf{Save (Salvar)}: Opção responsável por salvar o grafo aberto na aba atual, em um local a ser especificado posteriormente ao usuário. (figura \ref{img_grape_menu_file})
-    \item \textbf{Save As (Salvar Como)}: Esta opção permite que um arquivo que já tenha sido salvo anteriormente possa ser re-escrito em um caminho diferente, mantendo uma cópia no local anterior.
+    \item \textbf{Save As (Salvar Como)}: Esta opção permite que um arquivo que já tenha sido salvo anteriormente possa ser reescrito em um caminho diferente, mantendo uma cópia no local anterior.
     \item \textbf{Revert (Reverter)}: Descarta todas as ações efetuadas no grafo, e retorna o seu estado para o mesmo que está salvo em disco.
     \item \textbf{Close (Fechar)}: Fecha a aba atual. Caso o grafo não tenha sido salvo, um diálogo irá aparecer para auxiliar nesta tarefa.
     \item \textbf{Quit (Sair)}: Essa ação irá fechar todas as abas e encerrar o grape, salvando os seus logs e suas configurações.
@@ -261,7 +261,7 @@ No menu do arquivo existem opções de entra e saída do Grape, ou seja, possibi
 
 \subsection{Menu Edit (Editar)}
 
-Esse menu é responsável por todas as ações de manipulação do grafo, e preferências globais. Todas a edições e modificações afetaram o grafo da aba que estiver com foco, com exceção da opção Preferências que irá atualizar as preferências globais do Grape.
+Esse menu é responsável por todas as ações de manipulação do grafo, e preferências globais. Todas as edições e modificações afetarão o grafo da aba que estiver com foco, com exceção da opção Preferências que irá atualizar as preferências globais do Grape.
 \begin{figure}[htb]
     \centering
 	\includegraphics[width=6cm]{grape_menu_edit.png}
@@ -270,7 +270,7 @@ Esse menu é responsável por todas as ações de manipulação do grafo, e pref
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Undo (Desfazer)}: Toda ação efetuada em cima de um grafo é salva em um pilha de ações, para que possa ser desfeita em caso de acidentes. A ação desfazer, desfaz a ultima ação.
+    \item \textbf{Undo (Desfazer)}: Toda ação efetuada em cima de um grafo é salva em uma pilha de ações, para que possa ser desfeita em caso de acidentes. A ação desfazer, desfaz a ultima ação.
     \item \textbf{Redo (Refazer)}: Essa ação refaz uma ação desfeita com o Desfazer.
     \item \textbf{Add Vertex (Adicionar Vértice)}: Habilita o modo de adição de vértices, em outras palavras, um vértice será criado assim que houver um clique com o botão esquerdo do mouse na área de pintura.
     \item \textbf{Remove Vertex (Remover Vértice)}: Remove o/os vértices que estejam selecionados e todas as arestas que tenham alguma conexão com os estes.
@@ -279,7 +279,7 @@ Esse menu é responsável por todas as ações de manipulação do grafo, e pref
     \item \textbf{Horizontal Align (Alinhar horizontalmente)}: Ação análoga ao Alinhar verticalmente, porém agora o alinhamento é vertical.
     \item \textbf{Preferences (Preferências)}: Ação para edição das configurações globais do Grape, tais configurações são salvas e carregadas do arquivo .grape.conf que fica na home do usuário que está rodando o Grape.
     \begin{itemize}
-        \item \textbf{Graph (Grafo)}: Aba para edições globais do grafo, tais como título, plano de fundo e tipo (Grafo, Multi-Grafo, Di-Grafo e Multi-Di-Grafo). Tais configurações só entraram em vigor após a criação ou aberturo de um próximo grafo.
+        \item \textbf{Graph (Grafo)}: Aba para edições globais do grafo, tais como título, plano de fundo e tipo (Grafo, Multi-Grafo, Di-Grafo e Multi-Di-Grafo). Tais configurações só entrarão em vigor após a criação ou aberturo de um próximo grafo.
         \item \textbf{Vertex (Vértice)}: Aba para edições de opções gerais para os vértices, cor de preenchimento, cor da borda, tamanho do vértice, tamanho da borda.
         \item \textbf{Edge (Aresta)}: Aba para edições das propriedades das aresta, como cor e espessura.
         Properties (Propriedades): Atributos que serão comuns em todos os vértices ou arestas.
@@ -319,7 +319,7 @@ Esse nenu é utilizado para personalizar itens da interface do Grape, itens que 
 	\label{img_menu_algorithms}
 \end{figure}
 
-Esse menu é utilizado para utilização dos algoritmos. Quando o Grape é carregado, ele preenche automaticamente este menu com os algorítimos presentes em seu determinado diretório. E as demais ações desse menu são para manipulação destes algorítimos.
+Esse menu é utilizado para manipulação dos algoritmos. Quando o Grape é carregado, ele preenche automaticamente este menu com os algorítimos presentes em seu determinado diretório. E as demais ações desse menu são para manipulação destes algorítimos.
 
 \begin{itemize}
     \item \textbf{Previous (Anterior)}: Ação utilizada em casos de execução iterada, permite que o estado do algorítimo retroceda em uma iteração.
@@ -383,7 +383,7 @@ Uma forma alternativa de editar um vértice é simplesmente clicar com o botão 
 	\label{img_vertex_context_menu}
 \end{figure}
 
-Ao escolher editar as configurações de um vértice quer tenha sido pela barra de ferramentas ou pelo menu de propriedades do vértice será mostrado um diálogo que possibilita a personalização do vértice selecionado, onde há a possibilidade de editar o título do vértice, (o qual é exibido ná área de pintura), as coordenadas, a cor de preenchimento e da borda, o tamanho e a espessura da borda, também tem a possibilidade de listar todas as arestas que pertencem a esse vértice e de adicionar atributos personalizados. Por exemplo, na sessão Properties da edição de configurações de um vértice há um campo aonde existe uma tabela de atributos personalizados o qual possibilita ao usuário adicionar atributos quaisquer, que poderão ser acessados e/ou alterados pelos métodos set\_attribute e get\_attribute, no momento da execução dos algoritmos que serão vistos e explicados ao decorrer deste trabalho, os atributos personalizados funcionam como variáveis, ou seja, possuem um identificador e armazenam um valor, [identificador, valor].
+Ao escolher editar as configurações de um vértice quer tenha sido pela barra de ferramentas ou pelo menu de propriedades do vértice será mostrado um diálogo que possibilita a personalização do vértice selecionado, onde há a possibilidade de editar o título do vértice, (o qual é exibido na área de pintura), as coordenadas, a cor de preenchimento e da borda, o tamanho e a espessura da borda, também tem a possibilidade de listar todas as arestas que pertencem a esse vértice e de adicionar atributos personalizados. Por exemplo, na sessão Properties da edição de configurações de um vértice há um campo aonde existe uma tabela de atributos personalizados o qual possibilita ao usuário adicionar atributos quaisquer, que poderão ser acessados e/ou alterados pelos métodos set\_attribute e get\_attribute, no momento da execução dos algoritmos que serão vistos e explicados ao decorrer deste trabalho, os atributos personalizados funcionam como variáveis, ou seja, possuem um identificador e armazenam um valor, [identificador, valor].
 
 Para que seja possível a edição de atributos personalizados das arestas é necessário que no menu de configurações do vértice “dono” da aresta, na aba edge uma aresta seja selecionada, e com o clique direito do mouse a opção de edição de aresta seja escolhida, só então abrirá uma nova tela para edições de atributos e propriedades da aresta escolhida.
 
@@ -445,7 +445,7 @@ class BreadthFirstSearch(Algorithm):
         Algorithm.__init__(self, graph)
 \end{python}
 
-Dentro desta classe podem ser criados quanto atributos e métodos forem necessários.
+Dentro desta classe podem ser criados quantos atributos e métodos forem necessários.
 
 \section{Construindo Algoritmos}
 
