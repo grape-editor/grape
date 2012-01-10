@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Mandriva) (format=pdflatex 2011.11.29)  28 DEC 2011 11:50
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011/Mandriva) (format=pdflatex 2011.11.29)  10 JAN 2012 11:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**tg.tex
+**tg
 (./tg.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
@@ -861,35 +861,38 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 40.
  [1
 
-] (./tg.toc [2
-
-])
+] (./tg.toc)
 \tf@toc=\write3
 \openout3 = `tg.toc'.
 
- [3] (./tg.lof [4
+ [2
 
-
-])
+] (./tg.lof)
 \tf@lof=\write4
 \openout4 = `tg.lof'.
 
- [5] (./tg.lot)
+ [3
+
+
+] (./tg.lot)
 \tf@lot=\write5
 \openout5 = `tg.lot'.
 
- [6
+ [4
 
-] [7
+] [5
 
 
 ]
 Cap\'{\i }tulo 1.
+
+LaTeX Warning: Citation `grafo' on page 10 undefined on input line 62.
+
 [10
 
 ]
 Cap\'{\i }tulo 2.
-<img/euler_graph.png, id=40, 301.125pt x 289.08pt>
+<img/euler_graph.png, id=34, 301.125pt x 289.08pt>
 File: img/euler_graph.png Graphic file (type png)
  <use img/euler_graph.png>
 Package pdftex.def Info: img/euler_graph.png used on input line 72.
@@ -898,10 +901,15 @@ LaTeX Font Info:    Try loading font information for TS1+ppl on input line 80.
 
 (/usr/share/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
-) [11
+)
 
- <./img/euler_graph.png>] <img/complete_graphs.png, id=46, 612.2875pt x 238.892
-5pt>
+LaTeX Warning: Reference `img_complete_graphs' on page 11 undefined on input li
+ne 86.
+
+[11
+
+ <./img/euler_graph.png>]
+<img/complete_graphs.png, id=40, 612.2875pt x 238.8925pt>
 File: img/complete_graphs.png Graphic file (type png)
 
 <use img/complete_graphs.png>
@@ -953,11 +961,17 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<img/path.png, id=47, 428.60126pt x 341.275pt>
+<img/path.png, id=41, 428.60126pt x 341.275pt>
 File: img/path.png Graphic file (type png)
  <use img/path.png>
 Package pdftex.def Info: img/path.png used on input line 99.
 (pdftex.def)             Requested size: 284.52756pt x 226.55446pt.
+
+
+LaTeX Warning: Reference `img_path' on page 12 undefined on input line 104.
+
+
+LaTeX Warning: Reference `img_cilce' on page 12 undefined on input line 106.
 
 ! Undefined control sequence.
 l.106 ...ce a ele mesmo, grafos que possuem \texbf
@@ -978,7 +992,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 [12 <./img/complete_graphs.png> <./img/path.png>]
-<img/cicle.png, id=53, 433.62pt x 190.7125pt>
+<img/cicle.png, id=46, 433.62pt x 190.7125pt>
 File: img/cicle.png Graphic file (type png)
  <use img/cicle.png>
 Package pdftex.def Info: img/cicle.png used on input line 110.
@@ -993,7 +1007,11 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-<img/component.png, id=54, 160.6pt x 166.6225pt>
+
+LaTeX Warning: Reference `img_component' on page 13 undefined on input line 115
+.
+
+<img/component.png, id=47, 160.6pt x 166.6225pt>
 File: img/component.png Graphic file (type png)
  <use img/component.png>
 Package pdftex.def Info: img/component.png used on input line 119.
@@ -1021,329 +1039,4 @@ and I'll forget about whatever was undefined.
 l.126 Um \texbf
                {grafo planar} é um grafo que pode ser representado no plano...
 The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-<img/icosian.png, id=55, 375.4025pt x 367.3725pt>
-File: img/icosian.png Graphic file (type png)
- <use img/icosian.png>
-Package pdftex.def Info: img/icosian.png used on input line 134.
-(pdftex.def)             Requested size: 170.71652pt x 167.06505pt.
-
-[13 <./img/cicle.png> <./img/component.png>]
-<img/k33.png, id=59, 316.18124pt x 174.6525pt>
-File: img/k33.png Graphic file (type png)
- <use img/k33.png>
-Package pdftex.def Info: img/k33.png used on input line 143.
-(pdftex.def)             Requested size: 170.71652pt x 94.30295pt.
-
-<img/graph_color.png, id=60, 589.20125pt x 580.1675pt>
-File: img/graph_color.png Graphic file (type png)
-
-<use img/graph_color.png>
-Package pdftex.def Info: img/graph_color.png used on input line 153.
-(pdftex.def)             Requested size: 341.43306pt x 336.19638pt.
- [14 <./img/icosian.png> <./img/k33.png>] [15 <./img/graph_color.png>]
-Cap\'{\i }tulo 3.
-<img/graph_sample.png, id=67, 149.55875pt x 140.525pt>
-File: img/graph_sample.png Graphic file (type png)
-
-<use img/graph_sample.png>
-Package pdftex.def Info: img/graph_sample.png used on input line 164.
-(pdftex.def)             Requested size: 142.26378pt x 133.68024pt.
- [16
-
- <./img/graph_sample.png>] [17]
-<img/graph_struct.png, id=75, 271.0125pt x 262.9825pt>
-File: img/graph_struct.png Graphic file (type png)
-
-<use img/graph_struct.png>
-Package pdftex.def Info: img/graph_struct.png used on input line 217.
-(pdftex.def)             Requested size: 142.26378pt x 138.05182pt.
- [18 <./img/graph_struct.png>]
-Cap\'{\i }tulo 4.
-<img/grape_menu.png, id=80, 277.035pt x 38.1425pt>
-File: img/grape_menu.png Graphic file (type png)
- <use img/grape_menu.png>
-Package pdftex.def Info: img/grape_menu.png used on input line 231.
-(pdftex.def)             Requested size: 142.26378pt x 19.58685pt.
-
-<img/grape_menu_file.png, id=81, 219.82124pt x 196.735pt>
-File: img/grape_menu_file.png Graphic file (type png)
-
-<use img/grape_menu_file.png>
-Package pdftex.def Info: img/grape_menu_file.png used on input line 239.
-(pdftex.def)             Requested size: 142.26378pt x 127.32686pt.
- [19
-
- <./img/grape_menu.png>]
-<img/open_dialog.png, id=85, 507.8975pt x 352.31625pt>
-File: img/open_dialog.png Graphic file (type png)
-
-<use img/open_dialog.png>
-Package pdftex.def Info: img/open_dialog.png used on input line 257.
-(pdftex.def)             Requested size: 284.52756pt x 197.37639pt.
-
-<img/grape_menu_edit.png, id=86, 236.885pt x 252.945pt>
-File: img/grape_menu_edit.png Graphic file (type png)
-
-<use img/grape_menu_edit.png>
-Package pdftex.def Info: img/grape_menu_edit.png used on input line 267.
-(pdftex.def)             Requested size: 170.71652pt x 182.29395pt.
- [20 <./img/grape_menu_file.png> <./img/open_dialog.png>] [21 <./img/grape_menu
-_edit.png>]
-<img/grape_global_preferences.png, id=93, 269.005pt x 273.02pt>
-File: img/grape_global_preferences.png Graphic file (type png)
-
-<use img/grape_global_preferences.png>
-Package pdftex.def Info: img/grape_global_preferences.png used on input line 29
-1.
-(pdftex.def)             Requested size: 199.16928pt x 202.14412pt.
-
-<img/grape_menu_view.png, id=94, 192.72pt x 146.5475pt>
-File: img/grape_menu_view.png Graphic file (type png)
-
-<use img/grape_menu_view.png>
-Package pdftex.def Info: img/grape_menu_view.png used on input line 299.
-(pdftex.def)             Requested size: 170.71652pt x 129.81413pt.
- [22 <./img/grape_global_preferences.png>]
-<img/grape_menu_algorithms.png, id=98, 182.6825pt x 252.945pt>
-File: img/grape_menu_algorithms.png Graphic file (type png)
-
-<use img/grape_menu_algorithms.png>
-Package pdftex.def Info: img/grape_menu_algorithms.png used on input line 317.
-(pdftex.def)             Requested size: 170.71652pt x 236.38658pt.
- [23 <./img/grape_menu_view.png> <./img/grape_menu_algorithms.png>] <img/grape_
-menu_help.png, id=102, 112.42pt x 52.195pt>
-File: img/grape_menu_help.png Graphic file (type png)
-
-<use img/grape_menu_help.png>
-Package pdftex.def Info: img/grape_menu_help.png used on input line 341.
-(pdftex.def)             Requested size: 85.35826pt x 39.63197pt.
-
-<img/grape_about.png, id=103, 341.275pt x 354.32375pt>
-File: img/grape_about.png Graphic file (type png)
-
-<use img/grape_about.png>
-Package pdftex.def Info: img/grape_about.png used on input line 348.
-(pdftex.def)             Requested size: 227.62204pt x 236.33058pt.
- [24 <./img/grape_menu_help.png> <./img/grape_about.png>] <img/vertex_context_m
-enu.png, id=110, 198.7425pt x 183.68625pt>
-File: img/vertex_context_menu.png Graphic file (type png)
-
-<use img/vertex_context_menu.png>
-Package pdftex.def Info: img/vertex_context_menu.png used on input line 381.
-(pdftex.def)             Requested size: 170.71652pt x 157.78769pt.
- [25]
-<img/vertex_settings.png, id=114, 328.22626pt x 401.5pt>
-File: img/vertex_settings.png Graphic file (type png)
-
-<use img/vertex_settings.png>
-Package pdftex.def Info: img/vertex_settings.png used on input line 392.
-(pdftex.def)             Requested size: 199.16928pt x 243.63422pt.
-
-<img/edge_settings.png, id=115, 378.41376pt x 351.3125pt>
-File: img/edge_settings.png Graphic file (type png)
-
-<use img/edge_settings.png>
-Package pdftex.def Info: img/edge_settings.png used on input line 393.
-(pdftex.def)             Requested size: 199.16928pt x 184.90819pt.
- [26 <./img/vertex_context_menu.png>] [27 <./img/vertex_settings.png> <./img/ed
-ge_settings.png>]
-Cap\'{\i }tulo 5.
-(/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2004/09/05 1.3 listings language file
-)
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 408.
-
-
-(/usr/share/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 409.
- [28
-
-]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.442 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[29]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.465 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.478 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 482.
-
-(/usr/share/texmf-dist/tex/latex/psnfss/ts1pcr.fd
-File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 482--483
-[][][][][][][][][][][]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 484--485
-[][][][][][][][][][][]
- []
-
-[30]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.492 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.501 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 502--504
-[][][][][][][][][][][]
- []
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.513 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.524 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[31]
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.544 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.562 \begin
-            {python}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[32]
-Cap\'{\i }tulo 6.
-[33
-
-]
-Cap\'{\i }tulo 7.
-(./tg.bbl [34
-
-])
-+-------------------------------------------------------------------+
-| Comentario, sugestao ou critica sobre o abnTeX? Entre em contato: |
-|                  http://abntex.codigolivre.org.br                 |
-+-------------------------------------------------------------------+
-[35
-
-] (./tg.aux) ) 
-Here is how much of TeX's memory you used:
- 6899 strings out of 493633
- 92444 string characters out of 3148822
- 202580 words of memory out of 3000000
- 9970 multiletter control sequences out of 15000+200000
- 23553 words of font info for 68 fonts, out of 3000000 for 9000
- 831 hyphenation exceptions out of 8191
- 38i,9n,41p,1094b,1426s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-ib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/
-share/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-dist/font
-s/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/u
-crro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/sha
-re/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texmf-dist/fonts/
-type1/urw/palatino/uplri8a.pfb>
-Output written on tg.pdf (36 pages, 527719 bytes).
-PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+of your error m
