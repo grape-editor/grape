@@ -1,0 +1,1203 @@
+{\rtf1\ansi\uc1\deff13\deflang1024
+{\fonttbl{\f0\fnil\fcharset0 Zapf Chancery;}
+{\f1\fnil\fcharset204 Zapf Chancery;}
+{\f2\fnil\fcharset204 Times;}
+{\f3\fnil\fcharset204 Helvetica;}
+{\f4\fnil\fcharset204 Helvetica;}
+{\f5\fnil\fcharset204 Courier;}
+{\f6\fnil\fcharset2 Symbol;}
+{\f7\fnil\fcharset0 MT Extra;}
+{\f8\fnil\fcharset238 Zapf Chancery;}
+{\f9\fnil\fcharset238 Times;}
+{\f10\fnil\fcharset238 Helvetica;}
+{\f11\fnil\fcharset238 Helvetica;}
+{\f12\fnil\fcharset238 Courier;}
+{\f13\fnil\fcharset0 Times;}
+{\f14\fnil\fcharset0 Helvetica;}
+{\f15\fnil\fcharset0 Helvetica;}
+{\f16\fnil\fcharset0 Courier;}
+}
+{\colortbl;
+\red0\green0\blue0;
+\red0\green0\blue255;
+\red0\green255\blue255;
+\red0\green255\blue0;
+\red255\green0\blue255;
+\red255\green0\blue0;
+\red255\green255\blue0;
+\red255\green255\blue255;
+\red0\green0\blue128;
+\red0\green128\blue128;
+\red0\green128\blue0;
+\red128\green0\blue128;
+\red128\green0\blue0;
+\red128\green128\blue0;
+\red128\green128\blue128;
+\red192\green192\blue192;
+}
+{\stylesheet
+{\s0\fs20\snext0 Normal;}
+{\s2\ql\sb240\sa60\keepn\f13\b\fs40 \sbasedon0\snext0 heading 1;}
+{\s2\ql\sb240\sa60\keepn\f13\b\fs40\li0 \sbasedon0\snext0 heading 1;}
+{\s1\ql\sb240\sa60\keepn\f13\b\fs40\li0 \sbasedon0\snext0 heading 1;}
+{\s6\ql\sb240\sa60\keepn\f13\b\fs24\li2048 \sbasedon0\snext0 heading 5;}
+{\s3\ql\sb240\sa60\keepn\f13\b\fs32\li512 \sbasedon0\snext0 heading 2;}
+{\s7\ql\sb240\sa60\keepn\f13\b\fs24\li2560 \sbasedon0\snext0 heading 6;}
+{\s4\ql\sb240\sa60\keepn\f13\b\fs32\li1024 \sbasedon0\snext0 heading 3;}
+{\s5\ql\sb240\sa60\keepn\f13\b\fs24\li1536 \sbasedon0\snext0 heading 4;}
+{\s6\ql\sb240\sa60\keepn\f13\b\fs24 \sbasedon0\snext0 heading 5;}
+{\s1\qc\sb240\sa60\keepn\f13\b\fs40 \sbasedon0\snext0 part;}
+{\s3\ql\sb240\sa60\keepn\f13\b\fs32 \sbasedon0\snext0 heading 2;}
+{\s7\ql\sb240\sa60\keepn\f13\b\fs24 \sbasedon0\snext0 heading 6;}
+{\s4\ql\sb240\sa60\keepn\f13\b\fs32 \sbasedon0\snext0 heading 3;}
+{\s5\ql\sb240\sa60\keepn\f13\b\fs24 \sbasedon0\snext0 heading 4;}
+}
+{\info
+{\title Original file was tg.tex}
+{\doccomm Created using latex2rtf 1.9.19 (released Nov 20 2007) on Sun Nov 22 22:20:38 2009
+}
+}
+{\footer\pard\plain\f13\fs20\qc\chpgn\par}
+\paperw11960\paperh16900\margl1138\margr1138\margt1422\margb1138\pgnstart0\widowctrl\qj\ftnbj\f13\aftnnar
+{\pard\qj\sl240\slmult1 \fi300 {Maur\'EDcio Pamplona Segundo} {SEGMENTA\'C7\'C3O E DETEC\'C7\'C3O DE CARACTER\'CDSTICAS EM IMAGENS 3D DE FACES} {Olga Regina Pereira Bellon} {Luciano Silva} {Monografia apresentada para obten\'E7\'E3o do Grau de Bacharel em Ci\'EAncia da Computa\'E7\'E3o pela Universidade Federal do Paran\'E1.} {Grupo IMAGO de Pesquisa \par
+\pard\qj\sl240\slmult1 \fi300 Departamento de Inform\'E1tica \par
+\pard\qj\sl240\slmult1 \fi300 Universidade Federal do Paran\'E1} {Curitiba - PR, Brasil} {17 de novembro de 2007}\par
+\pard\qj\sl240\slmult1 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Agradecimentos\par
+\par\par}\pard\qj\sl240\slmult1 \sb60 \fi0 Aos meus pais, Maur\'EDcio e Ros\'E2ngela, e irm\'E3os, Luciano, Gabriel e Carolina, por todo o incentivo e apoio, e aos meus tios, Ari e Silvana, e meus primos, Pedro e Jo\'E3o, por terem me recebido como um membro da fam\'EDlia nestes \'FAltimos quatro anos; \par
+\pard\qj\sl240\slmult1 \fi0 Aos meus orientadores durante o per\'EDodo de inicia\'E7\'E3o cient\'EDfica, Luciano e Olga, pelo acompanhamento, pelas oportunidades \'FAnicas oferecidas e pela amizade; \par
+\pard\qj\sl240\slmult1 \fi0 Aos colegas membros do Grupo IMAGO, pela parceria em projetos de pesquisa, pela ajuda para o entendimento/solucionamento de problemas e pela amizade e descontra\'E7\'E3o. \par
+\pard\qj\sl240\slmult1 \fi0 Obrigado! \par
+{\pard\qj\sl240\slmult1 \fi0 \qc [Sorry. Ignored {\plain\f16\\begin\{resumo\} ... \\end\{resumo\}}]\par
+}\pard\qj\sl240\slmult1 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter 1\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Introdu\'E7\'E3o\par
+\par\par}\pard\qj\sl240\slmult1 \sb60 \fi0 Por muitos anos, pesquisas abordando o reconhecimento facial baseavam-se em imagens de intensidade luminosa\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chellappa \\* MERGEFORMAT }}{\fldrslt{23}}}, {\field{\*\fldinst{\lang1024 REF BIB_hjelmas \\* MERGEFORMAT }}{\fldrslt{36}}}
+] (imagens 2D). O interesse pelo uso da informa\'E7\'E3o tridimensional da face para o reconhecimento autom\'E1tico aumentou recentemente, devido ao surgimento de dispositivos de aquisi\'E7\'E3o mais baratos e precisos, e \'E0 capacidade desta informa\'E7\'E3o para amenizar alguns problemas ainda n\'E3o resolvidos pelos m\'E9todos de reconhecimento em imagens 2D, como varia\'E7\'F5es de ilumina\'E7\'E3o e pose.\par
+\pard\qj\sl240\slmult1 \fi300 Assim como em muitos sistemas de an\'E1lise de imagens, sistemas de reconhecimento facial dependem diretamente da qualidade das suas imagens de entrada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+]. Por este motivo, procedimentos de pr\'E9-processamento s\'E3o necess\'E1rios para a adequa\'E7\'E3o das imagens adquiridas aos m\'F3dulos respons\'E1veis pelo processamento de alto n\'EDvel, no caso, o reconhecimento. A precis\'E3o destes procedimentos afeta diretamente o reconhecimento, uma vez que os erros da etapa de pr\'E9-processamento s\'E3o propagados para as etapas posteriores.\par
+\pard\qj\sl240\slmult1 \fi300 A segmenta\'E7\'E3o facial \'E9 uma etapa de pr\'E9-processamento necess\'E1ria em qualquer sistema de reconhecimento, e consiste em localizar e extrair a regi\'E3o da imagem que corresponde \'E0 face. V\'E1rios fatores alteram o grau de dificuldade da segmenta\'E7\'E3o, como a presen\'E7a de fundos complexos ou n\'FAmero vari\'E1vel de pessoas por imagem.\par
+\pard\qj\sl240\slmult1 \fi300 Mesmo com uma boa segmenta\'E7\'E3o das imagens de entrada, sistemas de reconhecimento facial s\'E3o afetados pela presen\'E7a de express\'F5es faciais nas imagens adquiridas. Para amenizar este problema, existem pelo menos tr\'EAs solu\'E7\'F5es\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}
+]: criar uma base coletando imagens de diferentes express\'F5es faciais de uma mesma pessoa, e realizar o reconhecimento comparando uma imagem de teste com o conjunto de imagens que representa uma pessoa; utilizar para o reconhecimento somente as regi\'F5es da face que menos variam com diferentes express\'F5es faciais; e criar modelos das varia\'E7\'F5es entre faces neutras e faces com express\'F5es de uma mesma pessoa, e realizar o reconhecimento comparando a face de teste com uma face da base alterada por estes modelos.\par
+\pard\qj\sl240\slmult1 \fi300 As \'FAltimas duas solu\'E7\'F5es precisam localizar algumas regi\'F5es espec\'EDficas da face, e fazem isto atrav\'E9s da detec\'E7\'E3o de alguns pontos caracter\'EDsticos da face. Em sistemas de reconhecimento que adotam alguma destas solu\'E7\'F5es, um outro est\'E1gio de pr\'E9-processamento \'E9 necess\'E1rio para a detec\'E7\'E3o de um determinado conjunto de caracter\'EDsticas faciais.\par
+\pard\qj\sl240\slmult1 \fi300 O objetivo deste trabalho foi desenvolver os processos autom\'E1ticos de segmenta\'E7\'E3o facial e detec\'E7\'E3o de caracter\'EDsticas faciais em imagens 3D, a fim de fornecer todas as informa\'E7\'F5es necess\'E1rias para um sistema de reconhecimento facial 3D robusto \'E0 varia\'E7\'E3o de express\'F5es faciais. Os experimentos foram divididos de forma a avaliar a precis\'E3o dos processos desenvolvidos, bem como analisar a melhora obtida no reconhecimento quando os mesmos s\'E3o utilizados. Para isto, foram utilizadas tr\'EAs bases de imagens tridimensionais de faces: as duas vers\'F5es base disponibilizada pelo {\i Face Recognition Grand Challenge}{\up16\chftn}
+{\*\footnote \pard\plain\s246\f13\fs20 {\up16\chftn}www.bee-biometrics.org}
+, com um total de 4950 imagens, e a base Grupo IMAGO{\up16\chftn}
+{\*\footnote \pard\plain\s246\f13\fs20 {\up16\chftn}{\f16 www.inf.ufpr.br/imago}}
+, contendo 150 imagens.\par
+\pard\qj\sl240\slmult1 \fi300 Este trabalho foi dividido da seguinte maneira: apresentamos uma revis\'E3o dos trabalhos da literatura relacionados no Cap\'EDtulo\~{\field{\*\fldinst{\lang1024 REF BMsec_revisao_bibliografica \\* MERGEFORMAT }}{\fldrslt{2}}}, uma vis\'E3o geral sobre biometria, caracter\'EDsticas biom\'E9tricas e m\'E9todos de avalia\'E7\'E3o das mesmas no Cap\'EDtulo\~{\field{\*\fldinst{\lang1024 REF BMsec_biometria \\* MERGEFORMAT }}{\fldrslt{3}}}, e alguns conceitos necess\'E1rios para o entendimento do trabalho no Cap\'EDtulo\~{\field{\*\fldinst{\lang1024 REF BMsec_conceitos \\* MERGEFORMAT }}{\fldrslt{4}}}. A descri\'E7\'E3o dos m\'E9todos de segmenta\'E7\'E3o facial e detec\'E7\'E3o de caracter\'EDsticas, bem como aplica\'E7\'F5es no reconhecimento facial 3D s\'E3o mostrados no Cap\'EDtulo\~{\field{\*\fldinst{\lang1024 REF BMsec_reconhecimento_facial_3D \\* MERGEFORMAT }}{\fldrslt{5}}}, seguidos dos resultados experimentais no Cap\'EDtulo\~{\field{\*\fldinst{\lang1024 REF BMsec_resultados_experimentais \\* MERGEFORMAT }}{\fldrslt{6}}} e de algumas considera\'E7\'F5es finais no Cap\'EDtulo\~{\field{\*\fldinst{\lang1024 REF BMsec_conclusao \\* MERGEFORMAT }}{\fldrslt{7}}}.\par
+\page{}\pard\qj\sl240\slmult1 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter {\*\bkmkstart BMsec_revisao_bibliografica}2{\*\bkmkend BMsec_revisao_bibliografica}\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Revis\'E3o Bibliogr\'E1fica\par
+\par\par}\pard\qj\sl240\slmult1 \sb60 \fi0 A biometria \'E9 o estudo de caracter\'EDsticas f\'EDsicas e/ou comportamentais com o objetivo de identificar unicamente uma pessoa\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain2 \\* MERGEFORMAT }}{\fldrslt{40}}}, {\field{\*\fldinst{\lang1024 REF BIB_jain1 \\* MERGEFORMAT }}{\fldrslt{41}}}
+]. Devido \'E0s suas in\'FAmeras aplica\'E7\'F5es nas \'E1reas de seguran\'E7a, acessibilidade, aplica\'E7\'E3o de leis, entre outras, o reconhecimento autom\'E1tico de indiv\'EDduos tem recebido uma aten\'E7\'E3o substancial de pesquisadores das comunidades de reconhecimento de padr\'F5es e vis\'E3o computacional.\par
+\pard\qj\sl240\slmult1 \fi300 O reconhecimento biom\'E9trico pode ser dividido em duas modalidades\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain1 \\* MERGEFORMAT }}{\fldrslt{41}}}
+]: autentica\'E7\'E3o e identifica\'E7\'E3o. Em um sistema de autentica\'E7\'E3o, a identidade do usu\'E1rio \'E9 confirmada comparando-se o dado biom\'E9trico obtido com seu respectivo modelo biom\'E9trico em uma base de dados. Em um sistema de identifica\'E7\'E3o, a identidade do usu\'E1rio \'E9 descoberta comparando-se o dado biom\'E9trico obtido com os modelos biom\'E9tricos de todos os usu\'E1rios da base de dados.\par
+\pard\qj\sl240\slmult1 \fi300 A biometria facial \'E9 uma das mais comuns, pela facilidade na aquisi\'E7\'E3o das imagens, por n\'E3o depender da colabora\'E7\'E3o do usu\'E1rio e por n\'E3o ser intrusiva\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain1 \\* MERGEFORMAT }}{\fldrslt{41}}}
+]. Al\'E9m disso, a face \'E9 provavelmente a caracter\'EDstica biom\'E9trica mais utilizada entre pessoas para o reconhecimento individual, e representa uma interface natural de intera\'E7\'E3o entre humano e computador.\par
+\pard\qj\sl240\slmult1 \fi300 Nas \'FAltimas d\'E9cadas, o reconhecimento facial tinha como foco principal a utiliza\'E7\'E3o de imagens 2D\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chellappa \\* MERGEFORMAT }}{\fldrslt{23}}}, {\field{\*\fldinst{\lang1024 REF BIB_fior \\* MERGEFORMAT }}{\fldrslt{31}}}, {\field{\*\fldinst{\lang1024 REF BIB_hjelmas \\* MERGEFORMAT }}{\fldrslt{36}}}, {\field{\*\fldinst{\lang1024 REF BIB_hsu \\* MERGEFORMAT }}{\fldrslt{38}}}, {\field{\*\fldinst{\lang1024 REF BIB_sobottka \\* MERGEFORMAT }}{\fldrslt{62}}}, {\field{\*\fldinst{\lang1024 REF BIB_turk \\* MERGEFORMAT }}{\fldrslt{64}}}, {\field{\*\fldinst{\lang1024 REF BIB_viola \\* MERGEFORMAT }}{\fldrslt{66}}}, {\field{\*\fldinst{\lang1024 REF BIB_yang \\* MERGEFORMAT }}{\fldrslt{69}}}
+], incluindo pesquisas nas \'E1reas de detec\'E7\'E3o de caracter\'EDsticas em faces, detec\'E7\'E3o de faces em imagens, e reconhecimento de faces sob a influ\'EAncia de diversos problemas, entre eles varia\'E7\'F5es de ilumina\'E7\'E3o, pose e express\'F5es.\par
+\pard\qj\sl240\slmult1 \fi300 Recentemente, o interesse pelo reconhecimento facial 3D\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bowyer \\* MERGEFORMAT }}{\fldrslt{16}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo1 \\* MERGEFORMAT }}{\fldrslt{55}}}
+] tem aumentado devido aos avan\'E7os na aquisi\'E7\'E3o das imagens 3D, com sensores mais baratos, precisos e eficientes. Outra raz\'E3o deste crescimento \'E9 a capacidade desta forma de reconhecimento para minimizar ou at\'E9 mesmo solucionar os problemas enfrentados pelo reconhecimento facial 2D.\par
+\pard\qj\sl240\slmult1 \fi300 Diversas solu\'E7\'F5es para o reconhecimento facial 3D foram propostas, entre as quais destacamos as abordagens baseadas no reconhecimento por apar\'EAncia, adaptadas a partir de solu\'E7\'F5es geradas anteriormente para o reconhecimento facial 2D\~
+[{\field{\*\fldinst{\lang1024 REF BIB_turk \\* MERGEFORMAT }}{\fldrslt{64}}}
+], e as baseadas no registro de imagens, t\'E9cnica anteriormente empregadas para a cria\'E7\'E3o de modelos 3D completos a partir de v\'E1rias imagens obtidas de diferentes vistas\~
+[{\field{\*\fldinst{\lang1024 REF BIB_besl3 \\* MERGEFORMAT }}{\fldrslt{14}}}, {\field{\*\fldinst{\lang1024 REF BIB_silva \\* MERGEFORMAT }}{\fldrslt{60}}}
+]. Outras t\'E9cnicas foram desenvolvidas (baseadas em curvas de perfil\~
+[{\field{\*\fldinst{\lang1024 REF BIB_cartoux \\* MERGEFORMAT }}{\fldrslt{17}}}, {\field{\*\fldinst{\lang1024 REF BIB_pan \\* MERGEFORMAT }}{\fldrslt{52}}}
+] e em {\i point signatures}\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chua \\* MERGEFORMAT }}{\fldrslt{24}}}, {\field{\*\fldinst{\lang1024 REF BIB_wang \\* MERGEFORMAT }}{\fldrslt{67}}}
+], por exemplo), por\'E9m os resultados obtidos foram inferiores \'E0s abordagens de reconhecimento por apar\'EAncia ou por registro.\par
+\pard\qj\sl240\slmult1 \fi300 M\'E9todos de reconhecimento por apar\'EAncia\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang4 \\* MERGEFORMAT }}{\fldrslt{19}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}, {\field{\*\fldinst{\lang1024 REF BIB_hesher \\* MERGEFORMAT }}{\fldrslt{35}}}
+] criam proje\'E7\'F5es bidimensionais da superf\'EDcie facial 3D, e utilizam t\'E9cnicas de aprendizado\~
+[{\field{\*\fldinst{\lang1024 REF BIB_turk \\* MERGEFORMAT }}{\fldrslt{64}}}
+] para realizar o reconhecimento. Estas abordagens apresentam vantagens em rela\'E7\'E3o \'E0s abordagens baseadas no registro de imagens, quando comparadas em termos de custo computacional, sendo a solu\'E7\'E3o mais apropriada para sistemas de identifica\'E7\'E3o.\par
+\pard\qj\sl240\slmult1 \fi300 Abordagens baseadas no registro de imagens\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bellon2 \\* MERGEFORMAT }}{\fldrslt{10}}}, {\field{\*\fldinst{\lang1024 REF BIB_bellon3 \\* MERGEFORMAT }}{\fldrslt{11}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}, {\field{\*\fldinst{\lang1024 REF BIB_cook \\* MERGEFORMAT }}{\fldrslt{27}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu1 \\* MERGEFORMAT }}{\fldrslt{46}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu2 \\* MERGEFORMAT }}{\fldrslt{49}}}
+] t\'EAm obtido mais sucesso em rela\'E7\'E3o \'E0 seguran\'E7a das suas decis\'F5es. Basicamente, solu\'E7\'F5es nesta \'E1rea procuram o alinhamento ideal entre duas superf\'EDcies faciais, e ent\'E3o avaliam o grau de similaridade entre as mesmas. O custo computacional elevado dos m\'E9todos existentes atualmente torna esta solu\'E7\'E3o aplic\'E1vel apenas a sistemas de autentica\'E7\'E3o.\par
+\pard\qj\sl240\slmult1 \fi300 A exatid\'E3o do reconhecimento para ambas as abordagens depende de qu\'E3o bem a imagem de entrada foi segmentada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+]. O reconhecimento por apar\'EAncia \'E9 altamente dependente de um enquadramento correto da face, e o reconhecimento por registro de imagem \'E9 afetado quando um n\'FAmero significativo de pontos que n\'E3o pertencem \'E0 face est\'E1 presente na imagem a ser utilizada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_segundo1 \\* MERGEFORMAT }}{\fldrslt{56}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Entre os m\'E9todos de segmenta\'E7\'E3o existentes, alguns consideram um ambiente controlado para a localiza\'E7\'E3o e extra\'E7\'E3o da regi\'E3o facial\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}, {\field{\*\fldinst{\lang1024 REF BIB_segundo1 \\* MERGEFORMAT }}{\fldrslt{56}}}, {\field{\*\fldinst{\lang1024 REF BIB_tsalakanidou \\* MERGEFORMAT }}{\fldrslt{63}}}
+], enquanto outros m\'E9todos trabalham com a ocorr\'EAncia certos fatores, como quantidade vari\'E1vel de indiv\'EDduos por imagem e presen\'E7a de fundo complexo, que podem afetar os resultados da segmenta\'E7\'E3o\~
+[{\field{\*\fldinst{\lang1024 REF BIB_colombo \\* MERGEFORMAT }}{\fldrslt{26}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu4 \\* MERGEFORMAT }}{\fldrslt{47}}}
+]. Estes \'FAltimos apresentam problemas com falsas detec\'E7\'F5es, al\'E9m de possu\'EDrem uma taxa menor de extra\'E7\'F5es corretas da regi\'E3o da face.\par
+\pard\qj\sl240\slmult1 \fi300 Estes m\'E9todos diferem tamb\'E9m quanto \'E0 utiliza\'E7\'E3o da informa\'E7\'E3o de cor. Alguns m\'E9todos utilizam esta informa\'E7\'E3o adicional\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu4 \\* MERGEFORMAT }}{\fldrslt{47}}}, {\field{\*\fldinst{\lang1024 REF BIB_tsalakanidou \\* MERGEFORMAT }}{\fldrslt{63}}}
+] enquanto outros utilizam apenas a informa\'E7\'E3o de profundidade\~
+[{\field{\*\fldinst{\lang1024 REF BIB_colombo \\* MERGEFORMAT }}{\fldrslt{26}}}, {\field{\*\fldinst{\lang1024 REF BIB_segundo1 \\* MERGEFORMAT }}{\fldrslt{56}}}
+], evitando assim problemas com ilumina\'E7\'E3o, desalinhamento entre as imagens de cor e de profundidade, entre outros.\par
+\pard\qj\sl240\slmult1 \fi300 Mesmo que uma boa segmenta\'E7\'E3o seja realizada, outros problemas podem influenciar negativamente o resultado do reconhecimento, dentre eles a presen\'E7a de ru\'EDdo e de express\'F5es faciais na imagem da face\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo3 \\* MERGEFORMAT }}{\fldrslt{54}}}
+]. O reconhecimento facial em imagens com express\'E3o facial tem sido tema de in\'FAmeros trabalhos na literatura\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang2 \\* MERGEFORMAT }}{\fldrslt{22}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu3 \\* MERGEFORMAT }}{\fldrslt{48}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo3 \\* MERGEFORMAT }}{\fldrslt{54}}}
+], e representa atualmente o maior desafio do reconhecimento autom\'E1tico de faces em imagens 3D.\par
+\pard\qj\sl240\slmult1 \fi300 Uma das t\'E9cnicas mais utilizadas pra resolver este problema consiste em utilizar apenas as regi\'F5es r\'EDgidas das superf\'EDcies faciais ({\i i.e.}, as que menos variam com diferentes express\'F5es faciais) para medir a similaridade entre elas\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang2 \\* MERGEFORMAT }}{\fldrslt{22}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo3 \\* MERGEFORMAT }}{\fldrslt{54}}}
+]. Outra solu\'E7\'E3o mais recente procura criar modelos destas mudan\'E7as causadas pela presen\'E7a de express\'F5es faciais para aprimorar o reconhecimento facial 3D\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lu3 \\* MERGEFORMAT }}{\fldrslt{48}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Estas duas solu\'E7\'F5es para o problema da varia\'E7\'E3o de express\'F5es faciais precisam localizar algumas regi\'F5es espec\'EDficas da face, e fazem isto atrav\'E9s da detec\'E7\'E3o de algumas caracter\'EDsticas faciais\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang2 \\* MERGEFORMAT }}{\fldrslt{22}}}, {\field{\*\fldinst{\lang1024 REF BIB_colbry \\* MERGEFORMAT }}{\fldrslt{25}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu4 \\* MERGEFORMAT }}{\fldrslt{47}}}, {\field{\*\fldinst{\lang1024 REF BIB_segundo2 \\* MERGEFORMAT }}{\fldrslt{57}}}, {\field{\*\fldinst{\lang1024 REF BIB_segundo3 \\* MERGEFORMAT }}{\fldrslt{58}}}
+]. Para realizar esta detec\'E7\'E3o v\'E1rias t\'E9cnicas foram empregadas nos diferentes trabalhos existentes, entre elas a classifica\'E7\'E3o de superf\'EDcies por curvatura\~
+[{\field{\*\fldinst{\lang1024 REF BIB_besl1 \\* MERGEFORMAT }}{\fldrslt{12}}}, {\field{\*\fldinst{\lang1024 REF BIB_besl2 \\* MERGEFORMAT }}{\fldrslt{13}}}
+], curvas de relevo e modelos de localiza\'E7\'E3o. Alguns trabalhos utilizam tamb\'E9m a informa\'E7\'E3o de cor, e est\'E3o sujeitos aos mesmos problemas que os m\'E9todos de segmenta\'E7\'E3o facial que utilizam esta informa\'E7\'E3o possuem.\par
+\pard\qj\sl240\slmult1 \fi300 M\'E9todos baseados na classifica\'E7\'E3o de superf\'EDcies por curvatura t\'EAm obtido altas taxas de detec\'E7\'F5es corretas, mas o custo computacional desta t\'E9cnica \'E9 elevado. Esta abordagem classifica cada superf\'EDcie local gerada a partir da vizinhan\'E7a de um ponto na imagem de entrada. Quanto maior for esta vizinhan\'E7a, maior \'E9 a confiabilidade da informa\'E7\'E3o gerada, e maior \'E9 o tempo consumido para gerar esta classifica\'E7\'E3o. Por este motivo, alguns m\'E9todos t\'EAm utilizado vizinhan\'E7as pequenas para a classifica\'E7\'E3o de superf\'EDcies, mas combinado esta informa\'E7\'E3o com outras t\'E9cnicas para manter a precis\'E3o, e tamb\'E9m reduzir o tempo necess\'E1rio para a detec\'E7\'E3o das caracter\'EDsticas.\par
+\pard\qj\sl240\slmult1 \fi300 A utiliza\'E7\'E3o da detec\'E7\'E3o de caracter\'EDsticas faciais com o intuito de melhorar o reconhecimento facial 3D tem obtido sucesso, como pode ser observado em diversos trabalhos presentes na literatura\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}, {\field{\*\fldinst{\lang1024 REF BIB_chang2 \\* MERGEFORMAT }}{\fldrslt{22}}}, {\field{\*\fldinst{\lang1024 REF BIB_lu3 \\* MERGEFORMAT }}{\fldrslt{48}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo3 \\* MERGEFORMAT }}{\fldrslt{54}}}
+] que apresentam aumentos significativos das taxas de verifica\'E7\'E3o quando esta solu\'E7\'E3o \'E9 empregada.\par
+\page{}\pard\qj\sl240\slmult1 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter {\*\bkmkstart BMsec_biometria}3{\*\bkmkend BMsec_biometria}\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Biometria\par
+\par\par}\pard\qj\sl240\slmult1 \sb60 \fi0 Biometria ({\i Bio}{{=}}vida e {\i metria}{{=}}medida) \'E9 o uso de caracter\'EDsticas f\'EDsicas ou comportamentais que possibilite a identifica\'E7\'E3o \'FAnica de seres humanos. Entre essas caracter\'EDsticas est\'E3o a \'EDris, a retina, a impress\'E3o digital, a voz, a face, a geometria da m\'E3o, a maneira de andar, a maneira de escrever e o DNA\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_bc \\* MERGEFORMAT }}{\fldrslt{3}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Por milhares de anos, os seres humanos t\'EAm utilizado caracter\'EDsticas como a face, a voz e a maneira de andar para reconhecerem um ao outro, mesmo que inconscientemente\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+]. Entretanto, o primeiro registro do armazenamento de forma sistem\'E1tica destas caracter\'EDsticas para utiliz\'E1-las no reconhecimento de indiv\'EDduos data de 1858, quando William Herschel, na \'CDndia, utilizou impress\'F5es palmares para distinguir entre empregados e pessoas que se passavam por empregados no dia do pagamento.\par
+\pard\qj\sl240\slmult1 \fi300 Em 1870, Alphonse Bertillon desenvolveu um procedimento de identifica\'E7\'E3o baseado em medidas corporais (Figura\~{\field{\*\fldinst{\lang1024 REF BMbiometria_bertillon \\* MERGEFORMAT }}{\fldrslt{1}}}), descri\'E7\'F5es f\'EDsicas e fotografias, que foi utilizado em registros criminais, a fim de evitar que criminosos conseguissem utilizar nomes falsos\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+]. Este m\'E9todo chegou a ser mundialmente utilizado, mas foi abandonado com a descoberta que algumas pessoas possu\'EDam as mesmas medidas.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMbiometria_bertillon}1{\*\bkmkend BMbiometria_bertillon}: Ilustra\'E7\'F5es da documenta\'E7\'E3o do processo criado por Bertillon\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+].}{\field{\*\fldinst TC "1 Ilustra\'E7\'F5es da documenta\'E7\'E3o do processo criado por Bertillon\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+]." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Em 1892, Francis Galton escreve um estudo detalhado sobre impress\'F5es digitais, no qual ele apresenta um sistema de classifica\'E7\'E3o usando impress\'F5es dos dez dedos. As min\'FAcias, utilizadas por Galton em seu trabalho, s\'E3o utilizadas at\'E9 hoje na identifica\'E7\'E3o por impress\'F5es digitais\~
+[{\field{\*\fldinst{\lang1024 REF BIB_galton \\* MERGEFORMAT }}{\fldrslt{32}}}
+]. Em 1896, Edward Henry, inspetor geral da Pol\'EDcia de {\i Bengal} substitui o antigo m\'E9todo de identifica\'E7\'E3o de Bertillon pelo sistema de Galton. Seu funcion\'E1rio, Azizul Haque, desenvolveu um m\'E9todo de classifica\'E7\'E3o e armazenamento para facilitar e aumentar a precis\'E3o das buscas. O Sistema de Classifica\'E7\'E3o de Henry\~
+[{\field{\*\fldinst{\lang1024 REF BIB_henry \\* MERGEFORMAT }}{\fldrslt{34}}}
+], como ficou conhecido, \'E9 o precursor do sistema de classifica\'E7\'E3o utilizado por muitos anos pelo {\i Federal Bureau of Investigation} (FBI).\par
+\pard\qj\sl240\slmult1 \fi300 Em 1903, penitenci\'E1rias do estado de {\i Nova York} passam a utilizar o reconhecimento de impress\'F5es digitais para identifica\'E7\'E3o de detentos, e, em pouco tempo, penitenci\'E1rias de outros estados, bem como departamentos de pol\'EDcia passam a utilizar o mesmo sistema. O crescimento acelerado do uso desses sistemas cria a necessidade de um reposit\'F3rio nacional, e, em 1921, \'E9 criada a Divis\'E3o de Identifica\'E7\'E3o do FBI.\par
+\pard\qj\sl240\slmult1 \fi300 Nas d\'E9cadas seguintes, surgem conceitos e sistemas para outras biometrias, como a face, a \'EDris, a voz, entre outras. Sistemas autom\'E1ticos come\'E7aram a surgir na segunda metade do s\'E9culo 20, e desde ent\'E3o, cada vez mais pesquisas na \'E1rea da cria\'E7\'E3o de sistemas autom\'E1ticos de identifica\'E7\'E3o biom\'E9trica tem sido realizadas.\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 1  Raz\'F5es para o uso da biometria\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Sistemas de identifica\'E7\'E3o atuais s\'E3o baseados em n\'FAmeros, senhas e/ou cart\'F5es. Por exemplo, o governo identifica sua popula\'E7\'E3o atrav\'E9s do n\'FAmero do Cadastro de Pessoas F\'EDsicas (CPF), ou um caixa eletr\'F4nico de um banco identifica um usu\'E1rio atrav\'E9s de um cart\'E3o e uma senha. Estas formas de identifica\'E7\'E3o, principalmente quando algum n\'EDvel de seguran\'E7a \'E9 requerido, n\'E3o s\'E3o suficientes. Cart\'F5es podem ser roubados, roubados ou duplicados. Senhas podem ser esquecidas, trocadas, observadas ou quebradas\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_dod \\* MERGEFORMAT }}{\fldrslt{4}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Com o crescimento de falhas de seguran\'E7a e da quantidade de fraudes, houve um aumento da necessidade por tecnologias identifica\'E7\'E3o e verifica\'E7\'E3o pessoal com um grau de seguran\'E7a elevado. Solu\'E7\'F5es baseadas em caracter\'EDsticas biom\'E9tricas s\'E3o capazes de fornecer altos n\'EDveis seguran\'E7a, variando de acordo com a caracter\'EDstica utilizada, devido \'E0 dificuldade em se enganar um sistema biom\'E9trico ou copiar uma caracter\'EDstica de outro indiv\'EDduo.\par
+\pard\qj\sl240\slmult1 \fi300 As aplica\'E7\'F5es para sistemas de identifica\'E7\'E3o biom\'E9trica autom\'E1tica n\'E3o est\'E3o presentes apenas nas \'E1reas criminal e de seguran\'E7a, mas tamb\'E9m nas \'E1reas governamentais, militares, comerciais, da sa\'FAde, dos transportes e da comunica\'E7\'E3o, fornecendo solu\'E7\'F5es para controle de acesso, controle do hor\'E1rio de trabalho, transa\'E7\'F5es banc\'E1rias, entre outras.\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 2  Crit\'E9rios para a avalia\'E7\'E3o de caracter\'EDsticas biom\'E9tricas\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Como saber se uma caracter\'EDstica f\'EDsica ou comportamental pode ser utilizada para a identifica\'E7\'E3o de pessoas?  Al\'E9m disso, qual a dificuldade de se mapear esta caracter\'EDstica em um sistema de identifica\'E7\'E3o autom\'E1tico?  Deve-se avaliar o comportamento desta caracter\'EDstica de acordo com alguns crit\'E9rios comportamentais, bem como requerimentos computacionais, a fim de descobrir se uma determinada caracter\'EDstica pode ou n\'E3o ser utilizada para a identifica\'E7\'E3o\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain1 \\* MERGEFORMAT }}{\fldrslt{41}}}
+]. Estes crit\'E9rios s\'E3o:\par
+{\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Universalidade:} significa que todas as pessoas devem possuir a caracter\'EDstica em quest\'E3o. \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Singularidade:} indica que duas pessoas devem ser suficientemente diferentes em rela\'E7\'E3o \'E0 caracter\'EDstica. \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Perman\'EAncia:} indica que a caracter\'EDstica deve permanecer invariante com o passar do tempo. \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Coletabilidade:} indica a facilidade em representar a caracter\'EDstica de forma quantitativa. \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Desempenho:} relacionado \'E0 precis\'E3o da decis\'E3o e ao tempo requerido, bem como recursos necess\'E1rios, fatores operacionais e fatores ambientais que afetem a precis\'E3o e o tempo. \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Aceitabilidade:} relacionado \'E0 disposi\'E7\'E3o das pessoas em aceitar a identifica\'E7\'E3o por determinada caracter\'EDstica no dia-a-dia. \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Cortornabilidade:} relacionado \'E0 facilidade em enganar o sistema. \par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A Tabela\~{\field{\*\fldinst{\lang1024 REF BMtab_biometria \\* MERGEFORMAT }}{\fldrslt{1}}} mostra a classifica\'E7\'E3o de algumas biometrias existentes\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain1 \\* MERGEFORMAT }}{\fldrslt{41}}}
+] em rela\'E7\'E3o aos crit\'E9rios apresentados anteriormente.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrdb\cellx862\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx1724\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx2586\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx3448\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx4310\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx5172\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx6034\clbrdrt\brdrs\clbrdrb\brdrdb\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {{\b BIOMETRIA}}\cell
+\pard\intbl\qc {{\b Univ.}}\cell
+\pard\intbl\qc {{\b Sing.}}\cell
+\pard\intbl\qc {{\b Perm.}}\cell
+\pard\intbl\qc {{\b Colet.}}\cell
+\pard\intbl\qc {{\b Desemp.}}\cell
+\pard\intbl\qc {{\b Aceit.}}\cell
+\pard\intbl\qc {{\b Cont.}}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {Face}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {Impress\'E3o Digital}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {M}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {Geometria da M\'E3o}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {M}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {\'CDris}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {B}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {Retina}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {B}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {Assinatura}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {Voz}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {M}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx862\clbrdrb\brdrs\clbrdrr\brdrs\cellx1724\clbrdrb\brdrs\clbrdrr\brdrs\cellx2586\clbrdrb\brdrs\clbrdrr\brdrs\cellx3448\clbrdrb\brdrs\clbrdrr\brdrs\cellx4310\clbrdrb\brdrs\clbrdrr\brdrs\cellx5172\clbrdrb\brdrs\clbrdrr\brdrs\cellx6034\clbrdrb\brdrs\clbrdrr\brdrs\cellx6896
+\pard\intbl\ql {DNA}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {A}\cell
+\pard\intbl\qc {B}\cell
+\pard\intbl\qc {B}\cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMtab_biometria}1{\*\bkmkend BMtab_biometria}: Compara\'E7\'E3o entre biometrias mais utilizadas (A = Alta, M = M\'E9dia e B = Baixa).}{\field{\*\fldinst TC "1 Compara\'E7\'E3o entre biometrias mais utilizadas (A = Alta, M = M\'E9dia e B = Baixa)." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 3  Tipos de caracter\'EDsticas biom\'E9tricas\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Existem v\'E1rias caracter\'EDsticas f\'EDsicas e comportamentais que podem ser utilizadas em um sistema de identifica\'E7\'E3o. N\'E3o existe uma \'FAnica caracter\'EDstica que seja a mais apropriada para todos os tipos de sistema, pois n\'E3o h\'E1 uma caracter\'EDstica que seja classificada satisfat\'F3riamente em todos os crit\'E9rios de avalia\'E7\'E3o. Muitos fatores devem ser levados em conta, como a localiza\'E7\'E3o do dispositivo de aquisi\'E7\'E3o, riscos de seguran\'E7a, n\'FAmero esperado de usu\'E1rios, se o sistema deve identificar ou autenticar os usu\'E1rios, entre outros. Cada caracter\'EDstica biom\'E9trica em uso atualmente possui um certo n\'EDvel de maturidade em cada um destes requisitos. Nas pr\'F3ximas subse\'E7\'F5es, detalhamos algumas destas caracter\'EDsticas.\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 3.1  Caracter\'EDsticas f\'EDsicas\par
+}{\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Impress\'E3o Digital:} A impress\'E3o digital \'E9 o padr\'E3o formado por cristas e vales presentes na ponta dos dedos, formadas durante o desenvolvimento fetal. Acredita-se que comerciantes chineses utilizavam-na para a identifica\'E7\'E3o em transa\'E7\'F5es comerciais j\'E1 no s\'E9culo 14\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+]. H\'E1 muitas d\'E9cadas, os seres humanos passaram a utilizar esta caracter\'EDstica em sistemas autom\'E1ticos de identifica\'E7\'E3o. G\'EAmeos id\'EAnticos possuem impress\'F5es digitais diferentes, bem como cada dedo de uma pessoa apresenta padr\'F5es diferentes. A precis\'E3o desta biometria \'E9 adequada para a autentica\'E7\'E3o e identifica\'E7\'E3o de poucas centenas de usu\'E1rios. Esta quantidade pode ser aumentada para milh\'F5es de usu\'E1rios se m\'FAltiplas impress\'F5es digitais de uma mesma pessoa forem utilizadas. \'C9 uma tecnologia barata, mas que requer grandes quantidades de recursos computacionais, principalmente quando utilizada para a identifica\'E7\'E3o. Outro problema est\'E1 relacionado ao fato de que uma parte da popula\'E7\'E3o n\'E3o pode fazer uso desta biometria, devido a fatores gen\'E9ticos, ambientais ou ocupacionais.\par
+{\pard\qj\sl240\slmult1 \sb240 \li600\fi0  \par
+\pard\qc\sl240\slmult1 \li600\fi0    \par
+\pard\qc\sl240\slmult1 \li600\fi-300 {Figure {\*\bkmkstart BMbiometria_tipos1}2{\*\bkmkend BMbiometria_tipos1}: Exemplos de impress\'E3o digital\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lemes \\* MERGEFORMAT }}{\fldrslt{45}}}
+], face em imagem colorida e face em imagem de profundidade.}{\field{\*\fldinst TC "2 Exemplos de impress\'E3o digital\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lemes \\* MERGEFORMAT }}{\fldrslt{45}}}
+], face em imagem colorida e face em imagem de profundidade." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Face:} A identifica\'E7\'E3o facial \'E9 realizada atrav\'E9s da avalia\'E7\'E3o de diversos padr\'F5es do rosto, entre eles a forma do nariz, a forma e a disposi\'E7\'E3o de olhos e sobrancelhas, entre outros. O reconhecimento pela face \'E9 um m\'E9todo n\'E3o intrusivo, e talvez seja a t\'E9cnica mais utilizada por seres humanos para reconhecerem-se uns aos outros. Existem v\'E1rias formas de se realizar a identifica\'E7\'E3o facial, utilizando-se imagens coloridas, imagens t\'E9rmicas e imagens de profundidade. Estas abordagens variam em termos de confiabilidade, velocidade e custo.\par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b \'CDris:} A \'EDris \'E9 a regi\'E3o colorida do olho, localizada entre a pupila e a parte branca do olho. O conceito de identifica\'E7\'E3o por \'EDris foi criado em 1936\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+], mas sistemas autom\'E1ticos capazes de realizar tal tarefa surgiram apenas depois de 1980. A \'EDris se forma durante o desenvolvimento fetal, e se estabiliza durante os primeiros anos de vida, praticamente n\'E3o se alterando com o passar dos anos. Assim como para impress\'F5es digitais, g\'EAmeos id\'EAnticos possuem \'EDris diferentes. \'C9 uma das biometrias mais confi\'E1veis, por ser consideravelmente diferente para cada pessoa, pela facilidade de detec\'E7\'E3o de \'EDris falsas, al\'E9m de ser extremamente dif\'EDcil de ser alterada cirurgicamente. Sistemas de identifica\'E7\'E3o por \'EDris utilizam imagens iluminadas da \'EDris, sem causar nenhum desconforto ao usu\'E1rio, ao contr\'E1rio do que se pensa. Estes sistemas s\'E3o altamente velozes e precisos, mas possuem um custo elevado.\par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Geometria da m\'E3o:} Sistemas de reconhecimento por geometria da m\'E3o utilizam um conjunto de medidas obtidas a partir da m\'E3o, como o tamanho da palma, a altura e a largura dos dedos, entre outras. Foi um dos primeiros sistemas comerciais de sucesso para autentica\'E7\'E3o pessoal. Mas esta caracter\'EDstica n\'E3o \'E9 suficientemente discriminante para ser utilizadas em sistemas de identifica\'E7\'E3o para um grande n\'FAmero de usu\'E1rios. Al\'E9m disso, a geometria da m\'E3o \'E9 afetada durante o per\'EDodo de crescimento de uma crian\'E7a, e apresenta problemas com acess\'F3rios e com o posicionamento da m\'E3o. Sistemas baseados nesta biometria s\'E3o pouco precisos, mas s\'E3o velozes e de custo m\'E9dio.\par
+{\pard\qj\sl240\slmult1 \sb240 \li600\fi0  \par
+\pard\qc\sl240\slmult1 \li600\fi0    \par
+\pard\qc\sl240\slmult1 \li600\fi-300 {Figure {\*\bkmkstart BMbiometria_tipos2}3{\*\bkmkend BMbiometria_tipos2}: Exemplos de \'EDris\~
+[{\field{\*\fldinst{\lang1024 REF BIB_daugman1 \\* MERGEFORMAT }}{\fldrslt{28}}}, {\field{\*\fldinst{\lang1024 REF BIB_daugman2 \\* MERGEFORMAT }}{\fldrslt{29}}}
+], geometria da m\'E3o\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_bif \\* MERGEFORMAT }}{\fldrslt{2}}}
+] e retina.}{\field{\*\fldinst TC "3 Exemplos de \'EDris\~
+[{\field{\*\fldinst{\lang1024 REF BIB_daugman1 \\* MERGEFORMAT }}{\fldrslt{28}}}, {\field{\*\fldinst{\lang1024 REF BIB_daugman2 \\* MERGEFORMAT }}{\fldrslt{29}}}
+], geometria da m\'E3o\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_bif \\* MERGEFORMAT }}{\fldrslt{2}}}
+] e retina." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Retina:} A identifica\'E7\'E3o por retina se baseia na an\'E1lise da disposi\'E7\'E3o dos vasos sangu\'EDneos no fundo do olho. Envolve coopera\'E7\'E3o do usu\'E1rio para a obten\'E7\'E3o da imagem, pois exige que o indiv\'EDduo olhe para um determinado feixe de luz durante a digitaliza\'E7\'E3o dos padr\'F5es contidos na retina. Trata-se de uma caracter\'EDstica intrusiva, pois pode revelar certas condi\'E7\'F5es da sa\'FAde do usu\'E1rio, como a hipertens\'E3o. Estes fatores afetam a aceitabilidade desta biometria, que possui alta precis\'E3o, n\'E3o se altera com o passar dos anos, e \'E9 considerada a mais dif\'EDcil de ser alterada ou copiada.\par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b DNA:} O \'E1cido desoxirribonucl\'E9ico (DNA, {\i deoxyribonucleic acid}) \'E9 o c\'F3digo gen\'E9tico individual para cada pessoa (exceto para g\'EAmeos id\'EAnticos). Alguns problemas desta caracter\'EDstica s\'E3o a facilidade de obten\'E7\'E3o do DNA de outros usu\'E1rios, o processo de compara\'E7\'E3o envolve processos qu\'EDmicos, dificultando o desenvolvimento de sistemas autom\'E1ticos, e \'E9 altamente intrusiva, uma vez que o c\'F3digo gen\'E9tico possui informa\'E7\'E3o sobre in\'FAmeras doen\'E7as. O tempo de compara\'E7\'E3o para esta biometria \'E9 extremamente alto, assim como o seu custo.\par
+}\pard\qj\sl240\slmult1 \sb220 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 3.2  Caracter\'EDsticas comportamentais\par
+}{\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Assinatura:} Reconhecimento da assinatura: menos confi\'E1vel, algumas assinaturas mudam com o passar do tempo, tamb\'E9m h\'E1 problemas na velocidade e press\'E3o na hora da escrita, m\'E9dio custo. Trata-se de uma biometria comportamental, que varia ao longo do tempo, e \'E9 influenciada por condi\'E7\'F5es f\'EDsicas e emocionais do usu\'E1rio. \'C9 muito utilizada por governos, ou para fins comerciais e legais, embora n\'E3o de forma autom\'E1tica, como um sistema de autentica\'E7\'E3o. As assinaturas de pessoas diferentes costumam ser bem diferentes, e at\'E9 mesmo assinaturas de uma mesma pessoa s\'E3o significativamente diferentes. Sistemas autom\'E1ticos baseados nesta caracter\'EDstica n\'E3o apresentam uma grande precis\'E3o, e exigem uma tecnologia de custo m\'E9dio.\par
+{\pard\qj\sl240\slmult1 \sb240 \li600\fi0  \par
+\pard\qc\sl240\slmult1 \li600\fi0    \par
+\pard\qc\sl240\slmult1 \li600\fi-300 {Figure {\*\bkmkstart BMbiometria_tipos3}4{\*\bkmkend BMbiometria_tipos3}: Ilustra\'E7\'F5es das caracter\'EDsticas modo de digita\'E7\'E3o, voz\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+] e modo de andar\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_agr \\* MERGEFORMAT }}{\fldrslt{1}}}
+].}{\field{\*\fldinst TC "4 Ilustra\'E7\'F5es das caracter\'EDsticas modo de digita\'E7\'E3o, voz\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+] e modo de andar\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_agr \\* MERGEFORMAT }}{\fldrslt{1}}}
+]." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Maneira de digitar:} Biometria baseada na hip\'F3tese de que pessoas diferentes possuem maneiras diferentes de digitar. Embora esta caracter\'EDstica n\'E3o apresente um grau discriminat\'F3rio elevado, oferece informa\'E7\'E3o suficiente para sistemas de verifica\'E7\'E3o. Por ser pouco discriminat\'F3ria, e apresentar grandes varia\'E7\'F5es do padr\'E3o de digita\'E7\'E3o, n\'E3o possui boa precis\'E3o, mas o custo \'E9 relativamente baixo.\par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Voz:} A voz pode ser classificada como uma combina\'E7\'E3o de caracter\'EDsticas f\'EDsicas e comportamentais. A voz \'E9 diferente para cada usu\'E1rio devido \'E0 varia\'E7\'E3o do comprimento das cordas vocais e pela forma da boca, dos l\'E1bios e da cavidade nasal. Mas tamb\'E9m varia de acordo com fatores comportamentais, como a gripe, o estresse, o sotaque e o estado emocional, que podem ser alterados com o passar do tempo. Assim como outras caracter\'EDsticas comportamentais, a voz n\'E3o \'E9 muito precisa, devido a grande varia\'E7\'E3o entre diversas amostras de voz de uma mesma pessoa, al\'E9m de n\'E3o ser muito distintiva. Outro problema \'E9 a influ\'EAncia dos ru\'EDdos do ambiente. Por estes motivos, n\'E3o \'E9 apropriada para sistemas de identifica\'E7\'E3o de larga escala. Estes sistemas podem ser classificados como dependentes ou n\'E3o de texto. Sistemas de reconhecimento de voz dependentes de texto n\'E3o avaliam a forma da fala, ao contr\'E1rio de sistemas independentes de texto.\par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 {\b Maneira de andar:} Analisa os padr\'F5es da forma de andar de cada indiv\'EDduo, e, assim como a face, tamb\'E9m \'E9 utilizada por pessoas para o reconhecimento, e possui uma boa aceitabilidade. N\'E3o \'E9 uma caracter\'EDstica muito discriminat\'F3ria, e \'E9 afetada pelo crescimento e por les\'F5es f\'EDsicas e cerebrais. Sistemas autom\'E1ticos baseados no modo de andar analisam seq\'FC\'EAncias de v\'EDdeo, avaliando diversos movimentos de cada articula\'E7\'E3o, requerendo uma grande quantidade de recursos computacionais.\par
+}\pard\qj\sl240\slmult1 \sb340 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 4  Biometria facial\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A face \'E9 uma das caracter\'EDsticas biom\'E9tricas de maior aceitabilidade entre as pessoas, provavelmente por ser o modo mais comum de identifica\'E7\'E3o entre seres humanos, e tamb\'E9m por n\'E3o ser intrusiva.\par
+\pard\qj\sl240\slmult1 \fi300 Esfor\'E7os para a automatiza\'E7\'E3o do reconhecimento baseado em faces iniciaram depois de 1960, quando o primeiro m\'E9todo semi-autom\'E1tico foi criado. Neste m\'E9todo, inicialmente um administrador localizava manualmente certos pontos caracter\'EDsticos em fotografias (olhos, nariz, orelhas e boca, por exemplo), entrava com essas coordenadas e o sistema computava dist\'E2ncias e propor\'E7\'F5es entre estas caracter\'EDsticas e um ponto referencial, e utilizava estas medidas para comparar com dados anteriormente adquiridos.\par
+\pard\qj\sl240\slmult1 \fi300 Em 1988, Kirby e Sirovich empregaram a An\'E1lise de Componentes Principais (PCA, {\i Principal Component Analysis}), baseada na t\'E9cnica de \'E1lgebra linear conhecida como autovetores e autovalores, para o problema do reconhecimento facial\~
+[{\field{\*\fldinst{\lang1024 REF BIB_sirovich \\* MERGEFORMAT }}{\fldrslt{61}}}
+]. Basicamente, este m\'E9todo cria c\'F3digos para imagens faciais com menos de cem valores, possibilitando compara\'E7\'F5es muito velozes, e com grau elevado de precis\'E3o, desde que as imagens de faces estivessem normalizadas. Logo depois, Turk e Pentland utilizaram esta mesma abordagem para detectar faces em imagens\~
+[{\field{\*\fldinst{\lang1024 REF BIB_turk \\* MERGEFORMAT }}{\fldrslt{64}}}
+], descobrindo que \'E9 poss\'EDvel a cria\'E7\'E3o de sistemas completamente autom\'E1ticos para a o reconhecimento facial em tempo real.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMbiometria_sirovich}5{\*\bkmkend BMbiometria_sirovich}: Imagens do trabalho de Kirby e Sirovich\~
+[{\field{\*\fldinst{\lang1024 REF BIB_kirby \\* MERGEFORMAT }}{\fldrslt{42}}}
+].}{\field{\*\fldinst TC "5 Imagens do trabalho de Kirby e Sirovich\~
+[{\field{\*\fldinst{\lang1024 REF BIB_kirby \\* MERGEFORMAT }}{\fldrslt{42}}}
+]." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Desde ent\'E3o, um grande interesse e esfor\'E7o da comunidade cient\'EDfica tem sido direcionado a este problema. V\'E1rias solu\'E7\'F5es foram propostas, e novas vers\'F5es desta biometria surgiram, baseadas em imagens tridimensionais (3D), em imagens t\'E9rmicas e em imagens adquiridas por c\'E2meras com sistema de ilumina\'E7\'E3o infravermelho. Estas abordagens variam em termos de confiabilidade, velocidade e custo, mas o reconhecimento facial em imagens 3D tem se destacado devido a sua precis\'E3o. O reconhecimento facial em imagens coloridas (2D) continua a dominar aplica\'E7\'F5es em tempo real.\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 4.1  Biometria facial 2D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Trata-se de uma caracter\'EDstica que pode ser obtida sem a coopera\'E7\'E3o do usu\'E1rio, embora sistemas que necessitam de um condicionamento pr\'E9vio do usu\'E1rio (posi\'E7\'E3o frontal e express\'E3o neutra) obtenham melhores resultados.\par
+\pard\qj\sl240\slmult1 \fi300 Sistemas de reconhecimento baseados em faces 2D variam entre autentica\'E7\'E3o em ambientes est\'E1ticos e controlados (controle de acesso) e identifica\'E7\'E3o em ambientes com fundo complexo e vari\'E1vel (aeroportos). Ambientes n\'E3o controlados acarretam diversos problemas ainda n\'E3o inteiramente resolvidos, como varia\'E7\'F5es de ilumina\'E7\'E3o, pose, escala e express\'E3o facial.\par
+\pard\qj\sl240\slmult1 \fi300 Existem duas formas b\'E1sicas de realizar o reconhecimento facial: detectando pontos caracter\'EDsticos e avaliando rela\'E7\'F5es espaciais entre eles, ou criando um modelo global da face a partir da combina\'E7\'E3o de faces can\'F4nicas. M\'E9todos baseados nesta \'FAltima id\'E9ia t\'EAm apresentado melhores resultados, entre eles o PCA e a An\'E1lise de Discriminantes Lineares (LDA, {\i Linear Discriminant Analysis})\~
+[{\field{\*\fldinst{\lang1024 REF BIB_etemad \\* MERGEFORMAT }}{\fldrslt{30}}}
+].\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 4.2  Biometria facial 3D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Os m\'E9todos atuais de reconhecimento facial 3D trabalham com imagens adquiridas com a coopera\'E7\'E3o do usu\'E1rio, devido \'E0s limita\'E7\'F5es dos dispositivos de aquisi\'E7\'E3o dispon\'EDveis. Estes dispositivos possuem restri\'E7\'F5es em rela\'E7\'E3o \'E0 dist\'E2ncia do objeto, e variam em termos de qualidade. As melhores imagens tridimensionais obtidas atualmente s\'E3o adquiridas por sensores {\i laser}, que possuem um custo elevado.\par
+\pard\qj\sl240\slmult1 \fi300 A biometria facial 3D oferece certas vantagens em rela\'E7\'E3o \'E0 biometria facial 2D, como a aus\'EAncia da varia\'E7\'E3o de ilumina\'E7\'E3o e escala (dependendo da forma de aquisi\'E7\'E3o) e a possibilidade de corre\'E7\'E3o da pose\~
+[{\field{\*\fldinst{\lang1024 REF BIB_malassiotis \\* MERGEFORMAT }}{\fldrslt{50}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Duas t\'E9cnicas se destacam para o reconhecimento facial 3D: a primeira cria proje\'E7\'F5es bidimensionais das imagens 3D, e utiliza as t\'E9cnicas criadas para o reconhecimento facial 2D para a identifica\'E7\'E3o, e o segundo utiliza o conceito de registro de imagens para alinhar e medir a diferen\'E7a entre superf\'EDcies, e utilizar esta informa\'E7\'E3o para o reconhecimento. Esta \'FAltima abordagem possui precis\'E3o elevada, mas o custo computacional envolvido limita seu uso em sistemas de identifica\'E7\'E3o.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMbiometria_biometria3D}6{\*\bkmkend BMbiometria_biometria3D}: Exemplos de reconhecimento facial por proje\'E7\'E3o bidimensionais\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}
+] e por registro de imagens\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bellon3 \\* MERGEFORMAT }}{\fldrslt{11}}}
+].}{\field{\*\fldinst TC "6 Exemplos de reconhecimento facial por proje\'E7\'E3o bidimensionais\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}
+] e por registro de imagens\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bellon3 \\* MERGEFORMAT }}{\fldrslt{11}}}
+]." \\f f}{\fldrslt }}\par
+}\page{}\pard\qj\sl240\slmult1 \sb240 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter {\*\bkmkstart BMsec_conceitos}4{\*\bkmkend BMsec_conceitos}\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Conceitos\par
+\par\par}\pard\qj\sl240\slmult1 \sb300 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 1  Processamento de Imagens\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 O processamento de imagens \'E9 um conjunto de t\'E9cnicas que processa uma imagem de entrada para gerar uma imagem de sa\'EDda baseada nos dados da imagem original, e que esta imagem de sa\'EDda apresente alguma vantagem em rela\'E7\'E3o \'E0 imagem original para algum uso posterior. Estas t\'E9cnicas t\'EAm sido utilizadas para o tratamento de imagens (recupera\'E7\'E3o de fotos danificadas, efeitos especiais) e tamb\'E9m em processamentos posteriores, geralmente relacionados com processos de vis\'E3o computacional (reconhecimento de padr\'F5es)\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 A Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_processamento \\* MERGEFORMAT }}{\fldrslt{7}}} mostra um exemplo em que t\'E9cnicas de processamentos de imagem s\'E3o utilizadas para o realce das linhas de uma imagem de impress\'E3o digital (Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_processamento_realce \\* MERGEFORMAT }}{\fldrslt{7(b)}}}), e em seguida para o afinamento desta imagem real\'E7ada (Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_processamento_afinamento \\* MERGEFORMAT }}{\fldrslt{7(c)}}}).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMconceitos_processamento_entrada}1{\*\bkmkend BMconceitos_processamento_entrada}: Exemplo de processamento de imagens: (a) imagem de impress\'E3o digital de entrada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lemes \\* MERGEFORMAT }}{\fldrslt{45}}}
+], (b) realce e (c) afinamento das linhas.}{\field{\*\fldinst TC "1 Exemplo de processamento de imagens: (a) imagem de impress\'E3o digital de entrada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lemes \\* MERGEFORMAT }}{\fldrslt{45}}}
+], (b) realce e (c) afinamento das linhas." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 2  Vis\'E3o Computacional\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 O objetivo da vis\'E3o computacional\~
+[{\field{\*\fldinst{\lang1024 REF BIB_shapiro \\* MERGEFORMAT }}{\fldrslt{59}}}
+] \'E9 analisar uma imagem de entrada e criar modelos dos objetos da cena para interpreta\'E7\'F5es posteriores. Em outras palavras, dada uma imagem de entrada, a vis\'E3o computacional gera como sa\'EDda um conjunto de informa\'E7\'F5es sobre a mesma. Temas de pesquisa nesta \'E1rea incluem reconstru\'E7\'E3o de cenas, detec\'E7\'E3o de eventos, reconhecimento de objetos, aprendizagem de m\'E1quina, entre outros.\par
+\pard\qj\sl240\slmult1 \fi300 Na Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_visao \\* MERGEFORMAT }}{\fldrslt{8}}} temos um exemplo de uma t\'E9cnica de vis\'E3o computacional que utiliza a imagem pr\'E9-processada da impress\'E3o digital (Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_visao_afinamento \\* MERGEFORMAT }}{\fldrslt{8(a)}}}) para localizar as min\'FAcias (c\'EDrculos e quadrados na Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_visao_minuncias \\* MERGEFORMAT }}{\fldrslt{8(b)}}}, representando bifurca\'E7\'F5es e finais de linha, respectivamente) e o centro da impress\'E3o digital (tri\'E2ngulo na Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_visao_minuncias \\* MERGEFORMAT }}{\fldrslt{8(b)}}}).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMconceitos_visao_afinamento}2{\*\bkmkend BMconceitos_visao_afinamento}: Exemplo de vis\'E3o computacional: (a) imagem pr\'E9-processada de impress\'E3o digital\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lemes \\* MERGEFORMAT }}{\fldrslt{45}}}
+] e (b) localiza\'E7\'E3o das min\'FAcias.}{\field{\*\fldinst TC "2 Exemplo de vis\'E3o computacional: (a) imagem pr\'E9-processada de impress\'E3o digital\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lemes \\* MERGEFORMAT }}{\fldrslt{45}}}
+] e (b) localiza\'E7\'E3o das min\'FAcias." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 3  Segmenta\'E7\'E3o\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 O processo de segmenta\'E7\'E3o\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+] consiste em empregar t\'E9cnicas de processamento de imagens e vis\'E3o computacional para encontrar determinadas regi\'F5es de interesse em uma imagem de entrada. Tecnicamente, este processo procura dividir a imagem em sub-regi\'F5es com caracter\'EDsticas semelhantes, e classificar quais destas sub-regi\'F5es s\'E3o relevantes de acordo com algum crit\'E9rio.\par
+\pard\qj\sl240\slmult1 \fi300 A Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_segmentacao \\* MERGEFORMAT }}{\fldrslt{9}}} exemplifica o resultado de um processo de segmenta\'E7\'E3o em imagens 3D em que a face representa a regi\'E3o de interesse.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMconceitos_segmentacao}3{\*\bkmkend BMconceitos_segmentacao}: Exemplo de segmenta\'E7\'E3o da regi\'E3o facial: (a) imagem de entrada e (b) regi\'E3o facial extra\'EDda.}{\field{\*\fldinst TC "3 Exemplo de segmenta\'E7\'E3o da regi\'E3o facial: (a) imagem de entrada e (b) regi\'E3o facial extra\'EDda." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 4  Detec\'E7\'E3o de Bordas\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A id\'E9ia b\'E1sica do processo de detec\'E7\'E3o de bordas consiste em identificar regi\'F5es de fronteira entre os objetos de uma imagem de entrada, ou \'E1reas de descontinuidade nestes mesmos objetos. V\'E1rias t\'E9cnicas foram propostas para solucionar este problema, com diferentes resultados para diferentes conjuntos de imagens.\par
+\pard\qj\sl240\slmult1 \fi300 Uma das t\'E9cnicas mais utilizadas \'E9 conhecida como filtro de Sobel\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+] combinado com uma limiariza\'E7\'E3o. Nesta abordagem, avalia-se as mudan\'E7as verticais e horizontais na vizinhan\'E7a de cada ponto da imagem, e, se estas varia\'E7\'F5es ultrapassarem um limite determinado, o respectivo ponto \'E9 classificado como borda. A Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_bordas \\* MERGEFORMAT }}{\fldrslt{10}}} exemplifica a aplica\'E7\'E3o do filtro de Sobel seguido de uma limiariza\'E7\'E3o em imagens de profundidade.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMconceitos_bordas}4{\*\bkmkend BMconceitos_bordas}: Exemplo de detec\'E7\'E3o de bordas em imagens de profundidade: (a) imagem de entrada e (b) regi\'F5es de fronteira e descontinuidade localizadas.}{\field{\*\fldinst TC "4 Exemplo de detec\'E7\'E3o de bordas em imagens de profundidade: (a) imagem de entrada e (b) regi\'F5es de fronteira e descontinuidade localizadas." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 5  Detec\'E7\'E3o de Regi\'F5es\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 M\'E9todos de detec\'E7\'E3o de regi\'F5es procuram agrupar os pontos das imagens em sub-regi\'F5es de acordo com algum crit\'E9rio. As t\'E9cnicas propostas variam entre a utiliza\'E7\'E3o da informa\'E7\'E3o espacial das imagens ou a n\'E3o utiliza\'E7\'E3o da mesma. A avalia\'E7\'E3o espacial n\'E3o considera apenas o crit\'E9rio que determina se dois pontos pertencem ou n\'E3o \'E0 mesma regi\'E3o, considerando tamb\'E9m a conectividade destes pontos.\par
+\pard\qj\sl240\slmult1 \fi300 Na Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_regioes \\* MERGEFORMAT }}{\fldrslt{11}}} temos um exemplo da localiza\'E7\'E3o de regi\'F5es, em que o crit\'E9rio que determina se dois pontos pertencem ou n\'E3o \'E0 mesma regi\'E3o foi a dist\'E2ncia em rela\'E7\'E3o ao dispositivo de aquisi\'E7\'E3o.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMconceitos_regioes}5{\*\bkmkend BMconceitos_regioes}: Exemplo de detec\'E7\'E3o de regi\'F5es em imagens de profundidade: (a) imagem de entrada e (b) regi\'F5es determinadas.}{\field{\*\fldinst TC "5 Exemplo de detec\'E7\'E3o de regi\'F5es em imagens de profundidade: (a) imagem de entrada e (b) regi\'F5es determinadas." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 6  Detec\'E7\'E3o de Formas\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 M\'E9todos de detec\'E7\'E3o de formas buscam encontrar padr\'F5es na imagem relacionados com algum modelo definido anteriormente. Um dos m\'E9todos mais conhecidos \'E9 a transformada Hough\~
+[{\field{\*\fldinst{\lang1024 REF BIB_hough \\* MERGEFORMAT }}{\fldrslt{37}}}
+], que localiza padr\'F5es em imagens a partir de modelos baseados em equa\'E7\'F5es matem\'E1ticas. Esta t\'E9cnica pode ser utilizada para detectar retas, curvas, circunfer\'EAncias, elipses, entre outros em imagens 2D, e planos, esferas, elips\'F3ides, entre outros em imagens 3D.\par
+\pard\qj\sl240\slmult1 \fi300 Uma vers\'E3o simples da aplica\'E7\'E3o da transformada Hough para a detec\'E7\'E3o de elipses em imagens de bordas pode ser implementada em tr\'EAs passos: (1) cria\'E7\'E3o de um modelo matem\'E1tico que possibilite o c\'E1lculo dos par\'E2metros de uma elipse (centro, tamanho dos eixos e orienta\'E7\'E3o) a partir de M pontos; (2) c\'E1lculo dos par\'E2metros para todas as combina\'E7\'F5es de M pontos para os pontos de uma imagem de entrada; e (3) busca pelos conjuntos de par\'E2metros que apareceram em uma quantidade m\'EDnima de combina\'E7\'F5es previamente determinada, que correspondem aos par\'E2metros das elipses detectadas.\par
+\pard\qj\sl240\slmult1 \fi300 A Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_forma \\* MERGEFORMAT }}{\fldrslt{12}}} ilustra um resultado obtido pela detec\'E7\'E3o de forma utilizando os pontos de uma imagem de borda. Neste exemplo, a detec\'E7\'E3o de forma tem o objetivo de localizar a regi\'E3o da face.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMconceitos_forma}6{\*\bkmkend BMconceitos_forma}: Exemplo de detec\'E7\'E3o de forma em imagens de borda: (a) imagem de borda de entrada e (b) elipse detectada.}{\field{\*\fldinst TC "6 Exemplo de detec\'E7\'E3o de forma em imagens de borda: (a) imagem de borda de entrada e (b) elipse detectada." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 7  Curvatura de Superf\'EDcies\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A classifica\'E7\'E3o de superf\'EDcies pela curvatura\~
+[{\field{\*\fldinst{\lang1024 REF BIB_besl2 \\* MERGEFORMAT }}{\fldrslt{13}}}
+] \'E9 realizada para cada ponto de uma imagem analisando uma vizinhan\'E7a {{{\i N}{\f6\'B4}{\i N}}} definida em torno dos mesmos.\par
+\pard\qj\sl240\slmult1 \fi300 Considerando que uma superf\'EDcie local {{{\i S}}} \'E9 dada por:\par
+{{{\i S}=\{({\i x},{\i y},{\i z})|{\i f}({\i x},{\i y})={\i z}\}}}\par
+\pard\qj\sl240\slmult1 \fi0 e a fun\'E7\'E3o {{{\i f}}} \'E9 dada pela equa\'E7\'E3o:\par
+{{\field{\*\fldinst{ EQ {{\i f}({\i x}\\,{\i y})={\i a}+{\i b}{\i x}+{\i c}{\i y}+{\i d}{\i x}{\i y}+{\i e}{\i x}\\s\\up5({\fs16 2})+{\i f}{\i y}\\s\\up5({\fs16 2})}}}{\fldrslt }}}\par
+\pard\qj\sl240\slmult1 \fi0 podemos criar um sistema de equa\'E7\'F5es a partir de um conjunto de pontos {{({\i x},{\i y})}} pertencentes \'E0 vizinhan\'E7a de um ponto {{\field{\*\fldinst{ EQ {({\i x}\\s\\do5({\fs16 {\i i}})\\,{\i y}\\s\\do5({\fs16 {\i j}}))}}}{\fldrslt }}} a partir da seguinte equa\'E7\'E3o:\par
+{{\field{\*\fldinst{ EQ {{\i g}\\s\\do5({\fs16 {\i i}{\i j}})({\i x}\\,{\i y})={\i A}\\s\\do5({\fs16 {\i i}{\i j}})+{\i B}\\s\\do5({\fs16 {\i i}{\i j}})({\i x}{\f6\u-4051\'2D}{\i x}\\s\\do5({\fs16 {\i i}}))+{\i C}\\s\\do5({\fs16 {\i i}{\i j}})({\i y}{\f6\u-4051\'2D}{\i y}\\s\\do5({\fs16 {\i j}}))+{\i D}\\s\\do5({\fs16 {\i i}{\i j}})({\i x}{\f6\u-4051\'2D}{\i x}\\s\\do5({\fs16 {\i i}}))({\i y}{\f6\u-4051\'2D}{\i y}\\s\\do5({\fs16 {\i j}}))+{\i E}\\s\\do5({\fs16 {\i i}{\i j}})({\i x}{\f6\u-4051\'2D}{\i x}\\s\\do5({\fs16 {\i i}}))\\s\\up5({\fs16 2})+{\i F}\\s\\do5({\fs16 {\i i}{\i j}})({\i y}{\f6\u-4051\'2D}{\i y}\\s\\do5({\fs16 {\i j}}))\\s\\up5({\fs16 2})}}}{\fldrslt }}}\par
+\pard\qj\sl240\slmult1 \fi0 onde {{\field{\*\fldinst{ EQ {{\i g}\\s\\do5({\fs16 {\i i}{\i j}})({\i x}\\,{\i y})}}}{\fldrslt }}} representa o valor de profundidade da imagem na coordenada {{({\i x},{\i y})}}. Este sistema de equa\'E7\'F5es pode ser resolvido por m\'E9todos de aproxima\'E7\'E3o por quadrados m\'EDnimos, e a partir dos par\'E2metros descobertos pode-se estimar os valores das derivadas primeiras e segundas da fun\'E7\'E3o {{{\i f}}} da seguinte forma:\par
+{{\field{\*\fldinst{ EQ {{\i f}\\s\\do5({\fs16 {\i x}})({\i x}\\s\\do5({\fs16 {\i i}})\\,{\i y}\\s\\do5({\fs16 {\i j}}))={\i B}\\s\\do5({\fs16 {\i i}{\i j}})}}}{\fldrslt }}}\par
+{{\field{\*\fldinst{ EQ {{\i f}\\s\\do5({\fs16 {\i y}})({\i x}\\s\\do5({\fs16 {\i i}})\\,{\i y}\\s\\do5({\fs16 {\i j}}))={\i C}\\s\\do5({\fs16 {\i i}{\i j}})}}}{\fldrslt }}}\par
+{{\field{\*\fldinst{ EQ {{\i f}\\s\\do5({\fs16 {\i x}{\i y}})({\i x}\\s\\do5({\fs16 {\i i}})\\,{\i y}\\s\\do5({\fs16 {\i j}}))={\i D}\\s\\do5({\fs16 {\i i}{\i j}})}}}{\fldrslt }}}\par
+{{\field{\*\fldinst{ EQ {{\i f}\\s\\do5({\fs16 {\i x}{\i x}})({\i x}\\s\\do5({\fs16 {\i i}})\\,{\i y}\\s\\do5({\fs16 {\i j}}))=2{\i E}\\s\\do5({\fs16 {\i i}{\i j}})}}}{\fldrslt }}}\par
+{{\field{\*\fldinst{ EQ {{\i f}\\s\\do5({\fs16 {\i y}{\i y}})({\i x}\\s\\do5({\fs16 {\i i}})\\,{\i y}\\s\\do5({\fs16 {\i j}}))=2{\i F}\\s\\do5({\fs16 {\i i}{\i j}})}}}{\fldrslt }}}\par
+\pard\qj\sl240\slmult1 \fi300 Estes valores podem ser utilizados para estimar as curvaturas M\'E9dia ({{{\i H}}}) e Gaussiana ({{{\i K}}})\~
+[{\field{\*\fldinst{\lang1024 REF BIB_besl1 \\* MERGEFORMAT }}{\fldrslt{12}}}
+] a partir das equa\'E7\'F5es:\par
+{{\field{\*\fldinst{ EQ {{\i H}({\i x}\\s\\do5({\fs16 0})\\,{\i y}\\s\\do5({\fs16 0}))= \\F((1+{\i f}\\s\\up({\fs16 2,{\i y}})){\i f}\\s\\do5({\fs16 {\i x}{\i x}}){\f6\u-4051\'2D}2{\i f}\\s\\do5({\fs16 {\i x}}){\i f}\\s\\do5({\fs16 {\i y}}){\i f}\\s\\do5({\fs16 {\i x}{\i y}})+(1+{\i f}\\s\\up({\fs16 2,{\i x}})){\i f}\\s\\do5({\fs16 {\i y}{\i y}}),2(1+{\i f}\\s\\up({\fs16 2,{\i x}})+{\i f}\\s\\up({\fs16 2,{\i y}}))\\s\\up5({\fs16  \\F(3,2)}))}}}{\fldrslt }}}\par
+{{\field{\*\fldinst{ EQ {{\i K}({\i x}\\s\\do5({\fs16 0})\\,{\i y}\\s\\do5({\fs16 0}))= \\F({\i f}\\s\\do5({\fs16 {\i x}{\i x}}){\i f}\\s\\do5({\fs16 {\i y}{\i y}}){\f6\u-4051\'2D}{\i f}\\s\\up({\fs16 2,{\i x}{\i y}}),(1+{\i f}\\s\\up({\fs16 2,{\i x}})+{\i f}\\s\\up({\fs16 2,{\i y}}))\\s\\up5({\fs16 2}))}}}{\fldrslt }}}\par
+\pard\qj\sl240\slmult1 \fi0 e, utilizando os valores de {{{\i K}}} e {{{\i H}}}, podemos classificar cada ponto de acordo com a Tabela\~{\field{\*\fldinst{\lang1024 REF BMconceitos_curvatura \\* MERGEFORMAT }}{\fldrslt{2}}}.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx1725\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {{{\field{\*\fldinst{ EQ {\\s\\do5({\fs16 {\i K}})}}}{\fldrslt }}} {{\field{\*\fldinst{ EQ {\\s\\up5({\fs16 {\i H}})}}}{\fldrslt }}}}\cell
+\pard\intbl\qc {{{<0}}}\cell
+\pard\intbl\qc {{{=0}}}\cell
+\pard\intbl\qc {{{>0}}}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {{{<0}}}\cell
+\pard\intbl\qc {sela (cume)}\cell
+\pard\intbl\qc {m\'EDnimo}\cell
+\pard\intbl\qc {sela (vale)}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {{{=0}}}\cell
+\pard\intbl\qc {cume}\cell
+\pard\intbl\qc {plano}\cell
+\pard\intbl\qc {vale}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {{{>0}}}\cell
+\pard\intbl\qc {pico}\cell
+\pard\intbl\qc {(nenhum)}\cell
+\pard\intbl\qc {po\'E7o}\cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMconceitos_curvatura}1{\*\bkmkend BMconceitos_curvatura}: Tipos de superf\'EDcies.}{\field{\*\fldinst TC "1 Tipos de superf\'EDcies." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 A Figura\~{\field{\*\fldinst{\lang1024 REF BMconceitos_forma \\* MERGEFORMAT }}{\fldrslt{12}}} ilustra o processo de classifica\'E7\'E3o de superf\'EDcies por curvatura. Neste exemplo, os pontos da imagem que tiveram suas superf\'EDcies locais classificadas como do tipo pico s\'E3o mostrados em claro.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure : Exemplo da classifica\'E7\'E3o de superf\'EDcies por curvatura.}{\field{\*\fldinst TC "7 Exemplo da classifica\'E7\'E3o de superf\'EDcies por curvatura." \\f f}{\fldrslt }}\par
+}\page{}\pard\qj\sl240\slmult1 \sb240 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter {\*\bkmkstart BMsec_reconhecimento_facial_3D}5{\*\bkmkend BMsec_reconhecimento_facial_3D}\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Reconhecimento Facial 3D\par
+\par\par}\pard\qj\sl240\slmult1 \sb60 \fi0 Um sistema comum de reconhecimento biom\'E9trico \'E9 composto por cinco componentes\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_nstc \\* MERGEFORMAT }}{\fldrslt{5}}}
+]: (1) dispositivo de aquisi\'E7\'E3o de imagens em formato digital; (2) algoritmos de pr\'E9-processamento para controle de qualidade e padroniza\'E7\'E3o da imagem obtida; (3) base de dados que armazena os modelos a serem comparados com as imagens de entrada; (4) algoritmo de correspond\'EAncia que compara o modelo biom\'E9trico adquirido com um ou mais modelos da base de dados; e (5) processo de decis\'E3o que utiliza os resultados da correspond\'EAncia para gerar uma resposta do sistema.\par
+\pard\qj\sl240\slmult1 \fi300 Neste trabalho, foram desenvolvidos procedimentos para o pr\'E9-processamento de imagens adquiridas para o reconhecimento facial 3D, com o objetivo de eliminar regi\'F5es irrelevantes da imagem de entrada e localizar um conjunto de pontos caracter\'EDsticos. Detalhes sobre aquisi\'E7\'E3o de imagens, pr\'E9-processamento e aplica\'E7\'F5es no reconhecimento s\'E3o apresentados a seguir.\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 1  Aquisi\'E7\'E3o de imagens 3D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A aquisi\'E7\'E3o de imagens de profundidade corresponde ao problema inicial do reconhecimento facial 3D. A forma de aquisi\'E7\'E3o de imagem afeta diretamente aceitabilidade e custo desta biometria. T\'E9cnicas para a obten\'E7\'E3o destas imagens requerem diferentes n\'EDveis de colabora\'E7\'E3o do usu\'E1rio, em termos de dist\'E2ncia do sensor, movimenta\'E7\'E3o e exposi\'E7\'E3o a qualquer tipo de radia\'E7\'E3o. Entre as formas de aquisi\'E7\'E3o mais conhecidas est\'E3o a vis\'E3o est\'E9reo, a luz estruturada e o sensor laser.\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 1.1  Vis\'E3o est\'E9reo\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A vis\'E3o est\'E9reo\~
+[{\field{\*\fldinst{\lang1024 REF BIB_ballard2 \\* MERGEFORMAT }}{\fldrslt{8}}}
+] tem como objetivo obter a informa\'E7\'E3o tridimensional de objetos a partir de duas ou mais imagens capturadas simultaneamente. Esta abordagem requer uma calibra\'E7\'E3o pr\'E9via das c\'E2meras utilizadas, al\'E9m de utilizar alguma t\'E9cnica de correspond\'EAncia entre imagens, possibilitando a recupera\'E7\'E3o da profundidade a partir de imagens bidimensionais. Esta forma de aquisi\'E7\'E3o \'E9 baseada na vis\'E3o dos seres humanos, bem como de outros animais, que fornece uma percep\'E7\'E3o tridimensional atrav\'E9s da estereoscopia.\par
+\pard\qj\sl240\slmult1 \fi300 Esta t\'E9cnica possui um custo baixo, e n\'E3o necessita da coopera\'E7\'E3o do usu\'E1rio. Entretanto, n\'E3o \'E9 muito precisa, e sua qualidade \'E9 altamente afetada por imagens de baixa resolu\'E7\'E3o e varia\'E7\'F5es de ilumina\'E7\'E3o. A Figura\~{\field{\*\fldinst{\lang1024 REF BMaquisicao_visaoestereo \\* MERGEFORMAT }}{\fldrslt{14}}} mostra um exemplo da reconstru\'E7\'E3o tridimensional da face utilizando quatro c\'E2meras.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMaquisicao_visaoestereo}1{\*\bkmkend BMaquisicao_visaoestereo}: Aquisi\'E7\'E3o de imagens faciais por vis\'E3o est\'E9reo\~
+[{\field{\*\fldinst{\lang1024 REF BIB_uchida \\* MERGEFORMAT }}{\fldrslt{65}}}
+].}{\field{\*\fldinst TC "1 Aquisi\'E7\'E3o de imagens faciais por vis\'E3o est\'E9reo\~
+[{\field{\*\fldinst{\lang1024 REF BIB_uchida \\* MERGEFORMAT }}{\fldrslt{65}}}
+]." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 1.2  Luz estruturada\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A grande dificuldade da t\'E9cnica anterior se resume em encontrar pontos correspondentes nas imagens adquiridas. Objetos lisos n\'E3o forma padr\'F5es de textura suficientemente diferenci\'E1veis durante o processo de correspond\'EAncia, bem como cenas muito complexas tamb\'E9m prejudicam esta correla\'E7\'E3o. Para solucionar este problema, pode-se utilizar uma abordagem baseada em luz estruturada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_caspi \\* MERGEFORMAT }}{\fldrslt{18}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Esta abordagem utiliza uma fonte de luz para projetar padr\'F5es conhecidos na cena a ser adquirida. H\'E1 duas formas de se utilizar estes padr\'F5es para a reconstru\'E7\'E3o tridimensional: pode-se utilizar luz estruturada de forma a auxiliar o processo de correspond\'EAncia para vis\'E3o est\'E9reo, ou, a partir da geometria da c\'E2mera e do projetor, pode-se recuperar a informa\'E7\'E3o de profundidade atrav\'E9s de uma t\'E9cnica similar \'E0 triangula\'E7\'E3o.\par
+\pard\qj\sl240\slmult1 \fi300 Esta t\'E9cnica tem custo m\'E9dio, \'E9 r\'E1pida e apresenta boa precis\'E3o, mas o usu\'E1rio precisa ser exposto a uma fonte de luz, al\'E9m de possuir certas restri\'E7\'F5es em rela\'E7\'E3o \'E0 ilumina\'E7\'E3o do ambiente. A Figura\~{\field{\*\fldinst{\lang1024 REF BMaquisicao_luzestruturada \\* MERGEFORMAT }}{\fldrslt{15}}} mostra um exemplo da aplica\'E7\'E3o da luz estruturada para a obten\'E7\'E3o de imagens faciais.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMaquisicao_luzestruturada}2{\*\bkmkend BMaquisicao_luzestruturada}: Aquisi\'E7\'E3o de imagens faciais por luz estruturada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_tsalakanidou \\* MERGEFORMAT }}{\fldrslt{63}}}
+].}{\field{\*\fldinst TC "2 Aquisi\'E7\'E3o de imagens faciais por luz estruturada\~
+[{\field{\*\fldinst{\lang1024 REF BIB_tsalakanidou \\* MERGEFORMAT }}{\fldrslt{63}}}
+]." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 1.3  Sensor {\i laser}\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Sensores {\i laser} adquirem informa\'E7\'E3o de profundidade atrav\'E9s da triangula\'E7\'E3o, fornecendo como resultado as imagens tridimensionais ({\i range images}). Basicamente, estes dispositivos emitem um {\i laser}, que reflete no objeto e \'E9 recapturado por um sensor CCD. A informa\'E7\'E3o tridimensional \'E9 recuperada analisando-se dire\'E7\'E3o do {\i laser} e posi\'E7\'E3o da recaptura.\par
+\pard\qj\sl240\slmult1 \fi300 Apresenta precis\'E3o alta, mas exige um tempo consider\'E1vel na aquisi\'E7\'E3o, al\'E9m de ser relativamente caro. Entretanto, estas imagens s\'E3o as mais utilizadas em trabalhos abordando o reconhecimento facial 3D. A Figura\~{\field{\*\fldinst{\lang1024 REF BMaquisicao_laser \\* MERGEFORMAT }}{\fldrslt{16}}} mostra um exemplo de uma imagem de face obtida com um sensor {\i laser}. Nesta imagem, quanto mais pr\'F3ximo um ponto est\'E1 do sensor, mais clara \'E9 a sua cor.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMaquisicao_laser}3{\*\bkmkend BMaquisicao_laser}: Aquisi\'E7\'E3o de imagens faciais por sensor laser.}{\field{\*\fldinst TC "3 Aquisi\'E7\'E3o de imagens faciais por sensor laser." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Outras imagens de profundidade obtidas por um sensor {\i laser} s\'E3o mostradas na Figura\~{\field{\*\fldinst{\lang1024 REF BMaquisicao_range \\* MERGEFORMAT }}{\fldrslt{17}}}, exemplificando algumas das dificuldades para este m\'E9todo de aquisi\'E7\'E3o, como a presen\'E7a de regi\'F5es escuras que n\'E3o refletem de maneira satisfat\'F3ria o {\i laser} ({\i e.g.}, \'EDris, pupila e roupas) e de regi\'F5es que dispersam o {\i laser} ({\i e.g.}, cabelo e barba). Outra dificuldade que pode ser observada \'E9 a limita\'E7\'E3o da dist\'E2ncia focal de aquisi\'E7\'E3o, que impede a obten\'E7\'E3o dos pontos do fundo da imagem ({\i e.g.}, a parede).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \sb170 \fi300  \par
+\pard\qc\sl240\slmult1 \sb170 \fi300   \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMaquisicao_range}4{\*\bkmkend BMaquisicao_range}: Exemplos de imagens de profundidade.}{\field{\*\fldinst TC "4 Exemplos de imagens de profundidade." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 {\*\bkmkstart BMsegmentacao}2{\*\bkmkend BMsegmentacao}  Segmenta\'E7\'E3o facial em imagens de profundidade\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 O objetivo desta primeira etapa de processamento \'E9 segmentar a regi\'E3o da face em uma imagem de profundidade de entrada contendo somente um sujeito, como mostrado na Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_entrada \\* MERGEFORMAT }}{\fldrslt{18}}}. Nessa figura, s\'E3o mostradas apenas imagens renderizadas e n\'E3o imagens de profundidade, para enfatizar a forma das superf\'EDcies.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0     \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_entrada}5{\*\bkmkend BMsegmentacao_entrada}: Exemplos de imagens de profundidade de entrada.}{\field{\*\fldinst TC "5 Exemplos de imagens de profundidade de entrada." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 O m\'E9todo de segmenta\'E7\'E3o proposto combina tr\'EAs t\'E9cnicas tradicionais de segmenta\'E7\'E3o de imagens, por detec\'E7\'E3o de borda, de regi\'E3o e de forma, tratando as limita\'E7\'F5es e aproveitando as vantagens dessas abordagens. A id\'E9ia de combinar t\'E9cnicas tradicionais de segmenta\'E7\'E3o j\'E1 foi utilizada com sucesso para imagens de profundidade\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bellon1 \\* MERGEFORMAT }}{\fldrslt{9}}}
+], e a id\'E9ia principal para a segmenta\'E7\'E3o facial \'E9 apresentada neste trabalho.\par
+\pard\qj\sl240\slmult1 \fi300 O algoritmo de segmenta\'E7\'E3o facial \'E9 composto por dois est\'E1gios principais que podem ser sumarizados por:\par
+{\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 1.\tab Localiza\'E7\'E3o de regi\'F5es homog\'EAneas na imagem de entrada que podem ser utilizadas como candidatas \'E0 face; \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 2.\tab Sele\'E7\'E3o do candidato mais adequado. \par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Inicialmente, o algoritmo identifica regi\'F5es homog\'EAneas da imagem de profundidade de entrada pelo uso de um algoritmo de agrupamento (K-Means\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain3 \\* MERGEFORMAT }}{\fldrslt{39}}}
+]). Em seguida, detecta as bordas da imagem utilizando a informa\'E7\'E3o de gradiente, e combina com as regi\'F5es obtidas anteriormente, gerando um novo mapa de bordas e uma nova divis\'E3o de regi\'F5es homog\'EAneas. A localiza\'E7\'E3o e o tamanho da face na imagem s\'E3o obtidos a partir da detec\'E7\'E3o de forma aplicada no mapa de bordas. Ent\'E3o, a imagem de regi\'F5es homog\'EAneas \'E9 submetida ao processo de rotula\'E7\'E3o, e as regi\'F5es localizadas na posi\'E7\'E3o da face encontrada s\'E3o consideradas face. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_diagrama \\* MERGEFORMAT }}{\fldrslt{19}}} mostra os est\'E1gios da segmenta\'E7\'E3o, e alguns detalhes sobre cada est\'E1gio ({\i e.g.}, limiares aplicados) s\'E3o apresentados nas pr\'F3ximas subse\'E7\'F5es.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_diagrama}6{\*\bkmkend BMsegmentacao_diagrama}: Diagrama do m\'E9todo de segmenta\'E7\'E3o.}{\field{\*\fldinst TC "6 Diagrama do m\'E9todo de segmenta\'E7\'E3o." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 2.1  Segmenta\'E7\'E3o da imagem pelo K-Means\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Como pode ser visto na Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_entrada \\* MERGEFORMAT }}{\fldrslt{18}}}, para segmentar a face \'E9 preciso separ\'E1-la do fundo e do resto do corpo. Como existe apenas um sujeito por imagem, isto pode parecer trivial, mas h\'E1 muitas caracter\'EDsticas que podem interferir no processo de segmenta\'E7\'E3o.\par
+\pard\qj\sl240\slmult1 \fi300 O algoritmo K-Means\~
+[{\field{\*\fldinst{\lang1024 REF BIB_jain3 \\* MERGEFORMAT }}{\fldrslt{39}}}
+] \'E9 aplicado definindo {{{\i k}=3}} ({\i i.e.}, n\'FAmero de agrupamentos), procurando segmentar a imagem em tr\'EAs regi\'F5es principais: fundo, corpo e face. Neste passo, os pontos da imagem s\'E3o divididos em regi\'F5es de acordo com a sua dist\'E2ncia em rela\'E7\'E3o ao dispositivo de aquisi\'E7\'E3o.\par
+\pard\qj\sl240\slmult1 \fi300 Considerando as caracter\'EDsticas da base de dados utilizada, pode-se assumir que a face \'E9 uma regi\'E3o composta por pequenas profundidades, {\i i.e.}, a mais pr\'F3xima ao equipamento de aquisi\'E7\'E3o. Esta heur\'EDstica selecionou a face em 100% das imagens da base (confirmado visualmente para 4950 imagens), mas, em alguns casos, selecionou tamb\'E9m regi\'F5es que s\'E3o irrelevantes ao reconhecimento facial 3D, tais como orelhas, cabelo, pesco\'E7o e partes do corpo. Para estes casos, esta aproxima\'E7\'E3o n\'E3o \'E9 suficiente para segmentar corretamente a regi\'E3o da face, e a combina\'E7\'E3o com as detec\'E7\'F5es de borda e de forma \'E9 necess\'E1ria.\par
+\pard\qj\sl240\slmult1 \fi300 A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_kmeans \\* MERGEFORMAT }}{\fldrslt{20}}} mostra dois exemplos da segmenta\'E7\'E3o pelo algoritmo de K-Means. Em ambos os casos, a regi\'E3o selecionada \'E9 a mais pr\'F3xima ao dispositivo de aquisi\'E7\'E3o. Como pode ser visto na Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_kmeans3 \\* MERGEFORMAT }}{\fldrslt{20(c)}}} e na Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_kmeans4 \\* MERGEFORMAT }}{\fldrslt{20(d)}}}, partes do corpo e do pesco\'E7o s\'E3o compostas por profundidades t\'E3o pequenas quanto a face, e, conseq\'FCentemente, pertencem \'E0 mesma regi\'E3o definida pelo K-Means.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_kmeans1}7{\*\bkmkend BMsegmentacao_kmeans1}: Exemplos da regi\'E3o selecionada pela segmenta\'E7\'E3o do K-Means: (a) e (c) as tr\'EAs regi\'F5es segmentadas; (b) e (d) as regi\'F5es selecionadas a partir de (a) e (c), respectivamente.}{\field{\*\fldinst TC "7 Exemplos da regi\'E3o selecionada pela segmenta\'E7\'E3o do K-Means: (a) e (c) as tr\'EAs regi\'F5es segmentadas; (b) e (d) as regi\'F5es selecionadas a partir de (a) e (c), respectivamente." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 2.2  Segmenta\'E7\'E3o da imagem pela detec\'E7\'E3o de borda\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Da imagem obtida pelo processo de agrupamento, deve-se extrair somente a regi\'E3o da face, sem a influ\'EAncia de cabelo, orelha, pesco\'E7o e corpo. A fun\'E7\'E3o da detec\'E7\'E3o de borda \'E9 ajudar a eliminar estas partes da regi\'E3o selecionada pela aplica\'E7\'E3o do K-Means.\par
+\pard\qj\sl240\slmult1 \fi300 A detec\'E7\'E3o de borda \'E9 executada a partir da informa\'E7\'E3o de gradiente das imagens de profundidade, obtida utilizando o filtro de Sobel\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+], por ser computacionalmente r\'E1pido, e apresentar bons resultados para bordas em qualquer dire\'E7\'E3o. A imagem gerada pela aplica\'E7\'E3o deste filtro na imagem de entrada \'E9 submetida a um processo de limiariza\'E7\'E3o, sendo que um limiar autom\'E1tico \'E9 facilmente calculado analisando-se o histograma da imagem de gradiente.\par
+\pard\qj\sl240\slmult1 \fi300 Foram computados os histogramas das imagens de gradiente para todas as imagens da base utilizada e os mesmos apresentaram uma curva similar. Assim, um limiar autom\'E1tico foi definido baseado no ponto de inflex\'E3o da curva de cada imagem de gradiente para detectar as bordas da face. Nos experimentos realizados, o limiar computado geralmente fica entre os valores 8 e 12. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_limiar \\* MERGEFORMAT }}{\fldrslt{21}}} mostra a curva do histograma para todas as imagens de gradiente computadas da base de dados de imagens de profundidade.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_limiar}8{\*\bkmkend BMsegmentacao_limiar}: Histograma do gradiente para todas as imagens da base de dados.}{\field{\*\fldinst TC "8 Histograma do gradiente para todas as imagens da base de dados." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Finalmente, para obter um mapa de bordas final, um processo de fechamento\~
+[{\field{\*\fldinst{\lang1024 REF BIB_shapiro \\* MERGEFORMAT }}{\fldrslt{59}}}
+] (dilata\'E7\'E3o seguida de eros\'E3o de pixels vizinhos) \'E9 aplicado a fim de ligar algumas linhas desconectadas geradas pela opera\'E7\'E3o de limiariza\'E7\'E3o. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_borda \\* MERGEFORMAT }}{\fldrslt{22}}} exemplifica os passos necess\'E1rios para a detec\'E7\'E3o de borda.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_borda1}9{\*\bkmkend BMsegmentacao_borda1}: Exemplo da detec\'E7\'E3o de borda: (a) imagem resultante da aplica\'E7\'E3o do filtro de Sobel; (b) bordas obtidas ap\'F3s a limiariza\'E7\'E3o; e (c) resultado da aplica\'E7\'E3o do processo de fechamento.}{\field{\*\fldinst TC "9 Exemplo da detec\'E7\'E3o de borda: (a) imagem resultante da aplica\'E7\'E3o do filtro de Sobel; (b) bordas obtidas ap\'F3s a limiariza\'E7\'E3o; e (c) resultado da aplica\'E7\'E3o do processo de fechamento." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 2.3  Combinando as segmenta\'E7\'F5es por borda e por regi\'E3o\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Depois de executadas as detec\'E7\'F5es de borda e de regi\'E3o, que podem ser realizadas em paralelo, as duas imagens resultantes s\'E3o combinadas com uma simples opera\'E7\'E3o {\i E} ({\i AND}). A imagem final pode ser facilmente processada para obten\'E7\'E3o da regi\'E3o de interesse (ROI, {\i region of interest}), {\i i.e.}, a face, sem perturba\'E7\'F5es e partes irrelevantes. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_combinacao \\* MERGEFORMAT }}{\fldrslt{23}}} mostra resultados da combina\'E7\'E3o da detec\'E7\'E3o de borda e de regi\'E3o.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_combinacao1}10{\*\bkmkend BMsegmentacao_combinacao1}: Exemplo da combina\'E7\'E3o das detec\'E7\'F5es de borda e de regi\'E3o: (a) bordas obtidas a partir da imagem de gradiente; (b) regi\'E3o selecionada pelo K-Means; (c) regi\'F5es selecionadas como candidatas \'E0 face; e (d) novo mapa de bordas.}{\field{\*\fldinst TC "10 Exemplo da combina\'E7\'E3o das detec\'E7\'F5es de borda e de regi\'E3o: (a) bordas obtidas a partir da imagem de gradiente; (b) regi\'E3o selecionada pelo K-Means; (c) regi\'F5es selecionadas como candidatas \'E0 face; e (d) novo mapa de bordas." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_combinacao3 \\* MERGEFORMAT }}{\fldrslt{23(c)}}}, obtida ap\'F3s a combina\'E7\'E3o das detec\'E7\'F5es de borda e de regi\'E3o, \'E9 submetida ao processo de rotula\'E7\'E3o (regi\'F5es com tamanho inferior a 1% do tamanho da imagem s\'E3o descartadas, pois a maioria corresponde \'E0 partes irrelevantes da imagem, como o cabelo, por exemplo), enquanto a Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_combinacao4 \\* MERGEFORMAT }}{\fldrslt{23(d)}}} ser\'E1 utilizada para a localiza\'E7\'E3o da face atrav\'E9s da detec\'E7\'E3o de forma.\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 {\*\bkmkstart BMhough}2.4{\*\bkmkend BMhough}  Localiza\'E7\'E3o da face pela detec\'E7\'E3o de forma\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Nesta etapa da segmenta\'E7\'E3o, o objetivo \'E9 localizar a face na imagem de entrada a partir da \'FAltima imagem de bordas obtida. A t\'E9cnica utilizada para realizar a detec\'E7\'E3o de forma foi a transformada de Hough\~
+[{\field{\*\fldinst{\lang1024 REF BIB_ballard1 \\* MERGEFORMAT }}{\fldrslt{7}}}, {\field{\*\fldinst{\lang1024 REF BIB_hough \\* MERGEFORMAT }}{\fldrslt{37}}}
+], procurando localizar uma elipse\~
+[{\field{\*\fldinst{\lang1024 REF BIB_xie \\* MERGEFORMAT }}{\fldrslt{68}}}
+], por ser a figura geom\'E9trica que possui a maior semelhan\'E7a com o contorno da face. Esta t\'E9cnica possui um custo computacional muito elevado, isso porque ela calcula todas as possibilidades de elipses existentes na imagem a partir dos pontos de borda conhecidos, para depois selecionar as melhores elipses. Para evitar que isto aconte\'E7a, a detec\'E7\'E3o foi realizada a partir de uma pequena amostragem de pontos (quanto maior for esta amostragem, mais lenta \'E9 a detec\'E7\'E3o), e foram eliminadas algumas combina\'E7\'F5es utilizando as seguintes restri\'E7\'F5es:\par
+{\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 1.\tab limite de rota\'E7\'E3o da elipse; \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 2.\tab para uma face, a altura da elipse deve ser maior que a largura da mesma; \par
+\pard\qj\sl240\slmult1 \sb50 \li600\fi-300 3.\tab estipula\'E7\'E3o de um tamanho m\'EDnimo para as elipses a serem detectadas. \par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Todas essas solu\'E7\'F5es s\'E3o opcionais, e \'E9 poss\'EDvel localizar a face sem utilizar nenhuma delas, por\'E9m a utiliza\'E7\'E3o destas restri\'E7\'F5es reduz o tempo consideravelmente. No caso dos nossos experimentos, o tempo consumido sem utilizar amostragem e restri\'E7\'F5es podia ultrapassar horas, variando de acordo com o n\'FAmero de pontos de borda, e o uso das mesmas reduziu o tempo de execu\'E7\'E3o para menos de um segundo.\par
+\pard\qj\sl240\slmult1 \fi300 Detectada a elipse, o pr\'F3ximo passo \'E9 selecionar quais regi\'F5es candidatas \'E0 face s\'E3o realmente regi\'F5es da face. Para isto, basta selecionar aquelas que estejam posicionadas no local determinado pela elipse. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_forma \\* MERGEFORMAT }}{\fldrslt{24}}} mostra um exemplo da localiza\'E7\'E3o da face utilizando o detector de elipses.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_forma1}11{\*\bkmkend BMsegmentacao_forma1}: Exemplos do processo de localiza\'E7\'E3o da face: (a) representa o mapa de bordas utilizado, (b) a elipse detectada, (c) as regi\'F5es candidatas \'E0 face rotuladas, e (d) as regi\'F5es escolhidas como face.}{\field{\*\fldinst TC "11 Exemplos do processo de localiza\'E7\'E3o da face: (a) representa o mapa de bordas utilizado, (b) a elipse detectada, (c) as regi\'F5es candidatas \'E0 face rotuladas, e (d) as regi\'F5es escolhidas como face." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Mesmo que a elipse n\'E3o englobe todo o conte\'FAdo de uma regi\'E3o candidata \'E0 face, esta regi\'E3o pode ser considerada face, mas fazer isto tamb\'E9m gera um problema, que \'E9 a sele\'E7\'E3o de regi\'F5es n\'E3o relevantes ao processo de reconhecimento como face. Uma solu\'E7\'E3o para este problema seria definir uma porcentagem m\'EDnima de pontos de uma regi\'E3o que deva estar inserida na elipse para que esta seja considerada pertencente \'E0 face.\par
+\pard\qj\sl240\slmult1 \fi300 A regi\'E3o selecionada como regi\'E3o de interesse \'E9 representada por uma imagem bin\'E1ria que indica a localiza\'E7\'E3o da face na imagem de entrada. Entretanto, esta imagem bin\'E1ria pode conter furos ({\i i.e.}, aus\'EAncia de informa\'E7\'E3o) que precisam ser preenchidos. Este problema foi resolvido pela utiliza\'E7\'E3o de dez dilata\'E7\'F5es seguidas por cinco eros\'F5es na imagem. O n\'FAmero de dilata\'E7\'F5es e eros\'F5es foi encontrado empiricamente e os mesmos valores funcionaram para toda a base de dados. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_normalizacao \\* MERGEFORMAT }}{\fldrslt{25}}} mostra dois exemplos dos resultados obtidos neste passo.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_normalizacao1}12{\*\bkmkend BMsegmentacao_normalizacao1}: Exemplos da normaliza\'E7\'E3o das regi\'F5es da face: (a) e (c) s\'E3o as regi\'F5es selecionadas como face; (b) e (d) s\'E3o as regi\'F5es normalizadas de (a) e (c), respectivamente, ap\'F3s a aplica\'E7\'E3o das dilata\'E7\'F5es e eros\'F5es.}{\field{\*\fldinst TC "12 Exemplos da normaliza\'E7\'E3o das regi\'F5es da face: (a) e (c) s\'E3o as regi\'F5es selecionadas como face; (b) e (d) s\'E3o as regi\'F5es normalizadas de (a) e (c), respectivamente, ap\'F3s a aplica\'E7\'E3o das dilata\'E7\'F5es e eros\'F5es." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Em seguida, \'E9 realizada uma opera\'E7\'E3o l\'F3gica {\i E} entre a imagem bin\'E1ria resultante e a imagem de profundidade de entrada, resultando na segmenta\'E7\'E3o final da face. Em outras palavras, uma imagem de profundidade que corresponde \'E0 regi\'E3o da face \'E9 obtida. Esta imagem pode apresentar um alto n\'EDvel de ru\'EDdo, e, para reduzi-lo, o filtro da mediana {{5{\f6\'B4}5}}\~
+[{\field{\*\fldinst{\lang1024 REF BIB_gonzalez \\* MERGEFORMAT }}{\fldrslt{33}}}
+] foi aplicado duas vezes na imagem segmentada da face. A Figura\~{\field{\*\fldinst{\lang1024 REF BMsegmentacao_resultado \\* MERGEFORMAT }}{\fldrslt{26}}} mostra dois exemplos da segmenta\'E7\'E3o facial em imagens de profundidade. Nessa figura, as imagens de profundidade de entrada e as faces segmentadas (ap\'F3s a aplica\'E7\'E3o da mediana) s\'E3o mostradas renderizadas.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMsegmentacao_resultado1}13{\*\bkmkend BMsegmentacao_resultado1}: Exemplos da segmenta\'E7\'E3o final da imagem de profundidade da face: (a) e (c) s\'E3o as imagens de profundidade de entrada; (b) e (d) s\'E3o as faces segmentadas a partir de (a) e (c), respectivamente.}{\field{\*\fldinst TC "13 Exemplos da segmenta\'E7\'E3o final da imagem de profundidade da face: (a) e (c) s\'E3o as imagens de profundidade de entrada; (b) e (d) s\'E3o as faces segmentadas a partir de (a) e (c), respectivamente." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 3  Detec\'E7\'E3o de caracter\'EDsticas faciais em imagens 3D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 A detec\'E7\'E3o de caracter\'EDsticas faciais \'E9 um passo importante para otimizar alguns est\'E1gios do reconhecimento facial, como o registro (pr\'E9-alinhamento) e a localiza\'E7\'E3o de regi\'F5es r\'EDgidas da face\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang2 \\* MERGEFORMAT }}{\fldrslt{22}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Em um sistema de reconhecimento facial, a extra\'E7\'E3o de caracter\'EDsticas \'E9 realizada a partir de faces segmentadas, que, neste trabalho, foram obtidas a partir do m\'E9todo apresentado anteriormente. A Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_entrada \\* MERGEFORMAT }}{\fldrslt{27}}} mostra exemplos das imagens utilizadas para a detec\'E7\'E3o de caracter\'EDsticas faciais.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0     \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_entrada}14{\*\bkmkend BMdeteccao_entrada}: Exemplos de faces segmentadas.}{\field{\*\fldinst TC "14 Exemplos de faces segmentadas." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Neste trabalho, foi utilizado um pequeno grupo de caracter\'EDsticas faciais: ponta e base do nariz e cantos dos olhos e do nariz. Estas caracter\'EDsticas foram escolhidas por permitirem uma localiza\'E7\'E3o precisa das regi\'F5es r\'EDgidas da face ({\i e.g.}, a regi\'E3o do nariz). Para localiz\'E1-las, foram combinadas id\'E9ias criadas para a detec\'E7\'E3o de caracter\'EDsticas faciais 2D\~
+[{\field{\*\fldinst{\lang1024 REF BIB_sobottka \\* MERGEFORMAT }}{\fldrslt{62}}}
+] com a informa\'E7\'E3o de curvatura da superf\'EDcie da face\~
+[{\field{\*\fldinst{\lang1024 REF BIB_besl1 \\* MERGEFORMAT }}{\fldrslt{12}}}
+]. Maiores detalhes sobre como as caracter\'EDsticas desejadas s\'E3o localizadas s\'E3o apresentados a seguir.\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 3.1  Extra\'E7\'E3o da informa\'E7\'E3o de curvatura\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Analisando a informa\'E7\'E3o de curvatura da superf\'EDcie da face, foi verificado que algumas regi\'F5es geralmente apresentam o mesmo tipo de curvatura e n\'E3o s\'E3o afetadas por express\'F5es faciais\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang3 \\* MERGEFORMAT }}{\fldrslt{21}}}
+]. Para computar o tipo de curvatura de cada ponto da imagem da face, definimos superf\'EDcies locais a partir de uma pequena vizinhan\'E7a {{{\i N}{\f6\'B4}{\i N}}} de cada ponto, com {{{\i N}=7}}. Os valores para as curvaturas Gaussiana {{{\i K}}} e m\'E9dia {{{\i H}}} foram estimados, e cada superf\'EDcie local foi classificada como plano, pico, po\'E7o, plano, entre outros\~
+[{\field{\*\fldinst{\lang1024 REF BIB_moreno \\* MERGEFORMAT }}{\fldrslt{51}}}
+].\par
+\pard\qj\sl240\slmult1 \fi300 Apenas duas formas de superf\'EDcie s\'E3o relevantes para esta tarefa: picos e po\'E7os. Quase todas as caracter\'EDsticas desejadas apresentam um desses tipos de superf\'EDcie (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_curvatura \\* MERGEFORMAT }}{\fldrslt{28}}}). Cantos dos olhos e da base do nariz apresentam o tipo de superf\'EDcie po\'E7o, e a ponta do nariz o tipo pico.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_curvatura1}15{\*\bkmkend BMdeteccao_curvatura1}: Regi\'F5es (a) com curvatura do tipo po\'E7o e (b) com curvatura do tipo pico.}{\field{\*\fldinst TC "15 Regi\'F5es (a) com curvatura do tipo po\'E7o e (b) com curvatura do tipo pico." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 3.2  Detec\'E7\'E3o da ponta e dos cantos do nariz\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Neste trabalho um novo m\'E9todo para a detec\'E7\'E3o da ponta do nariz em imagens 3D de faces \'E9 apresentado, baseado em algumas id\'E9ias apresentadas por Sobottka et al.\~
+[{\field{\*\fldinst{\lang1024 REF BIB_sobottka \\* MERGEFORMAT }}{\fldrslt{62}}}
+] para a detec\'E7\'E3o de caracter\'EDsticas faciais 2D. Os valores das coordenadas x e y s\'E3o determinados separadamente. Para encontrar a coordenada y, duas proje\'E7\'F5es no eixo y da informa\'E7\'E3o de profundidade s\'E3o computadas, chamadas curva de perfil e curva mediana (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_projecao_perfil \\* MERGEFORMAT }}{\fldrslt{29}}}), respectivamente. Para isto, os valores de profundidade m\'E1ximo (curva de perfil) e mediano (curva mediana) de cada conjunto de pontos da face com a mesma coordenada y s\'E3o determinados.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_projecao_perfil}16{\*\bkmkend BMdeteccao_projecao_perfil}: Localiza\'E7\'E3o da coordenada y da ponta do nariz.}{\field{\*\fldinst TC "16 Localiza\'E7\'E3o da coordenada y da ponta do nariz." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 O meio mais direto de localizar a ponta do nariz \'E9 procurar o maior pico na curva de perfil. Mas, se a face apresentar varia\'E7\'E3o de pose e/ou ru\'EDdo n\'E3o eliminado pelo filtro de mediana, a ponta do nariz pode ser detectada incorretamente. Para evitar isto, a ponta do nariz \'E9 detectada de outra forma. Inicialmente uma curva que representa a diferen\'E7a entre as curvas de perfil e mediana \'E9 gerada, e o trecho desta "curva de diferen\'E7a" que possui o maior somat\'F3rio dos valores de diferen\'E7a \'E9 encontrado. A altura da ponta do nariz \'E9 definida como um pico na curva de perfil neste trecho encontrado (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_projecao_perfil \\* MERGEFORMAT }}{\fldrslt{29}}}). O comprimento deste trecho foi definido empiricamente em um ter\'E7o da altura da face, baseado nos resultados experimentais realizados.\par
+\pard\qj\sl240\slmult1 \fi300 Uma vez que a coordenada y da ponta do nariz tenha sido detectada, uma proje\'E7\'E3o no eixo x da imagem de curvatura \'E9 computada para localizar a coordenada x da ponta do nariz, calculando a porcentagem de pontos com a curvatura do tipo pico para cada coluna de 7 linhas vizinhas (definido empiricamente para as bases usadas) centralizadas na coordenada y da ponta do nariz. A coordenada x do nariz \'E9 determinada localizando-se o pico formado nesta proje\'E7\'E3o (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_projecao_curvatura \\* MERGEFORMAT }}{\fldrslt{30}}}).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_projecao_curvatura}17{\*\bkmkend BMdeteccao_projecao_curvatura}: Localiza\'E7\'E3o da coordenada x da ponta do nariz.}{\field{\*\fldinst TC "17 Localiza\'E7\'E3o da coordenada x da ponta do nariz." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Com a ponta do nariz detectada, os cantos do nariz podem ser facilmente detectados, pois correspondem \'E0s varia\'E7\'F5es m\'E1ximas na curva de perfil horizontal. A curva de perfil horizontal \'E9 uma proje\'E7\'E3o no eixo x que representa um conjunto de pontos com a mesma coordenada y da ponta do nariz. Para detectar os cantos do nariz, a informa\'E7\'E3o de gradiente desta curva \'E9 obtida e um pico em cada lado da coordenada x da ponta do nariz \'E9 localizado (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_projecao_horizontal \\* MERGEFORMAT }}{\fldrslt{31}}}).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_projecao_horizontal}18{\*\bkmkend BMdeteccao_projecao_horizontal}: Detec\'E7\'E3o dos cantos do nariz.}{\field{\*\fldinst TC "18 Detec\'E7\'E3o dos cantos do nariz." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Considerando a superf\'EDcie da face sem varia\'E7\'E3o de pose, o vetor normal da ponta do nariz encontra-se alinhado com o eixo z. Varia\'E7\'F5es no movimento perfil-a-perfil da face representam rota\'E7\'F5es do eixo y. Inclina\'E7\'F5es da face para frente e para tr\'E1s (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_pose4 \\* MERGEFORMAT }}{\fldrslt{32(d)}}}) representam rota\'E7\'F5es do eixo x. A detec\'E7\'E3o da ponta do nariz foi testada sob varia\'E7\'F5es extremas de pose, e os seguintes resultados foram obtidos: para rota\'E7\'F5es do eixo z, detec\'E7\'F5es corretas entre -45 e 45 graus, para o eixo y entre -25 e 25 graus, e para o eixo x entre -55 e 55 graus (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_pose \\* MERGEFORMAT }}{\fldrslt{32}}}). Estes resultados mostram a robustez do m\'E9todo diante de significativas varia\'E7\'F5es de pose da face.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_pose1}19{\*\bkmkend BMdeteccao_pose1}: Detec\'E7\'E3o da ponta do nariz (a) sem varia\'E7\'E3o de pose, e com rota\'E7\'F5es de (b) 45 graus no eixo z, (c) 25 graus no eixo y e (d) -55 graus no eixo x.}{\field{\*\fldinst TC "19 Detec\'E7\'E3o da ponta do nariz (a) sem varia\'E7\'E3o de pose, e com rota\'E7\'F5es de (b) 45 graus no eixo z, (c) 25 graus no eixo y e (d) -55 graus no eixo x." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb360 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 3.3  Detec\'E7\'E3o dos cantos dos olhos\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Para localizar os cantos dos olhos, foi gerada uma proje\'E7\'E3o no eixo y utilizando a imagem de curvatura. A porcentagem de pontos com a curvatura do tipo po\'E7o em cada conjunto de pontos com a mesma coordenada y foi determinada. Esta proje\'E7\'E3o geralmente apresenta tr\'EAs picos, representando olhos, base do nariz e a boca. Como a localiza\'E7\'E3o do nariz \'E9 conhecida, pode-se facilmente atribuir cada pico a sua respectiva caracter\'EDstica facial (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_projecao_olhos1 \\* MERGEFORMAT }}{\fldrslt{33}}}).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_projecao_olhos1}20{\*\bkmkend BMdeteccao_projecao_olhos1}: Localiza\'E7\'E3o da coordenada y dos cantos dos olhos.}{\field{\*\fldinst TC "20 Localiza\'E7\'E3o da coordenada y dos cantos dos olhos." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Para encontrar as coordenadas x dos cantos dos olhos, outra proje\'E7\'E3o no eixo x da imagem de curvatura \'E9 gerada calculando-se a porcentagem de pontos com a curvatura do tipo po\'E7o para cada coluna de 7 linhas vizinhas (definido empiricamente) centralizadas na coordenada y dos olhos. A coordenada x do canto do olho esquerdo \'E9 o in\'EDcio do primeiro pico nesta proje\'E7\'E3o, e do canto do olho direito \'E9 o final do segundo pico nesta mesma proje\'E7\'E3o (Figura\~{\field{\*\fldinst{\lang1024 REF BMdeteccao_projecao_olhos2 \\* MERGEFORMAT }}{\fldrslt{34}}}).\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMdeteccao_projecao_olhos2}21{\*\bkmkend BMdeteccao_projecao_olhos2}: Localiza\'E7\'E3o das coordenadas x dos cantos dos olhos.}{\field{\*\fldinst TC "21 Localiza\'E7\'E3o das coordenadas x dos cantos dos olhos." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 4  Aplica\'E7\'F5es na autentica\'E7\'E3o facial 3D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Em um sistema simples de autentica\'E7\'E3o facial utilizando imagens 3D, um usu\'E1rio fornece a sua identidade e o sistema captura uma imagem 3D para verificar se a pessoa que est\'E1 requisitando acesso \'E9 realmente quem ela diz ser. A Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_diagrama1 \\* MERGEFORMAT }}{\fldrslt{35}}} ilustra este processo. Para implementar um sistema autom\'E1tico baseado neste diagrama, n\'E3o \'E9 necess\'E1ria a detec\'E7\'E3o de caracter\'EDsticas faciais, mas imagens adquiridas contendo express\'F5es podem prejudicar o desempenho do sistema.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMreconhecimento_diagrama1}22{\*\bkmkend BMreconhecimento_diagrama1}: Diagrama b\'E1sico de um sistema de autentica\'E7\'E3o.}{\field{\*\fldinst TC "22 Diagrama b\'E1sico de um sistema de autentica\'E7\'E3o." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Sistemas que incluem m\'F3dulos para a detec\'E7\'E3o de caracter\'EDsticas faciais podem utilizar esta informa\'E7\'E3o adicional para amenizar tal problema. Dois modelos de como esta informa\'E7\'E3o pode ser utilizada de maneira a melhorar o desempenho do sistema sob varia\'E7\'E3o de express\'F5es faciais s\'E3o apresentados nas Figuras\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_diagrama2 \\* MERGEFORMAT }}{\fldrslt{36}}} e\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_diagrama3 \\* MERGEFORMAT }}{\fldrslt{38}}}.\par
+\pard\qj\sl240\slmult1 \fi300 Neste primeiro modelo (Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_diagrama2 \\* MERGEFORMAT }}{\fldrslt{36}}}) as localiza\'E7\'F5es das caracter\'EDsticas faciais s\'E3o utilizadas para extrair as regi\'F5es mais invariantes da face, como o nariz e a testa. A Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_cortes \\* MERGEFORMAT }}{\fldrslt{37}}} mostra alguns exemplos de como estas regi\'F5es podem ser extra\'EDdas para o uso em sistemas baseados no diagrama da Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_diagrama2 \\* MERGEFORMAT }}{\fldrslt{36}}}, sendo que todos os modelos propostos podem ser obtidos utilizando-se o conjunto de caracter\'EDsticas detectadas pelo m\'E9todo proposto neste trabalho.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMreconhecimento_diagrama2}23{\*\bkmkend BMreconhecimento_diagrama2}: Diagrama de um sistema de autentica\'E7\'E3o que utiliza apenas regi\'F5es r\'EDgidas da face.}{\field{\*\fldinst TC "23 Diagrama de um sistema de autentica\'E7\'E3o que utiliza apenas regi\'F5es r\'EDgidas da face." \\f f}{\fldrslt }}\par
+}{\pard\qj\sl240\slmult1 \sb480 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMreconhecimento_corte1}24{\*\bkmkend BMreconhecimento_corte1}: Regi\'F5es r\'EDgidas da face extra\'EDdas: regi\'F5es propostas (a)-(c) por Chang et al.\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}
+] e (d) por Queirolo et al.\~
+[{\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}
+]}{\field{\*\fldinst TC "24 Regi\'F5es r\'EDgidas da face extra\'EDdas: regi\'F5es propostas (a)-(c) por Chang et al.\~
+[{\field{\*\fldinst{\lang1024 REF BIB_chang1 \\* MERGEFORMAT }}{\fldrslt{20}}}
+] e (d) por Queirolo et al.\~
+[{\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}
+]" \\f f}{\fldrslt }}\par
+\pard\qc\sl240\slmult1 \fi0 .  \par
+}{\pard\qj\sl240\slmult1 \sb480 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMreconhecimento_diagrama3}25{\*\bkmkend BMreconhecimento_diagrama3}: Diagrama de um sistema autentica\'E7\'E3o que prioriza o registro nas regi\'F5es r\'EDgidas da face.}{\field{\*\fldinst TC "25 Diagrama de um sistema autentica\'E7\'E3o que prioriza o registro nas regi\'F5es r\'EDgidas da face." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 No segundo modelo (Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_diagrama3 \\* MERGEFORMAT }}{\fldrslt{38}}}) as posi\'E7\'F5es das caracter\'EDsticas faciais s\'E3o utilizadas para dividir a regi\'E3o da face em nove setores, como mostrado na Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_setores \\* MERGEFORMAT }}{\fldrslt{39}}}. O processo de correspond\'EAncia prioriza os setores que cont\'E9m as regi\'F5es mais invariantes da face (em claro na Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_setores3 \\* MERGEFORMAT }}{\fldrslt{39(c)}}}), proporcionando uma avalia\'E7\'E3o mais precisa.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMreconhecimento_setores1}26{\*\bkmkend BMreconhecimento_setores1}: (a) Imagem original, (b) setores da face, e (c) setores preferenciados.}{\field{\*\fldinst TC "26 (a) Imagem original, (b) setores da face, e (c) setores preferenciados." \\f f}{\fldrslt }}\par
+}\page{}\pard\qj\sl240\slmult1 \sb240 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter {\*\bkmkstart BMsec_resultados_experimentais}6{\*\bkmkend BMsec_resultados_experimentais}\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Resultados Experimentais\par
+\par\par}\pard\qj\sl240\slmult1 \sb300 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 1  Bases de imagens faciais 3D\par
+}\pard\qj\sl240\slmult1 \sb180 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 1.1  {\i Face Recognition Grand Challenge Database}\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Para a realiza\'E7\'E3o dos experimentos, foram utilizadas as duas vers\'F5es base de imagens 3D do {\i Face Recognition Grand Challenge}{\up16\chftn}
+{\*\footnote \pard\plain\s246\f13\fs20 {\up16\chftn}Os autores gostariam de agradecer ao Dr. Jonathon Phillips e ao Dr. Patrick Flynn por permitir a utiliza\'E7\'E3o dessas imagens.}
+ (FRGC v1.0 e v2.0), com um total de 4950 imagens de 557 pessoas diferentes, contendo varia\'E7\'F5es de express\'F5es faciais, escala, pose, corte de cabelo e acess\'F3rios ({\i e.g.}, bon\'E9, gorro). As imagens possuem dimens\'E3o {{640{\f6\'B4}480}} e foram adquiridas por um sensor laser Minolta Vivid 900{\up16\chftn}
+{\*\footnote \pard\plain\s246\f13\fs20 {\up16\chftn}{\f16 http://www.minoltausa.com/vivid}}
+. Na Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc \\* MERGEFORMAT }}{\fldrslt{40}}} s\'E3o apresentadas algumas das imagens das bases utilizadas.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (e) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (f) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (g) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (h) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMresultados_frgc1}1{\*\bkmkend BMresultados_frgc1}: Exemplos de imagens da base de dados FRGC.}{\field{\*\fldinst TC "1 Exemplos de imagens da base de dados FRGC." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 As Figuras\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc1 \\* MERGEFORMAT }}{\fldrslt{40(a)}}} e\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc2 \\* MERGEFORMAT }}{\fldrslt{40(b)}}} mostram faces com express\'E3o facial neutra, e as Figuras\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc3 \\* MERGEFORMAT }}{\fldrslt{40(c)}}} e\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc4 \\* MERGEFORMAT }}{\fldrslt{40(d)}}} apresentam faces com express\'F5es faciais. Algumas imagens da base possuem algumas deforma\'E7\'F5es causadas durante a aquisi\'E7\'E3o, exemplificadas pela Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc5 \\* MERGEFORMAT }}{\fldrslt{40(e)}}} (imagens com ru\'EDdo elevado) e pelas Figuras\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc6 \\* MERGEFORMAT }}{\fldrslt{40(f)}}}\~e\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc7 \\* MERGEFORMAT }}{\fldrslt{40(g)}}} (imagens distorcidas). A Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_frgc8 \\* MERGEFORMAT }}{\fldrslt{40(h)}}} mostra um exemplo de uma face que n\'E3o possui o nariz, que \'E9 um problema causado pela limita\'E7\'E3o da dist\'E2ncia de captura do dispositivo de aquisi\'E7\'E3o de imagens.\par
+\pard\qj\sl240\slmult1 \fi300 Estas bases de imagens foram escolhidas para a realiza\'E7\'E3o dos experimentos porque elas t\'EAm sido utilizadas extensivamente para pesquisas abordando o reconhecimento facial 3D.\par
+\pard\qj\sl240\slmult1 \sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f13\b\fs32 1.2  Base de faces do Grupo IMAGO\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Esta base foi utilizada para experimentos que necessitavam um ambiente controlado em rela\'E7\'E3o \'E0s express\'F5es faciais. Ela cont\'E9m 150 imagens de 30 pessoas diferentes, contendo, para cada pessoa, tr\'EAs imagens com express\'E3o neutra e duas imagens com sorrisos em diferentes intensidades. As imagens possuem dimens\'E3o {{640{\f6\'B4}480}} e foram adquiridas por um sensor laser Minolta Vivid 910. Na Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_imago \\* MERGEFORMAT }}{\fldrslt{41}}} s\'E3o apresentadas as imagens com express\'E3o neutra (Figuras\~{\field{\*\fldinst{\lang1024 REF BMresultados_imago1 \\* MERGEFORMAT }}{\fldrslt{41(a)}}},\~{\field{\*\fldinst{\lang1024 REF BMresultados_imago2 \\* MERGEFORMAT }}{\fldrslt{41(b)}}} e\~{\field{\*\fldinst{\lang1024 REF BMresultados_imago3 \\* MERGEFORMAT }}{\fldrslt{41(c)}}}), com sorriso leve (Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_imago4 \\* MERGEFORMAT }}{\fldrslt{41(d)}}}) e com sorriso intenso (Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_imago5 \\* MERGEFORMAT }}{\fldrslt{41(e)}}}) de um dos indiv\'EDduos desta base.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0   \par
+\pard\qc\sl240\slmult1 \fi0 (e) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMresultados_imago1}2{\*\bkmkend BMresultados_imago1}: Exemplos de imagens da base de dados do Grupo IMAGO.}{\field{\*\fldinst TC "2 Exemplos de imagens da base de dados do Grupo IMAGO." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 2  Segmenta\'E7\'E3o facial 3D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Para validar o processo de segmenta\'E7\'E3o, as duas vers\'F5es da base do FRGC foram utilizadas. A abordagem de segmenta\'E7\'E3o proposta extraiu a regi\'E3o da face em todas as imagens das duas bases utilizadas, mas aproximadamente 1% dos resultados (61 de 4950) inclu\'EDram na regi\'E3o extra\'EDda algumas partes irrelevantes da imagem, como cabelo e pesco\'E7o (Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_seg_errada \\* MERGEFORMAT }}{\fldrslt{42}}}). Entretanto, a maior parte dos pontos indesejados destas imagens foi removida, e estas partes irrelevantes n\'E3o afetaram significativamente o processo de reconhecimento (confirmado por inspe\'E7\'E3o visual). A Tabela\~{\field{\*\fldinst{\lang1024 REF BMresultados_lista_erradas \\* MERGEFORMAT }}{\fldrslt{3}}} mostra a lista das imagens em que o m\'E9todo de segmenta\'E7\'E3o n\'E3o removeu todas as regi\'F5es irrelevantes. O tempo m\'E9dio para segmentar uma face foi de {{1.1}} segundos em um Pentium D 3.4 GHz, variando de acordo com o tamanho da face.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (e) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (f) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMresultados_seg_errada}3{\*\bkmkend BMresultados_seg_errada}: Exemplos de erros comuns do processo de segmenta\'E7\'F5es: (a)-(c) regi\'F5es do cabelo, (d)-(e) de acess\'F3rios e (f) do pesco\'E7o extra\'EDdas incorretamente.}{\field{\*\fldinst TC "3 Exemplos de erros comuns do processo de segmenta\'E7\'F5es: (a)-(c) regi\'F5es do cabelo, (d)-(e) de acess\'F3rios e (f) do pesco\'E7o extra\'EDdas incorretamente." \\f f}{\fldrslt }}\par
+}{\pard\qj\sl240\slmult1 \sb480 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {02463d658}\cell
+\pard\intbl\qc {04233d308}\cell
+\pard\intbl\qc {04320d206}\cell
+\pard\intbl\qc {04327d220}\cell
+\pard\intbl\qc {04327d296}\cell
+\pard\intbl\qc {04327d404}\cell
+\pard\intbl\qc {04327d410}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04339d194}\cell
+\pard\intbl\qc {04339d184}\cell
+\pard\intbl\qc {04382d126}\cell
+\pard\intbl\qc {04382d128}\cell
+\pard\intbl\qc {04385d443}\cell
+\pard\intbl\qc {04397d344}\cell
+\pard\intbl\qc {04414d222}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04423d272}\cell
+\pard\intbl\qc {04453d297}\cell
+\pard\intbl\qc {04470d297}\cell
+\pard\intbl\qc {04470d299}\cell
+\pard\intbl\qc {04470d397}\cell
+\pard\intbl\qc {04470d415}\cell
+\pard\intbl\qc {04470d419}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04476d218}\cell
+\pard\intbl\qc {04481d291}\cell
+\pard\intbl\qc {04513d305}\cell
+\pard\intbl\qc {04513d309}\cell
+\pard\intbl\qc {04529d93}\cell
+\pard\intbl\qc {04553d262}\cell
+\pard\intbl\qc {04553d264}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04595d89}\cell
+\pard\intbl\qc {04595d93}\cell
+\pard\intbl\qc {04595d151}\cell
+\pard\intbl\qc {04609d96}\cell
+\pard\intbl\qc {04664d189}\cell
+\pard\intbl\qc {04687d113}\cell
+\pard\intbl\qc {04694d06}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04713d06}\cell
+\pard\intbl\qc {04715d12}\cell
+\pard\intbl\qc {04735d38}\cell
+\pard\intbl\qc {04780d104}\cell
+\pard\intbl\qc {04787d54}\cell
+\pard\intbl\qc {04797d52}\cell
+\pard\intbl\qc {04797d154}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04818d38}\cell
+\pard\intbl\qc {04830d80}\cell
+\pard\intbl\qc {04830d92}\cell
+\pard\intbl\qc {04830d94}\cell
+\pard\intbl\qc {04848d142}\cell
+\pard\intbl\qc {04852d70}\cell
+\pard\intbl\qc {04852d72}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04865d96}\cell
+\pard\intbl\qc {04877d20}\cell
+\pard\intbl\qc {04885d46}\cell
+\pard\intbl\qc {04908d42}\cell
+\pard\intbl\qc {04908d46}\cell
+\pard\intbl\qc {04908d48}\cell
+\pard\intbl\qc {04910d69}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx985\clbrdrb\brdrs\clbrdrr\brdrs\cellx1970\clbrdrb\brdrs\clbrdrr\brdrs\cellx2955\clbrdrb\brdrs\clbrdrr\brdrs\cellx3940\clbrdrb\brdrs\clbrdrr\brdrs\cellx4925\clbrdrb\brdrs\clbrdrr\brdrs\cellx5910\clbrdrb\brdrs\clbrdrr\brdrs\cellx6895
+\pard\intbl\qc {04927d36}\cell
+\pard\intbl\qc {04927d46}\cell
+\pard\intbl\qc {04928d90}\cell
+\pard\intbl\qc {04928d92}\cell
+\pard\intbl\qc {04928d100}\cell
+\pard\intbl\qc {}\cell
+\pard\intbl\qc {}\cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMresultados_lista_erradas}1{\*\bkmkend BMresultados_lista_erradas}: Lista das imagens segmentadas incorretamente para as bases do FRGC.}{\field{\*\fldinst TC "1 Lista das imagens segmentadas incorretamente para as bases do FRGC." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Para mostrar que a influ\'EAncia da qualidade da segmenta\'E7\'E3o no reconhecimento facial, um outro m\'E9todo foi implementado, baseado na abordagem proposta por Lu e Jain\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lu4 \\* MERGEFORMAT }}{\fldrslt{47}}}
+]. Basicamente, este m\'E9todo localiza as faces utilizando a informa\'E7\'E3o de cor da imagem, tamb\'E9m dispon\'EDvel nas bases utilizadas, e extrai uma regi\'E3o em forma de quadrado que cont\'E9m a face. Para realizar esta localiza\'E7\'E3o, foi utilizado um m\'E9todo baseado nas caracter\'EDsticas de Haar\~
+[{\field{\*\fldinst{\lang1024 REF BIB_viola \\* MERGEFORMAT }}{\fldrslt{66}}}
+] disponibilizado pelo {\i OpenCV}\~
+[{\field{\*\fldinst{\lang1024 REF BIB_www_opencv \\* MERGEFORMAT }}{\fldrslt{6}}}
+]. Para diminuir o n\'FAmero de falsas detec\'E7\'F5es, o m\'E9todo extrai o fundo das imagens utilizando a informa\'E7\'E3o 3D.\par
+\pard\qj\sl240\slmult1 \fi300 De 932 imagens da base FRGC v2.0 classificadas como com express\'E3o neutra e sem ru\'EDdo\~
+[{\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}
+], esta outra abordagem localizou corretamente a face em 912 delas. Falsos positivos foram removidos manualmente, e ent\'E3o estas imagens foram divididas aleatoriamente em seis subconjuntos de 152 imagens. Os mesmos subconjuntos foram criados para o m\'E9todo de segmenta\'E7\'E3o proposto neste trabalho. Esta divis\'E3o foi realizada para reduzir o n\'FAmero de combina\'E7\'F5es de teste (de 415416 para 68856).\par
+\pard\qj\sl240\slmult1 \fi300 Para todas as combina\'E7\'F5es poss\'EDveis entre duas imagens de um mesmo grupo, foi verificado se as duas imagens correspondiam ao mesmo indiv\'EDduo ou n\'E3o, utilizando um sistema de reconhecimento facial 3D\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bellon2 \\* MERGEFORMAT }}{\fldrslt{10}}}, {\field{\*\fldinst{\lang1024 REF BIB_bellon3 \\* MERGEFORMAT }}{\fldrslt{11}}}
+] baseado no registro de imagens, combinando a Medida de Interpenetra\'E7\'E3o de Superf\'EDcies (SIM, {\i Surface Interpenetration Measure})\~
+[{\field{\*\fldinst{\lang1024 REF BIB_silva \\* MERGEFORMAT }}{\fldrslt{60}}}
+] com o {\i Simulated Anneling}\~
+[{\field{\*\fldinst{\lang1024 REF BIB_kirkpatrick \\* MERGEFORMAT }}{\fldrslt{43}}}
+]. Atrav\'E9s das taxas de acerto do reconhecimento para cada segmenta\'E7\'E3o, \'E9 poss\'EDvel comparar a influ\'EAncia da segmenta\'E7\'E3o no reconhecimento. A Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_segs \\* MERGEFORMAT }}{\fldrslt{43}}} mostra exemplos das duas segmenta\'E7\'F5es utilizadas.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (e) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (f) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (g) \par
+\pard\qc\sl240\slmult1 \fi0  \par
+\pard\qc\sl240\slmult1 \fi0 (h) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMresultados_segs}4{\*\bkmkend BMresultados_segs}: Exemplos das segmenta\'E7\'F5es utilizadas na compara\'E7\'E3o: (a)-(d) faces segmentadas pelo detector facial do {\i OpenCV}; e (e)-(h) faces segmentadas utilizando o m\'E9todo proposto.}{\field{\*\fldinst TC "4 Exemplos das segmenta\'E7\'F5es utilizadas na compara\'E7\'E3o: (a)-(d) faces segmentadas pelo detector facial do {\i OpenCV}; e (e)-(h) faces segmentadas utilizando o m\'E9todo proposto." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 A Tabela\~{\field{\*\fldinst{\lang1024 REF BMresultados_comparacao \\* MERGEFORMAT }}{\fldrslt{4}}} mostra as taxas de acerto dos dois m\'E9todos em quest\'E3o para cada subconjunto, utilizando uma taxa de falsa aceita\'E7\'E3o (FAR, {\i False Acceptance Rate}) de 0%\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bolle \\* MERGEFORMAT }}{\fldrslt{15}}}
+]. A partir destes resultados \'E9 poss\'EDvel perceber a import\'E2ncia da extra\'E7\'E3o precisa da regi\'E3o da face, em que a abordagem proposta obteve taxas de verifica\'E7\'E3o com uma melhora significativa em rela\'E7\'E3o \'E0s taxas obtidas pela abordagem de compara\'E7\'E3o.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {Subconjuntos}\cell
+\pard\intbl\qc {CI}\cell
+\pard\intbl\qc {CD}\cell
+\pard\intbl\qc {T1 (%)}\cell
+\pard\intbl\qc {T2 (%)}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {1}\cell
+\pard\intbl\qc {70}\cell
+\pard\intbl\qc {11406}\cell
+\pard\intbl\qc {97,14}\cell
+\pard\intbl\qc {98,57}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {2}\cell
+\pard\intbl\qc {68}\cell
+\pard\intbl\qc {11408}\cell
+\pard\intbl\qc {98,53}\cell
+\pard\intbl\qc {98,53}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {3}\cell
+\pard\intbl\qc {65}\cell
+\pard\intbl\qc {11411}\cell
+\pard\intbl\qc {90,77}\cell
+\pard\intbl\qc {95,38}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {4}\cell
+\pard\intbl\qc {77}\cell
+\pard\intbl\qc {11399}\cell
+\pard\intbl\qc {92,21}\cell
+\pard\intbl\qc {94,81}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {5}\cell
+\pard\intbl\qc {54}\cell
+\pard\intbl\qc {11422}\cell
+\pard\intbl\qc {94,44}\cell
+\pard\intbl\qc {98,15}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1380\clbrdrb\brdrs\clbrdrr\brdrs\cellx2760\clbrdrb\brdrs\clbrdrr\brdrs\cellx4140\clbrdrb\brdrs\clbrdrr\brdrs\cellx5520\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\qc {6}\cell
+\pard\intbl\qc {64}\cell
+\pard\intbl\qc {11412}\cell
+\pard\intbl\qc {95,31}\cell
+\pard\intbl\qc {95,31}\cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMresultados_comparacao}2{\*\bkmkend BMresultados_comparacao}: Taxas de acerto, com FAR de 0%. As colunas CI e CD indicam o n\'FAmero de combina\'E7\'F5es entre imagens de um mesmo indiv\'EDduo e de indiv\'EDduos diferentes, respectivamente. A coluna T1 mostra as taxas de acerto do m\'E9todo de segmenta\'E7\'E3o que utiliza o {\i OpenCV}, e a coluna T2 mostra as taxas de acerto obtidas pela abordagem proposta.}{\field{\*\fldinst TC "2 Taxas de acerto, com FAR de 0%. As colunas CI e CD indicam o n\'FAmero de combina\'E7\'F5es entre imagens de um mesmo indiv\'EDduo e de indiv\'EDduos diferentes, respectivamente. A coluna T1 mostra as taxas de acerto do m\'E9todo de segmenta\'E7\'E3o que utiliza o {\i OpenCV}, e a coluna T2 mostra as taxas de acerto obtidas pela abordagem proposta." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb480 \fi0 {\s3\ql\sb240\sa60\keepn\f13\b\fs32 3  Detec\'E7\'E3o de caracter\'EDsticas faciais 3D\par
+}\pard\qj\sl240\slmult1 \sb60 \fi0 Nesta etapa dos experimentos foram utilizadas as 4007 imagens da base do FRGC v2.0 j\'E1 segmentadas. O tempo m\'E9dio gasto para localizar todas as caracter\'EDsticas faciais utilizadas para cada face foi de {{0.4}} segundos em um Pentium D 3.4GHz. Os resultados da detec\'E7\'E3o de caracter\'EDsticas s\'E3o apresentados na Tabela\~{\field{\*\fldinst{\lang1024 REF BMresultados_taxas_deteccao \\* MERGEFORMAT }}{\fldrslt{5}}}, obtidos por uma verifica\'E7\'E3o visual dos resultados.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450
+\pard\intbl\ql {Caracter\'EDsticas}\cell
+\pard\intbl\qc {% de detec\'E7\'F5es corretas}\cell
+\pard\intbl\qc \cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450
+\pard\intbl\ql {Ponta do nariz}\cell
+\pard\intbl\qc {99,95}\cell
+\pard\intbl\qc \cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450
+\pard\intbl\ql {Cantos do nariz}\cell
+\pard\intbl\qc {99,76}\cell
+\pard\intbl\qc \cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450
+\pard\intbl\ql {Base do nariz}\cell
+\pard\intbl\qc {99,98}\cell
+\pard\intbl\qc \cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450
+\pard\intbl\ql {Cantos dos olhos}\cell
+\pard\intbl\qc {99,83}\cell
+\pard\intbl\qc \cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMresultados_taxas_deteccao}3{\*\bkmkend BMresultados_taxas_deteccao}: Taxa de detec\'E7\'F5es corretas para cada caracter\'EDstica facial.}{\field{\*\fldinst TC "3 Taxa de detec\'E7\'F5es corretas para cada caracter\'EDstica facial." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 As detec\'E7\'F5es incorretas da ponta e da base do nariz foram causadas por problemas nas imagens de entrada, e as detec\'E7\'F5es incorretas dos cantos do nariz e dos olhos ocorreram em faces devido a varia\'E7\'F5es significantes de pose ({{>}} 15 graus nos eixos y e z) e ru\'EDdo na imagem de entrada. Exemplos de caracter\'EDsticas faciais detectadas correta e incorretamente s\'E3o mostrados na Figura\~{\field{\*\fldinst{\lang1024 REF BMresultados_deteccao \\* MERGEFORMAT }}{\fldrslt{44}}}.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi300  \par
+\pard\qc\sl240\slmult1 \fi0 \par
+\pard\qc\sl240\slmult1 \fi0 (a) \par
+\pard\qc\sl240\slmult1 \fi0 \par
+\pard\qc\sl240\slmult1 \fi0 (b) \par
+\pard\qc\sl240\slmult1 \fi0 \par
+\pard\qc\sl240\slmult1 \fi0 (c) \par
+\pard\qc\sl240\slmult1 \fi0 \par
+\pard\qc\sl240\slmult1 \fi0 (d) \par
+\pard\qc\sl240\slmult1 \fi0 {Figure {\*\bkmkstart BMresultados_deteccao}5{\*\bkmkend BMresultados_deteccao}: Caracter\'EDsticas faciais detectadas (a)-(b) corretamente, e (c)-(d) incorretamente.}{\field{\*\fldinst TC "5 Caracter\'EDsticas faciais detectadas (a)-(b) corretamente, e (c)-(d) incorretamente." \\f f}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Em seguida, procuramos avaliar se \'E9 poss\'EDvel melhorar o reconhecimento facial 3D com a utiliza\'E7\'E3o destas caracter\'EDsticas. Para isto, foram testadas as abordagens baseadas na extra\'E7\'E3o de regi\'F5es r\'EDgidas e na prioriza\'E7\'E3o de regi\'F5es r\'EDgidas durante a correspond\'EAncia. As imagens utilizadas s\'E3o da base disponibilizada pelo Grupo IMAGO, que permitem analisar a influ\'EAncia de uma express\'E3o facial (sorriso) em diferentes intensidades (leve e intensa) no reconhecimento.\par
+\pard\qj\sl240\slmult1 \fi300 A Tabela\~{\field{\*\fldinst{\lang1024 REF BMresultados_expressao \\* MERGEFORMAT }}{\fldrslt{6}}} mostra as taxas de verifica\'E7\'E3o do reconhecimento quando se utiliza apenas regi\'F5es circulares (C\'EDrculo - Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_corte1 \\* MERGEFORMAT }}{\fldrslt{37(a)}}}) ou el\'EDpticas (Elipse - Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_corte2 \\* MERGEFORMAT }}{\fldrslt{37(b)}}}) em torno do nariz, a regi\'E3o acima da boca (Olhos - Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_corte4 \\* MERGEFORMAT }}{\fldrslt{37(d)}}}), a regi\'E3o inteira da face, e a combina\'E7\'E3o destas quatro entradas anteriores pela regra da soma\~
+[{\field{\*\fldinst{\lang1024 REF BIB_kittler \\* MERGEFORMAT }}{\fldrslt{44}}}
+] (Combina\'E7\'E3o). A primeira coluna mostra o tipo de entrada utilizado, a segunda coluna a taxa de verifica\'E7\'E3o utilizando apenas faces com express\'E3o neutra, e a terceira e a quarta coluna as taxas de verifica\'E7\'E3o quando se utiliza imagens com express\'E3o leve e intensa, respectivamente.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {{\b M\'E9todo}}\cell
+\pard\intbl\qc {{\b Neutra}}\cell
+\pard\intbl\qc {{\b Feliz 1}}\cell
+\pard\intbl\qc {{\b Feliz 2}}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {Face}\cell
+\pard\intbl\qc {92,22}\cell
+\pard\intbl\qc {77,78}\cell
+\pard\intbl\qc {42,22}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {C\'EDrculo}\cell
+\pard\intbl\qc {97,78}\cell
+\pard\intbl\qc {76,67}\cell
+\pard\intbl\qc {34,44}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {Elipse}\cell
+\pard\intbl\qc {97,78}\cell
+\pard\intbl\qc {83,33}\cell
+\pard\intbl\qc {63,33}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {Olhos}\cell
+\pard\intbl\qc {96,67}\cell
+\pard\intbl\qc {82,22}\cell
+\pard\intbl\qc {53,33}\cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175\clbrdrb\brdrs\clbrdrr\brdrs\cellx6900
+\pard\intbl\ql {Combina\'E7\'E3o}\cell
+\pard\intbl\qc {100}\cell
+\pard\intbl\qc {96,67}\cell
+\pard\intbl\qc {83,33}\cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMresultados_expressao}4{\*\bkmkend BMresultados_expressao}: Taxas de verifica\'E7\'E3o para o reconhecimento sob varia\'E7\'F5es de express\'F5es faciais.}{\field{\*\fldinst TC "4 Taxas de verifica\'E7\'E3o para o reconhecimento sob varia\'E7\'F5es de express\'F5es faciais." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Para as combina\'E7\'F5es incorretas dos resultado da combina\'E7\'E3o das diversas entradas, o alinhamento da regi\'E3o inteira da face foi aprimorado com a t\'E9cnica de prioriza\'E7\'E3o de setores (Setores - Figura\~{\field{\*\fldinst{\lang1024 REF BMreconhecimento_setores3 \\* MERGEFORMAT }}{\fldrslt{39(c)}}}). Com isso, foi poss\'EDvel diminuir significativamente o n\'FAmero de imagens n\'E3o reconhecidas, como mostrado na Tabela\~{\field{\*\fldinst{\lang1024 REF BMresultados_setores \\* MERGEFORMAT }}{\fldrslt{7}}}.\par
+{\pard\qj\sl240\slmult1 \sb240 \fi0  \par
+{\pard\qc\sl240\slmult1 \fi0 \par
+\trowd\clbrdrl\brdrs\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrt\brdrs\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175
+\pard\intbl\ql {{\b M\'E9todo}}\cell
+\pard\intbl\qc {{\b Feliz 1}}\cell
+\pard\intbl\qc {{\b Feliz 2}}\cell
+\pard\intbl\qc \cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175
+\pard\intbl\ql {Combina\'E7\'E3o}\cell
+\pard\intbl\qc {3}\cell
+\pard\intbl\qc {15}\cell
+\pard\intbl\qc \cell
+\row
+\trowd\clbrdrl\brdrs\clbrdrb\brdrs\clbrdrr\brdrdb\cellx1725\clbrdrb\brdrs\clbrdrr\brdrs\cellx3450\clbrdrb\brdrs\clbrdrr\brdrs\cellx5175
+\pard\intbl\ql {Setores}\cell
+\pard\intbl\qc {1}\cell
+\pard\intbl\qc {10}\cell
+\pard\intbl\qc \cell
+\row
+} \par
+\pard\qc\sl240\slmult1 \fi0 {Table {\*\bkmkstart BMresultados_setores}5{\*\bkmkend BMresultados_setores}: N\'FAmero de falsos negativos para abordagem de combina\'E7\'E3o e para abordagem aprimorada.}{\field{\*\fldinst TC "5 N\'FAmero de falsos negativos para abordagem de combina\'E7\'E3o e para abordagem aprimorada." \\f t}{\fldrslt }}\par
+}\pard\qj\sl240\slmult1 \sb240 \fi0 Estes resultados mostram que \'E9 poss\'EDvel melhorar significativamente os resultados do reconhecimento sob varia\'E7\'E3o de express\'F5es faciais utilizando as solu\'E7\'F5es testadas. As taxas de verifica\'E7\'E3o de algumas destas solu\'E7\'F5es melhoraram em mais de 15% para express\'F5es leves e em mais 40% para express\'F5es intensas, se comparadas com a taxa de verifica\'E7\'E3o obtida quando se utiliza apenas a regi\'E3o inteira da face.\par
+\page{}\pard\qj\sl240\slmult1 \fi0 {\s2\ql\sb240\sa60\keepn\f13\b\fs40 Chapter {\*\bkmkstart BMsec_conclusao}7{\*\bkmkend BMsec_conclusao}\par
+\pard\qj\sl240\slmult1 \sb240 \fi0 Conclus\'E3o\par
+\par\par}\pard\qj\sl240\slmult1 \sb60 \fi0 Neste trabalho s\'E3o apresentados os m\'E9todos para segmenta\'E7\'E3o facial e detec\'E7\'E3o de caracter\'EDsticas faciais em imagens 3D, que foram aplicados com sucesso no reconhecimento facial 3D, obtendo melhoras significativas em termos de taxas de verifica\'E7\'E3o (em m\'E9dia 2% com a segmenta\'E7\'E3o, e 20% com a detec\'E7\'E3o de caracter\'EDsticas).\par
+\pard\qj\sl240\slmult1 \fi300 Os processos de segmenta\'E7\'E3o e detec\'E7\'E3o de caracter\'EDsticas desenvolvidos s\'E3o robustos \'E0 express\'E3o facial, como comprovado ap\'F3s a avalia\'E7\'E3o dos mesmos com a base do FRGC v2.0, que cont\'E9m diversas imagens contendo diferentes express\'F5es faciais com diferentes n\'EDveis de intensidades. A detec\'E7\'E3o do nariz \'E9 robusta tamb\'E9m a varia\'E7\'F5es de pose, permitindo uma corre\'E7\'E3o de orienta\'E7\'E3o antes da detec\'E7\'E3o das demais caracter\'EDsticas.\par
+\pard\qj\sl240\slmult1 \fi300 O conjunto de caracter\'EDsticas utilizadas permite a realiza\'E7\'E3o de pr\'E9-alinhamentos entre diferentes superf\'EDcies faciais, otimizando o processo de correspond\'EAncia entre as mesmas. Este mesmo conjunto pode ser ampliado para permitir a cria\'E7\'E3o de modelos de deforma\'E7\'E3o das superf\'EDcies faciais para o reconhecimento\~
+[{\field{\*\fldinst{\lang1024 REF BIB_lu3 \\* MERGEFORMAT }}{\fldrslt{48}}}
+], ou at\'E9 mesmo para o estudo do comportamento das express\'F5es faciais para a cria\'E7\'E3o de m\'E9todos de classifica\'E7\'E3o de express\'F5es.\par
+\pard\qj\sl240\slmult1 \fi300 Os resultados deste trabalho foram apresentados em importantes eventos nacionais ({\i Brazilian Symposium on Computer Graphics and Image Processing} (SIBGRAPI) - {\i Workshop on Undergraduate Work} (WUW))\~
+[{\field{\*\fldinst{\lang1024 REF BIB_segundo1 \\* MERGEFORMAT }}{\fldrslt{56}}}, {\field{\*\fldinst{\lang1024 REF BIB_segundo3 \\* MERGEFORMAT }}{\fldrslt{58}}}
+] e internacionais ({\i International Conference on Image Analysis and Processing, International Conference on Image Processing})\~
+[{\field{\*\fldinst{\lang1024 REF BIB_bellon3 \\* MERGEFORMAT }}{\fldrslt{11}}}, {\field{\*\fldinst{\lang1024 REF BIB_queirolo2 \\* MERGEFORMAT }}{\fldrslt{53}}}, {\field{\*\fldinst{\lang1024 REF BIB_segundo2 \\* MERGEFORMAT }}{\fldrslt{57}}}
+]. Em 2006, o trabalho {\b "Segmenta\'E7\'E3o facial em imagens de profundidade"} foi premiado como terceiro melhor artigo de inicia\'E7\'E3o cient\'EDfica do IV WUW - XIX SIBGRAPI, e, em 2007, o trabalho {\b "Detec\'E7\'E3o de caracter\'EDsticas para o reconhecimento de faces 3D com express\'E3o facial"} foi premiado como melhor artigo de processamento de imagens do V WUW - XX SIBGRAPI.\par
+{\pard\qj\sl240\slmult1 \sb120 \fi0 {\plain\b\fs32 References}\par
+\pard\qj\sl240\slmult1 \sb60 \li450\fi-450 [{\v\*\bkmkstart BIB_www_agr}1{\*\bkmkend BIB_www_agr}]\tab Automatic {G}ait {R}ecognition for {H}uman {ID} at a {D}istance, {\f16 http://www.gait.ecs.soton.ac.uk/}. Acessado em 11/2007.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_www_bif}2{\*\bkmkend BIB_www_bif}]\tab Beyond {I}f{{\field{\*\fldinst{ EQ {\\s\\up5({\fs16 {{\i T}{\i M}}})}}}{\fldrslt }}} {S}olutions, {\f16 http://www.beyondifsolutions.com/}. Acessado em 11/2007.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_www_bc}3{\*\bkmkend BIB_www_bc}]\tab Biometric {C}onsortium, {\f16 http://www.biometrics.org/}. Acessado em 11/2007.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_www_dod}4{\*\bkmkend BIB_www_dod}]\tab Department of {D}efense, {\f16 http://www.biometrics.dod.mil/}. Acessado em 11/2007.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_www_nstc}5{\*\bkmkend BIB_www_nstc}]\tab National {S}cience & {T}echnology {C}ouncil {S}ubcommittee on {B}iometrics, {\f16 http://www.biometricscatalog.org/}. Acessado em 11/2007.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_www_opencv}6{\*\bkmkend BIB_www_opencv}]\tab Open {S}ource {C}omputer {V}ision {L}ibrary, {\f16 http://www.intel.com/technology/computing/opencv/}. Acessado em 11/2007.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_ballard1}7{\*\bkmkend BIB_ballard1}]\tab {\i0\b0\scaps Ballard, D.\~H.} Generalizing the hough transform to detect arbitrary shapes. {\i Pattern Recognition 13}, 2 (1981), 111\endash 122.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_ballard2}8{\*\bkmkend BIB_ballard2}]\tab {\i0\b0\scaps Ballard, D.\~H., and Brown, C.\~M.} {\i Computer Vision}. Prentice-Hall, 1982.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_bellon1}9{\*\bkmkend BIB_bellon1}]\tab {\i0\b0\scaps Bellon, O. R.\~P., and Silva, L.} New improvements to range image segmentation by edge detection. {\i IEEE Signal Processing Letters 9}, 2 (2002), 43\endash 45.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_bellon2}10{\*\bkmkend BIB_bellon2}]\tab {\i0\b0\scaps Bellon, O. R.\~P., Silva, L., and Queirolo, C.\~C.} {3D} face matching using the surface interpenetration measure. In {\i Lecture Notes in Computer Science}, vol.\~3617. Springer-Verlag, 2005, pp.\~1051\endash 1058.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_bellon3}11{\*\bkmkend BIB_bellon3}]\tab {\i0\b0\scaps Bellon, O. R.\~P., Silva, L., Queirolo, C.\~C., Drovetto\~Junior, S.\~A., and Segundo, M.\~P.} {3D} face image registration for face matching guided by the surface interpenetration measure. In {\i Proceedings of 13th International Conference on Image Processing} (2006), pp.\~2661\endash 2664.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_besl1}12{\*\bkmkend BIB_besl1}]\tab {\i0\b0\scaps Besl, P.\~J.} {\i Surface in Range Images Understanding}. Springer-Verlag, 1988.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_besl2}13{\*\bkmkend BIB_besl2}]\tab {\i0\b0\scaps Besl, P.\~J., and Jain, R.} Segmentation through variable-order surface fitting. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 10} (1988), 167\endash 192.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_besl3}14{\*\bkmkend BIB_besl3}]\tab {\i0\b0\scaps Besl, P.\~J., and Mckay, H.\~D.} A method for registration of 3-d shapes. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 14}, 2 (1992), 239\endash 256.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_bolle}15{\*\bkmkend BIB_bolle}]\tab {\i0\b0\scaps Bolle, R., Connell, J., Pankanti, S., Ratha, N., and Senior, A.} {\i Guide to Biometrics}. Springer-Verlag, 2003.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_bowyer}16{\*\bkmkend BIB_bowyer}]\tab {\i0\b0\scaps Bowyer, K.\~W., Chang, K., and Flynn, P.\~J.} A survey of approaches and challenges in {3D} and multi-modal {3D}+{2D} face recognition. {\i Computer Vision and Image Understanding 101}, 1 (2006), 1\endash 15.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_cartoux}17{\*\bkmkend BIB_cartoux}]\tab {\i0\b0\scaps Cartoux, J.\~Y., Lapreste, J.\~T., and Richetin, M.} Face authentication or recognition by profile extraction from range images. In {\i IEEE Computer Society Workshop on Interpretation of {3D} Scenes} (1989), pp.\~194\endash 199.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_caspi}18{\*\bkmkend BIB_caspi}]\tab {\i0\b0\scaps Caspi, D., Kiryati, M., and Shamir, J.} Range imaging with adaptive color structured light. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 20}, 5 (1998), 470\endash 480.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_chang4}19{\*\bkmkend BIB_chang4}]\tab {\i0\b0\scaps Chang, K.\~I., Bowyer, K.\~W., and Flynn, P.\~J.} Multi-modal {2D} and {3D} biometrics for face recognition. In {\i Proceedings of the IEEE International Workshop on Analysis and Modeling of Faces and Gestures} (2003), p.\~187.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_chang1}20{\*\bkmkend BIB_chang1}]\tab {\i0\b0\scaps Chang, K.\~I., Bowyer, K.\~W., and Flynn, P.\~J.} Adaptive rigid multi-region selection for handling expression variation in 3d face recognition. In {\i Proceedings of IEEE Workshop Face Recognition Grand Challenge Experiments} (2005).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_chang3}21{\*\bkmkend BIB_chang3}]\tab {\i0\b0\scaps Chang, K.\~I., Bowyer, K.\~W., and Flynn, P.\~J.} Effects on facial expression in {3D} face recognition. In {\i Proceedings SPIE - Biometric Technology for Human Identification} (2005), vol.\~5779, pp.\~132\endash 143.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_chang2}22{\*\bkmkend BIB_chang2}]\tab {\i0\b0\scaps Chang, K.\~I., Bowyer, K.\~W., and Flynn, P.\~J.} Multiple nose region matching for 3d face recognition under varying facial expression. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 28}, 10 (2006), 1695\endash 1700.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_chellappa}23{\*\bkmkend BIB_chellappa}]\tab {\i0\b0\scaps Chellappa, R., Wilson, C.\~L., and Sirohey, S.} Human and machine recognition of faces: a survey. {\i Proceedings of the IEEE 83}, 5 (1995), 705\endash 741.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_chua}24{\*\bkmkend BIB_chua}]\tab {\i0\b0\scaps Chua, C.\~S., and Jarvis, R.} Point signatures: A new representation for 3d object recognition. {\i International Journal of Computer Vision 25}, 1 (1997), 63\endash 85.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_colbry}25{\*\bkmkend BIB_colbry}]\tab {\i0\b0\scaps Colbry, D., Lu, X., Jain, A.\~K., and Stockman, G.} 3d face feature extraction for recognition. Tech. rep., Michigan State University, 2004.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_colombo}26{\*\bkmkend BIB_colombo}]\tab {\i0\b0\scaps Colombo, A., Cusano, C., and Schettini, R.} 3d face detection using curvature analysis. {\i Pattern Recognition 39}, 3 (2006), 444\endash 455.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_cook}27{\*\bkmkend BIB_cook}]\tab {\i0\b0\scaps Cook, J., Chandran, V., Sridharan, S., and Fookes, C.} Face recognition from 3d data using iterative closest point algorithm and gaussian mixture models. In {\i 3D Data Processing, Visualization, and Transmission} (2004), pp.\~502\endash 509.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_daugman1}28{\*\bkmkend BIB_daugman1}]\tab {\i0\b0\scaps Daugman, J.} High confidence visual recognition of persons by a test of statistical independece. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 15}, 11 (1993), 1148\endash 1161.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_daugman2}29{\*\bkmkend BIB_daugman2}]\tab {\i0\b0\scaps Daugman, J.} How iris recognition works. {\i IEEE Transactions on Circuits and Systems for Video Technology 14}, 1 (2004), 21\endash 30.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_etemad}30{\*\bkmkend BIB_etemad}]\tab {\i0\b0\scaps Etemad, K., and Chellappa, R.} Discriminant analysis for recognition of human face images. pp.\~127\endash 142.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_fior}31{\*\bkmkend BIB_fior}]\tab {\i0\b0\scaps Fior, A. G.\~F., Segundo, M.\~P., Bellon, O. R.\~P., and Silva, L.} Detec\'E7\'E3o e reconhecimento facial em seq\'FC\'EAncias de v\'EDdeo. {\i 20th Brazilian Symposium on Computer Graphics and Image Processing, 5th Workshop on Undergraduate Work} (2007).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_galton}32{\*\bkmkend BIB_galton}]\tab {\i0\b0\scaps Galton, F.} {\i Finger {P}rints}. Macmillan, 1892.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_gonzalez}33{\*\bkmkend BIB_gonzalez}]\tab {\i0\b0\scaps Gonzalez, R.\~C., and Woods, R.\~E.} {\i Digital Image Processing}. Addison-Wesley, 1992.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_henry}34{\*\bkmkend BIB_henry}]\tab {\i0\b0\scaps Henry, E.\~R.} {\i Classification and Uses of Fingerprints}. Routledge, 1900.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_hesher}35{\*\bkmkend BIB_hesher}]\tab {\i0\b0\scaps Hesher, C., Srivastava, A., and Erlebacher, G.} Principal component analysis of range images for facial recognition. In {\i Proceedings of International Multiconference in Computer Science} (2002).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_hjelmas}36{\*\bkmkend BIB_hjelmas}]\tab {\i0\b0\scaps Hjelmas, E., and Low, B.\~K.} Face detection: A survey. {\i Computer Vision and Image Understanding 83}, 3 (2001), 236\endash 274.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_hough}37{\*\bkmkend BIB_hough}]\tab {\i0\b0\scaps Hough, P. V.\~C.} Method and means for recognizing complex patterns. In {\i US_Patent} (1962).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_hsu}38{\*\bkmkend BIB_hsu}]\tab {\i0\b0\scaps Hsu, R.\~L., Abdel-Mottaleb, M., and Jain, A.\~K.} Face detection in color images. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 24}, 5 (2002), 696\endash 706.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_jain3}39{\*\bkmkend BIB_jain3}]\tab {\i0\b0\scaps Jain, A.\~K., and Dubes, R.\~C.} Algorithms for clustering data. Prentice-Hall, 1988.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_jain2}40{\*\bkmkend BIB_jain2}]\tab {\i0\b0\scaps Jain, A.\~K., Pankanti, S., Prabhakar, S., Hong, L., Ross, A., and Wayman, J.\~L.} Biometrics: A grand challenge. {\i Proceedings of International Conference on Pattern Recognition 2} (2004), 935\endash 942.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_jain1}41{\*\bkmkend BIB_jain1}]\tab {\i0\b0\scaps Jain, A.\~K., Ross, A., and Prabhakar, S.} An introduction to biometric recognition. {\i IEEE Transactions on Circuits and Systems for Video Technology 14}, 1 (2004), 4\endash 20.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_kirby}42{\*\bkmkend BIB_kirby}]\tab {\i0\b0\scaps Kirby, M., and Sirovich, L.} Application of the karhunen-loeve procedure for the characterization of human faces. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 12}, 1 (1990), 103\endash 108.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_kirkpatrick}43{\*\bkmkend BIB_kirkpatrick}]\tab {\i0\b0\scaps Kirkpatrick, S., Gelatt, C.\~D., and Vecchi, M.\~P.} Optimization by simulated annealing. {\i Science 220}, 4598 (1983), 671\endash 680.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_kittler}44{\*\bkmkend BIB_kittler}]\tab {\i0\b0\scaps Kittler, J., Hatef, M., Duin, R. P.\~W., and Matas, J.} On combining classifiers. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 20}, 3 (1998), 226\endash 239.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_lemes}45{\*\bkmkend BIB_lemes}]\tab {\i0\b0\scaps Lemes, R.\~P., Segundo, M.\~P., Bellon, O. R.\~P., and Silva, L.} Registro de imagens no reconhecimento de impress\'F5es digitais. {\i 20th Brazilian Symposium on Computer Graphics and Image Processing, 5th Workshop on Undergraduate Work} (2007).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_lu1}46{\*\bkmkend BIB_lu1}]\tab {\i0\b0\scaps Lu, X., and Jain, A.\~K.} Integrating range and texture information for {3D} face recognition. In {\i Proceedings of 7th IEEE Workshop on Applications of Computer Vision} (2005), pp.\~156\endash 163.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_lu4}47{\*\bkmkend BIB_lu4}]\tab {\i0\b0\scaps Lu, X., and Jain, A.\~K.} Automatic feature extraction for multiview 3d face recognition. In {\i Proceedings of 7th IEEE International Conference on Automatic Face and Gesture Recognition} (Southampton, UK, 2006), pp.\~585\endash 590.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_lu3}48{\*\bkmkend BIB_lu3}]\tab {\i0\b0\scaps Lu, X., and Jain, A.\~K.} Deformation modeling for robust 3d face matching. In {\i Proceedings of IEEE Computer Society Conference on Computer Vision and Pattern Recognition} (2006), vol.\~2, pp.\~1377\endash 1383.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_lu2}49{\*\bkmkend BIB_lu2}]\tab {\i0\b0\scaps Lu, X., Jain, A.\~K., and Colbry, D.} Matching {2.5D} face scans to {3D} models. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 28}, 1 (2006), 31\endash 43.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_malassiotis}50{\*\bkmkend BIB_malassiotis}]\tab {\i0\b0\scaps Malassiotis, S., and G., S.\~M.} Robust real-time 3{D} head pose estimation from range data. {\i Pattern Recognition 38}, 8 (2005), 1153\endash 1165.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_moreno}51{\*\bkmkend BIB_moreno}]\tab {\i0\b0\scaps Moreno, A.\~B., S\'e1nchez, A., V\'e9lez, J.\~F., and D\'edaz, F.\~J.} Face recognition using 3d surface-extracted descriptor. In {\i Proceedings of Irish Machine Vision and Image Processing} (2003).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_pan}52{\*\bkmkend BIB_pan}]\tab {\i0\b0\scaps Pan, G., Wu, Y., and Wu, Z.} Investigating profile extracted from range data for 3d face recognition. In {\i Proceedings of IEEE International Conference on Systems, Man and Cybernetics} (2003), pp.\~1396\endash 1399.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_queirolo2}53{\*\bkmkend BIB_queirolo2}]\tab {\i0\b0\scaps Queirolo, C.\~C., Segundo, M.\~P., Bellon, O. R.\~P., and Silva, L.} Noise versus facial expression on 3{D} face recognition. {\i 14th International Conference on Image Analysis and Processing} (2007), 171\endash 176.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_queirolo3}54{\*\bkmkend BIB_queirolo3}]\tab {\i0\b0\scaps Queirolo, C.\~C., Segundo, M.\~P., Bellon, O. R.\~P., and Silva, L.} Reconhecimento facial usando imagens 3d com express\'F5es faciais e ru\'EDdo. {\i Revista Eletr\'F4nica de Inicia\'E7\'E3o Cient\'EDfica 7}, 3 (2007).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_queirolo1}55{\*\bkmkend BIB_queirolo1}]\tab {\i0\b0\scaps Queirolo, C.\~C., Segundo, M.\~P., Drovetto\~Junior, S.\~A., Bellon, O. R.\~P., and Silva, L.} A framework for 3d face authentication. {\i 19th Brazilian Symposium on Computer Graphics and Image Processing} (2006).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_segundo1}56{\*\bkmkend BIB_segundo1}]\tab {\i0\b0\scaps Segundo, M.\~P., Bellon, O. R.\~P., and Silva, L.} Segmenta\'E7\'E3o facial em imagens de profundidade. {\i 19th Brazilian Symposium on Computer Graphics and Image Processing, 4th Workshop on Undergraduate Work} (2006).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_segundo2}57{\*\bkmkend BIB_segundo2}]\tab {\i0\b0\scaps Segundo, M.\~P., Queirolo, C.\~C., Bellon, O. R.\~P., and Silva, L.} Automatic 3{D} facial segmentation and landmark detection. {\i 14th International Conference on Image Analysis and Processing} (2007), 431\endash 436.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_segundo3}58{\*\bkmkend BIB_segundo3}]\tab {\i0\b0\scaps Segundo, M.\~P., Queirolo, C.\~C., Bellon, O. R.\~P., and Silva, L.} Detec\'E7\'E3o de caracter\'EDsticas para o reconhecimento de faces 3d com express\'E3o facial. {\i 20th Brazilian Symposium on Computer Graphics and Image Processing, 5th Workshop on Undergraduate Work} (2007).\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_shapiro}59{\*\bkmkend BIB_shapiro}]\tab {\i0\b0\scaps Shapiro, L.\~G., and Stockman, G.\~C.} Computer vision. Prentice-Hall, 2001.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_silva}60{\*\bkmkend BIB_silva}]\tab {\i0\b0\scaps Silva, L., Bellon, O. R.\~P., and Boyer, K.\~L.} Precision range image registration using a robust surface interpenetration measure and enhanced genetic algorithms. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 27}, 5 (2005), 762\endash 776.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_sirovich}61{\*\bkmkend BIB_sirovich}]\tab {\i0\b0\scaps Sirovich, L., and Kirby, M.} Low-dimensional procedure for the characterization of human faces. {\i Journal of the Optical Society of America A: Optics, Image Science, and Vision 4}, 3 (1987), 519\endash 524.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_sobottka}62{\*\bkmkend BIB_sobottka}]\tab {\i0\b0\scaps Sobottka, K., and Pitas, I.} A novel method for automatic face segmentation, facial feature extraction and tracking. {\i Signal Processing-Image Communication 12}, 3 (1998), 263\endash 281.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_tsalakanidou}63{\*\bkmkend BIB_tsalakanidou}]\tab {\i0\b0\scaps Tsalakanidou, F., Malassiotis, S., and Strintzis, M.\~G.} Face localization and authentication using color and depth images. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 14}, 2 (2005), 152\endash 168.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_turk}64{\*\bkmkend BIB_turk}]\tab {\i0\b0\scaps Turk, M., and Pentland, A.} Eigenfaces for recognition. {\i Journal of Cognitive Neurosicence 3}, 1 (1991), 71\endash 86.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_uchida}65{\*\bkmkend BIB_uchida}]\tab {\i0\b0\scaps Uchida, N., Shibahara, T., Aoki, T., Nakajima, H., and Kobayashi, K.} 3d face recognition using passive stereo vision. In {\i Proceedings of 12th International Conference on Image Processing} (2005), pp.\~950\endash 953.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_viola}66{\*\bkmkend BIB_viola}]\tab {\i0\b0\scaps Viola, P., and Jones, M.\~J.} Robust real-time face detection. {\i International Journal of Computer Vision 57}, 2 (2004), 137\endash 154.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_wang}67{\*\bkmkend BIB_wang}]\tab {\i0\b0\scaps Wang, Y., Chua, C.\~S., and Ho, Y.\~K.} Facial feature detection and face recognition from 2d and 3d images. {\i Pattern Recognition Letters 23}, 10 (2002), 1191\endash 1202.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_xie}68{\*\bkmkend BIB_xie}]\tab {\i0\b0\scaps Xie, Y., and Ji, Q.} A new efficient ellipse detection method. In {\i Proceedings of 16th International Conference on Pattern Recognition} (2002), vol.\~2, pp.\~957\endash 960.\par
+\pard\qj\sl240\slmult1 \li450\fi-450 [{\v\*\bkmkstart BIB_yang}69{\*\bkmkend BIB_yang}]\tab {\i0\b0\scaps Yang, M.\~H., Kriegman, D.\~J., and Ahuja, N.} Detecting faces in images: A survey. {\i IEEE Transactions on Pattern Analysis and Machine Intelligence 24}, 1 (2002), 34\endash 58.\par
+}}}

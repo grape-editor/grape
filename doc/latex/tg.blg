@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2011/Mandriva)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: tg.aux
+The style file: acm.bst
+Database file #1: tg.bib.bib
+Warning--to sort, need author or key in graphdrawing
+Warning--empty author in graphdrawing
+Warning--empty booktitle in graphdrawing
+You've used 8 entries,
+            2253 wiz_defined-function locations,
+            568 strings with 4856 characters,
+and the built_in function-call counts, 2256 in all, are:
+= -- 204
+> -- 110
+< -- 0
++ -- 46
+- -- 38
+* -- 166
+:= -- 380
+add.period$ -- 23
+call.type$ -- 8
+change.case$ -- 43
+chr.to.int$ -- 0
+cite$ -- 11
+duplicate$ -- 79
+empty$ -- 189
+format.name$ -- 38
+if$ -- 463
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 42
+num.names$ -- 14
+pop$ -- 52
+preamble$ -- 1
+purify$ -- 35
+quote$ -- 0
+skip$ -- 45
+stack$ -- 0
+substring$ -- 103
+swap$ -- 14
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 30
+warning$ -- 3
+while$ -- 17
+width$ -- 9
+write$ -- 77
+(There were 3 warnings)

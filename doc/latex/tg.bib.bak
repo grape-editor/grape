@@ -1,0 +1,367 @@
+
+%
+%  $Description: Sample bibliography$ 
+% 
+%  $Author: ienne $ 
+%  $Date: 1995/09/15 15:19:53 $
+%  $Revision: 1.3 $
+%
+
+@Article{yang,
+  author = 	{Yang, M. H. and Kriegman, D. J. and Ahuja, N.}, 
+  title = 	{Detecting faces in images: A survey},
+  journal = 	{IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year = 	{2002},
+  volume = 	{24},
+  number = 	{1},
+  pages = 	{34--58},
+}
+
+@Article{hjelmas,
+  author = 	{Hjelmas, E. and Low, B. K.}, 
+  title = 	{Face detection: A survey},
+  journal = 	{Computer Vision and Image Understanding},
+  year = 	{2001},
+  volume = 	{83},
+  number = 	{3},
+  pages = 	{236--274},
+}
+
+
+@article{phung,
+  author = 	{Phung, S. L. and Bouzerdoum, A. and Chai, D.},
+  title = 	{Skin segmentation using color pixel classification: Analysis and comparison},
+  journal = 	{IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume = 	{27},
+  number = 	{1},
+  pages = 	{148--154},
+  year =	{2005},
+}
+
+@article{hsu,
+  author = 	{Hsu, R. L. and Abdel-Mottaleb, M. and Jain, A. K.},
+  title = 	{Face detection in color images},
+  journal = 	{IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume = 	{24},
+  number = 	{5},
+  pages = 	{696--706},
+  year =	{2002},
+}
+
+@article{sobottka,
+  author = 	{Sobottka, K. and Pitas, I.},
+  title = 	{A novel method for automatic face segmentation, facial feature extraction and tracking},
+  journal = 	{Signal Processing-Image Communication},
+  volume = 	{12},
+  number = 	{3},
+  pages = 	{263--281},
+  year =	{1998},
+}
+
+@article{hong,
+  author = 	{Hong, L. and Jain, A. K.},
+  title = 	{Integrating faces and fingerprints for personal identification},
+  journal = 	{IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume = 	{20},
+  number = 	{12},
+  pages = 	{1295--1307},
+  year =	{1998},
+}
+
+@article{bowyer,
+  author = 	{Bowyer, K. W. and Chang, K. and Flynn, P. J.},
+  title = 	{A survey of approaches and challenges in {3D} and multi-modal {3D}+{2D} face recognition},
+  journal = 	{Computer Vision and Image Understanding},
+  volume = 	{101},
+  number = 	{1},
+  pages = 	{1--15},
+  year =	{2006},
+}
+
+@article{tsalakanidou,
+  author = 	{Tsalakanidou, F. and Malassiotis, S. and Strintzis, M. G.},
+  title = 	{Face localization and authentication using color and depth images},
+  journal = 	{IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume = 	{14},
+  number = 	{2},
+  pages = 	{152--168},
+  year =	{2005},
+}
+
+@article{bellon1,
+  author = 	{Bellon, O. R. P. and Silva, L.},
+  title = 	{New improvements to range image segmentation by edge detection},
+  journal = 	{IEEE Signal Processing Letters},
+  volume = 	{9},
+  number = 	{2},
+  pages = 	{43--45},
+  year =	{2002},
+}
+
+@article{gotardo,
+  author = 	{Gotardo, P.F.U. and Boyer, K.W. and Bellon, O. R. P. and Silva, L.},
+  title = 	{Range Image Segmentation Into Planar and Quadric Surfaces Using an Improved Robust Estimator and Genetic Algorithm},
+  journal = 	{IEEE Transaction on Systems, Man, and Cybernetics},
+  volume = 	{34},
+  number = 	{6},
+  pages = 	{2303--2316},
+  year =	{2004},
+}
+
+@article{ballard,
+	author =      {Ballard, D. H.},
+	title =       {Generalizing the Hough transform to detect arbitrary shapes},
+	journal =     {Pattern Recognition},
+	volume =      {13},
+	number =      {2},
+	pages =       {111--122},
+	year =        {1981},
+}
+
+@article{chang2,
+	author =      {Chang, K.I. and Bowyer, K.W. and Flynn, P.J.},
+	title =       {Multiple Nose Region Matching for 3D Face Recognition under Varying Facial Expression},
+	journal =     {IEEE Trans. on PAMI},
+	volume =      {28},
+	number =      {10},
+	pages =       {1695--1700},
+	year =        {2006},
+}
+
+@article{besl2,
+	author =      {Besl, P. and Jain, R.},
+	title =       {Segmentation through variable-order surface fitting},
+	journal =     {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	volume =      {10},
+	pages =       {167--192},
+	year =        {1988},
+}
+
+@article{segundo,
+	author =      {Segundo, M. P. and Bellon, O. R. P. and Silva, L.},
+	title =       {Segmentação facial em imagens de profundidade},
+	journal =     {XIX SIBGRAPI, IV WICCGPI},
+	year =        {2006},
+}
+
+@article{segundo2,
+	author =      {Segundo, M. P. and Queirolo, C. C. and Bellon, O. R. P. and Silva, L.},
+	title =       {Automatic 3{D} facial segmentation and landmark detection},
+	journal =     {14th International Conference on Image Analysis and Processing (Aceito)},
+	year =        {2007},
+}
+
+@article{queirolo,
+	author =      {Queirolo, C. C. and Segundo, M. P. and Bellon, O. R. P. and Silva, L.},
+	title =       {Noise versus Facial Expression on 3{D} Face Recognition},
+	journal =     {14th International Conference on Image Analysis and Processing (Aceito)},
+	year =        {2007},
+}
+
+@article{queirolo2,
+	author =      {Queirolo, C. C. and Segundo, M. P. and Bellon, O. R. P. and Silva, L.},
+	title =       {Reconhecimento Facial usando Imagens 3D com Expressões Faciais e Ruído},
+	journal =     {XXVI Concurso de Trabalhos de Iniciação Científica},
+	year =        {2007},
+}
+
+@Article{jain2,
+  author = 	{Jain, A. K. and Ross, A. and Prabhakar, S.}, 
+  title = 	{An introduction to biometric recognition},
+  journal = 	{IEEE Trans. Circuits and Systems for Video Technology},
+  year = 	{2004},
+  volume = 	{14},
+  number = 	{1},
+  pages = 	{4--20},
+}
+
+@article{chellappa,
+  author = "Chellappa, R. and Wilson, C. L. and Sirohey, S.",
+  title = "Human and machine recognition of faces: a survey",
+  journal = "Proceedings of the IEEE",
+  year = "1995",
+  volume = 	{83},
+  number = 	{5},
+  pages = 	{705--741},
+}
+
+@Article{lu2,
+   author = 	{Lu, X. and Jain, A. K. and Colbry, D.},
+   title = 	{Matching {2.5D} Face Scans to {3D} Models},
+   journal = 	{IEEE PAMI},
+   volume = 	{28},
+   number = 	{1},
+   pages = 	{31--43},
+   year =	{2006},
+}
+
+% ===============================================================
+% =			   PROCEEDINGS				=
+% ===============================================================
+
+@InProceedings{xie,
+	author =      {Xie, Y. and Ji, Q.},
+	title =       {A new efficient ellipse detection method},
+	booktitle =   {Proc. of 16th International Conference on Pattern Recognition},
+	pages =       {957--960},
+	volume =      {2},
+	year  =       {2002},
+}
+
+@InProceedings{moreno,
+	author =      {Moreno, A. B. and S\'{a}nchez, \'{A}. and V\'{e}lez, J. F. and D\'{i}az, F. J.},
+	title =       {Face recognition using 3d surface-extracted descriptor},
+	booktitle =   {Proc. of Irish Machine Vision and Image Processing},
+	year  =       {2003},
+}
+
+@inproceedings{hough,
+        AUTHOR = "Hough, P. V. C.",
+        TITLE = "Method and Means for Recognizing Complex Patterns",
+        BOOKTITLE = US_Patent,
+        YEAR = "1962"
+}
+
+@inproceedings{duda,
+        AUTHOR = "Duda, R.O. and Hart, P.E.",
+        TITLE = "Use of the Hough Transform to Detect Lines and Curves in Pictures",
+        BOOKTITLE = "CMetImAly77",
+        YEAR = "1977",
+        PAGES = "204--208"
+}
+
+@inproceedings{bellon3,
+	author = {Bellon, O.R.P. and Silva, L and Queirolo, C.C. and Drovetto, S. and Segundo, M.P.},
+	title =  {{3D} Face Image Registration for Face Matching guided by the Surface Interpenetration Measure},
+	pages = {2661--2664},
+	booktitle = {13th ICIP},
+	year =   {2006},
+}
+
+@inproceedings{chang,
+        author = {Chang, K.I. and Bowyer, K.W. and Flynn, P.J.},
+        title = {Adaptive Rigid Multi-region Selection for Handling Expression Variation in 3D Face Recognition},
+        booktitle = {Proc. of IEEE Workshop Face Recognition Grand Challenge Experiments},
+        year = {2005},
+}
+
+@InProceedings{chang3,
+   author = 	{Chang, K. I. and Bowyer, K. W. and Flynn, P. J.},
+   title = 	{Effects on facial expression in {3D} face recognition},
+   booktitle = 	{Proceedings SPIE - Biometric Technology for Human Identification},
+   volume = 	{5779},
+   pages = 	{132--143},
+   year = 	{2005},
+}
+
+@inproceedings{flynn,
+	author =      {Flynn, P. and Jain, A.K.},
+	title =       {Surface classification: Hypothesis testing and parameter estimation},
+	journal =     {Proc. of IEEE Conference in Computer Vision and Pattern Recognition},
+	pages =       {261--267},
+	year =        {2004},
+}
+
+@InProceedings{cook,
+   author = 	 {Cook, J. and Chandran, V. and Sridharan, S. and Fookes, C.},
+   title = 	 {Face Recognition from 3D Data using Iterative Closest Point Algorithm and Gaussian Mixture Models},
+   booktitle = 	 {3D Data Processing, Visualization, and Transmission},
+   pages = 	 {502--509},
+   year = 	 {2004},
+}
+
+@InProceedings{lu,
+   author =	{Lu, X. and Jain, A. K.},
+   title =	{Integrating Range and Texture Information for {3D} Face Recognition},
+   booktitle =	{Proc. 7th IEEE Workshop on Applications of Computer Vision},
+   address =	{Breckenridge, CO},
+   pages =	{156--163},
+   year =	{2005}
+}
+
+@InProceedings{lu3,
+   author =	{Lu, X. and Jain, A. K.},
+   title =	{Deformation Modeling for Robust 3D Face Matching},
+   booktitle =	{Proc. IEEE Computer Society Conference on Computer Vision and Pattern Recognition},
+   address =	{New York, NY},
+   pages =	{1377--1383},
+   volume =	{2},
+   year =	{2006}
+}
+
+@InProceedings{lu4,
+   author =	{Lu, X. and Jain, A. K.},
+   title =	{Automatic Feature Extraction for Multiview 3D Face Recognition},
+   booktitle =	{Proc. 7th IEEE International Conference on Automatic Face and Gesture Recognition},
+   address =	{Southampton, UK},
+   pages =	{585--590},
+   year =	{2006}
+}
+
+% ===============================================================
+% =			       BOOK				=
+% ===============================================================
+
+@Book{gonzalez,
+  author = 	 {Gonzalez, R. C. and Woods, R. E.},
+  title = 	 {Digital Image Processing},
+  publisher = 	 {Addison-Wesley},
+  volume = 	 {2 edition},
+  year = 	 {1992},
+}
+
+@Book{besl,
+  author = 	 {Besl, P.J.},
+  title = 	 {Surface in Range Images Understanding},
+  publisher = 	 {Springer-Verlag},
+  year = 	 {1988},
+}
+
+% ===============================================================
+% =			    COLLECTION				=
+% ===============================================================
+
+@InCollection{bellon2,
+  author = 	{Bellon, O. R. P. and Silva, L. and Queirolo, C. C.},
+  title =	{{3D} face matching using the Surface Interpenetration Measure},
+  booktitle =	{Lecture Notes in Computer Science},
+  pages = 	{1051--1058},
+  publisher =	{Springer-Verlag},
+  year = 	{2005},
+  volume =	{3617},
+}
+
+@InCollection{jain1,
+  author = 	{Jain, A. K. and Dubes, R. C.},
+  title = 	{Algorithms for clustering data},
+  publisher =	{Prentice-Hall},
+  year =	{1988},
+}
+
+@InCollection{shapiro,
+  author = 	{Shapiro, L. G. and Stockman, G. C.},
+  title = 	{Computer Vision},
+  publisher =	{Prentice-Hall},
+  year =	{2001},
+}
+
+@TechReport{colbry,
+   author =	{Colbry, D. and Lu, X. and Jain, A.K. and Stockman, G.},
+   title =	{3D Face Feature Extraction for Recognition},
+   institution= {Michigan State University},
+   year =	{2004},
+}
+
+% ===============================================================
+% =			       MISC				=
+% ===============================================================
+% ---------------------------------------------------------------
+% - Required: none						-
+% -								-
+% - Optional: author, title, howpublished, month, year, note	-
+% ---------------------------------------------------------------
+
+@Misc{ ref:3dim,
+   title =	{Intl. Conf. on 3-D Digital Imaging and Processing},
+   howpublished={http://www.3dimconference.org},
+}
