@@ -17,6 +17,12 @@ function tex (){
     pdflatex --interaction=nonstopmode $1
     pdflatex --interaction=nonstopmode $1
     pdflatex --interaction=nonstopmode $1
-    [ -e $(basename $1 .tex).pdf ] && open $(basename $1 .tex).pdf&  
+    
+    os=`uname -s`
+    if [ "$os" == "Darwin" ]; then
+      [ -e $(basename $1 .tex).pdf ] && open $(basename $1 .tex).pdf&
+    else
+      [ -e $(basename $1 .tex).pdf ] && evince $(basename $1 .tex).pdf&
+    fi
 }
 tex $@
