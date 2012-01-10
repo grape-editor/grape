@@ -17,6 +17,6 @@ function tex (){
     pdflatex --interaction=nonstopmode $1
     pdflatex --interaction=nonstopmode $1
     pdflatex --interaction=nonstopmode $1
-    [ -e $(basename $1 .tex).pdf ] && evince $(basename $1 .tex).pdf&  
+    [ -e $(basename $1 .tex).pdf ] && open $(basename $1 .tex).pdf&  
 }
 tex $@
